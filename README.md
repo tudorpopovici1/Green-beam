@@ -4,4 +4,6 @@ Irtaza Hashmi
 
 I have mediocre experience in Java and I would like to brush my skills by practicing more and creating new applications.
 My personal goal is to develop my skills in Java and learn about client and server protocols. I would also like to 
-develop my team coordination skills. 
+develop my team coordination skills.
+
+![](https://www.google.com/search?q=sever+latysov&source=lnms&tbm=isch&sa=X&ved=0ahUKEwipzoCP9b3gAhVHKFAKHc8UD8EQ_AUIDygC&biw=1920&bih=937#imgrc=RTcb6mgNDME7EM:)
