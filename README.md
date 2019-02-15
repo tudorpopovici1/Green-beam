@@ -6,6 +6,9 @@ I have mediocre experience in Java and I would like to brush my skills by practi
 My personal goal is to develop my skills in Java and learn about client and server protocols. I would also like to 
 develop my team coordination skills.
 
-![](F:\SEVER\Foto's\Ardennen_2019_mentorgroepje_TN\A021955-R1-05-30.bmp)
+Sever Latysov
+![](https://www.hebbescasting.nl/images/person/60768-4-gr.jpg?t=1500309204)
 
-![](C:\Users\Lenovo\Desktop\Tu Delft\photomaria)
+
+I would like to improve my social skills by trying to work as good as possible inside a team. Usually I work alone so this course is a good opportunity.
+Besides the social advantages I would also like to become a better programmer. Prior to CSE I didn't have a lot of experience in programming. Hopefully I will learn a lot from my team mates.
