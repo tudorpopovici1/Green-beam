@@ -7,3 +7,5 @@ My personal goal is to develop my skills in Java and learn about client and serv
 develop my team coordination skills.
 
 ![](F:\SEVER\Foto's\Ardennen_2019_mentorgroepje_TN\A021955-R1-05-30.bmp)
+
+![](C:\Users\Lenovo\Desktop\Tu Delft\photomaria)
