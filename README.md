@@ -15,12 +15,13 @@ Besides the social advantages I would also like to become a better programmer. P
 
 
 Maria Kusmierowska
+
+![](https://drive.google.com/file/d/1AT1ry7uDZ441H-LhLn1iDzu9bdFSe5WR/view?usp=sharing)
 I would like to improve my java skills and be become better programmer since I had no previous experience before univeristy.
 Additionaly, I hope that thanks to working on the projects I will be able to improve my team working skills. I also would like to learn how to create applications and learn more about object oriented programming. 
 
 
 Merel Susanna
-![](https://drive.google.com/drive/folders/13mXtQgy8XvNqz51qr1uOER1ZAmcfH3R5)
 I would like to learn more about programming in java, because i had no experience before i started this computer science program. 
 A working application in java is a thing i really like to learn. Additionally, i would like to improve my skills for working in a group.
 
