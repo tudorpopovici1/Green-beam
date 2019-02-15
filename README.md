@@ -10,7 +10,7 @@ develop my team coordination skills.
 
 
 
-aria Kusmierowska
+Maria Kusmierowska
 I would like to improve my java skills and be become better programmer since I had no previous experience before univeristy.
 Additionaly, I hope that thanks to working on the projects I will be able to improve my team working skills. 
 I also would like to learn how to create applications and learn more about object oriented programming. 
