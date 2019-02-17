@@ -21,7 +21,7 @@ Additionaly, I hope that thanks to working on the projects I will be able to imp
 
 
 Merel Susanna
-![](https://www.facebook.com/photo.php?fbid=2085751015075768&set=a.1437577069893169&type=3&theater.jpg)
+
 I would like to learn more about programming in java, because i had no experience before i started this computer science program. 
 A working application in java is a thing i really like to learn. Additionally, i would like to improve my skills for working in a group.
 
