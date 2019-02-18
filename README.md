@@ -15,16 +15,15 @@ I would like to improve my social skills by trying to work as good as possible i
 Besides the social advantages I would also like to become a better programmer. Prior to CSE I didn't have a lot of experience in programming. Hopefully I will learn a lot from my team mates.
 
 
-Maria Kusmierowska
+Maria Kusmierowska - 
 I would like to improve my java skills and be become better programmer since I had no previous experience before univeristy.
 Additionaly, I hope that thanks to working on the projects I will be able to improve my team working skills. I also would like to learn how to create applications and learn more about object oriented programming. 
 
 
-Merel Susanna
+Merel Susanna - 
 I would like to learn more about programming in java, because i had no experience before i started this computer science program. 
 A working application in java is a thing i really like to learn. Additionally, i would like to improve my skills for working in a group.
 
-Tudor-Alexandru Popovici
-
+Tudor-Alexandru Popovici -
 My goal is to deliver a final product that would surpass the initial expectations I have.
 Besides that, I would like to learn how to efficiently cooperate with people I haven't known prior to this project, overall improving my social skills and critical thinking.
