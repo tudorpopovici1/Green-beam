@@ -24,6 +24,7 @@ https://gitlab.ewi.tudelft.nl/cse1105/2018-2019/oopp-group-91/template/blob/mast
 Merel Susanna
 I would like to learn more about programming in java, because i had no experience before i started this computer science program. 
 A working application in java is a thing i really like to learn. Additionally, i would like to improve my skills for working in a group.
+https://gitlab.ewi.tudelft.nl/cse1105/2018-2019/oopp-group-91/template/blob/master/pictures/Merel.jpeg
 
 Tudor-Alexandru Popovici
 
