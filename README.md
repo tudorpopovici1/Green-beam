@@ -16,8 +16,8 @@ Besides the social advantages I would also like to become a better programmer. P
 
 
 Maria Kusmierowska -
-I would like to improve my java skills and be become better programmer since I had no previous experience before univeristy.
-Additionaly, I hope that thanks to working on the projects I will be able to improve my team working skills. I also would like to learn how to create applications and learn more about object oriented programming.
+I would like to improve my java skills and be become better programmer since I had no previous experience before university.
+Additionally, I hope that thanks to working on the projects I will be able to improve my team working skills. I also would like to learn how to create applications and learn more about object oriented programming.
 https://gitlab.ewi.tudelft.nl/cse1105/2018-2019/oopp-group-91/template/blob/master/pictures/Maria.jpeg
 
 
