@@ -29,3 +29,4 @@ https://gitlab.ewi.tudelft.nl/cse1105/2018-2019/oopp-group-91/template/blob/mast
 Tudor-Alexandru Popovici -
 My goal is to deliver a final product that would surpass the initial expectations I have.
 Besides that, I would like to learn how to efficiently cooperate with people I haven't known prior to this project, overall improving my social skills and critical thinking.
+https://gitlab.ewi.tudelft.nl/cse1105/2018-2019/oopp-group-91/template/blob/master/pictures/Tudor.jpg
