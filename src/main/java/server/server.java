@@ -11,11 +11,11 @@ A class to have make a server for our application, which can be started using th
 public class server {
 
     public static void main(String[] args) throws IOException{
-        conenctToSever();
+        connectToSever();
     }
 
 
-   public static void conenctToSever() throws IOException {
+   public static void connectToSever() throws IOException {
        try(ServerSocket serverSocket = new ServerSocket(9991)) {
            Socket connectionSocket = serverSocket.accept();
            InputStream inputToServer = connectionSocket.getInputStream();
