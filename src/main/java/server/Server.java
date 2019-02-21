@@ -8,7 +8,7 @@ import java.util.*;
 /*
 A class to have make a server for our application.
  */
-public class server {
+public class Server {
 
     public static void main(String[] args) throws IOException{
         conenctToSever();
