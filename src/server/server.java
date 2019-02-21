@@ -6,7 +6,7 @@ import java.net.Socket;
 import java.util.*;
 
 /*
-A class to have make a server for our application.
+A class to have make a server for our application, which can be started using the terminal.
  */
 public class server {
 
@@ -24,7 +24,7 @@ public class server {
            PrintWriter serverPrintOut = new PrintWriter(new OutputStreamWriter(outputFromServer, "UTF-8"), true);
            serverPrintOut.println("Hello! Your server works...");
 
-           //Server logic
+           //This is the server logic. This defines when the server will be closed.
            boolean done = false;
            while (!done && scanner.hasNextLine()){
                String line = scanner.nextLine();
