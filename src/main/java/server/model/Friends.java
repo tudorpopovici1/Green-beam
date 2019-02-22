@@ -1,11 +1,12 @@
-/*package server.model;
+package server.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 
-@Entity
+@Entity(name = "friends_relationship")
 @Table(
-        name = "Friends",
+        name = "friends_relationship",
+        schema = "public",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = {"relating_user_id", "related_user_id"})
 }
@@ -13,14 +14,22 @@ import javax.validation.constraints.Email;
 public class Friends {
 
     @Id
-    @Column(columnDefinition = "relating_user_id")
+    @GeneratedValue
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "relating_user_id")
     private Long relating_user_id;
 
-    @Column(columnDefinition = "related_user_id")
+    @Column(name = "related_user_id")
     private Long related_user_id;
 
-    @Column(columnDefinition = "relationship_type")
+    @Column(name = "relationship_type")
     private String relationship_type;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private Users relatingUser;
 
     public Long getRelating_user_id() {
         return relating_user_id;
@@ -46,4 +55,3 @@ public class Friends {
         this.relationship_type = relationship_type;
     }
 }
-*/
