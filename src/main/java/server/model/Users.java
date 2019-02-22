@@ -6,8 +6,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.Set;
 
-@Entity
+@Entity(name = "user_data")
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "user_data", schema = "public")
 public class Users
@@ -43,6 +44,14 @@ public class Users
     @DateTimeFormat
     @Column(name = "date_of_birth")
     private String dateOfBirth;
+
+    @OneToMany(mappedBy = "relatingUser")
+    private Set<Friends> friendsRelationships;
+
+    //private Set<Emissions> usersEmissions;
+
+
+   // private Set<Achievements> usersAchievements;
 
     public Long getId() {
         return id;
