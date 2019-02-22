@@ -1,27 +1,36 @@
-/*package server.model;
+package server.model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table(name = "Emissions")
+@Table(
+        name = "emissions",
+        schema = "public"
+)
 public class Emissions {
 
     @Id
-    @Column(columnDefinition = "user_id")
+    @GeneratedValue
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "user_id")
     private Long user_id;
 
-    @Column(columnDefinition = "emission_type")
+    @Column(name = "emission_type")
     private Long emission_type;
 
-    @Column(columnDefinition = "carbon_footprint")
+    @Column(name = "carbon_footprint")
     private Long carbonFootprint;
 
-    @Column(columnDefinition = "date")
+    @Column(name = "date_of_emission")
     private String date;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "emission_id")
+    private Emission_type emission;
 
     public Long getUser_id() {
         return user_id;
@@ -55,4 +64,3 @@ public class Emissions {
         this.date = date;
     }
 }
-*/

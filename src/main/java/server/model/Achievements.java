@@ -1,19 +1,51 @@
-/*package server.model;
+package server.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table(name = "Achievements")
+@Table(
+        name = "achievements",
+        schema = "public"
+)
 public class Achievements {
 
     @Id
-    @Column(columnDefinition = "userId")
+    @GeneratedValue
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "user_id")
     private Long userId;
 
-    @Column(columnDefinition = "achievementId")
+    @Column(name = "achievement_id")
     private Long achievementId;
+
+    @ManyToOne
+    @JoinColumn(name = "achievement_join")
+    private Achievements_type achievement;
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Long getAchievementId() {
+        return achievementId;
+    }
+
+    public void setAchievementId(Long achievementId) {
+        this.achievementId = achievementId;
+    }
+
+    public Achievements_type getAchievementsType() {
+        return achievement;
+    }
+
+    public void setAchievementsType(Achievements_type achievementsType) {
+        this.achievement = achievementsType;
+    }
 }
-*/

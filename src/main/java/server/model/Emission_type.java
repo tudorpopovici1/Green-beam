@@ -1,9 +1,13 @@
-/*package server.model;
+package server.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table(name = "Emission_type")
+@Table(
+        name = "emission_type",
+        schema = "public"
+)
 public class Emission_type {
 
     @Id
@@ -13,6 +17,9 @@ public class Emission_type {
 
     @Column(columnDefinition = "emission_name")
     private String emission_name;
+
+    @OneToMany(mappedBy = "emission")
+    private Set<Emissions> emissions;
 
     public Long getEmission_id() {
         return emission_id;
@@ -29,5 +36,12 @@ public class Emission_type {
     public void setEmission_name(String emission_name) {
         this.emission_name = emission_name;
     }
+
+    public Set<Emissions> getEmission() {
+        return emissions;
+    }
+
+    public void setEmission(Set<Emissions> emission) {
+        this.emissions = emission;
+    }
 }
-*/
