@@ -20,7 +20,7 @@ public class LoginController {
                 lblStatus.setText("Login successful!");
          }
          else {
-             lblStatus.setText("Login failed...");
+             lblStatus.setText("Either username or password is incorrect.");
          }
     }
 }
