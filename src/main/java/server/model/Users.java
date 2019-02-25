@@ -6,16 +6,15 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import java.util.Set;
+import java.util.Date;
 
 @Entity(name = "user_data")
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "user_data", schema = "public")
-public class Users
-{
+public class Users {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
     private Long id;
 
@@ -41,17 +40,23 @@ public class Users
     @Column(name = "email")
     private String email;
 
-    @DateTimeFormat
+    //@DateTimeFormat
     @Column(name = "date_of_birth")
-    private String dateOfBirth;
+    private java.util.Date dateOfBirth;
 
-    @OneToMany(mappedBy = "relatingUser")
-    private Set<Friends> friendsRelationships;
+    public Users(){
+    }
 
-    //private Set<Emissions> usersEmissions;
-
-
-   // private Set<Achievements> usersAchievements;
+    public Users(Long id, String username, String password, String firstName, String lastName, String country, @Email String email, java.util.Date dateOfBirth) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.country = country;
+        this.email = email;
+        this.dateOfBirth = dateOfBirth;
+    }
 
     public Long getId() {
         return id;
@@ -110,11 +115,25 @@ public class Users
         this.email = email;
     }
 
-    public String getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(final Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", country='" + country + '\'' +
+                ", email='" + email + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                '}';
     }
 }
