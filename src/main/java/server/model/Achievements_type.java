@@ -19,14 +19,11 @@ public class Achievements_type {
     @Column(name = "achievement_name")
     private String achievementName;
 
-    @OneToMany(mappedBy = "achievement")
-    private Set<Achievements> achievements;
-
     public Long getAchievementId() {
         return achievementId;
     }
 
-    public void setAchievementId(Long achievementId) {
+    public void setAchievementId(final Long achievementId) {
         this.achievementId = achievementId;
     }
 
@@ -34,16 +31,8 @@ public class Achievements_type {
         return achievementName;
     }
 
-    public void setAchievementName(String achievementName) {
+    public void setAchievementName(final String achievementName) {
         this.achievementName = achievementName;
-    }
-
-    public Set<Achievements> getAchievement() {
-        return achievements;
-    }
-
-    public void setAchievement(Set<Achievements> achievement) {
-        this.achievements = achievement;
     }
 
 }

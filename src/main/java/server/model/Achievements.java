@@ -1,7 +1,6 @@
 package server.model;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(
@@ -21,15 +20,11 @@ public class Achievements {
     @Column(name = "achievement_id")
     private Long achievementId;
 
-    @ManyToOne
-    @JoinColumn(name = "achievement_join")
-    private Achievements_type achievement;
-
     public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(final Long userId) {
         this.userId = userId;
     }
 
@@ -37,15 +32,7 @@ public class Achievements {
         return achievementId;
     }
 
-    public void setAchievementId(Long achievementId) {
+    public void setAchievementId(final Long achievementId) {
         this.achievementId = achievementId;
-    }
-
-    public Achievements_type getAchievementsType() {
-        return achievement;
-    }
-
-    public void setAchievementsType(Achievements_type achievementsType) {
-        this.achievement = achievementsType;
     }
 }
