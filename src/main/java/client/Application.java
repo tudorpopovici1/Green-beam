@@ -1,59 +1,37 @@
 package client;
 
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.context.annotation.Bean;
-import org.springframework.http.*;
+import client.services.MessageService;
+import client.services.UserService;
 import org.springframework.web.client.RestTemplate;
-
-import javax.xml.ws.Response;
-import java.util.Arrays;
+import server.exception.CustomException;
 
 
 //@SpringBootApplication
-public class Application
-{
+public class Application {
 
     private static final String GET_MESSAGE = "http://localhost:8080/greeting";
-    private static RestTemplate restTemplate = new RestTemplate();
+    private static String GET_USER = "http://localhost:8080/rest/user";
+    private static final String GET_ALL_USERS = "http://localhost:8080/rest/user/all";
+    private static final String ADD_USER = "http://localhost:8080/rest/save/user";
+    private static final String GET_USER_FRIENDS = "http://localhost:8080/rest/user/allfriends";
 
-    public static void main(String args[])
-    {
-        //SpringApplication.run(Application.class);
+    private static final RestTemplate restTemplate = new RestTemplate();
 
-        Application app = new Application();
 
-        app.getMessage();
+    public static void main(final String[] args) throws CustomException {
+
+        UserService userService = new UserService();
+
+        MessageService messageService = new MessageService();
+
+        Message msg = messageService.getMessage(restTemplate, GET_MESSAGE);
+
+        userService.getUser(restTemplate, GET_USER, 15L);
+
+        userService.addUser(restTemplate, ADD_USER,"test8");
+
+        userService.getUserFriends(restTemplate, GET_USER_FRIENDS, 0L);
 
     }
-
-    @Bean
-    private void getMessage()
-    {
-        Message result = restTemplate.getForObject(GET_MESSAGE, Message.class);
-
-        System.out.println(result.toString());
-    }
-
-    /*@Bean
-    public RestTemplate restTemplate(RestTemplateBuilder builder)
-    {
-        return builder.build();
-    }
-
-    @Bean
-    public CommandLineRunner run(RestTemplate restTemplate) throws Exception
-    {
-        return args -> {
-          Message message = restTemplate.getForObject("http://localhost:8080/greeting", Message.class);
-          log.info(message.toString());
-        };
-    }*/
 }
