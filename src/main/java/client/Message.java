@@ -4,12 +4,20 @@ public class Message {
     private long id;
     private String content;
 
+    public Message(long id, String content) {
+        this.id = id;
+        this.content = content;
+    }
+
+    public Message() {
+    }
+
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(final long id) {
         this.id = id;
     }
 
@@ -17,7 +25,7 @@ public class Message {
         return content;
     }
 
-    public void setContent(String content) {
+    public void setContent(final String content) {
         this.content = content;
     }
 
