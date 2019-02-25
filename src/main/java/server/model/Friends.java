@@ -1,7 +1,6 @@
 package server.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 
 @Entity(name = "friends_relationship")
 @Table(
@@ -26,10 +25,6 @@ public class Friends {
 
     @Column(name = "relationship_type")
     private String relationship_type;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private Users relatingUser;
 
     public Long getRelating_user_id() {
         return relating_user_id;

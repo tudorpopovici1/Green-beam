@@ -2,7 +2,6 @@ package server.model;
 
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(
@@ -28,15 +27,11 @@ public class Emissions {
     @Column(name = "date_of_emission")
     private String date;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "emission_id")
-    private Emission_type emission;
-
     public Long getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(Long user_id) {
+    public void setUser_id(final Long user_id) {
         this.user_id = user_id;
     }
 
@@ -44,7 +39,7 @@ public class Emissions {
         return emission_type;
     }
 
-    public void setEmission_type(Long emission_type) {
+    public void setEmission_type(final Long emission_type) {
         this.emission_type = emission_type;
     }
 
@@ -52,7 +47,7 @@ public class Emissions {
         return carbonFootprint;
     }
 
-    public void setCarbonFootprint(Long carbonFootprint) {
+    public void setCarbonFootprint(final Long carbonFootprint) {
         this.carbonFootprint = carbonFootprint;
     }
 
@@ -60,7 +55,7 @@ public class Emissions {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(final String date) {
         this.date = date;
     }
 }

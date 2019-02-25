@@ -18,9 +18,6 @@ public class Emission_type {
     @Column(columnDefinition = "emission_name")
     private String emission_name;
 
-    @OneToMany(mappedBy = "emission")
-    private Set<Emissions> emissions;
-
     public Long getEmission_id() {
         return emission_id;
     }
@@ -37,11 +34,4 @@ public class Emission_type {
         this.emission_name = emission_name;
     }
 
-    public Set<Emissions> getEmission() {
-        return emissions;
-    }
-
-    public void setEmission(Set<Emissions> emission) {
-        this.emissions = emission;
-    }
 }
