@@ -1,20 +1,26 @@
 package server.model;
 
+
+import java.util.Date;
+
 public class FriendsUserResp {
 
     private String username;
 
-    private String dateOfBirth;
+    private Date dateOfBirth;
 
     private String firstName;
 
     private String lastName;
 
-    public FriendsUserResp(final String username, final String dateOfBirth, final String firstName, final String lastName) {
+    public FriendsUserResp(final String username, final java.util.Date dateOfBirth, final String firstName, final String lastName) {
         this.username = username;
         this.dateOfBirth = dateOfBirth;
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public FriendsUserResp() {
     }
 
     public String getFirstName() {
@@ -41,11 +47,21 @@ public class FriendsUserResp {
         this.username = username;
     }
 
-    public String getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(final String dateOfBirth) {
+    public void setDateOfBirth(final Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    @Override
+    public String toString() {
+        return "FriendsUserResp{" +
+                "username='" + username + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 }
