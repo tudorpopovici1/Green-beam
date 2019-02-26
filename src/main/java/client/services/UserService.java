@@ -1,12 +1,11 @@
 package client.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
-import server.exception.CustomException;
+import server.model.AuthenticateUser;
 import server.model.FriendsUserResp;
 import server.model.Users;
 
@@ -20,53 +19,46 @@ import java.util.List;
 @Service
 public class UserService {
 
-    public void getUser(RestTemplate restTemplate, String URL, Long id) throws CustomException {
+    public Users getUser(final RestTemplate restTemplate, String URL, final Long id) {
+
         URL += "/" + id.toString();
 
+        Users user = null;
+
         try{
-            Users user = restTemplate.getForObject(URL, Users.class);
+            user = restTemplate.getForObject(URL, Users.class);
             System.out.println(user.toString());
         }
         catch(HttpStatusCodeException e) {
-            if (e.getStatusCode() == HttpStatus.INTERNAL_SERVER_ERROR) {
+            if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
 
                 System.out.println(e.getResponseBodyAsString());
             }
         }
+
+        return user;
     }
 
-    public void addUser(RestTemplate restTemplate, String URL, String username)
+    public void addUser(final RestTemplate restTemplate, final String URL, final Users user)
     {
-        String pattern = "dd-MM-yyyy";
-        DateFormat dateFormat = new SimpleDateFormat(pattern);
 
         try{
-            Date dob = dateFormat.parse("20-12-1999");
-            Users user = new Users(null, username, "123", "TestName", "LastName", "RO", "123@gmail.com", dob);
-
-            try{
-                Users returns = restTemplate.postForObject(URL, user, Users.class);
-                System.out.println(returns.toString());
-            }
-            catch(HttpStatusCodeException e)
-            {
-                if(e.getStatusCode() == HttpStatus.INTERNAL_SERVER_ERROR)
-                {
-                    String responseString = e.getResponseBodyAsString();
-                    System.out.println(responseString);
-
-                    // Use ObjectMapper here to create object of error.
-                }
-            }
-
+            Users returns = restTemplate.postForObject(URL, user, Users.class);
+            System.out.println(returns.toString());
         }
-        catch(ParseException e)
+        catch(HttpStatusCodeException e)
         {
-            e.printStackTrace();
+            if(e.getStatusCode() == HttpStatus.BAD_REQUEST)
+            {
+                String responseString = e.getResponseBodyAsString();
+                System.out.println(responseString);
+
+                // Use ObjectMapper here to create object of error.
+            }
         }
     }
 
-    public void getUserFriends(RestTemplate restTemplate, String URL, Long userId)
+    public void getUserFriends(final RestTemplate restTemplate, final String URL, final Long userId)
     {
         ResponseEntity<FriendsUserResp[]> responseEntity = restTemplate.getForEntity(URL + "/" + userId, FriendsUserResp[].class);
 
@@ -75,6 +67,22 @@ public class UserService {
         for(FriendsUserResp u : list)
         {
             System.out.println(u.toString());
+        }
+    }
+
+    public void authUser(final RestTemplate restTemplate, final String URL, final AuthenticateUser authenticateUser)
+    {
+        try{
+            AuthenticateUser authenticateUser1 = restTemplate.postForObject(URL, authenticateUser, AuthenticateUser.class);
+
+            System.out.println("User logged in!");
+        }
+        catch(HttpStatusCodeException e)
+        {
+            if(e.getStatusCode() == HttpStatus.FORBIDDEN)
+            {
+                System.out.println(e.getResponseBodyAsString());
+            }
         }
     }
 
