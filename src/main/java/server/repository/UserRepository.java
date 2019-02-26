@@ -16,4 +16,8 @@ public interface UserRepository extends JpaRepository<Users, Long> {
     List<FriendsUserResp> findAllFriendsUser(Long userId);
 
     Users findByUsername(String username);
+
+    @Query(value = "SELECT u.password FROM user_data u " +
+            "WHERE u.username = ?1")
+    String findUserPassword(String username);
 }
