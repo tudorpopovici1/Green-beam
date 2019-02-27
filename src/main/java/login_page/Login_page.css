@@ -1,10 +1,16 @@
-#window{
-    -fx-background-color: rgb(74, 209, 123);
-
+#welcomeText{
+    -fx-font-family: "Comic Sans MS";
 }
-#lblStatus{
-
+#loginBox{
+    -fx-border-color: white;
+    -fx-border-radius: 2.5px;
 }
+#registerBox{
+    -fx-border-color: white;
+    -fx-border-radius: 2.5px;
+}
+
+
 
 
 

@@ -19,8 +19,9 @@ public class Main extends Application {
         try {
             URL url = new File("src/main/java/login_page/Login.fxml").toURL();
             Parent root = FXMLLoader.load(url);
-            Scene scene = new Scene(root, 950, 600);
+            Scene scene = new Scene(root, 900, 600);
             primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
             primaryStage.show();
         }
         catch (Exception e){
