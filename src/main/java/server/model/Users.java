@@ -37,17 +37,25 @@ public class Users {
     private String country;
 
     @Email
-    @Column(name = "email")
+    @Column(
+            name = "email",
+            unique = true
+    )
     private String email;
 
     //@DateTimeFormat
     @Column(name = "date_of_birth")
     private java.util.Date dateOfBirth;
 
+    @Column(name = "user_role")
+    private String role;
+
     public Users(){
     }
 
-    public Users(Long id, String username, String password, String firstName, String lastName, String country, @Email String email, java.util.Date dateOfBirth) {
+    public Users(Long id, String username, String password, String firstName, String lastName,
+                 String country, @Email String email, java.util.Date dateOfBirth,
+                 String role) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -56,6 +64,7 @@ public class Users {
         this.country = country;
         this.email = email;
         this.dateOfBirth = dateOfBirth;
+        this.role = role;
     }
 
     public Long getId() {
@@ -121,6 +130,14 @@ public class Users {
 
     public void setDateOfBirth(final Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override
