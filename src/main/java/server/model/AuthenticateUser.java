@@ -1,8 +1,13 @@
 package server.model;
 
+import javax.validation.constraints.NotNull;
+
 public class AuthenticateUser {
 
+    @NotNull
     private String username;
+
+    @NotNull
     private String password;
 
     public AuthenticateUser() {
