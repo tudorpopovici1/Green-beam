@@ -24,7 +24,7 @@
             <Font size="48.0" />
          </font></Label>
       <BorderPane fx:id="loginBox" layoutX="237.0" layoutY="119.0" prefHeight="187.0" prefWidth="466.0" />
-      <BorderPane fx:id="registerBox" layoutX="242.0" layoutY="329.0" prefHeight="220.0" prefWidth="466.0" />
+      <BorderPane fx:id="registerBox" layoutX="242.0" layoutY="329.0" prefHeight="229.0" prefWidth="466.0" />
       <Button layoutX="435.0" layoutY="260.0" mnemonicParsing="false" onAction="#Login" text="Login" />
       <TextField fx:id="txtUsername" layoutX="381.0" layoutY="169.0" promptText="Username" />
       <PasswordField fx:id="txtPassword" layoutX="381.0" layoutY="211.0" prefHeight="27.0" prefWidth="167.0" promptText="Password" />
@@ -32,13 +32,14 @@
          <font>
             <Font size="21.0" />
          </font></Label>
-      <Label fx:id="newUserText" layoutX="352.0" layoutY="342.0" text="New user? Register now!" textFill="#fff7f7">
+      <Label fx:id="lblStatus2" layoutX="352.0" layoutY="342.0" text="New user? Register now!" textFill="#fff7f7">
          <font>
             <Font size="19.0" />
          </font></Label>
       <TextField fx:id="firstNameBox" layoutX="381.0" layoutY="385.0" promptText="First Name" />
       <TextField fx:id="lastNameBox" layoutX="381.0" layoutY="425.0" promptText="Last Name" />
-      <TextField fx:id="countryBox" layoutX="381.0" layoutY="465.0" promptText="Country" />
+      <TextField fx:id="doBBox" layoutX="381.0" layoutY="465.0" prefHeight="27.0" prefWidth="167.0" promptText="Date of Birth (dd/mm/yyyy)" />
+      <TextField fx:id="countryBox" layoutX="381.0" layoutY="505.0" prefHeight="27.0" prefWidth="167.0" promptText="Country" />
       <ImageView fitHeight="67.0" fitWidth="86.0" layoutX="457.0" layoutY="38.0">
          <image>
             <Image url="@logo1.png" />

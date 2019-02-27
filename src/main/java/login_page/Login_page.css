@@ -3,11 +3,11 @@
 }
 #loginBox{
     -fx-border-color: white;
-    -fx-border-radius: 2.5px;
+    -fx-border-radius: 3px;
 }
 #registerBox{
     -fx-border-color: white;
-    -fx-border-radius: 2.5px;
+    -fx-border-radius: 3px;
 }
 
 

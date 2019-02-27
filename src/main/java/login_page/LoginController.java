@@ -1,7 +1,6 @@
 package login_page;
 
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
@@ -23,16 +22,23 @@ public class LoginController {
     @FXML
     private TextField lastNameBox;
     @FXML
+    private TextField doBBox;
+    @FXML
     private TextField countryBox;
     @FXML
+    private TextField usernameBox;
+    @FXML
+    private PasswordField passwordBox;
+    @FXML
+    private PasswordField passwordBox2;
+    @FXML
+    private TextField emailBox;
+    @FXML
     private Button nextButton;
+    @FXML
+    private Button registerButton;
 
-    private String firstName;
-    private String lastName;
-    private String country;
-    private String username;
-    private String password;
-    private String email;
+    private User newUser;
 
 
     public void Login(ActionEvent event){
@@ -45,46 +51,62 @@ public class LoginController {
     }
 
     public void Register(ActionEvent event){
-        firstName = firstNameBox.getText();
-        lastName = lastNameBox.getText();
-        country = countryBox.getText();
+        newUser = new User();
+        newUser.setFirstName(firstNameBox.getText());
+        newUser.setLastName(lastNameBox.getText());
+        newUser.setDateOfBirth(doBBox.getText());
+        newUser.setCountry(countryBox.getText());
 
+        HideRegistrationFormFirstPage();
+        CreateRegisterButton();
+        RegistrationFormSecondPage();
+        registerButton.setOnAction(this::GetDataFromSecondPage);
+    }
 
+    private void HideRegistrationFormFirstPage(){
         firstNameBox.setVisible(false);
         lastNameBox.setVisible(false);
         countryBox.setVisible(false);
-
-        RegistrationFormSecondPage();
-
-        nextButton.setText("Register!");
+        nextButton.setVisible(false);
     }
 
+    private void CreateRegisterButton(){
+        registerButton = new Button();
+        registerButton.setText("Register!");
+        window.getChildren().add(registerButton);
+        registerButton.setLayoutX(nextButton.getLayoutX());
+        registerButton.setLayoutY(nextButton.getLayoutY());
+    }
 
-    public void RegistrationFormSecondPage(){
-        TextField usernameBox = new TextField();
+    private void RegistrationFormSecondPage(){
+        usernameBox = new TextField();
         usernameBox.setPromptText("New Username");
         window.getChildren().add(usernameBox);
         usernameBox.setLayoutX(firstNameBox.getLayoutX());
-        usernameBox.setLayoutY(lastNameBox.getLayoutX());
+        usernameBox.setLayoutY(firstNameBox.getLayoutY());
 
-        TextField passwordBox = new TextField();
+        passwordBox = new PasswordField();
         passwordBox.setPromptText("Set Password");
         window.getChildren().add(passwordBox);
         passwordBox.setLayoutX(lastNameBox.getLayoutX());
         passwordBox.setLayoutY(lastNameBox.getLayoutY());
 
-        TextField emailBox = new TextField();
+        passwordBox2 = new PasswordField();
+        passwordBox2.setPromptText("Retype your password");
+        window.getChildren().add(passwordBox2);
+        passwordBox2.setLayoutX(doBBox.getLayoutX());
+        passwordBox2.setLayoutY(doBBox.getLayoutY());
+
+        emailBox = new TextField();
         emailBox.setPromptText("Email");
         window.getChildren().add(emailBox);
         emailBox.setLayoutX(countryBox.getLayoutX());
         emailBox.setLayoutY(countryBox.getLayoutY());
-
-        username = usernameBox.getText();
-        password = passwordBox.getText();
-        email = emailBox.getText();
     }
 
-
-
-
+    private void GetDataFromSecondPage(ActionEvent event){
+        newUser.setUsername(usernameBox.getText());
+        newUser.setPassword(passwordBox.getText());
+        newUser.setEmail(emailBox.getText());
+    }
 }
