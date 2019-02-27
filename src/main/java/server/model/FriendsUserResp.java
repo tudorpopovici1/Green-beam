@@ -6,18 +6,20 @@ import java.util.Date;
 public class FriendsUserResp {
 
     private String username;
-
     private Date dateOfBirth;
-
     private String firstName;
-
     private String lastName;
+    private String country;
+    private String email;
 
-    public FriendsUserResp(final String username, final java.util.Date dateOfBirth, final String firstName, final String lastName) {
+    public FriendsUserResp(final String username, final java.util.Date dateOfBirth, final String firstName, final String lastName,
+                           final String country, final String email) {
         this.username = username;
         this.dateOfBirth = dateOfBirth;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.country = country;
+        this.email = email;
     }
 
     public FriendsUserResp() {
@@ -53,6 +55,22 @@ public class FriendsUserResp {
 
     public void setDateOfBirth(final Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
