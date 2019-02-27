@@ -1,7 +1,5 @@
 package client;
 
-
-import client.services.MessageService;
 import client.services.UserService;
 import org.springframework.web.client.RestTemplate;
 import server.model.AuthenticateUser;
@@ -35,7 +33,7 @@ public class Application {
         try {
 
             Date dob = dateFormat.parse("20-12-1999");
-            Users user = new Users(null, "demo", "123", "TestName", "LastName", "RO", "123@gmail.com", dob);
+            Users user = new Users(null, "demo", "123", "TestName", "LastName", "RO", "123@gmail.com", dob, "user");
 
             userService.addUser(restTemplate, ADD_USER,user);
         }

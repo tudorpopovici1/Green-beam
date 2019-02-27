@@ -7,15 +7,14 @@ import server.exception.BadCredentialsException;
 import server.exception.DbException;
 import server.exception.ResourceNotFoundException;
 import server.exception.UserAlreadyRegistered;
-import server.model.*;
+import server.model.FriendsUserResp;
+import server.model.JwtUser;
+import server.model.Users;
 import server.repository.UserRepository;
 import server.security.JwtValidator;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/rest")
@@ -42,7 +41,7 @@ public class UserController {
             throw new UserAlreadyRegistered("Username: " + user.getUsername() + " is already in use..");
         }
 
-        if(userRepository.findByEmail(user.getUsername()) != null)
+        if(userRepository.findByEmail(user.getEmail()) != null)
         {
             throw new UserAlreadyRegistered("Email is in use...");
         }
