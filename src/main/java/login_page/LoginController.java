@@ -1,44 +1,32 @@
 package login_page;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 
 public class LoginController {
     @FXML
     private AnchorPane window;
     @FXML
-    private Label lblStatus;
+    private Label lblStatus, lblStatus2;
     @FXML
-    private TextField txtUsername;
+    private TextField txtUsername, firstNameBox, lastNameBox, doBBox, countryBox, usernameBox, emailBox ;
     @FXML
-    private PasswordField txtPassword;
+    private PasswordField txtPassword, passwordBox, passwordBox2;
     @FXML
-    private TextField firstNameBox;
+    private Button nextButton, registerButton;
     @FXML
-    private TextField lastNameBox;
-    @FXML
-    private TextField doBBox;
-    @FXML
-    private TextField countryBox;
-    @FXML
-    private TextField usernameBox;
-    @FXML
-    private PasswordField passwordBox;
-    @FXML
-    private PasswordField passwordBox2;
-    @FXML
-    private TextField emailBox;
-    @FXML
-    private Button nextButton;
-    @FXML
-    private Button registerButton;
+    private ImageView thumbsUp;
 
     private User newUser;
+    private ProgressBar progress;
 
 
     public void Login(ActionEvent event){
@@ -58,14 +46,28 @@ public class LoginController {
         newUser.setCountry(countryBox.getText());
 
         HideRegistrationFormFirstPage();
-        CreateRegisterButton();
         RegistrationFormSecondPage();
+        CreateRegisterButton();
+        SetProgressBar();
+        lblStatus2.setVisible(false);
+        progress.setProgress(0.5);
         registerButton.setOnAction(this::GetDataFromSecondPage);
+    }
+
+    private void GetDataFromSecondPage(ActionEvent event){
+        newUser.setUsername(usernameBox.getText());
+        newUser.setPassword(passwordBox.getText());
+        newUser.setEmail(emailBox.getText());
+        progress.setProgress(1.0);
+        HideRegistrationFormSecondPage();
+        registerButton.setVisible(false);
+        RegistrationComplete();
     }
 
     private void HideRegistrationFormFirstPage(){
         firstNameBox.setVisible(false);
         lastNameBox.setVisible(false);
+        doBBox.setVisible(false);
         countryBox.setVisible(false);
         nextButton.setVisible(false);
     }
@@ -104,9 +106,35 @@ public class LoginController {
         emailBox.setLayoutY(countryBox.getLayoutY());
     }
 
-    private void GetDataFromSecondPage(ActionEvent event){
-        newUser.setUsername(usernameBox.getText());
-        newUser.setPassword(passwordBox.getText());
-        newUser.setEmail(emailBox.getText());
+    private void SetProgressBar(){
+        progress = new ProgressBar();
+        progress.setStyle("-fx-accent: green;");
+        window.getChildren().add(progress);
+        progress.setLayoutX(lblStatus2.getLayoutX() + 60);
+        progress.setLayoutY(lblStatus2.getLayoutY());
+        progress.setPrefWidth(230);
+        progress.setPrefHeight(27);
+    }
+
+    private void HideRegistrationFormSecondPage(){
+        usernameBox.setVisible(false);
+        passwordBox.setVisible(false);
+        passwordBox2.setVisible(false);
+        emailBox.setVisible(false);
+    }
+
+    private void RegistrationComplete(){
+        thumbsUp.setVisible(true);
+        thumbsUp.setFitHeight(150);
+        thumbsUp.setFitWidth(150);
+        thumbsUp.setLayoutX(passwordBox2.getLayoutX());
+        thumbsUp.setLayoutY(passwordBox2.getLayoutY() - 70);
+        thumbsUp.setOpacity(0.7);
+        lblStatus2.setVisible(true);
+        lblStatus2.setText("Registration complete!\nLet's make a difference together!");
+        lblStatus2.setTextAlignment(TextAlignment.CENTER);
+        lblStatus2.setPrefHeight(100);
+        lblStatus2.setLayoutY(thumbsUp.getLayoutY());
+        lblStatus2.setFont(new Font(25));
     }
 }
