@@ -10,6 +10,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import javafx.scene.text.FontWeight;
+
 
 public class LoginController {
     @FXML
@@ -135,6 +137,6 @@ public class LoginController {
         lblStatus2.setTextAlignment(TextAlignment.CENTER);
         lblStatus2.setPrefHeight(100);
         lblStatus2.setLayoutY(thumbsUp.getLayoutY());
-        lblStatus2.setFont(new Font(25));
+        lblStatus2.setFont(Font.font("Verdana", FontWeight.EXTRA_BOLD, 20));
     }
 }
