@@ -25,7 +25,7 @@ public class TokenController {
     UserRepository userRepository;
 
     @PostMapping
-    public String generate(@NotNull @RequestBody AuthenticateUser authenticateUser) throws BadCredentialsException {
+    public AuthenticateUser generate(@NotNull @RequestBody AuthenticateUser authenticateUser) throws BadCredentialsException {
 
         String username = authenticateUser.getUsername();
         String password = authenticateUser.getPassword();
@@ -42,7 +42,9 @@ public class TokenController {
 
         JwtUser jwtUser = new JwtUser(username, id, role);
 
-        return jwtGenerator.generate(jwtUser);
+        authenticateUser.setToken(jwtGenerator.generate(jwtUser));
+        return authenticateUser;
+       // return jwtGenerator.generate(jwtUser);
 
     }
 
