@@ -7,7 +7,7 @@ public enum URL {
     GET_ALL_USERS("http://localhost:8080/rest/user/all"),
     ADD_USER("http://localhost:8080/rest/save/user"),
     GET_USER_FRIENDS("http://localhost:8080/rest/user/allfriends"),
-    AUTH_USER("http://localhost:8080/rest/user/auth");
+    AUTH_USER("http://localhost:8080/token");
 
     private String url;
 
