@@ -20,9 +20,10 @@ public class Main extends Application {
         try {
             URL url = new File("src/main/java/login_page/Login.fxml").toURI().toURL();
             Parent root = FXMLLoader.load(url);
-            Scene scene = new Scene(root, 900, 600);
+            Scene scene = new Scene(root, 950, 750);
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
+            primaryStage.setTitle("GreenBeam - Carbon Footprint Monitoring Application");
             primaryStage.show();
         }
         catch (Exception e){
