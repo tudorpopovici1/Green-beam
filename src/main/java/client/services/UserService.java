@@ -1,5 +1,6 @@
 package client.services;
 
+import javafx.scene.control.Label;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,7 @@ public class UserService {
         return user;
     }
 
-    public void addUser(final RestTemplate restTemplate, final String URL, final Users user)
+    public void addUser(final RestTemplate restTemplate, final String URL, final Users user, Label errorLabel)
     {
 
         try{
@@ -51,7 +52,7 @@ public class UserService {
             if(e.getStatusCode() == HttpStatus.BAD_REQUEST)
             {
                 String responseString = e.getResponseBodyAsString();
-                System.out.println(responseString);
+                errorLabel.setText(responseString);
 
                 // Use ObjectMapper here to create object of error.
             }
@@ -70,20 +71,24 @@ public class UserService {
         }
     }
 
-    public void authUser(final RestTemplate restTemplate, final String URL, final AuthenticateUser authenticateUser)
+    public String authUser(final RestTemplate restTemplate, final String URL, final AuthenticateUser authenticateUser, Label errorLabel)
     {
+        String token = "";
         try{
             AuthenticateUser authenticateUser1 = restTemplate.postForObject(URL, authenticateUser, AuthenticateUser.class);
 
-            System.out.println("User logged in!");
+            System.out.println("The token is + " + authenticateUser1.getToken());
+
+            errorLabel.setText("You have successfully logged in !");
         }
         catch(HttpStatusCodeException e)
         {
             if(e.getStatusCode() == HttpStatus.FORBIDDEN)
             {
-                System.out.println(e.getResponseBodyAsString());
+                errorLabel.setText(e.getResponseBodyAsString());
             }
         }
+        return token;
     }
 
 }
