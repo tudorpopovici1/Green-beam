@@ -1,8 +1,15 @@
 #welcomeText{
     -fx-font-family: "Impact Font";
+    -fx-border-bottom: 1px double black;
+    -fx-border-width: 0px, 0px, 2px, 0px;
 }
 
-#nextButton, #loginButton {
+#lblStatus, #lblStatus2{
+-fx-border-width: 0px 0px 1px 0px;
+-fx-border-bottom: 1px double black;
+}
+
+#nextButton, #loginButton, #registerButton {
     -fx-background-color:
         linear-gradient(#ffd65b, #e68400),
         linear-gradient(#ffef84, #f2ba44),
