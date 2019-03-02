@@ -10,13 +10,6 @@ import server.model.AuthenticateUser;
 import server.model.FriendsUserResp;
 import server.model.Users;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-
 @Service
 public class UserService {
 
@@ -28,7 +21,8 @@ public class UserService {
 
         try{
             user = restTemplate.getForObject(URL, Users.class);
-            System.out.println(user.toString());
+            if(user != null)
+                System.out.println(user.toString());
         }
         catch(HttpStatusCodeException e) {
             if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
@@ -45,7 +39,8 @@ public class UserService {
 
         try{
             Users returns = restTemplate.postForObject(URL, user, Users.class);
-            System.out.println(returns.toString());
+            if(returns != null)
+                System.out.println(returns.toString());
         }
         catch(HttpStatusCodeException e)
         {
@@ -63,11 +58,13 @@ public class UserService {
     {
         ResponseEntity<FriendsUserResp[]> responseEntity = restTemplate.getForEntity(URL + "/" + userId, FriendsUserResp[].class);
 
-        List<FriendsUserResp> list = Arrays.asList(responseEntity.getBody());
+        if(responseEntity.getBody() != null) {
 
-        for(FriendsUserResp u : list)
-        {
-            System.out.println(u.toString());
+            FriendsUserResp[] list = responseEntity.getBody();
+
+            for (FriendsUserResp u : list) {
+                System.out.println(u.toString());
+            }
         }
     }
 
@@ -77,9 +74,11 @@ public class UserService {
         try{
             AuthenticateUser authenticateUser1 = restTemplate.postForObject(URL, authenticateUser, AuthenticateUser.class);
 
-            System.out.println("The token is + " + authenticateUser1.getToken());
-
-            errorLabel.setText("You have successfully logged in !");
+            if(authenticateUser1 != null) {
+                token = authenticateUser1.getToken();
+                System.out.println("The token is + " + authenticateUser1.getToken());
+                errorLabel.setText("You have successfully logged in !");
+            }
         }
         catch(HttpStatusCodeException e)
         {

@@ -2,14 +2,13 @@ package server.model;
 
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(
         name = "achievements_type",
         schema = "public"
 )
-public class Achievements_type {
+class Achievements_type {
 
     @Id
     @GeneratedValue

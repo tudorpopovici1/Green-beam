@@ -1,6 +1,6 @@
 package client;
 
-public class Message {
+class Message {
     private long id;
     private String content;
 

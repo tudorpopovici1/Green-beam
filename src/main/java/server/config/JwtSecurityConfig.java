@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import server.security.JwtAuthenticationEntryPoint;
 import server.security.JwtAuthenticationProvider;
@@ -24,7 +23,7 @@ import java.util.Collections;
 @EnableWebSecurity
 @Configuration
 @Order(1000)
-public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
+class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private JwtAuthenticationProvider authenticationProvider;
@@ -57,7 +56,7 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public JwtAuthenticationTokenFilter authenticationTokenFilter(){
+    private JwtAuthenticationTokenFilter authenticationTokenFilter(){
         JwtAuthenticationTokenFilter filter = new JwtAuthenticationTokenFilter();
         filter.setAuthenticationManager(authenticationManager());
         filter.setAuthenticationSuccessHandler(new JwtSuccessHandler());

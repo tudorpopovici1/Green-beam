@@ -10,7 +10,7 @@ import javax.persistence.*;
                 @UniqueConstraint(columnNames = {"relating_user_id", "related_user_id"})
 }
 )
-public class Friends {
+class Friends {
 
     @Id
     @GeneratedValue

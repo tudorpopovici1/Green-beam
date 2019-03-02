@@ -8,7 +8,7 @@ import javax.persistence.*;
         name = "emissions",
         schema = "public"
 )
-public class Emissions {
+class Emissions {
 
     @Id
     @GeneratedValue

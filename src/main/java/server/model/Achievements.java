@@ -7,7 +7,7 @@ import javax.persistence.*;
         name = "achievements",
         schema = "public"
 )
-public class Achievements {
+class Achievements {
 
     @Id
     @GeneratedValue

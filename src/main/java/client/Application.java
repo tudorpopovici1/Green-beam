@@ -1,6 +1,7 @@
 package client;
 
 import client.services.UserService;
+import javafx.scene.control.Label;
 import org.springframework.web.client.RestTemplate;
 import server.model.AuthenticateUser;
 import server.model.Users;
@@ -12,7 +13,7 @@ import java.util.Date;
 
 
 //@SpringBootApplication
-public class Application {
+class Application {
 
     private static final RestTemplate restTemplate = new RestTemplate();
 
@@ -35,7 +36,7 @@ public class Application {
             Date dob = dateFormat.parse("20-12-1999");
             Users user = new Users(null, "demo", "123", "TestName", "LastName", "RO", "123@gmail.com", dob, "user");
 
-            userService.addUser(restTemplate, ADD_USER,user);
+            userService.addUser(restTemplate, ADD_USER,user, new Label());
         }
         catch (ParseException e)
         {
@@ -46,7 +47,7 @@ public class Application {
 
         userService.getUserFriends(restTemplate, GET_USER_FRIENDS, 0L);
 
-        userService.authUser(restTemplate, AUTH_USER, new AuthenticateUser("test15", "123"));
+        userService.authUser(restTemplate, AUTH_USER, new AuthenticateUser("test15", "123"), new Label());
 
     }
 }

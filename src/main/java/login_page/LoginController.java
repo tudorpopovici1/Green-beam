@@ -5,16 +5,12 @@ import client.services.UserService;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.FontWeight;
 import javafx.scene.control.Alert.AlertType;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
 import server.model.AuthenticateUser;
 import server.model.Users;
@@ -38,9 +34,9 @@ public class LoginController {
     @FXML
     private ImageView thumbsUp;
 
-    UserService userService = new UserService();
+    private final UserService userService = new UserService();
 
-    RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate = new RestTemplate();
 
     private Users newUser;
     private ProgressBar progress;
@@ -49,7 +45,7 @@ public class LoginController {
     public void Login(ActionEvent event){
         if(!txtUsername.getText().equals("") && !txtPassword.getText().equals("")) {
             AuthenticateUser authenticateUser = new AuthenticateUser(txtUsername.getText(), txtPassword.getText());
-            userService.authUser(restTemplate, URL.AUTH_USER.getUrl(), authenticateUser, lblStatus);
+            String token = userService.authUser(restTemplate, URL.AUTH_USER.getUrl(), authenticateUser, lblStatus);
         }
         else
         {
@@ -89,8 +85,7 @@ public class LoginController {
         newUser.setUsername(usernameBox.getText());
         do {
             NewUserPasswordCheck();
-        } while (!newUser.getPassword().equals(passwordBox.getText()) || newUser.getPassword().equals("")
-                || newUser.getPassword().equals(null) );
+        } while (!newUser.getPassword().equals(passwordBox.getText()) || newUser.getPassword().equals(""));
         newUser.setEmail(emailBox.getText());
         progress.setProgress(1.0);
         HideRegistrationFormSecondPage();
