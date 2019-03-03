@@ -217,6 +217,7 @@ public class LoginController {
     private void createRegisterButton() {
         registerButton = new Button();
         registerButton.setText("Register!");
+        registerButton.setId("registerButton");
         window.getChildren().add(registerButton);
         registerButton.setLayoutX(nextButton.getLayoutX());
         registerButton.setLayoutY(nextButton.getLayoutY());

@@ -30,9 +30,9 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         try {
             URL url = new File(
-                    "src/main/java/loginPage/Login.fxml").toURI().toURL();
+                    "src/main/java/client/loginpage/fxml/Login.fxml").toURI().toURL();
             Parent root = FXMLLoader.load(url);
-            Scene scene = new Scene(root, 900, 600);
+            Scene scene = new Scene(root, 900, 700);
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
             primaryStage.setTitle(
