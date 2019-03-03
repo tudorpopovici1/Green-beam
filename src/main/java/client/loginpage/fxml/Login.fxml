@@ -28,13 +28,13 @@
       <Button id="loginButton" layoutX="430.0" layoutY="307.0" mnemonicParsing="false" onAction="#login" text="Login" />
       <TextField fx:id="txtUsername" layoutX="381.0" layoutY="184.0" prefHeight="40.0" prefWidth="181.0" promptText="Username" />
       <PasswordField fx:id="txtPassword" layoutX="381.0" layoutY="244.0" prefHeight="40.0" prefWidth="181.0" promptText="Password" />
-      <Label fx:id="lblStatus" alignment="CENTER" layoutX="223.0" layoutY="133.0" prefHeight="27.0" prefWidth="481.0" text=" Login" textFill="WHITE">
-         <font>
-            <Font size="21.0" />
-         </font></Label>
       <Label fx:id="lblStatus2" alignment="CENTER" layoutX="285.0" layoutY="358.0" prefHeight="24.0" prefWidth="403.0" text="Ready to make a difference? Prove it!" textFill="#fff7f7">
          <font>
             <Font size="19.0" />
+         </font></Label>
+      <Label fx:id="lblStatus" alignment="CENTER" layoutX="223.0" layoutY="133.0" prefHeight="27.0" prefWidth="481.0" text=" Login" textFill="WHITE">
+         <font>
+            <Font size="21.0" />
          </font></Label>
       <TextField fx:id="firstNameBox" layoutX="381.0" layoutY="400.0" prefHeight="40.0" prefWidth="181.0" promptText="First Name" />
       <TextField fx:id="lastNameBox" layoutX="381.0" layoutY="460.0" prefHeight="40.0" prefWidth="181.0" promptText="Last Name" />
