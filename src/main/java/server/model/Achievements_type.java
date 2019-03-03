@@ -22,16 +22,15 @@ class Achievements_type {
         return achievementId;
     }
 
-    public void setAchievementId(final Long achievementId) {
-        this.achievementId = achievementId;
+    public void setAchievementId(final Long achievementId1) {
+        this.achievementId = achievementId1;
     }
 
     public String getAchievementName() {
         return achievementName;
     }
 
-    public void setAchievementName(final String achievementName) {
-        this.achievementName = achievementName;
+    public void setAchievementName(final String achievementName1) {
+        this.achievementName = achievementName1;
     }
-
 }

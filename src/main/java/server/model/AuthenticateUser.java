@@ -16,32 +16,32 @@ public class AuthenticateUser {
     public AuthenticateUser() {
     }
 
-    public AuthenticateUser(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public AuthenticateUser(final String username1, final String password1) {
+        this.username = username1;
+        this.password = password1;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(final String username1) {
+        this.username = username1;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(final String password1) {
+        this.password = password1;
     }
 
     public String getToken() {
         return token;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setToken(final String token1) {
+        this.token = token1;
     }
 }

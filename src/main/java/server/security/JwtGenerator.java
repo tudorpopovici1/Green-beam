@@ -9,7 +9,7 @@ import server.model.JwtUser;
 @Component
 public class JwtGenerator {
 
-    public String generate(JwtUser jwtUser) {
+    public String generate(final JwtUser jwtUser) {
 
         Claims claims = Jwts.claims()
                 .setSubject(jwtUser.getUserName());

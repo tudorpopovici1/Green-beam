@@ -1,4 +1,4 @@
-package client;
+/*package client;
 
 import client.services.UserService;
 import javafx.scene.control.Label;
@@ -51,3 +51,4 @@ class Application {
 
     }
 }
+*/

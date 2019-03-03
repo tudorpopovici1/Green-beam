@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module version="4">
+  <component name="CheckStyle-IDEA-Module">
+    <option name="configuration">
+      <map>
+        <entry key="active-configuration" value="LOCAL_FILE:$PROJECT_DIR$/CSE1105.checkstyle.xml:check err" />
+      </map>
+    </option>
+  </component>
   <component name="ExternalSystem" externalSystem="Maven" />
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/target/classes" />

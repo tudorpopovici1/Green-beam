@@ -19,26 +19,29 @@ import server.security.JwtSuccessHandler;
 
 import java.util.Collections;
 
+@SuppressWarnings("WeakerAccess")
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
 @Configuration
 @Order(1000)
 class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @SuppressWarnings("WeakerAccess")
     @Autowired
-    private JwtAuthenticationProvider authenticationProvider;
+    JwtAuthenticationProvider authenticationProvider;
 
+    @SuppressWarnings("WeakerAccess")
     @Autowired
-    private JwtAuthenticationEntryPoint entryPoint;
+    JwtAuthenticationEntryPoint entryPoint;
 
     @Bean
-    public AuthenticationManager authenticationManager()
-    {
-        return new ProviderManager(Collections.singletonList(authenticationProvider));
+    public AuthenticationManager authenticationManager() {
+        return new
+                ProviderManager(Collections.singletonList(authenticationProvider));
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(final HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests().antMatchers("**/rest/**").authenticated()
                 .and()
@@ -48,15 +51,18 @@ class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .exceptionHandling().authenticationEntryPoint(entryPoint)
                 .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        http.addFilterBefore(authenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(authenticationTokenFilter(),
+                UsernamePasswordAuthenticationFilter.class);
 
         http.headers().cacheControl();
     }
 
     @Bean
-    private JwtAuthenticationTokenFilter authenticationTokenFilter(){
+    public JwtAuthenticationTokenFilter authenticationTokenFilter(){
+
         JwtAuthenticationTokenFilter filter = new JwtAuthenticationTokenFilter();
         filter.setAuthenticationManager(authenticationManager());
         filter.setAuthenticationSuccessHandler(new JwtSuccessHandler());

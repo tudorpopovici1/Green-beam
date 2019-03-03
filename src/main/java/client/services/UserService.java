@@ -10,6 +10,9 @@ import server.model.AuthenticateUser;
 import server.model.FriendsUserResp;
 import server.model.Users;
 
+/**
+ * Class that represents UserService.
+ */
 @Service
 public class UserService {
 
@@ -19,12 +22,15 @@ public class UserService {
 
         Users user = null;
 
-        try{
+        try {
+
             user = restTemplate.getForObject(URL, Users.class);
-            if(user != null)
+            if (user != null) {
+
                 System.out.println(user.toString());
-        }
-        catch(HttpStatusCodeException e) {
+            }
+        } catch (HttpStatusCodeException e) {
+
             if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
 
                 System.out.println(e.getResponseBodyAsString());
@@ -34,17 +40,15 @@ public class UserService {
         return user;
     }
 
-    public void addUser(final RestTemplate restTemplate, final String URL, final Users user, Label errorLabel)
-    {
+    public void addUser(final RestTemplate restTemplate, final String URL, final Users user, final Label errorLabel) {
 
-        try{
+        try {
             Users returns = restTemplate.postForObject(URL, user, Users.class);
-            if(returns != null)
+            if (returns != null)
                 System.out.println(returns.toString());
-        }
-        catch(HttpStatusCodeException e)
+        } catch (HttpStatusCodeException e)
         {
-            if(e.getStatusCode() == HttpStatus.BAD_REQUEST)
+            if (e.getStatusCode() == HttpStatus.BAD_REQUEST)
             {
                 String responseString = e.getResponseBodyAsString();
                 errorLabel.setText(responseString);
@@ -58,7 +62,7 @@ public class UserService {
     {
         ResponseEntity<FriendsUserResp[]> responseEntity = restTemplate.getForEntity(URL + "/" + userId, FriendsUserResp[].class);
 
-        if(responseEntity.getBody() != null) {
+        if (responseEntity.getBody() != null) {
 
             FriendsUserResp[] list = responseEntity.getBody();
 
@@ -68,22 +72,20 @@ public class UserService {
         }
     }
 
-    public String authUser(final RestTemplate restTemplate, final String URL, final AuthenticateUser authenticateUser, Label errorLabel)
-    {
+    public String authUser(final RestTemplate restTemplate, final String URL, final AuthenticateUser authenticateUser, final Label errorLabel) {
+
         String token = "";
-        try{
+        try {
             AuthenticateUser authenticateUser1 = restTemplate.postForObject(URL, authenticateUser, AuthenticateUser.class);
 
-            if(authenticateUser1 != null) {
+            if (authenticateUser1 != null) {
                 token = authenticateUser1.getToken();
                 System.out.println("The token is + " + authenticateUser1.getToken());
                 errorLabel.setText("You have successfully logged in !");
             }
-        }
-        catch(HttpStatusCodeException e)
-        {
-            if(e.getStatusCode() == HttpStatus.FORBIDDEN)
-            {
+        } catch (HttpStatusCodeException e) {
+
+            if (e.getStatusCode() == HttpStatus.FORBIDDEN) {
                 errorLabel.setText(e.getResponseBodyAsString());
             }
         }
