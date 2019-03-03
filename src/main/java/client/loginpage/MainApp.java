@@ -1,23 +1,26 @@
-package loginPage;
+package client.loginpage;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.Parent;
-import java.net.URL;
+
 import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 
 /**
  * This class launches the application.
  */
+
 public class MainApp extends Application {
 
     /**
      * The main() method allows you to run JAR files that were
      * created without the JavaFX Launcher, such as when using
      * an IDE in which the JavaFX tools are not fully integrated.
-     * @param args
+     * @param args main param of this function
      */
     public static void main(String[] args) {
         launch(args);
@@ -35,7 +38,7 @@ public class MainApp extends Application {
             primaryStage.setTitle(
                     "GreenBeam - Carbon Footprint Monitoring Application");
             primaryStage.show();
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

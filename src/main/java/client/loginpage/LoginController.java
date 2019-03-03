@@ -1,24 +1,25 @@
-package loginPage;
+package client.loginpage;
 
-import client.URL;
+import client.Url;
 import client.services.UserService;
-import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
-import javafx.scene.text.TextAlignment;
 import javafx.scene.text.FontWeight;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.text.TextAlignment;
 import org.springframework.web.client.RestTemplate;
 import server.model.AuthenticateUser;
 import server.model.Users;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -41,26 +42,57 @@ public class LoginController {
      * Login.fxml file.
      */
     @FXML
-    private Label lblStatus, lblStatus2;
+    private Label lblStatus;
+
+    @FXML
+    private Label lblStatus2;
     /**
      * This is getting all the textField attributes from the
      * Login.fxml file.
      */
+
     @FXML
-    private TextField txtUsername, firstNameBox, lastNameBox,
-            doBBox, countryBox, usernameBox, emailBox;
+    private TextField txtUsername;
+
+    @FXML
+    private TextField firstNameBox;
+
+    @FXML
+    private TextField lastNameBox;
+
+    @FXML
+    private TextField doBBox;
+
+    @FXML
+    private TextField countryBox;
+
+    @FXML
+    private TextField usernameBox;
+
+    @FXML
+    private TextField emailBox;
     /**
      * This is getting all the passwordField attributes from the
      * Login.fxml file.
      */
     @FXML
-    private PasswordField txtPassword, passwordBox, passwordBox2;
+    private PasswordField txtPassword;
+
+    @FXML
+    private PasswordField passwordBox;
+
+    @FXML
+    private PasswordField passwordBox2;
     /**
      * This is getting all the button attributes from the
      * Login.fxml file.
      */
     @FXML
-    private Button nextButton, registerButton;
+    private Button nextButton;
+
+    @FXML
+    private Button registerButton;
+
     /**
      * This is getting the ImageView attribute from the
      * Login.fxml file.
@@ -100,15 +132,15 @@ public class LoginController {
 
     /**
      * This method handles the functionality of a user login.
-     * @param event - Whenever a user clicks the "login"
-     * button, this method starts to run.
+     * @param event - Whenever a user clicks the "login" button, this method starts to run.
      * */
 
     public void login(ActionEvent event) {
         if (!txtUsername.getText().equals("")
                 && !txtPassword.getText().equals("")) {
-            AuthenticateUser authenticateUser = new AuthenticateUser(txtUsername.getText(), txtPassword.getText());
-            userService.authUser(restTemplate, URL.AUTH_USER.getUrl(), authenticateUser, lblStatus);
+            AuthenticateUser authenticateUser =
+                    new AuthenticateUser(txtUsername.getText(), txtPassword.getText());
+            userService.authUser(restTemplate, Url.AUTH_USER.getUrl(), authenticateUser, lblStatus);
         } else if (txtUsername.getText().equals("") || txtPassword.getText().equals("")) {
             emptyLoginBoxPopup();
         } else {
@@ -119,7 +151,7 @@ public class LoginController {
     /**
      * This method handles the functionality of registering a user.
      * @param event - Whenever a user clicks the "next" button,
-     * this method starts to run.
+     *              this method starts to run.
      * */
     public void register(ActionEvent event) {
         newUser = new Users();
@@ -149,21 +181,21 @@ public class LoginController {
      * This method handles the functionality of getting new
      * user data from the second registration page.
      * @param event - Whenever a user clicks the "Register!"
-     * button, this method starts to run.
+     *              button, this method starts to run.
      * */
     private void getDataFromSecondPage(ActionEvent event) {
-       if (!emptyRegistrationFormSecondPagePopup()) {
-           newUser.setUsername(usernameBox.getText());
-           if (passwordBox.getText() != null && passwordBox2.getText() != null
+        if (!emptyRegistrationFormSecondPagePopup()) {
+            newUser.setUsername(usernameBox.getText());
+            if (passwordBox.getText() != null && passwordBox2.getText() != null
                    && newUserPasswordMatchCheck()) {
-               newUser.setEmail(emailBox.getText());
-               progress.setProgress(1.0);
-               hideRegistrationFormSecondPage();
-               registerButton.setVisible(false);
-               registrationComplete();
-               System.out.println(newUser.toString());
-           }
-       }
+                newUser.setEmail(emailBox.getText());
+                progress.setProgress(1.0);
+                hideRegistrationFormSecondPage();
+                registerButton.setVisible(false);
+                registrationComplete();
+                System.out.println(newUser.toString());
+            }
+        }
     }
 
     /**
@@ -261,7 +293,7 @@ public class LoginController {
         lblStatus2.setFont(Font.font("Verdana", FontWeight.EXTRA_BOLD, 20));
         System.out.println(newUser.toString());
         userService.addUser(
-                restTemplate, URL.ADD_USER.getUrl(), newUser, lblStatus2);
+                restTemplate, Url.ADD_USER.getUrl(), newUser, lblStatus2);
     }
 
     /**
@@ -279,9 +311,9 @@ public class LoginController {
     /**
      * This method handles the functionality of checking whether
      * the user's new password and retyped password match or not.
-     * @return boolean - return true if passwords match, if not
-     * it returns false.
-     * */
+     * @return boolean - return true if passwords match, if not, it returns false.
+     */
+
     private boolean newUserPasswordMatchCheck() {
         if (passwordBox.getText().equals(passwordBox2.getText())) {
             newUser.setPassword(passwordBox.getText());
@@ -300,8 +332,7 @@ public class LoginController {
     /**
      * This method handles the functionality of giving an
      * error when any of the fields in the first registration form is empty.
-     * @return boolean - returns true if the field is null or empty and
-     * false if not.
+     * @return boolean - returns true if the field is null or empty and false if not.
      * */
     private boolean emptyRegistrationFormFirstPagePopup() {
         if (checkEmptyOrNullBox(
@@ -316,8 +347,7 @@ public class LoginController {
     /**
      * This method handles the functionality of giving an error when
      * any of the fields in the second registration form is empty.
-     * @return boolean - returns true if the field is null or empty and
-     * false if not.
+     * @return boolean - returns true if the field is null or empty and false if not.
      * */
     private boolean emptyRegistrationFormSecondPagePopup() {
         if (checkEmptyOrNullBox(
@@ -332,9 +362,9 @@ public class LoginController {
      * This method handles the functionality of checking whether a
      * box is null or empty.
      * @param textFields - any box in the login page.
-     * @return boolean - returns true if the field is null or empty
-     * and false if not.
-     * */
+     * @return boolean - returns true if the field is null or empty and false if not.
+     */
+
     private boolean checkEmptyOrNullBox(TextField... textFields) {
         for (TextField textField : textFields) {
             if (textField.getText() == null || textField.getText().equals("")) {
