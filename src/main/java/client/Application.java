@@ -50,5 +50,5 @@ class Application {
         userService.authUser(restTemplate, AUTH_USER, new AuthenticateUser("test15", "123"), new Label());
 
     }
-}
+}*/
 
