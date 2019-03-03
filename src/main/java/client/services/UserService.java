@@ -1,5 +1,6 @@
 package client.services;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.scene.control.Label;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,8 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 import server.model.AuthenticateUser;
+import server.model.ErrorDetails;
 import server.model.FriendsUserResp;
 import server.model.Users;
+
+import java.io.IOException;
 
 /**
  * Class that represents UserService.
@@ -23,6 +27,9 @@ public class UserService {
      * @param id id of the user.
      * @return a new User object.
      */
+
+    private ObjectMapper objectMapper = new ObjectMapper();
+
     public Users getUser(final RestTemplate restTemplate, String url, final Long id) {
 
         url += "/" + id.toString();
@@ -65,10 +72,7 @@ public class UserService {
             }
         } catch (HttpStatusCodeException e) {
             if (e.getStatusCode() == HttpStatus.BAD_REQUEST) {
-                String responseString = e.getResponseBodyAsString();
-                errorLabel.setText(responseString);
-
-                // Use ObjectMapper here to create object of error.
+                outputErrorMessage(objectMapper, e.getResponseBodyAsString(), errorLabel);
             }
         }
     }
@@ -121,10 +125,20 @@ public class UserService {
         } catch (HttpStatusCodeException e) {
 
             if (e.getStatusCode() == HttpStatus.FORBIDDEN) {
-                errorLabel.setText(e.getResponseBodyAsString());
+               outputErrorMessage(objectMapper, e.getResponseBodyAsString(), errorLabel);
             }
         }
         return token;
+    }
+
+    private void outputErrorMessage(ObjectMapper objectMapper, String responseString, Label errorLabel)
+    {
+        try {
+            ErrorDetails errorDetails = objectMapper.readValue(responseString, ErrorDetails.class);
+            errorLabel.setText(errorDetails.getMessage());
+        } catch(IOException exc) {
+            exc.printStackTrace();
+        }
     }
 
 }
