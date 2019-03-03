@@ -3,7 +3,7 @@ Chair: Tudor
 Notes: Sever
 
 Yana's plan: The groups have to be at 8:45. The first group in the room will get her attention first.
-Yana's job: She represents the loginPage, but is also here to help us. First search it up on google. She is still human though, sometimes she won't know something.
+Yana's job: She represents the customer, but is also here to help us. First search it up on google. She is still human though, sometimes she won't know something.
 
 Suggestion preparation for Monday: Understand git/gitlab/github. Download and explore IntelliJ. Do some research on going green: gas emisions, energy consumption and etc. Look in to the library Spring.
 
