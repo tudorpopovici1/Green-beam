@@ -1,16 +1,12 @@
 package server.model;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.GrantedAuthority;
-
-import java.util.Collection;
 
 public class JwtAuthenticationToken extends UsernamePasswordAuthenticationToken {
 
     private String token;
 
-    public JwtAuthenticationToken(String token)
-    {
+    public JwtAuthenticationToken(final String token) {
         super(null, null);
         this.token = token;
     }
@@ -19,7 +15,7 @@ public class JwtAuthenticationToken extends UsernamePasswordAuthenticationToken 
         return token;
     }
 
-    public void setToken(String token) {
+    public void setToken(final String token) {
         this.token = token;
     }
 

@@ -19,24 +19,22 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static org.mockito.ArgumentMatchers.any;
-
 @RunWith(MockitoJUnitRunner.class)
-public class userServiceTest {
+class userServiceTest {
 
     @Mock
     RestTemplate restTemplate;
 
     @InjectMocks
-    UserService userService = new UserService();
+    private UserService userService = new UserService();
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         MockitoAnnotations.initMocks(this);
     }
 
     @Test
-    public void testGetUser() throws ResourceNotFoundException {
+    public void testGetUser() {
         String pattern = "dd-MM-yyyy";
         DateFormat dateFormat = new SimpleDateFormat(pattern);
 
@@ -58,12 +56,12 @@ public class userServiceTest {
     }
 
     @Test(expected = ResourceNotFoundException.class)
-    public void getUserExceptionThrown() throws ResourceNotFoundException {
+    public void getUserExceptionThrown() {
 
         Mockito
                 .when(restTemplate.getForObject("http://localhost:8080/rest/user", Users.class))
                 .thenThrow(new ResourceNotFoundException("The user is not available"));
 
-        Users user = userService.getUser(restTemplate, "http://localhost:8080/rest/user", 16l);
+        Users user = userService.getUser(restTemplate, "http://localhost:8080/rest/user", 16L);
     }
 }

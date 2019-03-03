@@ -1,28 +1,25 @@
 package server.controller;
 
-import io.jsonwebtoken.Jwt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import server.exception.BadCredentialsException;
-import server.exception.ResourceNotFoundException;
 import server.model.AuthenticateUser;
 import server.model.JwtUser;
 import server.repository.UserRepository;
 import server.security.JwtGenerator;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 @RestController
 @RequestMapping("/token")
-public class TokenController {
+class TokenController {
 
     @Autowired
     private JwtGenerator jwtGenerator;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @PostMapping
     public AuthenticateUser generate(@NotNull @RequestBody AuthenticateUser authenticateUser) throws BadCredentialsException {

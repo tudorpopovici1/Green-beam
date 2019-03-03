@@ -1,14 +1,13 @@
 package server.model;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(
         name = "emission_type",
         schema = "public"
 )
-public class Emission_type {
+class Emission_type {
 
     @Id
     @GeneratedValue

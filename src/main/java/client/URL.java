@@ -9,7 +9,7 @@ public enum URL {
     GET_USER_FRIENDS("http://localhost:8080/rest/user/allfriends"),
     AUTH_USER("http://localhost:8080/token");
 
-    private String url;
+    private final String url;
 
     URL(String url)
     {

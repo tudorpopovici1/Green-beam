@@ -10,13 +10,9 @@ import server.model.AuthenticateUser;
 import server.model.FriendsUserResp;
 import server.model.Users;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-
+/**
+ * Class that represents UserService.
+ */
 @Service
 public class UserService {
 
@@ -26,11 +22,15 @@ public class UserService {
 
         Users user = null;
 
-        try{
+        try {
+
             user = restTemplate.getForObject(URL, Users.class);
-            System.out.println(user.toString());
-        }
-        catch(HttpStatusCodeException e) {
+            if (user != null) {
+
+                System.out.println(user.toString());
+            }
+        } catch (HttpStatusCodeException e) {
+
             if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
 
                 System.out.println(e.getResponseBodyAsString());
@@ -40,16 +40,15 @@ public class UserService {
         return user;
     }
 
-    public void addUser(final RestTemplate restTemplate, final String URL, final Users user, Label errorLabel)
-    {
+    public void addUser(final RestTemplate restTemplate, final String URL, final Users user, final Label errorLabel) {
 
-        try{
+        try {
             Users returns = restTemplate.postForObject(URL, user, Users.class);
-            System.out.println(returns.toString());
-        }
-        catch(HttpStatusCodeException e)
+            if (returns != null)
+                System.out.println(returns.toString());
+        } catch (HttpStatusCodeException e)
         {
-            if(e.getStatusCode() == HttpStatus.BAD_REQUEST)
+            if (e.getStatusCode() == HttpStatus.BAD_REQUEST)
             {
                 String responseString = e.getResponseBodyAsString();
                 errorLabel.setText(responseString);
@@ -63,28 +62,30 @@ public class UserService {
     {
         ResponseEntity<FriendsUserResp[]> responseEntity = restTemplate.getForEntity(URL + "/" + userId, FriendsUserResp[].class);
 
-        List<FriendsUserResp> list = Arrays.asList(responseEntity.getBody());
+        if (responseEntity.getBody() != null) {
 
-        for(FriendsUserResp u : list)
-        {
-            System.out.println(u.toString());
+            FriendsUserResp[] list = responseEntity.getBody();
+
+            for (FriendsUserResp u : list) {
+                System.out.println(u.toString());
+            }
         }
     }
 
-    public String authUser(final RestTemplate restTemplate, final String URL, final AuthenticateUser authenticateUser, Label errorLabel)
-    {
+    public String authUser(final RestTemplate restTemplate, final String URL, final AuthenticateUser authenticateUser, final Label errorLabel) {
+
         String token = "";
-        try{
+        try {
             AuthenticateUser authenticateUser1 = restTemplate.postForObject(URL, authenticateUser, AuthenticateUser.class);
 
-            System.out.println("The token is + " + authenticateUser1.getToken());
+            if (authenticateUser1 != null) {
+                token = authenticateUser1.getToken();
+                System.out.println("The token is + " + authenticateUser1.getToken());
+                errorLabel.setText("You have successfully logged in !");
+            }
+        } catch (HttpStatusCodeException e) {
 
-            errorLabel.setText("You have successfully logged in !");
-        }
-        catch(HttpStatusCodeException e)
-        {
-            if(e.getStatusCode() == HttpStatus.FORBIDDEN)
-            {
+            if (e.getStatusCode() == HttpStatus.FORBIDDEN) {
                 errorLabel.setText(e.getResponseBodyAsString());
             }
         }

@@ -3,7 +3,7 @@ package client;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class GUI extends Application {
+class GUI extends Application {
 
     public static void main(final String[] args) {
         launch(args);

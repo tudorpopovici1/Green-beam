@@ -2,14 +2,13 @@ package server.model;
 
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(
         name = "achievements_type",
         schema = "public"
 )
-public class Achievements_type {
+class Achievements_type {
 
     @Id
     @GeneratedValue
@@ -23,16 +22,15 @@ public class Achievements_type {
         return achievementId;
     }
 
-    public void setAchievementId(final Long achievementId) {
-        this.achievementId = achievementId;
+    public void setAchievementId(final Long achievementId1) {
+        this.achievementId = achievementId1;
     }
 
     public String getAchievementName() {
         return achievementName;
     }
 
-    public void setAchievementName(final String achievementName) {
-        this.achievementName = achievementName;
+    public void setAchievementName(final String achievementName1) {
+        this.achievementName = achievementName1;
     }
-
 }

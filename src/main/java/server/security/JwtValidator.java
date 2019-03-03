@@ -1,7 +1,6 @@
 package server.security;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
 import org.springframework.stereotype.Component;
 import server.model.JwtUser;
@@ -9,10 +8,8 @@ import server.model.JwtUser;
 @Component
 public class JwtValidator {
 
-    private String secret = "secret";
-
     public JwtUser validate(String token){
-
+        String secret = "secret";
         JwtUser jwtUser = null;
 
         try {
