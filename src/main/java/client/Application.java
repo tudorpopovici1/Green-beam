@@ -1,4 +1,4 @@
-/*package client;
+package client;
 
 import client.services.UserService;
 import javafx.scene.control.Label;
@@ -17,11 +17,11 @@ class Application {
 
     private static final RestTemplate restTemplate = new RestTemplate();
 
-    private static final String ADD_USER = URL.ADD_USER.getUrl();
-    private static final String GET_USER_FRIENDS = URL.GET_USER_FRIENDS.getUrl();
-    private static final String GET_USER = URL.GET_USER.getUrl();
-    private static final String AUTH_USER = URL.AUTH_USER.getUrl();
-    private static final String GET_ALL_USERS = URL.GET_ALL_USERS.getUrl();
+    private static final String ADD_USER = Url.ADD_USER.getUrl();
+    private static final String GET_USER_FRIENDS = Url.GET_USER_FRIENDS.getUrl();
+    private static final String GET_USER = Url.GET_USER.getUrl();
+    private static final String AUTH_USER = Url.AUTH_USER.getUrl();
+    private static final String GET_ALL_USERS = Url.GET_ALL_USERS.getUrl();
 
 
     public static void main(final String[] args) {
@@ -34,12 +34,12 @@ class Application {
         try {
 
             Date dob = dateFormat.parse("20-12-1999");
-            Users user = new Users(null, "demo", "123", "TestName", "LastName", "RO", "123@gmail.com", dob, "user");
+            Users user = new Users(null, "demo",
+                    "123", "TestName", "LastName",
+                    "RO", "123@gmail.com", dob, "user");
 
             userService.addUser(restTemplate, ADD_USER,user, new Label());
-        }
-        catch (ParseException e)
-        {
+        } catch (ParseException e) {
             e.printStackTrace();
         }
 
@@ -47,8 +47,9 @@ class Application {
 
         userService.getUserFriends(restTemplate, GET_USER_FRIENDS, 0L);
 
-        userService.authUser(restTemplate, AUTH_USER, new AuthenticateUser("test15", "123"), new Label());
+        userService.authUser(restTemplate,
+                AUTH_USER, new AuthenticateUser("test15",
+                        "123"), new Label());
 
     }
 }
-*/

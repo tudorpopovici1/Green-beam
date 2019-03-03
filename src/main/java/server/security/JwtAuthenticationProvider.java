@@ -24,14 +24,21 @@ public class JwtAuthenticationProvider extends AbstractUserDetailsAuthentication
     }
 
     @Override
-    protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken) throws AuthenticationException {
+    protected void additionalAuthenticationChecks(UserDetails userDetails,
+                                                  UsernamePasswordAuthenticationToken
+                                                          usernamePasswordAuthenticationToken)
+            throws AuthenticationException {
 
     }
 
     @Override
-    protected JwtUserDetails retrieveUser(String username, UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken) throws AuthenticationException {
+    protected JwtUserDetails retrieveUser(String username,
+                                          UsernamePasswordAuthenticationToken
+                                                  usernamePasswordAuthenticationToken)
+            throws AuthenticationException {
 
-        JwtAuthenticationToken jwtAuthenticationToken = (JwtAuthenticationToken) usernamePasswordAuthenticationToken;
+        JwtAuthenticationToken jwtAuthenticationToken =
+                (JwtAuthenticationToken) usernamePasswordAuthenticationToken;
 
         String token = jwtAuthenticationToken.getToken();
 
@@ -41,8 +48,7 @@ public class JwtAuthenticationProvider extends AbstractUserDetailsAuthentication
 
         //System.out.println(jwtUser.toString());
 
-        if(jwtUser == null)
-        {
+        if (jwtUser == null) {
             throw new RuntimeException("JWT Token is incorrect");
         }
 
@@ -55,7 +61,7 @@ public class JwtAuthenticationProvider extends AbstractUserDetailsAuthentication
     }
 
     @Override
-    public boolean supports(Class<?> aClass) {
-        return JwtAuthenticationToken.class.isAssignableFrom(aClass);
+    public boolean supports(Class<?> className) {
+        return JwtAuthenticationToken.class.isAssignableFrom(className);
     }
 }

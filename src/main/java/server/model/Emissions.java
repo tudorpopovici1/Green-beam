@@ -1,7 +1,10 @@
 package server.model;
 
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(
@@ -16,10 +19,10 @@ class Emissions {
     private Long id;
 
     @Column(name = "user_id")
-    private Long user_id;
+    private Long userId;
 
     @Column(name = "emission_type")
-    private Long emission_type;
+    private Long emissionType;
 
     @Column(name = "carbon_footprint")
     private Long carbonFootprint;
@@ -27,35 +30,94 @@ class Emissions {
     @Column(name = "date_of_emission")
     private String date;
 
-    public Long getUser_id() {
-        return user_id;
-    }
 
-    public void setUser_id(final Long user_id) {
-        this.user_id = user_id;
-    }
-
-    public Long getEmission_type() {
-        return emission_type;
-    }
-
-    public void setEmission_type(final Long emission_type) {
-        this.emission_type = emission_type;
-    }
-
-    public Long getCarbonFootprint() {
-        return carbonFootprint;
-    }
-
-    public void setCarbonFootprint(final Long carbonFootprint) {
+    /**
+     * Sets new carbonFootprint.
+     *
+     * @param carbonFootprint New value of carbonFootprint.
+     */
+    public void setCarbonFootprint(Long carbonFootprint) {
         this.carbonFootprint = carbonFootprint;
     }
 
+    /**
+     * Sets new id.
+     *
+     * @param id New value of id.
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * Sets new date.
+     *
+     * @param date New value of date.
+     */
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    /**
+     * Sets new emissionType.
+     *
+     * @param emissionType New value of emissionType.
+     */
+    public void setEmissionType(Long emissionType) {
+        this.emissionType = emissionType;
+    }
+
+    /**
+     * Gets emissionType.
+     *
+     * @return Value of emissionType.
+     */
+    public Long getEmissionType() {
+        return emissionType;
+    }
+
+    /**
+     * Gets userId.
+     *
+     * @return Value of userId.
+     */
+    public Long getUserId() {
+        return userId;
+    }
+
+    /**
+     * Gets id.
+     *
+     * @return Value of id.
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * Sets new userId.
+     *
+     * @param userId New value of userId.
+     */
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    /**
+     * Gets date.
+     *
+     * @return Value of date.
+     */
     public String getDate() {
         return date;
     }
 
-    public void setDate(final String date) {
-        this.date = date;
+    /**
+     * Gets carbonFootprint.
+     *
+     * @return Value of carbonFootprint.
+     */
+    public Long getCarbonFootprint() {
+        return carbonFootprint;
     }
 }

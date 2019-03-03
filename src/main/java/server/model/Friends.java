@@ -1,14 +1,18 @@
 package server.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity(name = "friends_relationship")
 @Table(
         name = "friends_relationship",
         schema = "public",
         uniqueConstraints = {
-                @UniqueConstraint(columnNames = {"relating_user_id", "related_user_id"})
-}
+                @UniqueConstraint(columnNames = {"relating_user_id", "related_user_id"})}
 )
 class Friends {
 
@@ -18,35 +22,84 @@ class Friends {
     private Long id;
 
     @Column(name = "relating_user_id")
-    private Long relating_user_id;
+    private Long relatingUserId;
 
     @Column(name = "related_user_id")
-    private Long related_user_id;
+    private Long relatedUserId;
 
     @Column(name = "relationship_type")
-    private String relationship_type;
+    private String relationshipType;
 
-    public Long getRelating_user_id() {
-        return relating_user_id;
+
+    /**
+     * Gets relatingUserId.
+     *
+     * @return Value of relatingUserId.
+     */
+    public Long getRelatingUserId() {
+        return relatingUserId;
     }
 
-    public void setRelating_user_id(Long relating_user_id) {
-        this.relating_user_id = relating_user_id;
+    /**
+     * Gets relationshipType.
+     *
+     * @return Value of relationshipType.
+     */
+    public String getRelationshipType() {
+        return relationshipType;
     }
 
-    public Long getRelated_user_id() {
-        return related_user_id;
+    /**
+     * Gets relatedUserId.
+     *
+     * @return Value of relatedUserId.
+     */
+    public Long getRelatedUserId() {
+        return relatedUserId;
     }
 
-    public void setRelated_user_id(Long related_user_id) {
-        this.related_user_id = related_user_id;
+    /**
+     * Sets new relatingUserId.
+     *
+     * @param relatingUserId New value of relatingUserId.
+     */
+    public void setRelatingUserId(Long relatingUserId) {
+        this.relatingUserId = relatingUserId;
     }
 
-    public String getRelationship_type() {
-        return relationship_type;
+    /**
+     * Sets new relatedUserId.
+     *
+     * @param relatedUserId New value of relatedUserId.
+     */
+    public void setRelatedUserId(Long relatedUserId) {
+        this.relatedUserId = relatedUserId;
     }
 
-    public void setRelationship_type(String relationship_type) {
-        this.relationship_type = relationship_type;
+    /**
+     * Sets new id.
+     *
+     * @param id New value of id.
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * Sets new relationshipType.
+     *
+     * @param relationshipType New value of relationshipType.
+     */
+    public void setRelationshipType(String relationshipType) {
+        this.relationshipType = relationshipType;
+    }
+
+    /**
+     * Gets id.
+     *
+     * @return Value of id.
+     */
+    public Long getId() {
+        return id;
     }
 }

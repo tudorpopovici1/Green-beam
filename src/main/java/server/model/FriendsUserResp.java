@@ -1,6 +1,5 @@
 package server.model;
 
-
 import java.util.Date;
 
 public class FriendsUserResp {
@@ -12,7 +11,18 @@ public class FriendsUserResp {
     private String country;
     private String email;
 
-    public FriendsUserResp(final String username, final java.util.Date dateOfBirth, final String firstName, final String lastName,
+    /**
+     * Class constructor.
+     * @param username username.
+     * @param dateOfBirth dateOfBirth.
+     * @param firstName firstName.
+     * @param lastName lastName.
+     * @param country country.
+     * @param email email.
+     */
+
+    public FriendsUserResp(final String username, final java.util.Date dateOfBirth,
+                           final String firstName, final String lastName,
                            final String country, final String email) {
         this.username = username;
         this.dateOfBirth = dateOfBirth;
@@ -75,11 +85,11 @@ public class FriendsUserResp {
 
     @Override
     public String toString() {
-        return "FriendsUserResp{" +
-                "username='" + username + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
+        return "FriendsUserResp{"
+                + "username='" + username + '\''
+                + ", dateOfBirth=" + dateOfBirth
+                + ", firstName='" + firstName + '\''
+                + ", lastName='" + lastName + '\''
+                + '}';
     }
 }

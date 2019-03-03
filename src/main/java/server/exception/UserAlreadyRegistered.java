@@ -4,14 +4,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
-public class UserAlreadyRegistered extends  Exception{
+public class UserAlreadyRegistered extends  Exception {
 
-    public UserAlreadyRegistered(){
+    public UserAlreadyRegistered() {
         super();
     }
 
-    public UserAlreadyRegistered(final String msg)
-    {
+    public UserAlreadyRegistered(final String msg) {
         super(msg);
     }
 

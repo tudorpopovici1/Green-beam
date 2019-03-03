@@ -8,7 +8,7 @@
     <artifactId>OOP-Project</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>Starter OOPProject-Template</name>
+    <name>GreenBeam - OOP-Project</name>
 
 
     <parent>

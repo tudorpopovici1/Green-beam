@@ -1,13 +1,21 @@
 package server.model;
 
-
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import javax.persistence.*;
-import javax.validation.constraints.Email;
+
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import javax.validation.constraints.Email;
+
 
 /**
- *
+ * User model.
  */
 @Entity(name = "user_data")
 @EntityListeners(AuditingEntityListener.class)
@@ -54,6 +62,19 @@ public class Users {
     public Users() {
     }
 
+    /**
+     * Constructor of this class.
+     * @param id id.
+     * @param username username.
+     * @param password passwd.
+     * @param firstName firstname.
+     * @param lastName lastname.
+     * @param country country.
+     * @param email email.
+     * @param dateOfBirth dateofBirth.
+     * @param role role of user.
+     */
+    @SuppressWarnings("CheckStyle")
     public Users(final Long id, final String username,
                  final String password, final String firstName, final String lastName,
                  final String country, final @Email String email, final java.util.Date dateOfBirth,
@@ -72,6 +93,7 @@ public class Users {
 
 
     /**
+     * String representation of this class.
      * @return  String representation of this class.
      */
     @Override

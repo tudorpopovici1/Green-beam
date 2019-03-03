@@ -16,15 +16,22 @@ import server.model.Users;
 @Service
 public class UserService {
 
-    public Users getUser(final RestTemplate restTemplate, String URL, final Long id) {
+    /**
+     *  Gets a specific users' details.
+     * @param restTemplate restTemplate instantation to use.
+     * @param url Url of the request.
+     * @param id id of the user.
+     * @return a new User object.
+     */
+    public Users getUser(final RestTemplate restTemplate, String url, final Long id) {
 
-        URL += "/" + id.toString();
+        url += "/" + id.toString();
 
         Users user = null;
 
         try {
 
-            user = restTemplate.getForObject(URL, Users.class);
+            user = restTemplate.getForObject(url, Users.class);
             if (user != null) {
 
                 System.out.println(user.toString());
@@ -40,16 +47,24 @@ public class UserService {
         return user;
     }
 
-    public void addUser(final RestTemplate restTemplate, final String URL, final Users user, final Label errorLabel) {
+    /**
+     * Method to add a User to the data base.
+     * @param restTemplate restTemplate
+     * @param url url of request
+     * @param user user
+     * @param errorLabel label to output the errors
+     */
+
+    public void addUser(final RestTemplate restTemplate,
+                        final String url, final Users user, final Label errorLabel) {
 
         try {
-            Users returns = restTemplate.postForObject(URL, user, Users.class);
-            if (returns != null)
+            Users returns = restTemplate.postForObject(url, user, Users.class);
+            if (returns != null) {
                 System.out.println(returns.toString());
-        } catch (HttpStatusCodeException e)
-        {
-            if (e.getStatusCode() == HttpStatus.BAD_REQUEST)
-            {
+            }
+        } catch (HttpStatusCodeException e) {
+            if (e.getStatusCode() == HttpStatus.BAD_REQUEST) {
                 String responseString = e.getResponseBodyAsString();
                 errorLabel.setText(responseString);
 
@@ -58,9 +73,17 @@ public class UserService {
         }
     }
 
-    public void getUserFriends(final RestTemplate restTemplate, final String URL, final Long userId)
-    {
-        ResponseEntity<FriendsUserResp[]> responseEntity = restTemplate.getForEntity(URL + "/" + userId, FriendsUserResp[].class);
+    /**
+     * Method to get all of a users' friends.
+     * @param restTemplate restTemplate object
+     * @param url url of the request
+     * @param userId userId
+     */
+
+    public void getUserFriends(
+            final RestTemplate restTemplate, final String url, final Long userId) {
+        ResponseEntity<FriendsUserResp[]> responseEntity =
+                restTemplate.getForEntity(url + "/" + userId, FriendsUserResp[].class);
 
         if (responseEntity.getBody() != null) {
 
@@ -72,11 +95,23 @@ public class UserService {
         }
     }
 
-    public String authUser(final RestTemplate restTemplate, final String URL, final AuthenticateUser authenticateUser, final Label errorLabel) {
+    /**
+     * Method that checks the credentials of a user.
+     * @param restTemplate restTemplate to use.
+     * @param url Url of the request.
+     * @param authenticateUser authenticateUser object.
+     * @param errorLabel label where to output the errors.
+     * @return the token of the authenticated user.
+     */
+
+    public String authUser(
+            final RestTemplate restTemplate, final String url,
+            final AuthenticateUser authenticateUser, final Label errorLabel) {
 
         String token = "";
         try {
-            AuthenticateUser authenticateUser1 = restTemplate.postForObject(URL, authenticateUser, AuthenticateUser.class);
+            AuthenticateUser authenticateUser1 =
+                    restTemplate.postForObject(url, authenticateUser, AuthenticateUser.class);
 
             if (authenticateUser1 != null) {
                 token = authenticateUser1.getToken();

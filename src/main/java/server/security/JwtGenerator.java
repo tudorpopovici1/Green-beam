@@ -9,6 +9,11 @@ import server.model.JwtUser;
 @Component
 public class JwtGenerator {
 
+    /**
+     * Method that generates a new JWT.
+     * @param jwtUser user's details.
+     * @return a new json web token.
+     */
     public String generate(final JwtUser jwtUser) {
 
         Claims claims = Jwts.claims()
