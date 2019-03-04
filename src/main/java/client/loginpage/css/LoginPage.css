@@ -9,7 +9,7 @@
 -fx-border-bottom: 1px double black;
 }
 
-#nextButton, #loginButton, #registerButton {
+#nextButton, #loginButton, #registerButton, #backButton {
     -fx-background-color:
         linear-gradient(#ffd65b, #e68400),
         linear-gradient(#ffef84, #f2ba44),
@@ -27,5 +27,7 @@
 #welcomeText{
     -fx-font-family: "Comic Sans MS";
 }
+
+
 
 

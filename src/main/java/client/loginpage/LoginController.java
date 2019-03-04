@@ -94,6 +94,8 @@ public class LoginController {
     @FXML
     private Button registerButton;
 
+    @FXML Button backButton;
+
     /**
      * This is getting the ImageView attribute from the
      * Login.fxml file.
@@ -167,16 +169,41 @@ public class LoginController {
                 newUser.setCountry(countryBox.getText());
                 hideRegistrationFormFirstPage();
                 registrationFormSecondPage();
+                backButton.setVisible(true);
+                backButton.setLayoutY(nextButton.getLayoutY());
+                backButton.setOnAction(this::goBack);
                 createRegisterButton();
-                //setProgressBar();
-                //lblStatus2.setVisible(false);
-                //progress.setProgress(0.5);
                 registerButton.setOnAction(this::getDataFromSecondPage);
             }
         } catch (ParseException e) {
             lblStatus2.setText("Please follow the given date format.");
         }
     }
+
+    /**
+     * This method is fired up when a user click the back button
+     * if they make a mistake in the first registration form.
+     * @param event - the back button fires up this event.
+     */
+    public void goBack(ActionEvent event){
+        hideRegistrationFormSecondPage();
+        firstNameBox.setVisible(true);
+        firstNameBox.setText(newUser.getFirstName());
+        lastNameBox.setVisible(true);
+        lastNameBox.setText(newUser.getLastName());
+        doBBox.setVisible(true);
+        String datePattern = "dd-MM-yyyy";
+        DateFormat df = new SimpleDateFormat(datePattern);
+        Date userDOB = newUser.getDateOfBirth();
+        String userDOBString = df.format(userDOB);
+        doBBox.setText(userDOBString);
+        countryBox.setVisible(true);
+        countryBox.setText(newUser.getCountry());
+        backButton.setVisible(false);
+        registerButton.setText("Next");
+        registerButton.setOnAction(this::register);
+    }
+
 
     /**
      * This method handles the functionality of getting new
@@ -260,20 +287,6 @@ public class LoginController {
      * This method handles the functionality of creating a new progress bar
      * to inform the user how far are they in the registration form.
      * */
-    private void setProgressBar() {
-        progress = new ProgressBar();
-        progress.setStyle("-fx-accent: green;");
-        window.getChildren().add(progress);
-        progress.setLayoutX(lblStatus2.getLayoutX() + 60);
-        progress.setLayoutY(lblStatus2.getLayoutY());
-        progress.setPrefWidth(230);
-        progress.setPrefHeight(27);
-    }
-
-    /**
-     * This method handles the functionality of creating a new progress bar
-     * to inform the user how far are they in the registration form.
-     * */
     private void hideRegistrationFormSecondPage() {
         usernameBox.setVisible(false);
         passwordBox.setVisible(false);
@@ -296,7 +309,7 @@ public class LoginController {
             thumbsUp.setVisible(true);
             thumbsUp.setFitHeight(75);
             thumbsUp.setFitWidth(75);
-            thumbsUp.setLayoutX(passwordBox2.getLayoutX());
+            thumbsUp.setLayoutX(430);
             thumbsUp.setLayoutY(passwordBox2.getLayoutY() - 70);
             thumbsUp.setOpacity(1);
             lblStatus2.setVisible(true);

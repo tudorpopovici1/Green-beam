@@ -126,6 +126,7 @@ public class UserService {
         } catch (HttpStatusCodeException e) {
 
             if (e.getStatusCode() == HttpStatus.FORBIDDEN) {
+                errorLabel.setPrefWidth(403);
                outputErrorMessage(objectMapper, e.getResponseBodyAsString(), errorLabel);
             }
         }
