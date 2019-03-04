@@ -17,8 +17,11 @@ import java.io.IOException;
 /**
  * Class that represents UserService.
  */
+
 @Service
 public class UserService {
+
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     /**
      *  Gets a specific users' details.
@@ -27,8 +30,6 @@ public class UserService {
      * @param id id of the user.
      * @return a new User object.
      */
-
-    private ObjectMapper objectMapper = new ObjectMapper();
 
     public Users getUser(final RestTemplate restTemplate, String url, final Long id) {
 

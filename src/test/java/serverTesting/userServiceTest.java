@@ -55,6 +55,8 @@ public class userServiceTest {
         }
     }
 
+
+
    /* @Test(expected = ResourceNotFoundException.class)
     public void getUserExceptionThrown() {
 

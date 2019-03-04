@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/rest")
-class UserController {
+public class UserController {
 
     @Autowired
     private UserRepository userRepository;
