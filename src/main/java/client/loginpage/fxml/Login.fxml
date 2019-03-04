@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="window" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.loginpage.LoginController">
+<AnchorPane fx:id="window" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.loginpage.LoginController">
    <children>
       <ImageView fitHeight="700.0" fitWidth="931.0">
          <image>
@@ -61,6 +61,7 @@
             <Image url="@../images/passwordIcon.png" />
          </image>
       </ImageView>
+      <Button fx:id="backButton" layoutX="256.0" layoutY="587.0" mnemonicParsing="false" text="Back" visible="false" />
    </children>
    <stylesheets>
       <URL value="@../css/LoginPage.css" />
