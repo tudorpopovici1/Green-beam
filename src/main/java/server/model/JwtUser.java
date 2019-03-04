@@ -6,6 +6,13 @@ public class JwtUser {
     private long id;
     private String role;
 
+    /**
+     * Main constructor of this class.
+     * @param userName username.
+     * @param id id.
+     * @param role role.
+     */
+
     public JwtUser(String userName, long id, String role) {
         this.userName = userName;
         this.id = id;
@@ -41,10 +48,13 @@ public class JwtUser {
 
     @Override
     public String toString() {
-        return "JwtUser{" +
-                "userName='" + userName + '\'' +
-                ", id=" + id +
-                ", role='" + role + '\'' +
-                '}';
+        return "JwtUser{"
+                + "userName='" + userName + '\''
+                + ", id="
+                + id
+                + ", role='"
+                + role
+                + '\''
+                + '}';
     }
 }

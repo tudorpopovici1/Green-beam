@@ -8,7 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 
 public class JwtSuccessHandler implements AuthenticationSuccessHandler {
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) {
+    public void onAuthenticationSuccess(
+            HttpServletRequest httpServletRequest,
+            HttpServletResponse httpServletResponse,
+            Authentication authentication) {
         System.out.println("Successfully authenticated");
     }
 }

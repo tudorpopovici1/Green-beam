@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 class DbException extends Exception {
 
-    public DbException(){
+    public DbException() {
         super();
     }
 

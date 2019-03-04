@@ -1,34 +1,36 @@
-package loginPage;
+package client.loginpage;
 
-import client.URL;
+import client.Url;
 import client.services.UserService;
-import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
-import javafx.scene.text.TextAlignment;
 import javafx.scene.text.FontWeight;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.text.TextAlignment;
 import org.springframework.web.client.RestTemplate;
 import server.model.AuthenticateUser;
 import server.model.Users;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * This class handles all the functionality that is in
  * the main login page of the application.
  */
-@SuppressWarnings({"CanBeFinal", "unused"})
 public class LoginController {
     /**
      * This is getting the attribute window attribute from the
@@ -41,26 +43,57 @@ public class LoginController {
      * Login.fxml file.
      */
     @FXML
-    private Label lblStatus, lblStatus2;
+    private Label lblStatus;
+
+    @FXML
+    private Label lblStatus2;
     /**
      * This is getting all the textField attributes from the
      * Login.fxml file.
      */
+
     @FXML
-    private TextField txtUsername, firstNameBox, lastNameBox,
-            doBBox, countryBox, usernameBox, emailBox;
+    private TextField txtUsername;
+
+    @FXML
+    private TextField firstNameBox;
+
+    @FXML
+    private TextField lastNameBox;
+
+    @FXML
+    private TextField doBBox;
+
+    @FXML
+    private TextField countryBox;
+
+    @FXML
+    private TextField usernameBox;
+
+    @FXML
+    private TextField emailBox;
     /**
      * This is getting all the passwordField attributes from the
      * Login.fxml file.
      */
     @FXML
-    private PasswordField txtPassword, passwordBox, passwordBox2;
+    private PasswordField txtPassword;
+
+    @FXML
+    private PasswordField passwordBox;
+
+    @FXML
+    private PasswordField passwordBox2;
     /**
      * This is getting all the button attributes from the
      * Login.fxml file.
      */
     @FXML
-    private Button nextButton, registerButton;
+    private Button nextButton;
+
+    @FXML
+    private Button registerButton;
+
     /**
      * This is getting the ImageView attribute from the
      * Login.fxml file.
@@ -100,15 +133,15 @@ public class LoginController {
 
     /**
      * This method handles the functionality of a user login.
-     * @param event - Whenever a user clicks the "login"
-     * button, this method starts to run.
+     * @param event - Whenever a user clicks the "login" button, this method starts to run.
      * */
 
     public void login(ActionEvent event) {
         if (!txtUsername.getText().equals("")
                 && !txtPassword.getText().equals("")) {
-            AuthenticateUser authenticateUser = new AuthenticateUser(txtUsername.getText(), txtPassword.getText());
-            userService.authUser(restTemplate, URL.AUTH_USER.getUrl(), authenticateUser, lblStatus);
+            AuthenticateUser authenticateUser =
+                    new AuthenticateUser(txtUsername.getText(), txtPassword.getText());
+            userService.authUser(restTemplate, Url.AUTH_USER.getUrl(), authenticateUser, lblStatus);
         } else if (txtUsername.getText().equals("") || txtPassword.getText().equals("")) {
             emptyLoginBoxPopup();
         } else {
@@ -119,7 +152,7 @@ public class LoginController {
     /**
      * This method handles the functionality of registering a user.
      * @param event - Whenever a user clicks the "next" button,
-     * this method starts to run.
+     *              this method starts to run.
      * */
     public void register(ActionEvent event) {
         newUser = new Users();
@@ -135,9 +168,9 @@ public class LoginController {
                 hideRegistrationFormFirstPage();
                 registrationFormSecondPage();
                 createRegisterButton();
-                setProgressBar();
-                lblStatus2.setVisible(false);
-                progress.setProgress(0.5);
+                //setProgressBar();
+                //lblStatus2.setVisible(false);
+                //progress.setProgress(0.5);
                 registerButton.setOnAction(this::getDataFromSecondPage);
             }
         } catch (ParseException e) {
@@ -149,21 +182,18 @@ public class LoginController {
      * This method handles the functionality of getting new
      * user data from the second registration page.
      * @param event - Whenever a user clicks the "Register!"
-     * button, this method starts to run.
+     *              button, this method starts to run.
      * */
     private void getDataFromSecondPage(ActionEvent event) {
-       if (!emptyRegistrationFormSecondPagePopup()) {
-           newUser.setUsername(usernameBox.getText());
-           if (passwordBox.getText() != null && passwordBox2.getText() != null
+        if (!emptyRegistrationFormSecondPagePopup()
+                && !emailConstraintPopUp()) {
+            newUser.setUsername(usernameBox.getText());
+            if (passwordBox.getText() != null && passwordBox2.getText() != null
                    && newUserPasswordMatchCheck()) {
-               newUser.setEmail(emailBox.getText());
-               progress.setProgress(1.0);
-               hideRegistrationFormSecondPage();
-               registerButton.setVisible(false);
-               registrationComplete();
-               System.out.println(newUser.toString());
-           }
-       }
+                newUser.setEmail(emailBox.getText());
+                registrationComplete();
+            }
+        }
     }
 
     /**
@@ -185,6 +215,7 @@ public class LoginController {
     private void createRegisterButton() {
         registerButton = new Button();
         registerButton.setText("Register!");
+        registerButton.setId("registerButton");
         window.getChildren().add(registerButton);
         registerButton.setLayoutX(nextButton.getLayoutX());
         registerButton.setLayoutY(nextButton.getLayoutY());
@@ -200,17 +231,25 @@ public class LoginController {
         window.getChildren().add(usernameBox);
         usernameBox.setLayoutX(firstNameBox.getLayoutX());
         usernameBox.setLayoutY(firstNameBox.getLayoutY());
+        usernameBox.setPrefHeight(41);
+        usernameBox.setPrefWidth(180);
         passwordBox = new PasswordField();
+        passwordBox.setPrefHeight(41);
+        passwordBox.setPrefWidth(180);
         passwordBox.setPromptText("Set Password");
         window.getChildren().add(passwordBox);
         passwordBox.setLayoutX(lastNameBox.getLayoutX());
         passwordBox.setLayoutY(lastNameBox.getLayoutY());
         passwordBox2 = new PasswordField();
+        passwordBox2.setPrefWidth(180);
+        passwordBox2.setPrefHeight(40);
         passwordBox2.setPromptText("Retype your password");
         window.getChildren().add(passwordBox2);
         passwordBox2.setLayoutX(doBBox.getLayoutX());
         passwordBox2.setLayoutY(doBBox.getLayoutY());
         emailBox = new TextField();
+        emailBox.setPrefWidth(180);
+        emailBox.setPrefHeight(40);
         emailBox.setPromptText("Email");
         window.getChildren().add(emailBox);
         emailBox.setLayoutX(countryBox.getLayoutX());
@@ -246,22 +285,28 @@ public class LoginController {
      * This method handles the functionality of finishing the registration.
      * */
     private void registrationComplete() {
-        thumbsUp.setVisible(true);
-        thumbsUp.setFitHeight(150);
-        thumbsUp.setFitWidth(150);
-        thumbsUp.setLayoutX(passwordBox2.getLayoutX());
-        thumbsUp.setLayoutY(passwordBox2.getLayoutY() - 70);
-        thumbsUp.setOpacity(0.7);
+        lblStatus2.setText("");
         lblStatus2.setVisible(true);
-        lblStatus2.setText("Registration complete!\n"
-                + "Let's make a difference together!\nLogin now!");
-        lblStatus2.setTextAlignment(TextAlignment.CENTER);
-        lblStatus2.setPrefHeight(100);
-        lblStatus2.setLayoutY(thumbsUp.getLayoutY());
-        lblStatus2.setFont(Font.font("Verdana", FontWeight.EXTRA_BOLD, 20));
-        System.out.println(newUser.toString());
         userService.addUser(
-                restTemplate, URL.ADD_USER.getUrl(), newUser, lblStatus2);
+                restTemplate, Url.ADD_USER.getUrl(), newUser, lblStatus2);
+        if(lblStatus2.getText().equals(""))
+        {
+            hideRegistrationFormSecondPage();
+            registerButton.setVisible(false);
+            thumbsUp.setVisible(true);
+            thumbsUp.setFitHeight(75);
+            thumbsUp.setFitWidth(75);
+            thumbsUp.setLayoutX(passwordBox2.getLayoutX());
+            thumbsUp.setLayoutY(passwordBox2.getLayoutY() - 70);
+            thumbsUp.setOpacity(1);
+            lblStatus2.setVisible(true);
+            lblStatus2.setText("Registration complete.\n"
+                    + "You can now log in.");
+            lblStatus2.setTextAlignment(TextAlignment.CENTER);
+            lblStatus2.setPrefHeight(100);
+            lblStatus2.setLayoutY(thumbsUp.getLayoutY()+50);
+            lblStatus2.setFont(Font.font("Verdana", FontWeight.EXTRA_BOLD, 20));
+        }
     }
 
     /**
@@ -279,9 +324,9 @@ public class LoginController {
     /**
      * This method handles the functionality of checking whether
      * the user's new password and retyped password match or not.
-     * @return boolean - return true if passwords match, if not
-     * it returns false.
-     * */
+     * @return boolean - return true if passwords match, if not, it returns false.
+     */
+
     private boolean newUserPasswordMatchCheck() {
         if (passwordBox.getText().equals(passwordBox2.getText())) {
             newUser.setPassword(passwordBox.getText());
@@ -300,9 +345,9 @@ public class LoginController {
     /**
      * This method handles the functionality of giving an
      * error when any of the fields in the first registration form is empty.
-     * @return boolean - returns true if the field is null or empty and
-     * false if not.
+     * @return boolean - returns true if the field is null or empty and false if not.
      * */
+
     private boolean emptyRegistrationFormFirstPagePopup() {
         if (checkEmptyOrNullBox(
                 firstNameBox, lastNameBox, doBBox, countryBox)) {
@@ -313,11 +358,18 @@ public class LoginController {
         }
     }
 
+    private boolean emailConstraintPopUp() {
+        if(!validateEmail(emailBox.getText())) {
+            emailConstraintError();
+            return true;
+        }
+        return false;
+    }
+
     /**
      * This method handles the functionality of giving an error when
      * any of the fields in the second registration form is empty.
-     * @return boolean - returns true if the field is null or empty and
-     * false if not.
+     * @return boolean - returns true if the field is null or empty and false if not.
      * */
     private boolean emptyRegistrationFormSecondPagePopup() {
         if (checkEmptyOrNullBox(
@@ -332,9 +384,9 @@ public class LoginController {
      * This method handles the functionality of checking whether a
      * box is null or empty.
      * @param textFields - any box in the login page.
-     * @return boolean - returns true if the field is null or empty
-     * and false if not.
-     * */
+     * @return boolean - returns true if the field is null or empty and false if not.
+     */
+
     private boolean checkEmptyOrNullBox(TextField... textFields) {
         for (TextField textField : textFields) {
             if (textField.getText() == null || textField.getText().equals("")) {
@@ -348,6 +400,16 @@ public class LoginController {
      * This method handles the functionality of giving an error when
      * a box is null or empty.
      * */
+
+    private void emailConstraintError()
+    {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText("The email is not in the right format.");
+        alert.showAndWait();
+    }
+
     private void giveEmptyOrNullFieldError() {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Error");
@@ -355,4 +417,13 @@ public class LoginController {
         alert.setContentText("One of your fields is empty.\nPlease try again.");
         alert.showAndWait();
     }
+
+    public static final Pattern VALIDEMAIL =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
+    public static boolean validateEmail(String emailStr) {
+        Matcher matcher = VALIDEMAIL.matcher(emailStr);
+        return matcher.find();
+    }
+
 }
