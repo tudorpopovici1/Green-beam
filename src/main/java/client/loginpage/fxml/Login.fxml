@@ -32,10 +32,6 @@
          <font>
             <Font size="19.0" />
          </font></Label>
-      <Label fx:id="lblStatus" alignment="CENTER" layoutX="223.0" layoutY="133.0" prefHeight="27.0" prefWidth="481.0" text=" Login" textFill="WHITE">
-         <font>
-            <Font size="21.0" />
-         </font></Label>
       <TextField fx:id="firstNameBox" layoutX="381.0" layoutY="400.0" prefHeight="40.0" prefWidth="181.0" promptText="First Name" />
       <TextField fx:id="lastNameBox" layoutX="381.0" layoutY="460.0" prefHeight="40.0" prefWidth="181.0" promptText="Last Name" />
       <TextField fx:id="doBBox" layoutX="381.0" layoutY="520.0" prefHeight="40.0" prefWidth="181.0" promptText="Date of Birth (dd-mm-yyyy)" />
@@ -61,6 +57,10 @@
             <Image url="@../images/passwordIcon.png" />
          </image>
       </ImageView>
+      <Label fx:id="lblStatus" alignment="CENTER" layoutX="223.0" layoutY="133.0" prefHeight="27.0" prefWidth="481.0" text=" Login" textFill="WHITE">
+         <font>
+            <Font size="21.0" />
+         </font></Label>
    </children>
    <stylesheets>
       <URL value="@../css/LoginPage.css" />
