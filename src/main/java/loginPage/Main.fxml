@@ -3,7 +3,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="loginPage.Main"
+            fx:controller="loginPage.MainApp"
             prefHeight="400.0" prefWidth="600.0">
 
 </AnchorPane>
