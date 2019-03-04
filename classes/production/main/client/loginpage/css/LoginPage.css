@@ -1,0 +1,31 @@
+#welcomeText{
+    /fx-font-family: "Impact Font";
+    -fx-border-bottom: 1px double black;
+    -fx-border-width: 0px, 0px, 2px, 0px;
+}
+
+#lblStatus, #lblStatus2{
+-fx-border-width: 0px 0px 1px 0px;
+-fx-border-bottom: 1px double black;
+}
+
+#nextButton, #loginButton, #registerButton {
+    -fx-background-color:
+        linear-gradient(#ffd65b, #e68400),
+        linear-gradient(#ffef84, #f2ba44),
+        linear-gradient(#ffea6a, #efaa22),
+        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),
+        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 30;
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-text-fill: #654b00;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20 10 20;
+}
+
+#welcomeText{
+    -fx-font-family: "Comic Sans MS";
+}
+
+
