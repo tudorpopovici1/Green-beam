@@ -5,6 +5,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.mainpage.MainController">
@@ -50,6 +51,8 @@
                <Font size="22.0" />
             </font></Button>
       </children></AnchorPane>
+   <Line endX="100.0" startX="-100.0" />
+   <Line endX="100.0" startX="-100.0" />
     <stylesheets>
         <URL value="@../css/MainPage.css" />
     </stylesheets>
