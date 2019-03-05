@@ -1,3 +1,24 @@
 #mainButton, #progressButton, #profileButton, #settingsButton , #aboutUsButton, #logoutButton{
-    -fx-opacity: 0.5;
+    -fx-opacity: 0.4;
+    -fx-font-family: "Apple Chancery";
+    -fx-font-size: 21px;
 }
+
+#mainButton:hover, #progressButton:hover, #profileButton:hover, #settingsButton:hover,
+ #aboutUsButton:hover, #logoutButton:hover{
+     -fx-font-size: 30px;
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
