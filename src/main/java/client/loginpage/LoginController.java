@@ -319,6 +319,8 @@ public class LoginController {
             lblStatus2.setPrefHeight(100);
             lblStatus2.setLayoutY(thumbsUp.getLayoutY()+50);
             lblStatus2.setFont(Font.font("Verdana", FontWeight.EXTRA_BOLD, 20));
+            backButton.setVisible(false);
+            registerButton.setVisible(false);
         }
     }
 

@@ -1,0 +1,3 @@
+#mainButton, #progressButton, #profileButton, #settingsButton , #aboutUsButton, #logoutButton{
+    -fx-opacity: 0.5;
+}
