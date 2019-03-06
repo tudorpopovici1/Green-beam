@@ -54,7 +54,7 @@ public class MainController {
         aboutUsWindow.setVisible(true);
         animate(aboutUsWindow);
         aboutUsWindow.toFront();
-        aboutUsWindow.setStyle("-fx-background-color: grey");
+        aboutUsWindow.setStyle("-fx-background-color: gray");
     }
 
     public void settingsWindow(ActionEvent event) {

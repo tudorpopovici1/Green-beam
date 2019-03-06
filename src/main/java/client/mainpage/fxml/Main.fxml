@@ -78,7 +78,7 @@
    <Pane fx:id="mainWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" />
     <Pane fx:id="progressWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
     <Pane fx:id="profileWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
-    <Pane fx:id="aboutUsWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false" />
+    <Pane fx:id="aboutUsWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
     <Pane fx:id="settingsWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
     <Pane fx:id="logoutWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
     <stylesheets>
