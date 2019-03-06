@@ -5,48 +5,40 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Button?>
 
-<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.mainpage.MainController">
+        <AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.mainpage.MainController">
     <ImageView fx:id="mainBackground" fitHeight="700.0" fitWidth="931.0">
         <image>
             <Image url="@../images/mainBackgroud.jpg" />
         </image>
     </ImageView>
-    <ImageView fitHeight="162.0" fitWidth="149.0" layoutX="347.0" layoutY="-3.0">
-    <image>
-        <Image url="@../images/logo1.png" />
-    </image>
-</ImageView>
-    <ImageView fitHeight="69.0" fitWidth="363.0" layoutX="405.0" layoutY="44.0">
-        <image>
-            <Image url="@../images/logo2.png" />
-        </image>
-    </ImageView>
-    <AnchorPane layoutX="38.0" layoutY="-7.0" prefHeight="713.0" prefWidth="179.0">
+    <AnchorPane layoutX="38.0" layoutY="-7.0" prefHeight="713.0" prefWidth="201.0">
       <children>
-          <Button fx:id="mainButton" layoutY="7.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="200.0" text="Main">
+          <Button fx:id="mainButton" layoutY="7.0" onAction="#mainPage" mnemonicParsing="false" prefHeight="109.0" prefWidth="200.0" text="Main">
             <font>
                <Font name="System Italic" size="28.0" />
             </font></Button>
-          <Button fx:id="progressButton" layoutY="116.0" mnemonicParsing="false" prefHeight="116.0" prefWidth="200.0" text="My Progress" textFill="#000000ed">
+          <Button fx:id="progressButton" layoutY="116.0" onAction="#progressPage" mnemonicParsing="false" prefHeight="116.0" prefWidth="200.0" text="My Progress" textFill="#000000ed">
             <font>
                <Font name="System Bold Italic" size="20.0" />
             </font></Button>
-          <Button fx:id="profileButton" layoutY="232.0" mnemonicParsing="false" prefHeight="116.0" prefWidth="200.0" text="Profile">
+          <Button fx:id="profileButton" layoutY="232.0" onAction="#profileWindow" mnemonicParsing="false" prefHeight="116.0" prefWidth="200.0" text="Profile">
             <font>
                <Font size="22.0" />
             </font></Button>
-          <Button fx:id="aboutUsButton" layoutY="348.0" mnemonicParsing="false" prefHeight="116.0" prefWidth="200.0" text="About Us">
+          <Button fx:id="aboutUsButton" layoutY="348.0" onAction="#aboutUsWindow" mnemonicParsing="false" prefHeight="116.0" prefWidth="200.0" text="About Us">
             <font>
                <Font size="22.0" />
             </font></Button>
-          <Button fx:id="settingsButton" layoutY="465.0" mnemonicParsing="false" prefHeight="116.0" prefWidth="200.0" text="Settings">
+          <Button fx:id="settingsButton" layoutY="465.0" onAction="#settingsWindow" mnemonicParsing="false" prefHeight="116.0" prefWidth="200.0" text="Settings">
             <font>
                <Font size="22.0" />
             </font></Button>
-          <Button fx:id="logoutButton" layoutY="581.0" mnemonicParsing="false" prefHeight="126.0" prefWidth="200.0" text="Logout" textFill="#110000">
+          <Button fx:id="logoutButton" layoutY="581.0" onAction="#logoutWindow" mnemonicParsing="false" prefHeight="126.0" prefWidth="200.0" text="Logout" textFill="#110000">
             <font>
                <Font size="22.0" />
             </font></Button>
@@ -86,6 +78,12 @@
       </children></AnchorPane>
    <Line endX="100.0" startX="-100.0" />
    <Line endX="100.0" startX="-100.0" />
+   <Pane fx:id="mainWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" />
+    <Pane fx:id="progressWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
+    <Pane fx:id="profileWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
+    <Pane fx:id="aboutUsWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
+    <Pane fx:id="settingsWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
+    <Pane fx:id="logoutWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
     <stylesheets>
         <URL value="@../css/MainPage.css" />
     </stylesheets>
