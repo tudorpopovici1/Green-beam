@@ -4,21 +4,41 @@ import client.Url;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
+import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.client.HttpStatusCodeException;
+import org.springframework.web.context.WebApplicationContext;
+import server.Application;
 import server.controller.UserController;
+import server.exception.ResourceNotFoundException;
+import server.exception.UserAlreadyRegistered;
 import server.model.Users;
 import server.repository.UserRepository;
 
@@ -30,33 +50,34 @@ import java.util.Date;
 
 import static org.springframework.http.converter.json.Jackson2ObjectMapperBuilder.json;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = Application.class,
+        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class userControllerTest {
 
-    private MockMvc mockMvc;
+    @LocalServerPort
+    private int port;
 
-    @Spy
-    @InjectMocks
-    private UserController userController;
+    TestRestTemplate restTemplate = new TestRestTemplate();
 
-    @Mock
-    private UserRepository userRepository;
+    HttpHeaders httpHeaders = new HttpHeaders();
 
     private ObjectMapper objectMapper = new ObjectMapper();
+
+    @Autowired
+    private UserRepository userRepository;
 
     private static Users user1;
     private static Users user2;
     private static Users user3;
-    private static MediaType CONTENT_TYPE = new MediaType(
-            MediaType.APPLICATION_JSON.getType(),
-            MediaType.APPLICATION_JSON.getSubtype());
+    private static Users user4;
 
     @Before
     public void setUp() {
-        mockMvc = MockMvcBuilders.standaloneSetup(userController)
-                .build();
 
         String pattern = "dd-MM-yyyy";
         DateFormat dateFormat = new SimpleDateFormat(pattern);
@@ -66,53 +87,51 @@ public class userControllerTest {
             Date dob = dateFormat.parse("20-12-1999");
 
             user1 = new Users(null, "userno1", "pwd", "firstName", "lastName",
-                    "country", "email@email.com", dob, "user");
-            user2 = new Users(null, "userno2", "pwd", "firstName", "lastName",
-                    "country", "email2@email.com", dob, "user");
-            user3 = new Users(null, "userno3", "pwd", "firstName", "lastName",
-                    "country", "email3@email.com", dob, "user");
-            //userRepository.save(user1);
+                    "country", "userno1@email.com", dob, "user");
+            user2 = new Users(null, "userno5", "pwd", "firstName", "lastName",
+                    "country", "userno5@email.com", dob, "user");
+            user3 = new Users(null, "userno6", "pwd", "firstName", "lastName",
+                    "country", "userno6@email.com", dob, "user");
+            user4 = new Users(null, "123", "pwd", "firstName", "lastName",
+                    "country", "userno6@email.com", dob, "user");
+
             userRepository.save(user2);
             userRepository.save(user3);
+
         } catch(ParseException e) {
             e.printStackTrace();
         }
     }
 
-    @After
-    public void afterAll() {
-        userRepository.delete(user1);
-        userRepository.delete(user2);
-        userRepository.delete(user3);
+   @After
+  public void afterAll() {
+        userRepository.deleteByUsername(user1.getUsername());
+       userRepository.deleteByUsername(user2.getUsername());
+       userRepository.deleteByUsername(user3.getUsername());
     }
 
-    @Test
-    public void addUserTest() throws Exception {
+@Test
+    public void AddNewUserTest() {
+        Users response = restTemplate.postForObject(
+                "http://localhost:" + port + "/rest/save/user", user1,
+                Users.class);
+        user1.setPassword(response.getPassword());
+        user1.setId(response.getId());
+        Assert.assertEquals(user1, response);
+    }
 
-        String pattern = "dd-MM-yyyy";
-        DateFormat dateFormat = new SimpleDateFormat(pattern);
 
+@Test (expected = UserAlreadyRegistered.class)
+    public void AddNewUserAlreadyRegisteredUsername() {
         try {
+            Users response = restTemplate.postForObject(
+                    "http://localhost:" + port + "/rest/save/user", user4,
+                    Users.class);
+        } catch(HttpStatusCodeException e) {
 
-            Date dob = dateFormat.parse("20-12-1999");
-            System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(user1));
-            mockMvc.perform(post(Url.ADD_USER.getUrl())
-                    .contentType(CONTENT_TYPE)
-                    .content(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(user1)))
-                    .andExpect(status().isOk())
-                    .andExpect(content().contentType(CONTENT_TYPE))
-                    .andExpect(jsonPath("$.id", Matchers.is(1)))
-                    .andExpect(jsonPath("$.password", Matchers.is("pwd")))
-                    .andExpect(jsonPath("$.firstName", Matchers.is("firstName")))
-                    .andExpect(jsonPath("$.lastName", Matchers.is("lastName")))
-                    .andExpect(jsonPath("$.country", Matchers.is("country")))
-                    .andExpect(jsonPath("$.email", Matchers.is("email1@email.com")))
-                    .andExpect(jsonPath("$.dateOfBirth", Matchers.is(dob)))
-                    .andExpect(jsonPath("$.role", Matchers.is("user")));
-        } catch(ParseException e) {
-            e.printStackTrace();
         }
-
+        //Assert.assertEquals(user4, response);
     }
+
 
 }

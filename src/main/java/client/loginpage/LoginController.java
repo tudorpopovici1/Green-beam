@@ -294,6 +294,7 @@ public class LoginController {
     private void registrationComplete() {
         lblStatus2.setText("");
         lblStatus2.setVisible(true);
+        newUser.setRole("user");
         userService.addUser(
                 restTemplate, Url.ADD_USER.getUrl(), newUser, lblStatus2);
         if(lblStatus2.getText().equals(""))
