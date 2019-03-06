@@ -10,6 +10,10 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MockMvcBuilder;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.client.RestTemplate;
 import server.exception.ResourceNotFoundException;
 import server.model.Users;
@@ -25,12 +29,15 @@ public class userServiceTest {
     @Mock
     RestTemplate restTemplate;
 
+    private MockMvc mockMvc;
+
     @InjectMocks
     private UserService userService = new UserService();
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
+        //mockMvc = MockMvcBuilders.standaloneSetup();
     }
 
     @Test
@@ -49,12 +56,12 @@ public class userServiceTest {
 
             Users result = userService.getUser(restTemplate, "http://localhost:8080/rest/user", 0L);
 
+
             Assert.assertEquals(user, result);
         } catch (ParseException e) {
             e.printStackTrace();
         }
     }
-
 
 
    /* @Test(expected = ResourceNotFoundException.class)
