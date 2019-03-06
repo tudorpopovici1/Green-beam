@@ -9,7 +9,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -127,11 +126,6 @@ public class LoginController {
      * Creating a newUser from the Users class.
      */
     private Users newUser;
-    /**
-     * Creating a progress bar to track down the progress of
-     * registration.
-     */
-    private ProgressBar progress;
 
     /**
      * This method handles the functionality of a user login.
@@ -185,7 +179,7 @@ public class LoginController {
      * if they make a mistake in the first registration form.
      * @param event - the back button fires up this event.
      */
-    public void goBack(ActionEvent event){
+    public void goBack(ActionEvent event) {
         hideRegistrationFormSecondPage();
         firstNameBox.setVisible(true);
         firstNameBox.setText(newUser.getFirstName());
