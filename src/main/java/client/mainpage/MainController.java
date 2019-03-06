@@ -72,7 +72,7 @@ public class MainController {
     }
 
     public void animate(Pane pane) {
-        ResizeHeightTranslation rht = new ResizeHeightTranslation
+        CustomAnimation rht = new CustomAnimation
                 (Duration.millis(500), pane, pane.getMinHeight());
         FadeTransition ft = new FadeTransition(Duration.millis(500), pane);
         ft.setFromValue(0);

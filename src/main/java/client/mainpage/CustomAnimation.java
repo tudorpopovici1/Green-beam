@@ -4,14 +4,14 @@ import javafx.animation.Transition;
 import javafx.scene.layout.Region;
 import javafx.util.Duration;
 
-public class ResizeHeightTranslation extends Transition {
+public class CustomAnimation extends Transition {
 
     protected Region region;
     protected double startHeight;
     protected double newHeight;
     protected double heightDiff;
 
-    public ResizeHeightTranslation( Duration duration, Region region, double newHeight ) {
+    public CustomAnimation(Duration duration, Region region, double newHeight) {
         setCycleDuration(duration);
         this.region = region;
         this.newHeight = newHeight;
@@ -21,6 +21,6 @@ public class ResizeHeightTranslation extends Transition {
 
     @Override
     protected void interpolate(double fraction) {
-        region.setMinHeight( startHeight + ( heightDiff * fraction ) );
+        region.setMinHeight( startHeight + (heightDiff * fraction));
     }
 }
