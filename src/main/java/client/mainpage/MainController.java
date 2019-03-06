@@ -7,6 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
+import java.awt.*;
+import java.net.URL;
+
 
 public class MainController {
 
@@ -27,6 +30,7 @@ public class MainController {
 
     @FXML
     private Pane logoutWindow;
+
 
 
     public void mainPage(ActionEvent event) {
@@ -54,7 +58,7 @@ public class MainController {
         aboutUsWindow.setVisible(true);
         animate(aboutUsWindow);
         aboutUsWindow.toFront();
-        aboutUsWindow.setStyle("-fx-background-color: gray");
+//        aboutUsWindow.setStyle("-fx-background-color: #2F2323");
     }
 
     public void settingsWindow(ActionEvent event) {
@@ -80,4 +84,5 @@ public class MainController {
         SequentialTransition pt = new SequentialTransition(rht, ft);
         pt.play();
     }
+
 }

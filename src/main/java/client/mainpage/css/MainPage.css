@@ -14,7 +14,11 @@
     -fx-background-color: transparent;
 }
 
-
+#aboutUsText {
+    -fx-font-family: "Apple Chancery";
+    -fx-font-size: 52px;
+    -fx-text-fill: white;
+}
 
 
 
