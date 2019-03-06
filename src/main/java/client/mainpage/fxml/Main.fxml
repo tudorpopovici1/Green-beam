@@ -6,7 +6,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.control.Button?>
 
@@ -76,12 +75,10 @@
                 </ImageView>
             </children></AnchorPane>
       </children></AnchorPane>
-   <Line endX="100.0" startX="-100.0" />
-   <Line endX="100.0" startX="-100.0" />
    <Pane fx:id="mainWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" />
     <Pane fx:id="progressWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
     <Pane fx:id="profileWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
-    <Pane fx:id="aboutUsWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
+    <Pane fx:id="aboutUsWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false" />
     <Pane fx:id="settingsWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
     <Pane fx:id="logoutWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
     <stylesheets>
