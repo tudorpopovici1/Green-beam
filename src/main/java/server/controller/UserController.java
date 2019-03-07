@@ -93,16 +93,8 @@ public class UserController {
         return userRepository.findAllFriendsUser(id);
     }
 
-    // Handle All other URLS.
-    @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})
-    public void redirectEverythingOtherThanTest()throws ResourceNotFoundException {
-        throw new ResourceNotFoundException();
-    }
-
     private boolean isIncorrectUser(HttpServletRequest request, Long id) {
-
         String token = request.getHeader("Authorisation").substring(6);
-
         JwtUser jwtUser = jwtValidator.validate(token);
 
         if (jwtUser == null) {
