@@ -31,9 +31,7 @@ public class TokenController {
 
         String username = authenticateUser.getUsername();
         String password = authenticateUser.getPassword();
-
         BCryptPasswordEncoder encryptPasswordEncoder = new BCryptPasswordEncoder();
-
         String retrievedPassword = userRepository.findUserPassword(username);
 
         Long id = userRepository.findUserId(username);
@@ -47,7 +45,6 @@ public class TokenController {
         }
 
         JwtUser jwtUser = new JwtUser(username, id, role);
-
         authenticateUser.setToken(jwtGenerator.generate(jwtUser));
         return authenticateUser;
     }
