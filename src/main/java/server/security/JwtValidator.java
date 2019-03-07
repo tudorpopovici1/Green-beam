@@ -18,18 +18,20 @@ public class JwtValidator {
         String secret = "secret";
         JwtUser jwtUser = null;
 
+        try {
+            Claims body = Jwts.parser()
+                    .setSigningKey(secret)
+                    .parseClaimsJws(token)
+                    .getBody();
 
-        Claims body = Jwts.parser()
-                .setSigningKey(secret)
-                .parseClaimsJws(token)
-                .getBody();
+            jwtUser = new JwtUser();
 
-        jwtUser = new JwtUser();
-
-        jwtUser.setUserName(body.getSubject());
-        jwtUser.setId(Long.parseLong((String) body.get("userId")));
-        jwtUser.setRole((String) body.get("role"));
-
+            jwtUser.setUserName(body.getSubject());
+            jwtUser.setId(Long.parseLong((String) body.get("userId")));
+            jwtUser.setRole((String) body.get("role"));
+        } catch(Exception e) {
+            System.out.println(e);
+        }
         return jwtUser;
     }
 
