@@ -5,13 +5,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
 public class UserAlreadyRegistered extends  Exception {
-
-    public UserAlreadyRegistered() {
-        super();
-    }
-
     public UserAlreadyRegistered(final String msg) {
         super(msg);
     }
-
 }
