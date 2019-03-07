@@ -7,6 +7,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -276,5 +277,26 @@ public class Users {
      */
     public String getFirstName() {
         return firstName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Users users = (Users) o;
+        return Objects.equals(id, users.id) &&
+                Objects.equals(username, users.username) &&
+                Objects.equals(password, users.password) &&
+                Objects.equals(firstName, users.firstName) &&
+                Objects.equals(lastName, users.lastName) &&
+                Objects.equals(country, users.country) &&
+                Objects.equals(email, users.email) &&
+                Objects.equals(dateOfBirth, users.dateOfBirth) &&
+                Objects.equals(role, users.role);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, password, firstName, lastName, country, email, dateOfBirth, role);
     }
 }
