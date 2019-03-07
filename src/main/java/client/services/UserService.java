@@ -1,5 +1,6 @@
 package client.services;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javafx.scene.control.Label;
@@ -14,6 +15,8 @@ import server.model.FriendsUserResp;
 import server.model.Users;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class that represents UserService.
@@ -33,26 +36,19 @@ public class UserService {
      */
 
     public Users getUser(final RestTemplate restTemplate, String url, final Long id) {
-
         url += "/" + id.toString();
-
         Users user = null;
-
         try {
 
             user = restTemplate.getForObject(url, Users.class);
             if (user != null) {
-
                 System.out.println(user.toString());
             }
         } catch (HttpStatusCodeException e) {
-
             if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
-
                 System.out.println(e.getResponseBodyAsString());
             }
         }
-
         return user;
     }
 
@@ -61,22 +57,22 @@ public class UserService {
      * @param restTemplate restTemplate
      * @param url url of request
      * @param user user
-     * @param errorLabel label to output the errors
      */
 
-    public void addUser(final RestTemplate restTemplate,
-                        final String url, final Users user, final Label errorLabel) {
-
+    public String addUser(final RestTemplate restTemplate,
+                        final String url, final Users user) {
+        String returnString = "";
         try {
             Users returns = restTemplate.postForObject(url, user, Users.class);
             if (returns != null) {
-                System.out.println(returns.toString());
+                returnString = "Registration complete";
             }
         } catch (HttpStatusCodeException e) {
             if (e.getStatusCode() == HttpStatus.BAD_REQUEST) {
-                outputErrorMessage(objectMapper, e.getResponseBodyAsString(), errorLabel);
+                returnString = outputErrorMessage(objectMapper, e.getResponseBodyAsString());
             }
         }
+        return returnString;
     }
 
     /**
@@ -86,19 +82,24 @@ public class UserService {
      * @param userId userId
      */
 
-    public void getUserFriends(
+    public List<FriendsUserResp> getUserFriends(
             final RestTemplate restTemplate, final String url, final Long userId) {
-        ResponseEntity<FriendsUserResp[]> responseEntity =
-                restTemplate.getForEntity(url + "/" + userId, FriendsUserResp[].class);
 
-        if (responseEntity.getBody() != null) {
+       List<FriendsUserResp> friendsList = new ArrayList<>();
+        try {
+            ResponseEntity<FriendsUserResp[]> responseEntity =
+                    restTemplate.getForEntity(url + "/" + userId, FriendsUserResp[].class);
 
-            FriendsUserResp[] list = responseEntity.getBody();
-
-            for (FriendsUserResp u : list) {
-                System.out.println(u.toString());
+            if (responseEntity.getBody() != null) {
+                FriendsUserResp[] list = responseEntity.getBody();
+                for (FriendsUserResp u : list) {
+                    friendsList.add(u);
+                }
             }
+        } catch(HttpStatusCodeException e) {
+            System.out.println(e);
         }
+        return friendsList;
     }
 
     /**
@@ -106,42 +107,38 @@ public class UserService {
      * @param restTemplate restTemplate to use.
      * @param url Url of the request.
      * @param authenticateUser authenticateUser object.
-     * @param errorLabel label where to output the errors.
      * @return the token of the authenticated user.
      */
 
     public String authUser(
             final RestTemplate restTemplate, final String url,
-            final AuthenticateUser authenticateUser, final Label errorLabel) {
-
+            final AuthenticateUser authenticateUser) {
         String token = "";
         try {
             AuthenticateUser authenticateUser1 =
                     restTemplate.postForObject(url, authenticateUser, AuthenticateUser.class);
-
             if (authenticateUser1 != null) {
                 token = authenticateUser1.getToken();
-                System.out.println("The token is + " + authenticateUser1.getToken());
-                errorLabel.setText("You have successfully logged in !");
+                //System.out.println("The token is + " + authenticateUser1.getToken());
             }
         } catch (HttpStatusCodeException e) {
-
             if (e.getStatusCode() == HttpStatus.FORBIDDEN) {
-                errorLabel.setPrefWidth(403);
-               outputErrorMessage(objectMapper, e.getResponseBodyAsString(), errorLabel);
+               token = outputErrorMessage(objectMapper, e.getResponseBodyAsString());
             }
         }
         return token;
     }
 
-    private void outputErrorMessage(ObjectMapper objectMapper, String responseString, Label errorLabel)
+    private String outputErrorMessage(ObjectMapper objectMapper, String responseString)
     {
+        String returnString = "";
         try {
             ErrorDetails errorDetails = objectMapper.readValue(responseString, ErrorDetails.class);
-            errorLabel.setText(errorDetails.getMessage());
+            returnString = errorDetails.getMessage();
         } catch(IOException exc) {
             exc.printStackTrace();
         }
+        return  returnString;
     }
 
 }
