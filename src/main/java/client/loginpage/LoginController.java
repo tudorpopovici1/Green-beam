@@ -297,8 +297,7 @@ public class LoginController {
         newUser.setRole("user");
         userService.addUser(
                 restTemplate, Url.ADD_USER.getUrl(), newUser, lblStatus2);
-        if(lblStatus2.getText().equals(""))
-        {
+        if (lblStatus2.getText().equals("")) {
             hideRegistrationFormSecondPage();
             registerButton.setVisible(false);
             thumbsUp.setVisible(true);
@@ -411,8 +410,7 @@ public class LoginController {
      * a box is null or empty.
      * */
 
-    private void emailConstraintError()
-    {
+    private void emailConstraintError() {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText(null);
