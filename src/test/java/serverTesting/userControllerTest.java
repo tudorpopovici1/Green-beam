@@ -110,7 +110,7 @@ public class userControllerTest {
        userRepository.deleteByUsername(user3.getUsername());
     }
 
-@Test
+    @Test
     public void AddNewUserTest() {
         Users response = restTemplate.postForObject(
                 "http://localhost:" + port + "/rest/save/user", user1,
@@ -121,7 +121,7 @@ public class userControllerTest {
     }
 
 
-@Test (expected = UserAlreadyRegistered.class)
+    @Test
     public void AddNewUserAlreadyRegisteredUsername() {
         try {
             Users response = restTemplate.postForObject(
@@ -130,7 +130,8 @@ public class userControllerTest {
         } catch(HttpStatusCodeException e) {
 
         }
-        //Assert.assertEquals(user4, response);
+
+        //Test for error here.
     }
 
 
