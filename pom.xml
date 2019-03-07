@@ -24,7 +24,7 @@
         <checkstyle.version>7.2</checkstyle.version>
         <checkstyle.plugin.version>2.17</checkstyle.plugin.version>
 
-        <jacoco-maven-plugin.version>0.7.8</jacoco-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.3</jacoco-maven-plugin.version>
 
         <checkstyle.config.location>CSE1105.checkstyle.xml</checkstyle.config.location>
 
@@ -140,6 +140,14 @@
             <version>0.9.1</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
+        <dependency>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.3</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
@@ -178,20 +186,22 @@
                 </dependencies>
             </plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <forkCount>3</forkCount>
-                    <reuseForks>true</reuseForks>
-                    <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
-                </configuration>
-            </plugin>
 
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>${jacoco-maven-plugin.version}</version>
+                <configuration>
+                    <excludes>
+                        <exclude>client/loginpage/**</exclude>
+                        <exclude>client/mainpage/**</exclude>
+                        <exclude>client/Application.class</exclude>
+                        <exclude>client/Url.class</exclude>
+                        <exclude>server/Application.class</exclude>
+                        <exclude>server/config/**</exclude>
+                        <exclude>server/exception/**</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <id>default-prepare-agent</id>
@@ -218,6 +228,7 @@
                     </execution>
                 </executions>
             </plugin>
+
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
