@@ -137,7 +137,14 @@ public class LoginController {
                 && !txtPassword.getText().equals("")) {
             AuthenticateUser authenticateUser =
                     new AuthenticateUser(txtUsername.getText(), txtPassword.getText());
-            userService.authUser(restTemplate, Url.AUTH_USER.getUrl(), authenticateUser, lblStatus);
+            String response = userService.authUser(restTemplate, Url.AUTH_USER.getUrl(), authenticateUser);
+            lblStatus.setPrefWidth(403);
+            if(response.equals("Incorrect username or password")) {
+                lblStatus.setText(response);
+            } else {
+                lblStatus.setText("You have successfuly logged in.");
+                System.out.println(response); // THIS IS THE TOKEN OF THE USER.
+            }
         } else if (txtUsername.getText().equals("") || txtPassword.getText().equals("")) {
             emptyLoginBoxPopup();
         } else {
@@ -295,8 +302,10 @@ public class LoginController {
         lblStatus2.setText("");
         lblStatus2.setVisible(true);
         newUser.setRole("user");
-        userService.addUser(
-                restTemplate, Url.ADD_USER.getUrl(), newUser, lblStatus2);
+        String response = userService.addUser(
+                restTemplate, Url.ADD_USER.getUrl(), newUser);
+        if(!response.equals("Registration complete"))
+            lblStatus2.setText(response);
         if(lblStatus2.getText().equals(""))
         {
             hideRegistrationFormSecondPage();
