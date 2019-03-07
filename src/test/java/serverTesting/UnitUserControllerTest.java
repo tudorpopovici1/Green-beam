@@ -25,6 +25,7 @@ import server.repository.UserRepository;
 import server.security.JwtGenerator;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -57,16 +58,11 @@ public class UnitUserControllerTest {
     public void setUp() {
 
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-
-        System.out.println(bCryptPasswordEncoder.matches("abc", "abc"));
-
         String pattern = "dd-MM-yyyy";
         DateFormat dateFormat = new SimpleDateFormat(pattern);
 
         try {
-
             Date dob = dateFormat.parse("20-12-1999");
-
             user1 = new Users(1L, "userno1", "pwd", "firstName", "lastName",
                     "country", "userno1@email.com", dob, "user");
             user2 = new Users(2L, "userno5", "pwd", "firstName", "lastName",
@@ -208,6 +204,19 @@ public class UnitUserControllerTest {
         Assert.assertEquals(expected, response);
     }
 
+    @Test (expected = BadCredentialsException.class)
+    public void IncorrectUserMethodThrowsExceptionGetFriendsUser() throws ResourceNotFoundException, BadCredentialsException {
+        List<FriendsUserResp> expected = new ArrayList<>();
+        expected.add(userResp2);
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token ");
+        when(userRepository.findUserById(1L)).thenReturn(user1);
+        when(userRepository.findSpecificUserById(1L)).thenReturn(userResp1);
+        when(userRepository.findAllFriendsUser(1L)).thenReturn(expected);
+        List<FriendsUserResp> response = userController.getFriendsUser(httpServletRequest, 1L);
+    }
+
+    //Helper method of this testing class.
     private String getTokenOfUser(String username, String role, Long id) {
         JwtGenerator jwtGenerator = new JwtGenerator();
         JwtUser jwtUser = new JwtUser(username,
