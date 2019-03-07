@@ -20,6 +20,10 @@
     -fx-text-fill: white;
 }
 
+#nature1, #nature2 {
+    -fx-opacity: 0.7;
+}
+
 
 
 
