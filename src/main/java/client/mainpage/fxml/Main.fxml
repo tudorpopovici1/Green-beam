@@ -2,14 +2,15 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.mainpage.MainController">
+<?import javafx.scene.control.Label?>
+<AnchorPane fx:id="main" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.mainpage.MainController">
     <ImageView fx:id="mainBackground" fitHeight="700.0" fitWidth="931.0">
         <image>
             <Image url="@../images/mainBackgroud.jpg" />
@@ -43,47 +44,83 @@
             </font></Button>
          <AnchorPane fx:id="sideBar" layoutX="-39.0" layoutY="7.0" prefHeight="706.0" prefWidth="59.0">
             <children>
-                <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="16.0" layoutY="258.0">
+                <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="7.0" layoutY="258.0">
                     <image>
                         <Image url="@../images/face.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="12.0" layoutY="375.0">
+                <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="7.0" layoutY="375.0">
                     <image>
                         <Image url="@../images/info.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="15.0" layoutY="499.0">
+                <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="7.0" layoutY="499.0">
                 <image>
                     <Image url="@../images/settings.png" />
                 </image>
             </ImageView>
-                <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="19.0" layoutY="36.0">
+                <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="6.0" layoutY="36.0">
                     <image>
                         <Image url="@../images/main.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="19.0" layoutY="145.0">
+                <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="7.0" layoutY="145.0">
                     <image>
                         <Image url="@../images/progress.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="15.0" layoutY="614.0">
+                <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="7.0" layoutY="618.0">
                     <image>
                         <Image url="@../images/logout.png" />
                     </image>
                 </ImageView>
             </children></AnchorPane>
-         <Line endX="86.5" layoutX="108.0" layoutY="334.0" startX="-100.0" stroke="#d68524" strokeWidth="5.0" />
-         <Line endX="86.5" layoutX="109.0" layoutY="212.0" startX="-100.0" stroke="#d68524" strokeWidth="5.0" />
-         <Line endX="86.5" layoutX="110.0" layoutY="92.0" startX="-100.0" stroke="#d68524" strokeWidth="5.0" />
-         <Line endX="86.5" layoutX="108.0" layoutY="432.0" startX="-100.0" stroke="#d68524" strokeWidth="5.0" />
-         <Line endX="86.5" layoutX="108.0" layoutY="555.0" startX="-100.0" stroke="#d68524" strokeWidth="5.0" />
       </children></AnchorPane>
-   <Pane fx:id="mainWindow" layoutX="222.0" layoutY="3.0" prefHeight="706.0" prefWidth="709.0" />
+    <Pane fx:id="mainWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false" />
     <Pane fx:id="progressWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false" />
     <Pane fx:id="profileWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false" />
-    <Pane fx:id="aboutUsWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false" />
+    <ScrollPane fx:id="aboutUsWindow" layoutX= "222" layoutY="0" prefHeight="700" prefWidth="677" visible="false">
+        <content>
+            <Pane minHeight="0.0" minWidth="0.0" prefHeight="1200" prefWidth="660">
+                <ImageView fx:id="nature1" fitHeight="700.0" fitWidth="931.0">
+                    <image>
+                        <Image url="@../images/nature.jpg" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="nature2" fitHeight="700.0" fitWidth="931.0" layoutY="700">
+                    <image>
+                        <Image url="@../images/nature2.jpg" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="irtaza" fitHeight="150.0" fitWidth="175.0" layoutX="50" layoutY="150">
+                <image>
+                <Image url="@../images/irtaza.jpg" />
+                </image>
+                </ImageView>
+                <ImageView fx:id="tudor" fitHeight="150.0" fitWidth="175.0" layoutX="50" layoutY="350">
+                <image>
+                <Image url="@../images/tudor.jpg" />
+                </image>
+                </ImageView>
+                <ImageView fx:id="maria" fitHeight="150.0" fitWidth="175.0" layoutX="50" layoutY="550">
+                <image>
+                <Image url="@../images/maria.jpeg" />
+                </image>
+                </ImageView>
+                <ImageView fx:id="merel" fitHeight="150.0" fitWidth="175.0" layoutX="50" layoutY="750">
+                <image>
+                    <Image url="@../images/merel.jpeg" />
+                </image>
+            </ImageView>
+                <ImageView fx:id="sever" fitHeight="150.0" fitWidth="175.0" layoutX="50" layoutY="950">
+                    <image>
+                        <Image url="@../images/sever.jpg" />
+                    </image>
+                </ImageView>
+                <Label fx:id="aboutUsText" layoutX="250.0" layoutY="10.0" text="About Us" />
+            </Pane>
+        </content>
+    </ScrollPane>
     <Pane fx:id="settingsWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false" />
     <Pane fx:id="logoutWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false" />
     <stylesheets>
