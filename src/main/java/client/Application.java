@@ -38,7 +38,7 @@ class Application {
                     "123", "TestName", "LastName",
                     "RO", "123@gmail.com", dob, "user");
 
-            userService.addUser(restTemplate, ADD_USER,user, new Label());
+            userService.addUser(restTemplate, ADD_USER,user);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -49,7 +49,7 @@ class Application {
 
         userService.authUser(restTemplate,
                 AUTH_USER, new AuthenticateUser("test15",
-                        "123"), new Label());
+                        "123"));
 
     }
 }

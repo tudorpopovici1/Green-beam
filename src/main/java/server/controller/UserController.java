@@ -1,6 +1,7 @@
 package server.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ import server.model.Users;
 import server.repository.UserRepository;
 import server.security.JwtValidator;
 
+import java.awt.*;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
@@ -29,8 +31,7 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private JwtValidator jwtValidator;
+    private JwtValidator jwtValidator = new JwtValidator();
 
     // Returns all the users in the database.
     @GetMapping("/user/all")
@@ -68,7 +69,7 @@ public class UserController {
             throw new BadCredentialsException("Nice try!");
         }
 
-        if (!userRepository.findById(id).isPresent()) {
+        if (userRepository.findUserById(id) == null) {
             throw new ResourceNotFoundException("The user is not available");
         }
 
@@ -79,25 +80,21 @@ public class UserController {
     @GetMapping("/user/allfriends/{id}")
     public List<FriendsUserResp> getFriendsUser(
             HttpServletRequest request, @PathVariable("id") Long id)
-            throws BadCredentialsException {
+            throws BadCredentialsException, ResourceNotFoundException {
 
         if (isIncorrectUser(request, id)) {
             throw new BadCredentialsException("Bad credentials");
         }
 
+        if (userRepository.findUserById(id) == null) {
+            throw new ResourceNotFoundException("The user is not available");
+        }
+
         return userRepository.findAllFriendsUser(id);
     }
 
-    // Handle All other URLS.
-    @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})
-    public void redirectEverythingOtherThanTest()throws ResourceNotFoundException {
-        throw new ResourceNotFoundException();
-    }
-
     private boolean isIncorrectUser(HttpServletRequest request, Long id) {
-
         String token = request.getHeader("Authorisation").substring(6);
-
         JwtUser jwtUser = jwtValidator.validate(token);
 
         if (jwtUser == null) {

@@ -1,3 +1,4 @@
+/*
 package server.exception;
 
 import org.springframework.http.HttpHeaders;
@@ -46,4 +47,4 @@ class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHa
         return new ResponseEntity<>(errorDetails, new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
 
-}
+}*/

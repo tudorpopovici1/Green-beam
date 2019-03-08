@@ -9,7 +9,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -127,11 +126,6 @@ public class LoginController {
      * Creating a newUser from the Users class.
      */
     private Users newUser;
-    /**
-     * Creating a progress bar to track down the progress of
-     * registration.
-     */
-    private ProgressBar progress;
 
     /**
      * This method handles the functionality of a user login.
@@ -143,7 +137,14 @@ public class LoginController {
                 && !txtPassword.getText().equals("")) {
             AuthenticateUser authenticateUser =
                     new AuthenticateUser(txtUsername.getText(), txtPassword.getText());
-            userService.authUser(restTemplate, Url.AUTH_USER.getUrl(), authenticateUser, lblStatus);
+            String response = userService.authUser(restTemplate, Url.AUTH_USER.getUrl(), authenticateUser);
+            lblStatus.setPrefWidth(403);
+            if(response.equals("Incorrect username or password")) {
+                lblStatus.setText(response);
+            } else {
+                lblStatus.setText("You have successfuly logged in.");
+                System.out.println(response); // THIS IS THE TOKEN OF THE USER.
+            }
         } else if (txtUsername.getText().equals("") || txtPassword.getText().equals("")) {
             emptyLoginBoxPopup();
         } else {
@@ -185,7 +186,7 @@ public class LoginController {
      * if they make a mistake in the first registration form.
      * @param event - the back button fires up this event.
      */
-    public void goBack(ActionEvent event){
+    public void goBack(ActionEvent event) {
         hideRegistrationFormSecondPage();
         firstNameBox.setVisible(true);
         firstNameBox.setText(newUser.getFirstName());
@@ -300,8 +301,11 @@ public class LoginController {
     private void registrationComplete() {
         lblStatus2.setText("");
         lblStatus2.setVisible(true);
-        userService.addUser(
-                restTemplate, Url.ADD_USER.getUrl(), newUser, lblStatus2);
+        newUser.setRole("user");
+        String response = userService.addUser(
+                restTemplate, Url.ADD_USER.getUrl(), newUser);
+        if(!response.equals("Registration complete"))
+            lblStatus2.setText(response);
         if(lblStatus2.getText().equals(""))
         {
             hideRegistrationFormSecondPage();
@@ -319,6 +323,8 @@ public class LoginController {
             lblStatus2.setPrefHeight(100);
             lblStatus2.setLayoutY(thumbsUp.getLayoutY()+50);
             lblStatus2.setFont(Font.font("Verdana", FontWeight.EXTRA_BOLD, 20));
+            backButton.setVisible(false);
+            registerButton.setVisible(false);
         }
     }
 

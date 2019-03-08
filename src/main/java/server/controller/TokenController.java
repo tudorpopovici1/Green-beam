@@ -17,24 +17,21 @@ import javax.validation.constraints.NotNull;
 
 @RestController
 @RequestMapping("/token")
-class TokenController {
+public class TokenController {
 
-    @Autowired
-    private JwtGenerator jwtGenerator;
+    private JwtGenerator jwtGenerator = new JwtGenerator();
 
     @Autowired
     private UserRepository userRepository;
 
     @PostMapping
     public AuthenticateUser generate(
-            @NotNull @RequestBody AuthenticateUser authenticateUser)
+            @RequestBody AuthenticateUser authenticateUser)
             throws BadCredentialsException {
 
         String username = authenticateUser.getUsername();
         String password = authenticateUser.getPassword();
-
         BCryptPasswordEncoder encryptPasswordEncoder = new BCryptPasswordEncoder();
-
         String retrievedPassword = userRepository.findUserPassword(username);
 
         Long id = userRepository.findUserId(username);
@@ -48,11 +45,7 @@ class TokenController {
         }
 
         JwtUser jwtUser = new JwtUser(username, id, role);
-
         authenticateUser.setToken(jwtGenerator.generate(jwtUser));
         return authenticateUser;
-        // return jwtGenerator.generate(jwtUser);
-
     }
 }
-
