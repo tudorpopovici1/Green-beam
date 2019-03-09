@@ -97,6 +97,8 @@
                 <Image url="@../images/irtaza.jpg" />
                 </image>
                 </ImageView>
+                <Label fx:id="irtazaText" layoutX="250.0" layoutY="135.0" text="Hey! I am Irtaza and I am from Pakistan.&#xD;I have lived in Finland for 12 years and&#xD;I served in the Finnish military for a year.&#xD;I am a first year student at TU Delft studying&#xD;Computer Science and Engineering." />
+                <Label fx:id="mariaText" layoutX="250.0" layoutY="550.0" text="Hey! I am Maria. I am from Warsaw the capital&#xD;of Poland. I have lived in Spain for 2 years.&#xD;I am a first year student in TU Delft studying&#xD;Computer Science and Engineering." />
                 <ImageView fx:id="tudor" fitHeight="150.0" fitWidth="175.0" layoutX="50" layoutY="350">
                 <image>
                 <Image url="@../images/tudor.jpg" />
