@@ -1,24 +1,19 @@
 package server.model;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-
-import java.util.Objects;
-import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 
 
 public class AchievementsTest {
 
-    Achievements ach=new Achievements();
+    Achievements achievement = new Achievements();
 
     @Test
     void getUserId() {
         //achievements.userId() = Long.valueOf(1234);
         Long a1 = Long.valueOf(1234);
-        assertThat(ach.getUserId()).equalsTo(a1);
-
-
+        assertThat(achievement.getUserId()).equals(a1);
     }
 
 
@@ -31,13 +26,13 @@ public class AchievementsTest {
     @Test
     void getAchievementId() {
         Long a1 = Long.valueOf(1234);
-        assertThat(ach.getAchievementId()).equals(a1);
-
+        assertThat(achievement.getAchievementId()).equals(a1);
     }
 
 
 
     @Test
     void setAchievementId() {
-    }}
+    }
 
+}
