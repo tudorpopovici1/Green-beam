@@ -16,6 +16,9 @@ public class MainController {
     private Pane mainWindow;
 
     @FXML
+    private Pane emissionsWindow;
+
+    @FXML
     private Pane progressWindow;
 
     @FXML
@@ -36,24 +39,30 @@ public class MainController {
         mainWindow.setVisible(true);
         mainWindow.toFront();
         animatePane(mainWindow);
-        mainWindow.toFront();
         mainWindow.setStyle("-fx-background-color: #FFFFFFFF");
     }
+
+    public void emissionsPage(ActionEvent event) {
+        emissionsWindow.setVisible(true);
+        emissionsWindow.toFront();
+        animatePane(emissionsWindow);
+        emissionsWindow.setStyle("-fx-background-color: green");
+
+    }
+
 
     public void progressPage(ActionEvent event) {
         progressWindow.setVisible(true);
         progressWindow.toFront();
         animatePane(progressWindow);
-        progressWindow.toFront();
         progressWindow.setStyle("-fx-background-color: #000000");
     }
 
 
     public void profileWindow(ActionEvent event) {
         profileWindow.setVisible(true);
-        progressWindow.toFront();
-        animatePane(profileWindow);
         profileWindow.toFront();
+        animatePane(profileWindow);
         profileWindow.setStyle("-fx-background-color: blue");
     }
 
@@ -69,7 +78,6 @@ public class MainController {
         settingsWindow.setVisible(true);
         settingsWindow.toFront();
         animatePane(settingsWindow);
-        settingsWindow.toFront();
         settingsWindow.setStyle("-fx-background-color: orange");
     }
 
@@ -77,7 +85,6 @@ public class MainController {
         logoutWindow.setVisible(true);
         logoutWindow.toFront();
         animatePane(logoutWindow);
-        logoutWindow.toFront();
         logoutWindow.setStyle("-fx-background-color: red");
     }
 

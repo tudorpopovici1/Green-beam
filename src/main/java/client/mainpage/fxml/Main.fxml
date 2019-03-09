@@ -2,6 +2,7 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -9,7 +10,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.Label?>
 <AnchorPane fx:id="main" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.mainpage.MainController">
     <ImageView fx:id="mainBackground" fitHeight="700.0" fitWidth="931.0">
         <image>
@@ -18,68 +18,78 @@
     </ImageView>
     <AnchorPane layoutX="38.0" layoutY="-7.0" prefHeight="713.0" prefWidth="201.0">
       <children>
-          <Button fx:id="mainButton" layoutY="7.0" mnemonicParsing="false" onAction="#mainPage" prefHeight="109.0" prefWidth="200.0" text="Main">
+          <Button fx:id="mainButton" layoutY="7.0" mnemonicParsing="false" onAction="#mainPage" prefHeight="100.0" prefWidth="200.0" text="Main">
             <font>
                <Font name="System Italic" size="28.0" />
             </font></Button>
-          <Button fx:id="progressButton" layoutY="116.0" mnemonicParsing="false" onAction="#progressPage" prefHeight="116.0" prefWidth="200.0" text="My Progress" textFill="#000000ed">
+          <Button fx:id="emissionsButton" layoutY="100.0" mnemonicParsing="false" onAction="#emissionsPage" prefHeight="100.0" prefWidth="200.0" text="Add Emissions" textFill="#000000ed">
+              <font>
+                  <Font name="System Bold Italic" size="20.0" />
+              </font></Button>
+          <Button fx:id="progressButton" layoutY="200.0" mnemonicParsing="false" onAction="#progressPage" prefHeight="100.0" prefWidth="200.0" text="My Progress" textFill="#000000ed">
             <font>
                <Font name="System Bold Italic" size="20.0" />
             </font></Button>
-          <Button fx:id="profileButton" layoutY="232.0" mnemonicParsing="false" onAction="#profileWindow" prefHeight="116.0" prefWidth="200.0" text="Profile">
+          <Button fx:id="profileButton" layoutY="300.0" mnemonicParsing="false" onAction="#profileWindow" prefHeight="100.0" prefWidth="200.0" text="Profile">
             <font>
                <Font size="22.0" />
             </font></Button>
-          <Button fx:id="aboutUsButton" layoutY="348.0" mnemonicParsing="false" onAction="#aboutUsWindow" prefHeight="116.0" prefWidth="200.0" text="About Us">
+          <Button fx:id="aboutUsButton" layoutY="400.0" mnemonicParsing="false" onAction="#aboutUsWindow" prefHeight="100.0" prefWidth="200.0" text="About Us">
             <font>
                <Font size="22.0" />
             </font></Button>
-          <Button fx:id="settingsButton" layoutY="465.0" mnemonicParsing="false" onAction="#settingsWindow" prefHeight="116.0" prefWidth="200.0" text="Settings">
+          <Button fx:id="settingsButton" layoutY="500.0" mnemonicParsing="false" onAction="#settingsWindow" prefHeight="100.0" prefWidth="200.0" text="Settings">
             <font>
                <Font size="22.0" />
             </font></Button>
-          <Button fx:id="logoutButton" layoutY="581.0" mnemonicParsing="false" onAction="#logoutWindow" prefHeight="126.0" prefWidth="200.0" text="Logout" textFill="#110000">
+          <Button fx:id="logoutButton" layoutY="600.0" mnemonicParsing="false" onAction="#logoutWindow" prefHeight="100.0" prefWidth="200.0" text="Logout" textFill="#110000">
             <font>
                <Font size="22.0" />
             </font></Button>
          <AnchorPane fx:id="sideBar" layoutX="-39.0" layoutY="7.0" prefHeight="706.0" prefWidth="59.0">
             <children>
-                <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="7.0" layoutY="258.0">
+                <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="7.0" layoutY="322.0">
                     <image>
                         <Image url="@../images/face.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="7.0" layoutY="375.0">
+                <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="7.0" layoutY="421.0">
                     <image>
                         <Image url="@../images/info.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="7.0" layoutY="499.0">
+                <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="6.0" layoutY="521.0">
                 <image>
                     <Image url="@../images/settings.png" />
                 </image>
             </ImageView>
-                <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="6.0" layoutY="36.0">
+                <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="6.0" layoutY="30.0">
                     <image>
                         <Image url="@../images/main.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="7.0" layoutY="145.0">
+                <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="7.0" layoutY="222.0">
                     <image>
                         <Image url="@../images/progress.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="7.0" layoutY="618.0">
+                <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="7.0" layoutY="621.0">
+                <image>
+                    <Image url="@../images/logout.png" />
+                </image>
+            </ImageView>
+                <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="7.0" layoutY="124.0">
                     <image>
-                        <Image url="@../images/logout.png" />
+                        <Image url="@../images/co2Icon.png" />
                     </image>
                 </ImageView>
             </children></AnchorPane>
       </children></AnchorPane>
     <Pane fx:id="mainWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false" />
+    <Pane fx:id="emissionsWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false" />
     <Pane fx:id="progressWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false" />
     <Pane fx:id="profileWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false" />
-    <ScrollPane fx:id="aboutUsWindow" layoutX= "222" layoutY="0" prefHeight="700" prefWidth="677" visible="false">
+    <ScrollPane fx:id="aboutUsWindow" layoutX="222" layoutY="0" prefHeight="700" prefWidth="677" visible="false">
         <content>
             <Pane minHeight="0.0" minWidth="0.0" prefHeight="1200" prefWidth="660">
                 <ImageView fitHeight="700.0" fitWidth="931.0">
@@ -97,8 +107,8 @@
                 <Image url="@../images/irtaza.jpg" />
                 </image>
                 </ImageView>
-                <Label fx:id="irtazaText" layoutX="250.0" layoutY="135.0" text="Hey! I am Irtaza and I am from Pakistan.&#xD;I have lived in Finland for 12 years and&#xD;I served in the Finnish military for a year.&#xD;I am a first year student at TU Delft studying&#xD;Computer Science and Engineering." />
-                <Label fx:id="mariaText" layoutX="250.0" layoutY="550.0" text="Hey! I am Maria. I am from Warsaw the capital&#xD;of Poland. I have lived in Spain for 2 years.&#xD;I am a first year student in TU Delft studying&#xD;Computer Science and Engineering." />
+                <Label fx:id="irtazaText" layoutX="250.0" layoutY="135.0" text="Hey! I am Irtaza and I am from Pakistan.&#13;I have lived in Finland for 12 years and&#13;I served in the Finnish military for a year.&#13;I am a first year student at TU Delft studying&#13;Computer Science and Engineering." />
+                <Label fx:id="mariaText" layoutX="250.0" layoutY="550.0" text="Hey! I am Maria. I am from Warsaw the capital&#13;of Poland. I have lived in Spain for 2 years.&#13;I am a first year student in TU Delft studying&#13;Computer Science and Engineering." />
                 <ImageView fx:id="tudor" fitHeight="150.0" fitWidth="175.0" layoutX="50" layoutY="350">
                 <image>
                 <Image url="@../images/tudor.jpg" />
