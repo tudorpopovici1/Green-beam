@@ -109,6 +109,7 @@
                 </ImageView>
                 <Label fx:id="irtazaText" layoutX="250.0" layoutY="135.0" text="Hey! I am Irtaza and I am from Pakistan.&#13;I have lived in Finland for 12 years and&#13;I served in the Finnish military for a year.&#13;I am a first year student at TU Delft studying&#13;Computer Science and Engineering." />
                 <Label fx:id="mariaText" layoutX="250.0" layoutY="550.0" text="Hey! I am Maria. I am from Warsaw the capital&#13;of Poland. I have lived in Spain for 2 years.&#13;I am a first year student in TU Delft studying&#13;Computer Science and Engineering." />
+                <Label fx:id="severText" layoutX="250.0" layoutY="950.0" text="Heyo, try to learn as much as possible and&#13;enjoy the small things in life, for one day you&#13;may look back and realize they were the big&#13;things." />
                 <ImageView fx:id="tudor" fitHeight="150.0" fitWidth="175.0" layoutX="50" layoutY="350">
                 <image>
                 <Image url="@../images/tudor.jpg" />

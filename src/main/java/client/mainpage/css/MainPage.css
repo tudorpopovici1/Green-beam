@@ -20,7 +20,7 @@
     -fx-text-fill: white;
 }
 
-#irtazaText, #mariaText {
+#irtazaText, #mariaText, #severText {
     -fx-font-size: 20px;
     -fx-font-family: "Apple Chancery";
     -fx-text-fill: white;
