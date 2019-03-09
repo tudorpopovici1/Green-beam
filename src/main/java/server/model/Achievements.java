@@ -20,7 +20,6 @@ public class Achievements {
     /**
      * Fields of this class.
      */
-
     @Id
     @GeneratedValue
     @Column(name = "id")
@@ -47,4 +46,8 @@ public class Achievements {
     public void setAchievementId(final Long achievementId1) {
         this.achievementId = achievementId1;
     }
+
+
+
+
 }

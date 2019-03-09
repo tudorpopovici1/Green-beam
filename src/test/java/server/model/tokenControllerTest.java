@@ -1,4 +1,4 @@
-package serverTesting;
+package server.model;
 
 import client.Url;
 import org.junit.Assert;
