@@ -15,7 +15,7 @@ import javax.persistence.Table;
         name = "achievements",
         schema = "public"
 )
-class Achievements {
+public class Achievements {
 
     /**
      * Fields of this class.
