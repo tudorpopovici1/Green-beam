@@ -82,14 +82,14 @@
     <ScrollPane fx:id="aboutUsWindow" layoutX= "222" layoutY="0" prefHeight="700" prefWidth="677" visible="false">
         <content>
             <Pane minHeight="0.0" minWidth="0.0" prefHeight="1200" prefWidth="660">
-                <ImageView fx:id="nature1" fitHeight="700.0" fitWidth="931.0">
+                <ImageView fitHeight="700.0" fitWidth="931.0">
                     <image>
-                        <Image url="@../images/nature.jpg" />
+                        <Image url="@../images/aboutUsBackground.jpeg" />
                     </image>
                 </ImageView>
-                <ImageView fx:id="nature2" fitHeight="700.0" fitWidth="931.0" layoutY="700">
+                <ImageView fitHeight="700" fitWidth="931.0" layoutY="700">
                     <image>
-                        <Image url="@../images/nature2.jpg" />
+                        <Image url="@../images/aboutUsBackground2.jpeg" />
                     </image>
                 </ImageView>
                 <ImageView fx:id="irtaza" fitHeight="150.0" fitWidth="175.0" layoutX="50" layoutY="150">
