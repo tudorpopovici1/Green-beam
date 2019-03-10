@@ -1,4 +1,4 @@
-package serverTesting;
+package client.services;
 
 import client.Url;
 import client.services.UserService;
