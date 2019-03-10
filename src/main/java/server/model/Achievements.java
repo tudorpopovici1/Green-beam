@@ -23,13 +23,13 @@ public class Achievements {
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private Long id;
+    public Long id;
 
     @Column(name = "user_id")
-    private Long userId;
+    public Long userId;
 
     @Column(name = "achievement_id")
-    private Long achievementId;
+    public Long achievementId;
 
     public Long getUserId() {
         return userId;
