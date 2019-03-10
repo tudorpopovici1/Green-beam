@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 import server.model.FriendsUserResp;
 import server.model.Users;
 
-import javax.transaction.Transactional;
 import java.util.List;
+import javax.transaction.Transactional;
 
 @Repository
 public interface UserRepository extends JpaRepository<Users, Long> {

@@ -1,9 +1,5 @@
 package server.model;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;
@@ -22,6 +18,7 @@ import javax.validation.constraints.Email;
 /**
  * User model.
  */
+
 @Entity(name = "user_data")
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "user_data", schema = "public")
@@ -279,24 +276,25 @@ public class Users {
         return firstName;
     }
 
+    @SuppressWarnings("CheckStyle")
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Users users = (Users) o;
-        return Objects.equals(id, users.id) &&
-                Objects.equals(username, users.username) &&
-                Objects.equals(password, users.password) &&
-                Objects.equals(firstName, users.firstName) &&
-                Objects.equals(lastName, users.lastName) &&
-                Objects.equals(country, users.country) &&
-                Objects.equals(email, users.email) &&
-                Objects.equals(dateOfBirth, users.dateOfBirth) &&
-                Objects.equals(role, users.role);
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Users users = (Users) obj;
+        return Objects.equals(id, users.id)
+                && Objects.equals(username, users.username)
+                && Objects.equals(password, users.password)
+                && Objects.equals(firstName, users.firstName)
+                && Objects.equals(lastName, users.lastName)
+                && Objects.equals(country, users.country)
+                && Objects.equals(email, users.email)
+                && Objects.equals(dateOfBirth, users.dateOfBirth)
+                && Objects.equals(role, users.role);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, username, password, firstName, lastName, country, email, dateOfBirth, role);
-    }
 }

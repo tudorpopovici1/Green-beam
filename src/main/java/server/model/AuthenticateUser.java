@@ -1,7 +1,7 @@
 package server.model;
 
-import javax.validation.constraints.NotNull;
 import java.util.Objects;
+import javax.validation.constraints.NotNull;
 
 public class AuthenticateUser {
 
@@ -47,13 +47,17 @@ public class AuthenticateUser {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        AuthenticateUser that = (AuthenticateUser) o;
-        return Objects.equals(username, that.username) &&
-                Objects.equals(password, that.password) &&
-                Objects.equals(token, that.token);
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        AuthenticateUser that = (AuthenticateUser) obj;
+        return Objects.equals(username, that.username)
+                && Objects.equals(password, that.password)
+                && Objects.equals(token, that.token);
     }
 
     @Override
