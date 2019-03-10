@@ -92,6 +92,11 @@
                 <Image url="@../images/addEmissionsBackground.jpeg" />
             </image>
         </ImageView>
+        <Label fx:id="addEmissionsText" layoutX="130.0" layoutY="10.0" text="Let's add some points!" />
+        <Button fx:id="mealButton" layoutX="260.0" layoutY="193.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="184.0" text="Food" />
+        <Button fx:id="transportationButton" layoutX="260.0" layoutY="280.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="184.0" text="Transportation" />
+        <Button fx:id="temperatureButton" layoutX="260.0" layoutY="369.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="184.0" text="Temperature" />
+        <Button fx:id="renewableEnergyButton" layoutX="260.0" layoutY="459.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="184.0" text="Renewable Energy" />
     </Pane>
     <Pane fx:id="progressWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false" />
     <Pane fx:id="profileWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false" />
