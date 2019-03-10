@@ -33,7 +33,7 @@
     -fx-font-weight: bolder;
 }
 
-#mealButton, #transportationButton, #renewableEnergyButton, #temperatureButton {
+#mealButton, #transportationButton, #renewableEnergyButton, #temperatureButton, #customButton {
     -fx-text-fill: #654b00;
     -fx-font-weight: bold;
     -fx-font-size: 16px;
