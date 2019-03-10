@@ -38,14 +38,12 @@ public class MainController {
         mainWindow.setVisible(true);
         mainWindow.toFront();
         animatePane(mainWindow);
-        mainWindow.setStyle("-fx-background-color: #FFFFFFFF");
     }
 
     public void emissionsPage(ActionEvent event) {
         emissionsWindow.setVisible(true);
         emissionsWindow.toFront();
         animatePane(emissionsWindow);
-        emissionsWindow.setStyle("-fx-background-color: green");
     }
 
     public void progressPage(ActionEvent event) {

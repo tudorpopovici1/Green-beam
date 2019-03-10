@@ -20,6 +20,13 @@
     -fx-text-fill: white;
 }
 
+#welcomeText {
+    -fx-font-family: "Apple Chancery";
+    -fx-font-size: 70px;
+    -fx-text-fill: white;
+}
+
+
 #addEmissionsText {
     -fx-font-family: "Apple Chancery";
     -fx-font-size: 47px;
