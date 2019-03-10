@@ -9,7 +9,6 @@ import javafx.util.Duration;
 import javafx.scene.control.ScrollPane;
 
 
-
 public class MainController {
 
     @FXML
@@ -49,7 +48,6 @@ public class MainController {
         emissionsWindow.setStyle("-fx-background-color: green");
 
     }
-
 
     public void progressPage(ActionEvent event) {
         progressWindow.setVisible(true);

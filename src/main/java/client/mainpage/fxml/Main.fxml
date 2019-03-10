@@ -86,7 +86,13 @@
             </children></AnchorPane>
       </children></AnchorPane>
     <Pane fx:id="mainWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false" />
-    <Pane fx:id="emissionsWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false" />
+    <Pane fx:id="emissionsWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false">
+        <ImageView fitHeight="700.0" fitWidth="931.0">
+            <image>
+                <Image url="@../images/addEmissionsBackground.jpeg" />
+            </image>
+        </ImageView>
+    </Pane>
     <Pane fx:id="progressWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false" />
     <Pane fx:id="profileWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false" />
     <ScrollPane fx:id="aboutUsWindow" layoutX="222" layoutY="0" prefHeight="700" prefWidth="677" visible="false">
