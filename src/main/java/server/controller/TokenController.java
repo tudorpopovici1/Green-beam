@@ -13,8 +13,6 @@ import server.model.JwtUser;
 import server.repository.UserRepository;
 import server.security.JwtGenerator;
 
-import javax.validation.constraints.NotNull;
-
 @RestController
 @RequestMapping("/token")
 public class TokenController {
@@ -23,6 +21,13 @@ public class TokenController {
 
     @Autowired
     private UserRepository userRepository;
+
+    /**
+     * Authenticates a user using its credentials.
+     * @param authenticateUser object instance of user credentials
+     * @return authenticateuser object instance
+     * @throws BadCredentialsException exception thrown in case of wrong credentials.
+     */
 
     @PostMapping
     public AuthenticateUser generate(

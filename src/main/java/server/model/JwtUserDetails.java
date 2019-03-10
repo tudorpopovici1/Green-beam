@@ -14,18 +14,6 @@ public class JwtUserDetails implements UserDetails {
     private Long id;
     private Collection<? extends GrantedAuthority> authorities;
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        JwtUserDetails that = (JwtUserDetails) o;
-        return Objects.equals(userName, that.userName) &&
-                Objects.equals(token, that.token) &&
-                Objects.equals(id, that.id) &&
-                Objects.equals(authorities, that.authorities);
-    }
-
     /**
      * Main constructor of this class.
      * @param userName username
@@ -40,6 +28,21 @@ public class JwtUserDetails implements UserDetails {
         this.id = id;
         this.token = token;
         this.authorities = grantedAuthorities;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        JwtUserDetails that = (JwtUserDetails) obj;
+        return Objects.equals(userName, that.userName)
+                && Objects.equals(token, that.token)
+                && Objects.equals(id, that.id)
+                && Objects.equals(authorities, that.authorities);
     }
 
     @Override

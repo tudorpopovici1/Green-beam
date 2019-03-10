@@ -31,6 +31,10 @@ import java.util.regex.Pattern;
  * the main login page of the application.
  */
 public class LoginController {
+
+    public static final Pattern VALIDEMAIL =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
     /**
      * This is getting the attribute window attribute from the
      * Login.fxml file.
@@ -93,7 +97,8 @@ public class LoginController {
     @FXML
     private Button registerButton;
 
-    @FXML Button backButton;
+    @FXML
+    private Button backButton;
 
     /**
      * This is getting the ImageView attribute from the
@@ -137,9 +142,10 @@ public class LoginController {
                 && !txtPassword.getText().equals("")) {
             AuthenticateUser authenticateUser =
                     new AuthenticateUser(txtUsername.getText(), txtPassword.getText());
-            String response = userService.authUser(restTemplate, Url.AUTH_USER.getUrl(), authenticateUser);
+            String response = userService
+                    .authUser(restTemplate, Url.AUTH_USER.getUrl(), authenticateUser);
             lblStatus.setPrefWidth(403);
-            if(response.equals("Incorrect username or password")) {
+            if (response.equals("Incorrect username or password")) {
                 lblStatus.setText(response);
             } else {
                 lblStatus.setText("You have successfuly logged in.");
@@ -195,9 +201,9 @@ public class LoginController {
         doBBox.setVisible(true);
         String datePattern = "dd-MM-yyyy";
         DateFormat df = new SimpleDateFormat(datePattern);
-        Date userDOB = newUser.getDateOfBirth();
-        String userDOBString = df.format(userDOB);
-        doBBox.setText(userDOBString);
+        Date userDoB = newUser.getDateOfBirth();
+        String userDoBstring = df.format(userDoB);
+        doBBox.setText(userDoBstring);
         countryBox.setVisible(true);
         countryBox.setText(newUser.getCountry());
         backButton.setVisible(false);
@@ -304,10 +310,10 @@ public class LoginController {
         newUser.setRole("user");
         String response = userService.addUser(
                 restTemplate, Url.ADD_USER.getUrl(), newUser);
-        if(!response.equals("Registration complete"))
+        if (!response.equals("Registration complete")) {
             lblStatus2.setText(response);
-        if(lblStatus2.getText().equals(""))
-        {
+        }
+        if (lblStatus2.getText().equals("")) {
             hideRegistrationFormSecondPage();
             registerButton.setVisible(false);
             thumbsUp.setVisible(true);
@@ -321,7 +327,7 @@ public class LoginController {
                     + "You can now log in.");
             lblStatus2.setTextAlignment(TextAlignment.CENTER);
             lblStatus2.setPrefHeight(100);
-            lblStatus2.setLayoutY(thumbsUp.getLayoutY()+50);
+            lblStatus2.setLayoutY(thumbsUp.getLayoutY() + 50);
             lblStatus2.setFont(Font.font("Verdana", FontWeight.EXTRA_BOLD, 20));
             backButton.setVisible(false);
             registerButton.setVisible(false);
@@ -378,7 +384,7 @@ public class LoginController {
     }
 
     private boolean emailConstraintPopUp() {
-        if(!validateEmail(emailBox.getText())) {
+        if (!validateEmail(emailBox.getText())) {
             emailConstraintError();
             return true;
         }
@@ -420,8 +426,7 @@ public class LoginController {
      * a box is null or empty.
      * */
 
-    private void emailConstraintError()
-    {
+    private void emailConstraintError() {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText(null);
@@ -436,9 +441,6 @@ public class LoginController {
         alert.setContentText("One of your fields is empty.\nPlease try again.");
         alert.showAndWait();
     }
-
-    public static final Pattern VALIDEMAIL =
-            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
     public static boolean validateEmail(String emailStr) {
         Matcher matcher = VALIDEMAIL.matcher(emailStr);

@@ -114,12 +114,13 @@ public class EmissionReductions {
 
     @Override
     public String toString() {
-        return "EmissionReductions{" +
-                "rideBikeEmission=" + rideBikeEmission +
-                ", publicTransportationEmission=" + publicTransportationEmission +
-                ", localProduceEmission=" + localProduceEmission +
-                ", loweringTemperatureEmission=" + loweringTemperatureEmission +
-                ", vegetarianMealEmission=" + vegetarianMealEmission +
-                '}';
+        return "EmissionReductions{"
+                + "rideBikeEmission="
+                + rideBikeEmission
+                + ", publicTransportationEmission=" + publicTransportationEmission
+                + ", localProduceEmission=" + localProduceEmission
+                + ", loweringTemperatureEmission=" + loweringTemperatureEmission
+                + ", vegetarianMealEmission=" + vegetarianMealEmission
+                + '}';
     }
 }
