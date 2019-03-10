@@ -106,16 +106,33 @@
                 <Image url="@../images/mainBackgroud.jpg" />
             </image>
         </ImageView>
-        <ImageView fitHeight="162.0" fitWidth="149.0" layoutX="237.0" layoutY="-3.0">
+        <ImageView fitHeight="162.0" fitWidth="149.0" layoutX="87.0" layoutY="-3.0">
             <image>
                 <Image url="@../images/logo1.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="69.0" fitWidth="363.0" layoutX="288.0" layoutY="41.0">
+        <ImageView fitHeight="69.0" fitWidth="363.0" layoutX="138.0" layoutY="41.0">
         <image>
             <Image url="@../images/logo2.png" />
         </image>
         </ImageView>
+        <ImageView fitHeight="60" fitWidth="40" layoutX="210.0" layoutY="185.0">
+            <image>
+                <Image url="@../images/fireIcon.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="60" fitWidth="40" layoutX="440.0" layoutY="185.0">
+            <image>
+                <Image url="@../images/fireIcon.png" />
+            </image>
+        </ImageView>
+
+        <Label fx:id="currentStreakText" layoutX="120.0" layoutY="150" text="Current Streak:" />
+        <Label fx:id="longestStreakText" layoutX="350.0" layoutY="150.0" text="Longest Streak:" />
+        <Label fx:id="travelText" layoutX="120.0" layoutY="250.0" text="Total Green Travel:" />
+        <Label fx:id="dailyFixedPointsText" layoutX="350.0" layoutY="250" text="Daily Fixed Points:" />
+        <Label fx:id="totalPointsText" layoutX="350.0" layoutY="350.0" text="Total Points Earned:" />
+        <Label fx:id="totalCO2SavedText" layoutX="120.0" layoutY="350.0" text="Total CO2 Saved:" />
     </Pane>
     <Pane fx:id="emissionsWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false">
         <ImageView fitHeight="700.0" fitWidth="931.0">
