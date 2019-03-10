@@ -1,11 +1,11 @@
-#mainButton, #progressButton, #profileButton, #settingsButton , #aboutUsButton, #logoutButton{
+#mainButton, #emissionsButton, #progressButton, #profileButton, #settingsButton , #aboutUsButton, #logoutButton{
     -fx-font-family: "Apple Chancery";
     -fx-font-size: 22px;
     -fx-text-fill: white;
     -fx-background-color: transparent;
 }
 
-#mainButton:hover, #progressButton:hover, #profileButton:hover, #settingsButton:hover,
+#mainButton:hover, #emissionsButton:hover, #progressButton:hover, #profileButton:hover, #settingsButton:hover,
  #aboutUsButton:hover, #logoutButton:hover{
      -fx-font-size: 29px;
  }
@@ -20,8 +20,31 @@
     -fx-text-fill: white;
 }
 
-#nature1, #nature2 {
-    -fx-opacity: 0.7;
+#welcomeText {
+    -fx-font-family: "Apple Chancery";
+    -fx-font-size: 70px;
+    -fx-text-fill: white;
+}
+
+
+#addEmissionsText {
+    -fx-font-family: "Apple Chancery";
+    -fx-font-size: 47px;
+    -fx-text-fill: white;
+}
+
+#irtazaText, #mariaText, #severText {
+    -fx-font-size: 20px;
+    -fx-font-family: "Apple Chancery";
+    -fx-text-fill: white;
+    -fx-font-weight: bolder;
+}
+
+#mealButton, #transportationButton, #renewableEnergyButton, #temperatureButton, #customButton {
+    -fx-text-fill: #654b00;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-padding: 10 20 10 20;
 }
 
 

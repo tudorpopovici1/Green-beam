@@ -126,8 +126,7 @@ public class UserService {
         return token;
     }
 
-    private String outputErrorMessage(ObjectMapper objectMapper, String responseString)
-    {
+    private String outputErrorMessage(ObjectMapper objectMapper, String responseString) {
         String returnString = "";
         try {
             ErrorDetails errorDetails = objectMapper.readValue(responseString, ErrorDetails.class);
