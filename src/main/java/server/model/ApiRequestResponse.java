@@ -21,22 +21,4 @@ public class ApiRequestResponse {
         returnString = returnString.substring(0, returnString.length()-2);
         return returnString;
     }
-
-    /**
-     * Gets resultTakeAction.
-     *
-     * @return Value of resultTakeAction.
-     */
-    public String[] getResultTakeAction() {
-        return resultTakeAction;
-    }
-
-    /**
-     * Sets new resultTakeAction.
-     *
-     * @param resultTakeAction New value of resultTakeAction.
-     */
-    public void setResultTakeAction(String[] resultTakeAction) {
-        this.resultTakeAction = resultTakeAction;
-    }
 }

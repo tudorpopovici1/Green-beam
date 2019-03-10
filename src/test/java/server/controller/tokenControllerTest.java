@@ -1,28 +1,19 @@
-package server.model;
+package server.controller;
 
-import client.Url;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import server.Application;
-import server.exception.BadCredentialsException;
 import server.model.AuthenticateUser;
-import server.model.ErrorDetails;
 import server.model.JwtUser;
 import server.security.JwtGenerator;
-import server.security.JwtValidator;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class,

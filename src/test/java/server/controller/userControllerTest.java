@@ -1,4 +1,4 @@
-package serverTesting;
+package server.controller;
 
 import client.Url;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,4 +1,4 @@
-package serverTesting;
+package server.controller;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -10,7 +10,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import server.controller.TokenController;
-import server.controller.UserController;
 import server.exception.BadCredentialsException;
 import server.model.AuthenticateUser;
 import server.model.JwtUser;

@@ -18,7 +18,7 @@ import java.util.List;
 public class JwtAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
 
     @Autowired
-    private JwtValidator validator;
+    private JwtValidator validator = new JwtValidator();
 
     public JwtAuthenticationProvider() {
     }
@@ -39,11 +39,7 @@ public class JwtAuthenticationProvider extends AbstractUserDetailsAuthentication
 
         JwtAuthenticationToken jwtAuthenticationToken =
                 (JwtAuthenticationToken) usernamePasswordAuthenticationToken;
-
         String token = jwtAuthenticationToken.getToken();
-
-        System.out.println(token);
-
         JwtUser jwtUser = validator.validate(token);
 
         if (jwtUser == null) {

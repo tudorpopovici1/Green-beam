@@ -17,7 +17,6 @@ public class JwtValidator {
     public JwtUser validate(String token) {
         String secret = "secret";
         JwtUser jwtUser = null;
-
         try {
             Claims body = Jwts.parser()
                     .setSigningKey(secret)
