@@ -6,12 +6,12 @@ import javafx.util.Duration;
 
 public class CustomAnimation extends Transition {
 
-    protected Region region;
-    protected double startHeight;
     protected double newHeight;
-    protected double heightDiff;
+    private Region region;
+    private double startHeight;
+    private double heightDiff;
 
-    public CustomAnimation(Duration duration, Region region, double newHeight) {
+    CustomAnimation(Duration duration, Region region, double newHeight) {
         setCycleDuration(duration);
         this.region = region;
         this.newHeight = newHeight;
