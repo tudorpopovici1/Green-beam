@@ -1,3 +1,4 @@
+/*
 package serverTesting;
 
 import org.junit.jupiter.api.Test;
@@ -6,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.Assert.*;
 
 public class AchievementsTest {
+
     @Test
     Long getUserId() {
         Long a1 = Long.valueOf(1234);
@@ -29,4 +31,4 @@ public class AchievementsTest {
     @Test
     void setAchievementId() {
     }
-}
+}*/
