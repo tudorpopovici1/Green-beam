@@ -15,6 +15,7 @@ import server.model.JwtUser;
 import server.model.JwtUserDetails;
 
 import javax.inject.Inject;
+import javax.naming.AuthenticationException;
 
 import static org.mockito.Mockito.when;
 
@@ -42,10 +43,8 @@ public class JwtAuthenticationProviderTest {
 
     @Test (expected = RuntimeException.class)
     public void retrieveUserJwtIsNull() {
-        JwtAuthenticationToken jwtAuthenticationToken = (JwtAuthenticationToken)
-        usernamePasswordAuthenticationToken;
-
-        when(jwtAuthenticationToken.getToken()).thenReturn(null);
+        JwtAuthenticationToken jwtAuthenticationToken =
+                new JwtAuthenticationToken(null);
         jwtAuthenticationProvider.retrieveUser("123", jwtAuthenticationToken);
     }
 
