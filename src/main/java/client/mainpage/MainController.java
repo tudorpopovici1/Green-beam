@@ -46,7 +46,6 @@ public class MainController {
         emissionsWindow.toFront();
         animatePane(emissionsWindow);
         emissionsWindow.setStyle("-fx-background-color: green");
-
     }
 
     public void progressPage(ActionEvent event) {
