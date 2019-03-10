@@ -196,6 +196,7 @@
                 <Label fx:id="mariaText" layoutX="250.0" layoutY="550.0" text="Hey! I am Maria. I am from Warsaw the capital&#13;of Poland. I have lived in Spain for 2 years.&#13;I am a first year student in TU Delft studying&#13;Computer Science and Engineering." />
                 <Label fx:id="severText" layoutX="250.0" layoutY="950.0" text="Heyo, try to learn as much as possible and&#13;enjoy the small things in life, for one day you&#13;may look back and realize they were the big&#13;things." />
                 <Label fx:id="merelText" layoutX="250.0" layoutY="750.0" text="Hello! I am Merel. I am 18 years old and I am&#13;from the Netherlands. I like sports a lot.&#13;I am a first year Computer Science and&#13;Engeneering student at TU Delft." />
+                <Label fx:id="tudorText" layoutX="250.0" layoutY="350.0" text="Hey there! My name is Tudor. I am from&#13;Oradea, a city in the north western part of&#13;Romania. I am a first year student at CSE&#13;TU Delft." />
                 <ImageView fx:id="tudor" fitHeight="150.0" fitWidth="175.0" layoutX="50" layoutY="350">
                 <image>
                 <Image url="@../images/tudor.jpg" />
