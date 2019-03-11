@@ -3,12 +3,7 @@ package server.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import server.exception.BadCredentialsException;
 import server.exception.ResourceNotFoundException;
 import server.exception.UserAlreadyRegistered;
@@ -61,6 +56,18 @@ public class UserController {
         user.setPassword(encryptPasswordEncoder.encode(user.getPassword()));
 
         return userRepository.save(user);
+    }
+
+    /**
+     * Retrieves a list of all users matching the given username.
+     * @param username username to search for.
+     * @return the matching users.
+     */
+
+    @GetMapping(value = "/search/{username}")
+    public List<FriendsUserResp> searchFriends(@PathVariable("username") String username) {
+        List<FriendsUserResp> searchedFriends = userRepository.queryFriends(username);
+        return searchedFriends;
     }
 
     /**
