@@ -38,8 +38,11 @@ public class MainController {
     private Pane logoutWindow;
 
     private EmissionController emissionController = new EmissionController();
-
-
+    private ProgressController progressController = new ProgressController();
+    private ProfileController profileController = new ProfileController();
+    private SettingsController settingsController = new SettingsController();
+    private LogoutController logoutController = new LogoutController();
+    
     /**
      * Renders the main page.
      * @param event - once a user clicks the button linked to
