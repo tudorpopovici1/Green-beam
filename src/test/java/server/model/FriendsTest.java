@@ -1,14 +1,15 @@
 package server.model;
 
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FriendsTest {
     Friends friends= new Friends();
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getRelatingUserIdTest() {
         long relatingUserId = 1234L;
         friends.setRelatingUserId(relatingUserId);
@@ -17,7 +18,7 @@ public class FriendsTest {
         Assert.assertEquals(setRelatingUserId, expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void  getRelationshipTypeTest() {
         String relationshipType = "abc";
         friends.setRelationshipType(relationshipType);
@@ -53,7 +54,7 @@ public class FriendsTest {
         Assert.assertEquals(setRelatedUserId, expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setIdTest() {
         long Id = 1234L;
         friends.setId(Id);
@@ -62,7 +63,7 @@ public class FriendsTest {
         Assert.assertEquals(setId, expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setRelationshipTypeTest() {
         String relationshipType = "abc";
         friends.setRelationshipType(relationshipType);
@@ -71,7 +72,7 @@ public class FriendsTest {
         Assert.assertEquals(setRelationshipType, expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getIdTest() {
         long Id = 1234L;
         friends.setId(Id);

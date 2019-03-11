@@ -1,14 +1,16 @@
 package server.model;
 
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class AuthenticateUserTest {
-    AuthenticateUser authenticateUser= new AuthenticateUser();
-    @org.junit.jupiter.api.Test
 
+    AuthenticateUser authenticateUser= new AuthenticateUser();
+
+    @Test
     public void getUsernameTest() {
         String username = "abc";
         authenticateUser.setUsername(username);

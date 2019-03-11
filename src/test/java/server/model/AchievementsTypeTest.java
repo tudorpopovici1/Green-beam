@@ -1,13 +1,14 @@
 package server.model;
 
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class AchievementsTypeTest {
+
     AchievementsType achievementType = new AchievementsType();
-    @org.junit.jupiter.api.Test
+
+    @Test
     public void getAchievementIdTest() {
         long achievementId = 1234L;
         achievementType.setAchievementId(achievementId);

@@ -1,16 +1,13 @@
 package server.model;
 
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.Assert.assertThat;
-
+import org.junit.Test;
 
 public class AchievementsTest {
 
     Achievements achievement = new Achievements();
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getUserIdTest() {
         long userId = 1234L;
         achievement.setUserId(userId);
