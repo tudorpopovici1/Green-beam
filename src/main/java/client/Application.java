@@ -1,18 +1,18 @@
 package client;
 
+import client.services.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
+import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import server.model.ApiRequestResponse;
 import server.model.EmissionReductions;
+import server.model.FriendsUserResp;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.List;
 import javax.xml.bind.JAXB;
 
 //@SpringBootApplication
@@ -29,7 +29,7 @@ class Application {
 
     public static void main(final String[] args) {
 
-        final String url = "https://apis.berkeley.edu/coolclimate/footprint";
+       /* final String url = "https://apis.berkeley.edu/coolclimate/footprint";
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set("Accept", MediaType.APPLICATION_JSON_VALUE);
         httpHeaders.set("app_id", "17371d04");
@@ -146,6 +146,12 @@ class Application {
             System.out.println(emissionReductions);
         } catch (IOException e) {
             e.printStackTrace();
+        }*/
+       RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<FriendsUserResp[]> responseEntity =
+                restTemplate.getForEntity( "http://localhost:8080/rest/search/1/1", FriendsUserResp[].class);
+        for(FriendsUserResp u : responseEntity.getBody()) {
+            System.out.println(u);
         }
     }
 }

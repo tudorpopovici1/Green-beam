@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface AchievementRepository extends JpaRepository<Achievements, Long> {
-
+/*
      @Query(value = "SELECT a " +
                     "FROM Achievements a " +
             "JOIN AchievementsType at ON a.id = at.achievementId " +
@@ -24,6 +24,6 @@ public interface AchievementRepository extends JpaRepository<Achievements, Long>
             "JOIN AchievementsType a ON ach.id = a.achievementId " +
             "JOIN user_data u ON ach.user_id = u.user_id " +
             "WHERE u.user_id=:userId ")
-    List<AchievementsType> getAchievementsTypeOfUser(Long userId);
+    List<AchievementsType> getAchievementsTypeOfUser(Long userId);*/
 
 }
