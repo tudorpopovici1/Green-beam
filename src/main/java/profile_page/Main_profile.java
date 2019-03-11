@@ -17,7 +17,9 @@ public class Main_profile extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("profile.fxml"));
+            URL url = new File(
+                    "src/main/java/profile_page/profile.fxml").toURI().toURL();
+            Parent root = FXMLLoader.load(url);
             primaryStage.setTitle("Hello World");
             primaryStage.setScene(new Scene(root, 900, 600));
             primaryStage.show();
