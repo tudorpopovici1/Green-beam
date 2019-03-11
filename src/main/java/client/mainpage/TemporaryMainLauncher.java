@@ -13,7 +13,7 @@ import java.net.URL;
 public class TemporaryMainLauncher extends Application {
 
     public static void main(String[] args) {
-            launch(args);
+        launch(args);
     }
 
     @Override

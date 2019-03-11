@@ -2,7 +2,6 @@ package server.model;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.Arrays;
 
 @XmlRootElement(name = "response")
 public class ApiRequestResponse {
@@ -15,10 +14,10 @@ public class ApiRequestResponse {
     @Override
     public String toString() {
         String returnString = "";
-        for(String s : resultTakeAction) {
-            returnString += s+", ";
+        for (String s : resultTakeAction) {
+            returnString += s + ", ";
         }
-        returnString = returnString.substring(0, returnString.length()-2);
+        returnString = returnString.substring(0, returnString.length() - 2);
         return returnString;
     }
 }

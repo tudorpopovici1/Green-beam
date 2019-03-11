@@ -17,6 +17,7 @@ public class JwtValidator {
     public JwtUser validate(String token) {
         String secret = "secret";
         JwtUser jwtUser = null;
+        //noinspection CheckStyle
         try {
             Claims body = Jwts.parser()
                     .setSigningKey(secret)
@@ -28,7 +29,8 @@ public class JwtValidator {
             jwtUser.setUserName(body.getSubject());
             jwtUser.setId(Long.parseLong((String) body.get("userId")));
             jwtUser.setRole((String) body.get("role"));
-        } catch(Exception e) {
+
+        } catch (RuntimeException e) {
             System.out.println(e);
         }
         return jwtUser;

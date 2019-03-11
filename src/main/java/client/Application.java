@@ -1,24 +1,19 @@
 package client;
 
-import client.services.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import javafx.scene.control.Label;
-import org.springframework.http.*;
+
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import server.model.ApiRequestResponse;
-import server.model.AuthenticateUser;
 import server.model.EmissionReductions;
-import server.model.Users;
 
-import javax.xml.bind.JAXB;
 import java.io.IOException;
 import java.io.StringReader;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
+import javax.xml.bind.JAXB;
 
 //@SpringBootApplication
 class Application {
@@ -34,7 +29,7 @@ class Application {
 
     public static void main(final String[] args) {
 
-       /* UserService userService = new UserService();
+        /* UserService userService = new UserService();
 
         String pattern = "dd-MM-yyyy";
         DateFormat dateFormat = new SimpleDateFormat(pattern);
@@ -146,11 +141,13 @@ class Application {
                 HttpMethod.GET, entity, String.class);
         ObjectMapper objectMapper = new ObjectMapper();
         System.out.println(response.getBody());
-        ApiRequestResponse responseObject = JAXB.unmarshal(new StringReader(response.getBody()), ApiRequestResponse.class);
+        ApiRequestResponse responseObject = JAXB.unmarshal(
+                new StringReader(response.getBody()), ApiRequestResponse.class);
         System.out.println(responseObject);
 
         try {
-            EmissionReductions emissionReductions = objectMapper.readValue(responseObject.toString(), EmissionReductions.class);
+            EmissionReductions emissionReductions =
+                    objectMapper.readValue(responseObject.toString(), EmissionReductions.class);
             System.out.println(emissionReductions);
         } catch (IOException e) {
             e.printStackTrace();

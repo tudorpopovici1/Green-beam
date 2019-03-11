@@ -82,7 +82,7 @@ public class UserService {
     public List<FriendsUserResp> getUserFriends(
             final RestTemplate restTemplate, final String url, final Long userId) {
 
-       List<FriendsUserResp> friendsList = new ArrayList<>();
+        List<FriendsUserResp> friendsList = new ArrayList<>();
         try {
             ResponseEntity<FriendsUserResp[]> responseEntity =
                     restTemplate.getForEntity(url + "/" + userId, FriendsUserResp[].class);
@@ -93,7 +93,7 @@ public class UserService {
                     friendsList.add(u);
                 }
             }
-        } catch(HttpStatusCodeException e) {
+        } catch (HttpStatusCodeException e) {
             System.out.println(e);
         }
         return friendsList;
@@ -120,7 +120,7 @@ public class UserService {
             }
         } catch (HttpStatusCodeException e) {
             if (e.getStatusCode() == HttpStatus.FORBIDDEN) {
-               token = outputErrorMessage(objectMapper, e.getResponseBodyAsString());
+                token = outputErrorMessage(objectMapper, e.getResponseBodyAsString());
             }
         }
         return token;
@@ -131,7 +131,7 @@ public class UserService {
         try {
             ErrorDetails errorDetails = objectMapper.readValue(responseString, ErrorDetails.class);
             returnString = errorDetails.getMessage();
-        } catch(IOException exc) {
+        } catch (IOException exc) {
             exc.printStackTrace();
         }
         return  returnString;

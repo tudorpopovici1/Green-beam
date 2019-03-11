@@ -1,7 +1,8 @@
 package server.model;
 
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.Assert.assertThat;
 
 
@@ -9,7 +10,7 @@ public class AchievementsTest {
 
     Achievements achievement = new Achievements();
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getUserIdTest() {
         long userId = 1234L;
         achievement.setUserId(userId);
@@ -18,8 +19,8 @@ public class AchievementsTest {
         Assert.assertEquals(setUserId, expected);
     }
 
-    @Test
-    public void setUserId() {
+    @org.junit.jupiter.api.Test
+    public void setUserIdTest() {
         long userId = 1234L;
         achievement.setUserId(userId);
         long setUserId = achievement.getUserId();
@@ -27,8 +28,8 @@ public class AchievementsTest {
         Assert.assertEquals(setUserId, expected);
     }
 
-    @Test
-    public void getAchievementId() {
+    @org.junit.jupiter.api.Test
+    public void getAchievementIdTest() {
         long achievementId = 1234L;
         achievement.setAchievementId(achievementId);
         long setAchievementId = achievement.getAchievementId();
@@ -37,9 +38,8 @@ public class AchievementsTest {
     }
 
 
-
     @Test
-    public void setAchievementId() {
+    public void setAchievementIdTest() {
         long achievementId = 1234L;
         achievement.setAchievementId(achievementId);
         long setAchievementId = achievement.getAchievementId();
