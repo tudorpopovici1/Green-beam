@@ -37,6 +37,8 @@ public class MainController {
     @FXML
     private Pane logoutWindow;
 
+    private EmissionController emissionController = new EmissionController();
+
 
     /**
      * Renders the main page.
@@ -82,7 +84,7 @@ public class MainController {
         profileWindow.setVisible(true);
         profileWindow.toFront();
         animatePane(profileWindow);
-        profileWindow.setStyle("-fx-background-color: blue");
+        profileWindow.setStyle("-fx-background-color: white");
     }
 
     /**
