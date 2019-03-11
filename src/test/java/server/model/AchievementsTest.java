@@ -29,22 +29,22 @@ public class AchievementsTest {
 
     @Test
     public void getAchievementId() {
-        long userId = 1234L;
-        achievement.setUserId(userId);
-        long setAchivementId = achievement.getUserId();
+        long achievementId = 1234L;
+        achievement.setAchievementId(achievementId);
+        long setAchievementId = achievement.getAchievementId();
         long expected = 1234L;
-        Assert.assertEquals(setAchivementId, expected);
+        Assert.assertEquals(setAchievementId, expected);
     }
 
 
 
     @Test
     public void setAchievementId() {
-        long userId = 1234L;
-        achievement.setUserId(userId);
-        long setAchivementId = achievement.getUserId();
+        long achievementId = 1234L;
+        achievement.setAchievementId(achievementId);
+        long setAchievementId = achievement.getAchievementId();
         long expected = 1234L;
-        Assert.assertEquals(setAchivementId, expected);
+        Assert.assertEquals(setAchievementId, expected);
     }
 
 }
