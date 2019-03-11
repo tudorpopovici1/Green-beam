@@ -29,30 +29,6 @@ class Application {
 
     public static void main(final String[] args) {
 
-        /* UserService userService = new UserService();
-
-        String pattern = "dd-MM-yyyy";
-        DateFormat dateFormat = new SimpleDateFormat(pattern);
-
-        try {
-
-            Date dob = dateFormat.parse("20-12-1999");
-            Users user = new Users(null, "demo",
-                    "123", "TestName", "LastName",
-                    "RO", "123@gmail.com", dob, "user");
-
-            userService.addUser(restTemplate, ADD_USER,user);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        userService.getUser(restTemplate, GET_USER, 15L);
-
-        userService.getUserFriends(restTemplate, GET_USER_FRIENDS, 0L);
-
-        userService.authUser(restTemplate,
-                AUTH_USER, new AuthenticateUser("test15",
-                        "123"));*/
         final String url = "https://apis.berkeley.edu/coolclimate/footprint";
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -62,19 +38,21 @@ class Application {
         HttpEntity<?> entity = new HttpEntity<>(httpHeaders);
 
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(url)
-                .queryParam("input_location_mode", 1)
-                .queryParam("input_location", "23231")
-                .queryParam("input_income", 1)
-                .queryParam("input_size", 0)
+                .queryParam("input_location_mode", 5)
+                .queryParam("input_location", "US")
+                .queryParam("input_location_country", "US")
+                .queryParam("input_income", 4)
+                .queryParam("input_size", 2)
                 .queryParam("input_footprint_household_adults", 2)
                 .queryParam("input_footprint_household_children", 0)
-                .queryParam("internal_state_abbreviation", "MI")
-                .queryParam("input_changed", 0)
+                .queryParam("input_changed", 1)
+                .queryParam("internal_state_abbreviation", "US")
 
                 .queryParam("input_footprint_transportation_num_vehicles", 1)
                 .queryParam("input_footprint_transportation_mpg1", 30)
-                .queryParam("input_footprint_transportation_fuel1", 0)
+                .queryParam("input_footprint_transportation_fuel1", 1)
                 .queryParam("input_footprint_transportation_miles1", 10000)
+
                 .queryParam("input_footprint_transportation_miles2", 0)
                 .queryParam("input_footprint_transportation_miles3", 0)
                 .queryParam("input_footprint_transportation_miles4", 0)
@@ -84,6 +62,7 @@ class Application {
                 .queryParam("input_footprint_transportation_miles8", 0)
                 .queryParam("input_footprint_transportation_miles9", 0)
                 .queryParam("input_footprint_transportation_miles10", 0)
+
                 .queryParam("input_footprint_transportation_mpg2", 0)
                 .queryParam("input_footprint_transportation_mpg3", 0)
                 .queryParam("input_footprint_transportation_mpg4", 0)
@@ -93,6 +72,16 @@ class Application {
                 .queryParam("input_footprint_transportation_mpg8", 0)
                 .queryParam("input_footprint_transportation_mpg9", 0)
                 .queryParam("input_footprint_transportation_mpg10", 0)
+
+                .queryParam("input_footprint_transportation_fuel2", 1)
+                .queryParam("input_footprint_transportation_fuel3", 1)
+                .queryParam("input_footprint_transportation_fuel4", 1)
+                .queryParam("input_footprint_transportation_fuel5", 1)
+                .queryParam("input_footprint_transportation_fuel6", 1)
+                .queryParam("input_footprint_transportation_fuel7", 1)
+                .queryParam("input_footprint_transportation_fuel8", 1)
+                .queryParam("input_footprint_transportation_fuel9", 1)
+                .queryParam("input_footprint_transportation_fuel10", 1)
 
                 .queryParam("input_footprint_transportation_groundtype",0)
                 .queryParam("input_footprint_transportation_publictrans", 300)
@@ -112,8 +101,8 @@ class Application {
                 .queryParam("input_footprint_housing_heatingoil_dollars_per_gallon", 15)
                 .queryParam("input_footprint_housing_watersewage", 1)
                 .queryParam("input_footprint_housing_squarefeet", 45)
-                .queryParam("input_footprint_housing_hdd", 0)
-                .queryParam("input_footprint_housing_cdd", 0)
+                .queryParam("input_footprint_housing_hdd", 1278)
+                .queryParam("input_footprint_housing_cdd", 4506)
 
                 .queryParam("input_footprint_shopping_food_meattype", 1)
                 .queryParam("input_footprint_shopping_food_meat_beefpork", 0)
@@ -135,7 +124,13 @@ class Application {
                 .queryParam("input_footprint_shopping_goods_default_other_medical", 0)
                 .queryParam("input_footprint_shopping_goods_total", 0)
                 .queryParam("input_footprint_shopping_services_type", 0)
-                .queryParam("input_footprint_shopping_services_total", 0);
+                .queryParam("input_footprint_shopping_services_total", 0)
+
+                .queryParam("input_takeaction_ride_my_bike", 1)
+                .queryParam("input_takeaction_ride_my_bike_mpg", 3)
+                .queryParam("input_takeaction_ride_my_bike_miles", 75)
+                .queryParam("input_takeaction_ride_my_bike_include_foodemissions", 0)
+                .queryParam("input_takeaction_assumption_price_of_gasoline", 4);
 
         HttpEntity<String> response = restTemplate.exchange(uriComponentsBuilder.build().toUri(),
                 HttpMethod.GET, entity, String.class);

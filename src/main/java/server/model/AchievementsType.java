@@ -27,6 +27,7 @@ class AchievementsType {
      * @param achievementId New value of achievementId.
      */
     public void setAchievementId(Long achievementId) {
+
         this.achievementId = achievementId;
     }
 
