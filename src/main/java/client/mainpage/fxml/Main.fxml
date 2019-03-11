@@ -20,16 +20,17 @@
             <Image url="@../images/mainBackgroud.jpg"/>
         </image>
     </ImageView>
-    <ImageView fitHeight="194.0" fitWidth="184.0" layoutX="284.0" layoutY="317.0">
+    <ImageView fitHeight="194.0" fitWidth="184.0" layoutX="274.0" layoutY="317.0">
         <image>
             <Image url="@../images/logo1.png"/>
         </image>
     </ImageView>
-    <ImageView fitHeight="90.0" fitWidth="423.0" layoutX="365.0" layoutY="369.0">
+    <ImageView fitHeight="90.0" fitWidth="423.0" layoutX="355.0" layoutY="369.0">
         <image>
             <Image url="@../images/logo2.png"/>
         </image>
     </ImageView>
+    <Label fx:id="saveThePlanetText" layoutX="390.0" layoutY="570.0" text="Help Us Save the Planet!"/>
     <AnchorPane layoutX="38.0" layoutY="-7.0" prefHeight="713.0" prefWidth="201.0">
         <children>
             <Button fx:id="mainButton" layoutY="7.0" mnemonicParsing="false" onAction="#mainPage" prefHeight="100.0"
@@ -180,7 +181,7 @@
                 <Image url="@../images/customIcon.png"/>
             </image>
         </ImageView>
-        <Label fx:id="addEmissionsText" layoutX="130.0" layoutY="10.0" text="Let's add some points!"/>
+        <Label fx:id="addEmissionsText" layoutX="165.0" layoutY="10.0" text="Add Your Emissions"/>
         <Button fx:id="mealButton" layoutX="260.0" layoutY="193.0" mnemonicParsing="false" prefHeight="75.0"
                 prefWidth="184.0" text="Food"/>
         <Button fx:id="transportationButton" layoutX="260.0" layoutY="280.0" mnemonicParsing="false" prefHeight="75.0"
@@ -310,7 +311,7 @@
     </ScrollPane>
     <Pane fx:id="settingsWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
     <Pane fx:id="logoutWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
-    <Label fx:id="welcomeText" layoutX="403.0" layoutY="140.0" prefHeight="132.0" prefWidth="467.0" text="Welcome to"/>
+    <Label fx:id="welcomeText" layoutX="383.0" layoutY="140.0" prefHeight="132.0" prefWidth="467.0" text="Welcome to"/>
     <stylesheets>
         <URL value="@../css/MainPage.css"/>
     </stylesheets>
