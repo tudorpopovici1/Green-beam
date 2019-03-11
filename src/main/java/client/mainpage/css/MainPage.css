@@ -33,7 +33,7 @@
     -fx-text-fill: white;
 }
 
-#irtazaText, #mariaText, #severText, #merelText {
+#irtazaText, #mariaText, #severText, #merelText, #tudorText {
     -fx-font-size: 20px;
     -fx-font-family: "Apple Chancery";
     -fx-text-fill: white;
