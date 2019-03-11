@@ -1,6 +1,6 @@
 package server.model;
 
-import javax.validation.constraints.NotNull;
+import com.sun.istack.internal.NotNull;
 import java.util.Objects;
 
 public class AuthenticateUser {

@@ -1,7 +1,8 @@
 package server.model;
 
+import org.junit.Assert;
 import org.junit.Test;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.Assert.assertThat;
 
 
 public class AchievementsTest {
@@ -12,34 +13,38 @@ public class AchievementsTest {
     public void getUserIdTest() {
         long userId = 1234L;
         achievement.setUserId(userId);
+        long setUserId = achievement.getUserId();
         long expected = 1234L;
-        assertThat(achievement.getUserId()).isEqualTo(expected);
+        Assert.assertEquals(setUserId, expected);
     }
 
     @Test
     public void setUserId() {
         long userId = 1234L;
         achievement.setUserId(userId);
+        long setUserId = achievement.getUserId();
         long expected = 1234L;
-        assertThat(achievement.getUserId()).isEqualTo(expected);
+        Assert.assertEquals(setUserId, expected);
     }
 
     @Test
     public void getAchievementId() {
-        long achievementId = 3456L;
-        achievement.setAchievementId(achievementId);
-        long expected = 3456L;
-        assertThat(achievement.getAchievementId()).isEqualTo(expected);
+        long userId = 1234L;
+        achievement.setUserId(userId);
+        long setAchivementId = achievement.getUserId();
+        long expected = 1234L;
+        Assert.assertEquals(setAchivementId, expected);
     }
 
 
 
     @Test
     public void setAchievementId() {
-        long achievementId = 3456L;
-        achievement.setAchievementId(achievementId);
-        long expected = 3456L;
-        assertThat(achievement.getAchievementId()).isEqualTo(expected);
+        long userId = 1234L;
+        achievement.setUserId(userId);
+        long setAchivementId = achievement.getUserId();
+        long expected = 1234L;
+        Assert.assertEquals(setAchivementId, expected);
     }
 
 }
