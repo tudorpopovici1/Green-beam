@@ -16,7 +16,7 @@ public class AchievementsTest {
         Assert.assertEquals(setUserId, expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setUserIdTest() {
         long userId = 1234L;
         achievement.setUserId(userId);
@@ -25,7 +25,7 @@ public class AchievementsTest {
         Assert.assertEquals(setUserId, expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getAchievementIdTest() {
         long achievementId = 1234L;
         achievement.setAchievementId(achievementId);

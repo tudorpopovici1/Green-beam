@@ -4,8 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 
-import static org.junit.jupiter.api.Assertions.*;
-
 public class FriendsTest {
     Friends friends= new Friends();
 
@@ -27,7 +25,7 @@ public class FriendsTest {
         Assert.assertEquals(setRelationshipType, expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getRelatedUserIdTest() {
         long relatedUserId = 1234L;
         friends.setRelatedUserId(relatedUserId);
@@ -36,7 +34,7 @@ public class FriendsTest {
         Assert.assertEquals(setRelatedUserId, expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setRelatingUserIdTest() {
         long relatingUserId = 1234L;
         friends.setRelatingUserId(relatingUserId);
@@ -45,7 +43,7 @@ public class FriendsTest {
         Assert.assertEquals(setRelatingUserId, expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setRelatedUserIdTest() {
         long relatedUserId = 1234L;
         friends.setRelatedUserId(relatedUserId);

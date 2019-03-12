@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.junit.Assert;
-
+import org.junit.Test;
 
 
 public class FriendsUserRespTest {
@@ -13,7 +13,7 @@ public class FriendsUserRespTest {
     FriendsUserResp friendsUserResp = new FriendsUserResp();
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getFirstNameTest() {
         String firstName = "abc";
         friendsUserResp.setFirstName(firstName);
@@ -21,7 +21,7 @@ public class FriendsUserRespTest {
         Assert.assertEquals(friendsUserResp.getFirstName(), expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setFirstNameTest() {
         String firstName = "abc";
         friendsUserResp.setFirstName(firstName);
@@ -30,7 +30,7 @@ public class FriendsUserRespTest {
         Assert.assertEquals(setFirstName, expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getLastNameTest() {
         String lastName = "abc";
         friendsUserResp.setLastName(lastName);
@@ -38,7 +38,7 @@ public class FriendsUserRespTest {
         Assert.assertEquals(friendsUserResp.getLastName(), expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setLastNameTest() {
         String lastName = "abc";
         friendsUserResp.setLastName(lastName);
@@ -47,7 +47,7 @@ public class FriendsUserRespTest {
         Assert.assertEquals(setLastName, expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getUsernameTest() {
         String username = "abc";
         friendsUserResp.setUsername(username);
@@ -55,7 +55,7 @@ public class FriendsUserRespTest {
         Assert.assertEquals(friendsUserResp.getUsername(), expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setUsernameTest() {
         String username = "abc";
         friendsUserResp.setUsername(username);
@@ -64,7 +64,7 @@ public class FriendsUserRespTest {
         Assert.assertEquals(setUsername, expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDateOfBirthTest() throws ParseException {
         String date = "31/12/1998";
         Date dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(date);
@@ -76,7 +76,7 @@ public class FriendsUserRespTest {
 
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setDateOfBirthTest() throws ParseException {
         String date = "31/12/1998";
         Date dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(date);
@@ -86,7 +86,7 @@ public class FriendsUserRespTest {
         Assert.assertEquals(friendsUserResp.getDateOfBirth(), dateOfBirthExpected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getCountryTest() {
         String county = "abc";
         friendsUserResp.setCountry(county);
@@ -94,7 +94,7 @@ public class FriendsUserRespTest {
         Assert.assertEquals(friendsUserResp.getCountry(), expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setCountryTest() {
         String county = "abc";
         friendsUserResp.setCountry(county);
@@ -103,7 +103,7 @@ public class FriendsUserRespTest {
         Assert.assertEquals(setCounty, expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getEmailTest() {
         String email = "abc";
         friendsUserResp.setEmail(email);
@@ -111,7 +111,7 @@ public class FriendsUserRespTest {
         Assert.assertEquals(friendsUserResp.getEmail(), expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setEmailTest() {
         String email = "abc";
         friendsUserResp.setEmail(email);
