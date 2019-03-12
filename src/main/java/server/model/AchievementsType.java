@@ -11,7 +11,7 @@ import javax.persistence.Table;
         name = "achievements_type",
         schema = "public"
 )
-class AchievementsType {
+public class AchievementsType {
 
     @Id
     @GeneratedValue
@@ -27,6 +27,7 @@ class AchievementsType {
      * @param achievementId New value of achievementId.
      */
     public void setAchievementId(Long achievementId) {
+
         this.achievementId = achievementId;
     }
 

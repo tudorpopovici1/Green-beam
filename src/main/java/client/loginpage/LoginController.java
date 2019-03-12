@@ -153,7 +153,6 @@ public class LoginController {
                 lblStatus.setText("You have successfuly logged in.");
                 System.out.println(response); // THIS IS THE TOKEN OF THE USER.
                 UserToken.setUserToken(response);
-
             }
         } else if (txtUsername.getText().equals("") || txtPassword.getText().equals("")) {
             emptyLoginBoxPopup();

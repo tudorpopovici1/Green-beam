@@ -1,8 +1,7 @@
 package server.model;
 
+import org.junit.Assert;
 import org.junit.Test;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-
 
 public class AchievementsTest {
 
@@ -12,34 +11,37 @@ public class AchievementsTest {
     public void getUserIdTest() {
         long userId = 1234L;
         achievement.setUserId(userId);
+        long setUserId = achievement.getUserId();
         long expected = 1234L;
-        assertThat(achievement.getUserId()).isEqualTo(expected);
+        Assert.assertEquals(setUserId, expected);
     }
 
-    @Test
-    public void setUserId() {
+    @org.junit.jupiter.api.Test
+    public void setUserIdTest() {
         long userId = 1234L;
         achievement.setUserId(userId);
+        long setUserId = achievement.getUserId();
         long expected = 1234L;
-        assertThat(achievement.getUserId()).isEqualTo(expected);
+        Assert.assertEquals(setUserId, expected);
     }
 
-    @Test
-    public void getAchievementId() {
-        long achievementId = 3456L;
+    @org.junit.jupiter.api.Test
+    public void getAchievementIdTest() {
+        long achievementId = 1234L;
         achievement.setAchievementId(achievementId);
-        long expected = 3456L;
-        assertThat(achievement.getAchievementId()).isEqualTo(expected);
+        long setAchievementId = achievement.getAchievementId();
+        long expected = 1234L;
+        Assert.assertEquals(setAchievementId, expected);
     }
 
 
-
     @Test
-    public void setAchievementId() {
-        long achievementId = 3456L;
+    public void setAchievementIdTest() {
+        long achievementId = 1234L;
         achievement.setAchievementId(achievementId);
-        long expected = 3456L;
-        assertThat(achievement.getAchievementId()).isEqualTo(expected);
+        long setAchievementId = achievement.getAchievementId();
+        long expected = 1234L;
+        Assert.assertEquals(setAchievementId, expected);
     }
 
 }

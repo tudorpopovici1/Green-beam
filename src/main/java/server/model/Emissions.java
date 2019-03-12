@@ -11,7 +11,7 @@ import javax.persistence.Table;
         name = "emissions",
         schema = "public"
 )
-class Emissions {
+public class Emissions {
 
     @Id
     @GeneratedValue
