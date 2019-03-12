@@ -26,10 +26,11 @@ public class TemporaryMainLauncher extends Application {
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
             primaryStage.show();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
 
 }
