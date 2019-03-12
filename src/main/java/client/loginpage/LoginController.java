@@ -1,6 +1,7 @@
 package client.loginpage;
 
 import client.Url;
+import client.UserToken;
 import client.services.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -147,9 +148,11 @@ public class LoginController {
             lblStatus.setPrefWidth(403);
             if (response.equals("Incorrect username or password")) {
                 lblStatus.setText(response);
+
             } else {
                 lblStatus.setText("You have successfuly logged in.");
                 System.out.println(response); // THIS IS THE TOKEN OF THE USER.
+                UserToken.setUserToken(response);
             }
         } else if (txtUsername.getText().equals("") || txtPassword.getText().equals("")) {
             emptyLoginBoxPopup();
@@ -446,5 +449,7 @@ public class LoginController {
         Matcher matcher = VALIDEMAIL.matcher(emailStr);
         return matcher.find();
     }
+
+
 
 }

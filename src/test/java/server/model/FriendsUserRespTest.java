@@ -55,7 +55,7 @@ public class FriendsUserRespTest {
         Assert.assertEquals(friendsUserResp.getUsername(), expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setUsernameTest() {
         String username = "abc";
         friendsUserResp.setUsername(username);
@@ -94,7 +94,7 @@ public class FriendsUserRespTest {
         Assert.assertEquals(friendsUserResp.getCountry(), expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setCountryTest() {
         String county = "abc";
         friendsUserResp.setCountry(county);

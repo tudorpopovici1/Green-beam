@@ -16,7 +16,6 @@ public class AchievementsTypeTest {
         long expected = 1234L;
         Assert.assertEquals(setAchievementId, expected);
     }
-
     @Test
     public void setAchievementIdTest() {
         long achievementId = 1234L;
@@ -25,15 +24,14 @@ public class AchievementsTypeTest {
         long expected = 1234L;
         Assert.assertEquals(setAchievementId, expected);
     }
-
     @Test
     public void getAchievementNameTest(){
         String achievementName="abc";
         achievementType.setAchievementName(achievementName);
         String expected = "abc";
         Assert.assertEquals(achievementType.getAchievementName(), expected);
-
     }
+
     @Test
     public void setAchievementNameTest(){
         String achievementName="abc";
@@ -41,7 +39,6 @@ public class AchievementsTypeTest {
         String setAchievementName = achievementType.getAchievementName();
         String expected = "abc";
         Assert.assertEquals(setAchievementName, expected);
-
     }
 
 }

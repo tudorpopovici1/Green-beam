@@ -7,11 +7,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class UsersTest {
 
 
     Users user = new Users();
-
+    
 
     @Test
     public void setFirstNameTest() {
@@ -19,7 +21,7 @@ public class UsersTest {
         user.setFirstName(firstName);
         String setFirstName = user.getFirstName();
         String expected = "abc";
-        Assert.assertEquals(user.getFirstName(), expected);
+        Assert.assertEquals(setFirstName, expected);
     }
 
     @Test
