@@ -102,7 +102,6 @@ class Application {
                 .queryParam("input_footprint_housing_squarefeet", 45)
                 .queryParam("input_footprint_housing_hdd", 1278)
                 .queryParam("input_footprint_housing_cdd", 4506)
-
                 .queryParam("input_footprint_shopping_food_meattype", 1)
                 .queryParam("input_footprint_shopping_food_meat_beefpork", 0)
                 .queryParam("input_footprint_shopping_food_meat_poultry", 0)
