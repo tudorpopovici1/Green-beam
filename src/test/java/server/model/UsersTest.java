@@ -9,13 +9,13 @@ import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class UsersTest {
+public class UsersTest {
 
 
     Users user = new Users();
     
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setFirstNameTest() {
         String firstName = "abc";
         user.setFirstName(firstName);
@@ -24,7 +24,7 @@ class UsersTest {
         Assert.assertEquals(setFirstName, expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setIdTest() {
         long id = 1234L;
         user.setId(id);
@@ -33,7 +33,7 @@ class UsersTest {
         Assert.assertEquals(setId, expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getPasswordTest() {
         String password = "abc";
         user.setPassword(password);
@@ -41,7 +41,7 @@ class UsersTest {
         Assert.assertEquals(user.getPassword(), expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getRoleTest() {
         String role = "abc";
         user.setRole(role);
@@ -49,7 +49,7 @@ class UsersTest {
         Assert.assertEquals(user.getRole(), expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setUsernameTest() {
         String username = "abc";
         user.setUsername(username);
@@ -58,7 +58,7 @@ class UsersTest {
         Assert.assertEquals(setUsername, expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setCountryTest() {
         String country = "abc";
         user.setCountry(country);
@@ -67,7 +67,7 @@ class UsersTest {
         Assert.assertEquals(setCountry, expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDateOfBirthTest() throws ParseException {
         String date = "31/12/1998";
         Date dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(date);
@@ -77,7 +77,7 @@ class UsersTest {
         Assert.assertEquals(user.getDateOfBirth(), dateOfBirthExpected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getLastNameTest() {
         String lastName = "abc";
         user.setLastName(lastName);
@@ -85,7 +85,7 @@ class UsersTest {
         Assert.assertEquals(user.getLastName(), expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setEmailTest() {
         String email = "abc";
         user.setEmail(email);
@@ -94,7 +94,7 @@ class UsersTest {
         Assert.assertEquals(setEmail, expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getUsernameTest() {
         String username = "abc";
         user.setUsername(username);
@@ -102,7 +102,7 @@ class UsersTest {
         Assert.assertEquals(user.getUsername(), expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getCountryTest() {
         String country = "abc";
         user.setCountry(country);
@@ -110,7 +110,7 @@ class UsersTest {
         Assert.assertEquals(user.getCountry(), expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setRoleTest() {
         String role = "abc";
         user.setRole(role);
@@ -119,7 +119,7 @@ class UsersTest {
         Assert.assertEquals(setRole, expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setDateOfBirthTest() throws ParseException {
         String date = "31/12/1998";
         Date dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(date);
@@ -130,7 +130,7 @@ class UsersTest {
         Assert.assertEquals(setDateOfBirth, dateOfBirthExpected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getIdTest() {
         long id = 1234L;
         user.setId(id);
@@ -139,7 +139,7 @@ class UsersTest {
         Assert.assertEquals(setId, expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setLastNameTest() {
         String lastName = "abc";
         user.setLastName(lastName);
@@ -148,7 +148,7 @@ class UsersTest {
         Assert.assertEquals(setLastName, expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setPasswordTest() {
         String password = "abc";
         user.setPassword(password);
@@ -157,7 +157,7 @@ class UsersTest {
         Assert.assertEquals(setPassword, expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getEmailTest() {
         String email = "abc";
         user.setEmail(email);
@@ -165,7 +165,7 @@ class UsersTest {
         Assert.assertEquals(user.getEmail(), expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getFirstName() {
         String firstName = "abc";
         user.setFirstName(firstName);

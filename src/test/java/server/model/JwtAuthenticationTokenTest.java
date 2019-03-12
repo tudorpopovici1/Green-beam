@@ -1,7 +1,7 @@
 package server.model;
 
 import org.junit.Assert;
-
+import org.junit.Test;
 
 
 public class JwtAuthenticationTokenTest {
@@ -10,7 +10,7 @@ public class JwtAuthenticationTokenTest {
     JwtAuthenticationToken jwtAuthenticationToken = new JwtAuthenticationToken("");
 
     
-    @org.junit.jupiter.api.Test
+    @Test
     public void getTokenTest() {
         String token = "abc";
         jwtAuthenticationToken.setToken(token);
@@ -18,7 +18,7 @@ public class JwtAuthenticationTokenTest {
         Assert.assertEquals(jwtAuthenticationToken.getToken(), expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setTokenTest() {
         String token = "abc";
         jwtAuthenticationToken.setToken(token);
