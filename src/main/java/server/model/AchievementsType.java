@@ -11,7 +11,7 @@ import javax.persistence.Table;
         name = "achievements_type",
         schema = "public"
 )
-class AchievementsType {
+public class AchievementsType {
 
     @Id
     @GeneratedValue

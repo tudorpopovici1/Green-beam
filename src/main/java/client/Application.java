@@ -1,18 +1,18 @@
 package client;
 
+import client.services.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
+import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import server.model.ApiRequestResponse;
 import server.model.EmissionReductions;
+import server.model.FriendsUserResp;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.List;
 import javax.xml.bind.JAXB;
 
 //@SpringBootApplication
@@ -29,7 +29,7 @@ class Application {
 
     public static void main(final String[] args) {
 
-        final String url = "https://apis.berkeley.edu/coolclimate/footprint";
+       final String url = "https://apis.berkeley.edu/coolclimate/footprint";
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set("Accept", MediaType.APPLICATION_JSON_VALUE);
         httpHeaders.set("app_id", "17371d04");
@@ -38,15 +38,14 @@ class Application {
         HttpEntity<?> entity = new HttpEntity<>(httpHeaders);
 
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(url)
-                .queryParam("input_location_mode", 5)
-                .queryParam("input_location", "US")
-                .queryParam("input_location_country", "US")
+                .queryParam("input_location_mode", 4)
+                .queryParam("input_location", "MI")
                 .queryParam("input_income", 4)
                 .queryParam("input_size", 2)
                 .queryParam("input_footprint_household_adults", 2)
                 .queryParam("input_footprint_household_children", 0)
                 .queryParam("input_changed", 1)
-                .queryParam("internal_state_abbreviation", "US")
+                .queryParam("internal_state_abbreviation", "MI")
 
                 .queryParam("input_footprint_transportation_num_vehicles", 1)
                 .queryParam("input_footprint_transportation_mpg1", 30)
@@ -103,7 +102,6 @@ class Application {
                 .queryParam("input_footprint_housing_squarefeet", 45)
                 .queryParam("input_footprint_housing_hdd", 1278)
                 .queryParam("input_footprint_housing_cdd", 4506)
-
                 .queryParam("input_footprint_shopping_food_meattype", 1)
                 .queryParam("input_footprint_shopping_food_meat_beefpork", 0)
                 .queryParam("input_footprint_shopping_food_meat_poultry", 0)
@@ -147,5 +145,11 @@ class Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+      /* RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<FriendsUserResp[]> responseEntity =
+                restTemplate.getForEntity( "http://localhost:8080/rest/search/1/1", FriendsUserResp[].class);
+        for(FriendsUserResp u : responseEntity.getBody()) {
+            System.out.println(u);
+        }*/
     }
 }
