@@ -4,9 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class AuthenticateUserTest {
+public class AuthenticateUserTest {
 
     AuthenticateUser authenticateUser= new AuthenticateUser();
 
@@ -18,6 +16,7 @@ class AuthenticateUserTest {
         String expected = "abc";
         Assert.assertEquals(setUsername, expected);
     }
+
     @Test
     public void setUsernameTest() {
         String username = "abc";
@@ -26,6 +25,7 @@ class AuthenticateUserTest {
         String expected = "abc";
         Assert.assertEquals(setUsername, expected);
     }
+
     @Test
     public void getPasswordTest() {
         String username = "pass";
@@ -41,6 +41,7 @@ class AuthenticateUserTest {
         String notexpected = "notpass";
         Assert.assertNotEquals(authenticateUser.getPassword(), notexpected);
     }
+
     @Test
     public void setPasswordTest() {
         String username = "pass";
@@ -49,6 +50,7 @@ class AuthenticateUserTest {
         String expected = "pass";
         Assert.assertEquals(setPassword, expected);
     }
+
     @Test
     public void setTokenTest() {
         String username = "pass";

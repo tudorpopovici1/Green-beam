@@ -1,16 +1,16 @@
 package server.model;
 
 import org.junit.Assert;
+import org.junit.Test;
 
 
-
-class JwtUserTest {
+public class JwtUserTest {
 
 
     JwtUser jwtUser = new JwtUser();
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getUserNameTest() {
         String userName = "abc";
         jwtUser.setUserName(userName);
@@ -18,7 +18,7 @@ class JwtUserTest {
         Assert.assertEquals(jwtUser.getUserName(), expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setUserNameTest() {
         String userName = "abc";
         jwtUser.setUserName(userName);
@@ -27,7 +27,7 @@ class JwtUserTest {
         Assert.assertEquals(setUserName, expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getIdTest() {
         long id = 1234L;
         jwtUser.setId(id);
@@ -35,7 +35,7 @@ class JwtUserTest {
         Assert.assertEquals(jwtUser.getId(), expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setIdTest() {
         long id = 1234L;
         jwtUser.setId(id);
@@ -44,7 +44,7 @@ class JwtUserTest {
         Assert.assertEquals(setId, expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getRoleTest() {
         String role = "abc";
         jwtUser.setRole(role);
@@ -52,7 +52,7 @@ class JwtUserTest {
         Assert.assertEquals(jwtUser.getRole(), expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setRoleTest() {
         String role = "abc";
         jwtUser.setRole(role);

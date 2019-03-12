@@ -1,5 +1,5 @@
 package server.model;
 
-class EmissionReductionsTest {
+public class EmissionReductionsTest {
 
 }

@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 
-class AchievementsTypeTest {
+public class AchievementsTypeTest {
 
     AchievementsType achievementType = new AchievementsType();
 
@@ -16,7 +16,8 @@ class AchievementsTypeTest {
         long expected = 1234L;
         Assert.assertEquals(setAchievementId, expected);
     }
-    @org.junit.jupiter.api.Test
+
+    @Test
     public void setAchievementIdTest() {
         long achievementId = 1234L;
         achievementType.setAchievementId(achievementId);
@@ -24,6 +25,7 @@ class AchievementsTypeTest {
         long expected = 1234L;
         Assert.assertEquals(setAchievementId, expected);
     }
+
     @Test
     public void getAchievementNameTest(){
         String achievementName="abc";
