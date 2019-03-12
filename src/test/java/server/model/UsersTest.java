@@ -1,6 +1,7 @@
 package server.model;
 
 import org.junit.Assert;
+import org.junit.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,7 +13,7 @@ class UsersTest {
 
 
     Users user = new Users();
-
+    
 
     @org.junit.jupiter.api.Test
     public void setFirstNameTest() {
@@ -128,7 +129,48 @@ class UsersTest {
         Date dateOfBirthExpected = new SimpleDateFormat("dd/MM/yyyy").parse(expected);
         Assert.assertEquals(setDateOfBirth, dateOfBirthExpected);
     }
-    
 
+    @org.junit.jupiter.api.Test
+    public void getIdTest() {
+        long id = 1234L;
+        user.setId(id);
+        long setId = user.getId();
+        long expected = 1234L;
+        Assert.assertEquals(setId, expected);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void setLastNameTest() {
+        String lastName = "abc";
+        user.setLastName(lastName);
+        String setLastName = user.getLastName();
+        String expected = "abc";
+        Assert.assertEquals(setLastName, expected);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void setPasswordTest() {
+        String password = "abc";
+        user.setPassword(password);
+        String setPassword = user.getPassword();
+        String expected = "abc";
+        Assert.assertEquals(setPassword, expected);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void getEmailTest() {
+        String email = "abc";
+        user.setEmail(email);
+        String expected = "abc";
+        Assert.assertEquals(user.getEmail(), expected);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void getFirstName() {
+        String firstName = "abc";
+        user.setFirstName(firstName);
+        String expected = "abc";
+        Assert.assertEquals(user.getFirstName(), expected);
+    }
 
 }
