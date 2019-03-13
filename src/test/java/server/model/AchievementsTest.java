@@ -7,6 +7,7 @@ public class AchievementsTest {
 
     Achievements achievement = new Achievements();
 
+
     @Test
     public void getUserIdTest() {
         long userId = 1234L;
