@@ -34,8 +34,6 @@ public class MainController {
     @FXML
     private Pane settingsWindow;
 
-    @FXML
-    private Pane logoutWindow;
 
 
     /**
