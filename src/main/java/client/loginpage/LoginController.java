@@ -100,6 +100,9 @@ public class LoginController {
      * Login.fxml file.
      */
     @FXML
+    private Button loginButton;
+
+    @FXML
     private Button nextButton;
 
     @FXML
@@ -145,7 +148,7 @@ public class LoginController {
      * @param event - Whenever a user clicks the "login" button, this method starts to run.
      * */
 
-    public void login(ActionEvent event) throws IOException {
+    public void login(ActionEvent event) throws Exception {
         if (!txtUsername.getText().equals("")
                 && !txtPassword.getText().equals("")) {
             AuthenticateUser authenticateUser =
@@ -168,6 +171,7 @@ public class LoginController {
                 mainPageStage.setScene(scene);
                 mainPageStage.setResizable(false);
                 mainPageStage.show();
+                loginButton.getScene().getWindow().hide();
             }
         } else if (txtUsername.getText().equals("") || txtPassword.getText().equals("")) {
             emptyLoginBoxPopup();
