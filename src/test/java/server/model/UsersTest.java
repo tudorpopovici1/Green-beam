@@ -166,11 +166,17 @@ public class UsersTest {
     }
 
     @Test
-    public void getFirstName() {
+    public void getFirstNameTest() {
         String firstName = "abc";
         user.setFirstName(firstName);
         String expected = "abc";
         Assert.assertEquals(user.getFirstName(), expected);
     }
 
+    @Test
+    public void toStringTest() {
+        JwtUser jwtUser = new JwtUser("abc", 1234L, "xyz");
+        String expected = "JwtUser{userName='abc', id=1234, role='xyz'}";
+        Assert.assertEquals(jwtUser.toString(), expected);
+    }
 }
