@@ -1,6 +1,7 @@
 package client.loginpage;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,7 +15,7 @@ import java.net.URL;
  * This class launches the application.
  */
 
-public class MainApp extends Application {
+public class GreenBeamApplication extends Application {
 
     /**
      * The main() method allows you to run JAR files that were
@@ -41,5 +42,12 @@ public class MainApp extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Closes the application completely.
+     */
+    public void closeApplication() {
+        Platform.exit();
     }
 }

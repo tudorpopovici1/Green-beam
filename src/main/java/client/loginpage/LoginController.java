@@ -1,9 +1,13 @@
 package client.loginpage;
 
 import client.Url;
+import client.UserToken;
 import client.services.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -15,10 +19,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 import org.springframework.web.client.RestTemplate;
 import server.model.AuthenticateUser;
 import server.model.Users;
 
+import java.io.File;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -92,6 +99,9 @@ public class LoginController {
      * Login.fxml file.
      */
     @FXML
+    private Button loginButton;
+
+    @FXML
     private Button nextButton;
 
     @FXML
@@ -137,7 +147,7 @@ public class LoginController {
      * @param event - Whenever a user clicks the "login" button, this method starts to run.
      * */
 
-    public void login(ActionEvent event) {
+    public void login(ActionEvent event) throws Exception {
         if (!txtUsername.getText().equals("")
                 && !txtPassword.getText().equals("")) {
             AuthenticateUser authenticateUser =
@@ -147,9 +157,20 @@ public class LoginController {
             lblStatus.setPrefWidth(403);
             if (response.equals("Incorrect username or password")) {
                 lblStatus.setText(response);
+
             } else {
                 lblStatus.setText("You have successfuly logged in.");
                 System.out.println(response); // THIS IS THE TOKEN OF THE USER.
+                UserToken.setUserToken(response);
+                Stage mainPageStage = new Stage();
+                URL url = new File(
+                        "src/main/java/client/mainpage/fxml/Main.fxml").toURI().toURL();
+                Parent root = FXMLLoader.load(url);
+                Scene scene = new Scene(root, 900, 700);
+                mainPageStage.setScene(scene);
+                mainPageStage.setResizable(false);
+                mainPageStage.show();
+                loginButton.getScene().getWindow().hide();
             }
         } else if (txtUsername.getText().equals("") || txtPassword.getText().equals("")) {
             emptyLoginBoxPopup();
@@ -446,5 +467,7 @@ public class LoginController {
         Matcher matcher = VALIDEMAIL.matcher(emailStr);
         return matcher.find();
     }
+
+
 
 }

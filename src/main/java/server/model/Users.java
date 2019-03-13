@@ -111,6 +111,7 @@ public class Users {
                 + ", email='" + email + '\''
                 + ", dateOfBirth='" + dateOfBirth
                 + '\''
+                + ", role='" + role + '\''
                 + '}';
     }
 

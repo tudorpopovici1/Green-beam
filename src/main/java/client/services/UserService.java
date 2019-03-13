@@ -116,7 +116,6 @@ public class UserService {
                     restTemplate.postForObject(url, authenticateUser, AuthenticateUser.class);
             if (authenticateUser1 != null) {
                 token = authenticateUser1.getToken();
-                //System.out.println("The token is + " + authenticateUser1.getToken());
             }
         } catch (HttpStatusCodeException e) {
             if (e.getStatusCode() == HttpStatus.FORBIDDEN) {
