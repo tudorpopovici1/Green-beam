@@ -25,7 +25,6 @@ import server.model.AuthenticateUser;
 import server.model.Users;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;

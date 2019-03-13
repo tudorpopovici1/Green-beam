@@ -34,14 +34,7 @@ public class MainController {
     @FXML
     private Pane settingsWindow;
 
-    @FXML
-    private Pane logoutWindow;
 
-    private EmissionController emissionController = new EmissionController();
-    private ProgressController progressController = new ProgressController();
-    private ProfileController profileController = new ProfileController();
-    private SettingsController settingsController = new SettingsController();
-    private LogoutController logoutController = new LogoutController();
 
     /**
      * Renders the main page.
@@ -120,10 +113,8 @@ public class MainController {
      *              this method, it starts to execute.
      */
     public void logoutWindow(ActionEvent event) {
-        logoutWindow.setVisible(true);
-        logoutWindow.toFront();
-        animatePane(logoutWindow);
-        logoutWindow.setStyle("-fx-background-color: red");
+        LogoutController logoutController = new LogoutController();
+        logoutController.logout();
     }
 
     /**
