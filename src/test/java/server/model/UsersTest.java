@@ -174,9 +174,12 @@ public class UsersTest {
     }
 
     @Test
-    public void toStringTest() {
-        JwtUser jwtUser = new JwtUser("abc", 1234L, "xyz");
-        String expected = "JwtUser{userName='abc', id=1234, role='xyz'}";
-        Assert.assertEquals(jwtUser.toString(), expected);
+    public void toStringTest() throws ParseException {
+        String date = "12/34/5678";
+        Date dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(date);
+        Users user = new Users(1234L, "abc", "def", "ghi", "jkl", "mno", "pqr", dateOfBirth, "vwx");
+        String expected = "Users{id=1234, username='abc', password='def', firstName='ghi', lastName='jkl', country='mno', email='pqr', dateOfBirth='Sat Oct 12 00:00:00 CEST 5680', role='vwx'}";
+        Assert.assertEquals(user.toString(), expected);
     }
+
 }

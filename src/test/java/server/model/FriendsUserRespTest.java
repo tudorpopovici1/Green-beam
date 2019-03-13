@@ -120,5 +120,13 @@ public class FriendsUserRespTest {
         Assert.assertEquals(setEmail, expected);
     }
 
+    @Test
+    public void toStringTest() throws ParseException {
+        String date = "12/34/5678";
+        Date dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(date);
+        FriendsUserResp friendsUserResp = new FriendsUserResp("abc", dateOfBirth, "def", "ghi", "jkl", "mno");
+        String expected = "FriendsUserResp{username='abc', dateOfBirth=Sat Oct 12 00:00:00 CEST 5680, firstName='def', lastName='ghi', country='jkl', email='mno'}";
+        Assert.assertEquals(friendsUserResp.toString(), expected);
+    }
 
 }
