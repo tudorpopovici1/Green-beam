@@ -61,4 +61,11 @@ public class JwtUserTest {
         Assert.assertEquals(setRole, expected);
     }
 
+    @Test
+    public void toStringTest() {
+        JwtUser jwtUser = new JwtUser("abc", 1234L, "xyz");
+        String expected = "JwtUser{userName='abc', id=1234, role='xyz'}";
+        Assert.assertEquals(jwtUser.toString(), expected);
+    }
+
 }

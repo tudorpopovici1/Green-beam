@@ -90,6 +90,8 @@ public class FriendsUserResp {
                 + ", dateOfBirth=" + dateOfBirth
                 + ", firstName='" + firstName + '\''
                 + ", lastName='" + lastName + '\''
+                + ", country='" + country + '\''
+                + ", email='" + email + '\''
                 + '}';
     }
 }
