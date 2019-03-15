@@ -11,9 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class UsersTest {
 
-
     Users user = new Users();
-    
 
     @Test
     public void setFirstNameTest() {

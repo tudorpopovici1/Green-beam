@@ -7,9 +7,8 @@ import org.junit.Test;
 public class JwtAuthenticationTokenTest {
 
 
-    JwtAuthenticationToken jwtAuthenticationToken = new JwtAuthenticationToken("");
+    JwtAuthenticationToken jwtAuthenticationToken = new JwtAuthenticationToken(null);
 
-    
     @Test
     public void getTokenTest() {
         String token = "abc";
@@ -26,6 +25,6 @@ public class JwtAuthenticationTokenTest {
         String expected = "abc";
         Assert.assertEquals(setToken, expected);
     }
-
-
 }
+
+
