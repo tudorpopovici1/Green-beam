@@ -7,7 +7,7 @@ import org.junit.Test;
 public class JwtAuthenticationTokenTest {
 
 
-    JwtAuthenticationToken jwtAuthenticationToken = new JwtAuthenticationToken("");
+    JwtAuthenticationToken jwtAuthenticationToken = new JwtAuthenticationToken(null);
 
     
     @Test
