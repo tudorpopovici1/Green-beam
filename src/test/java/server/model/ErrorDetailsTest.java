@@ -5,7 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 
-class ErrorDetailsTest {
+public class ErrorDetailsTest {
     ErrorDetails errorDetail=new ErrorDetails();
     @Test
     public void getStatusTest() {

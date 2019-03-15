@@ -5,23 +5,25 @@ import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class EmissionReductionsTest {
+public class EmissionReductionsTest {
     EmissionReductions emissionReduction=new EmissionReductions();
+
     @Test
     public void getLocalProduceEmissionTest() {
         float emission1 = 1234;
         emissionReduction.setLocalProduceEmission(emission1);
         float setLocalProduceEmission = emissionReduction.getLocalProduceEmission();
         float expected = 1234;
-        Assert.assertEquals(setLocalProduceEmission, expected);
+        Assert.assertEquals(setLocalProduceEmission, expected,  0.0001);
     }
+
     @Test
     public void setLocalProduceEmissionTest() {
         float emission1 = 1234;
         emissionReduction.setLocalProduceEmission(emission1);
         float setLocalProduceEmission = emissionReduction.getLocalProduceEmission();
         float expected = 1234;
-        Assert.assertEquals(setLocalProduceEmission, expected);
+        Assert.assertEquals(setLocalProduceEmission, expected,  0.0001);
     }
 
     @Test
@@ -30,7 +32,7 @@ class EmissionReductionsTest {
         emissionReduction.setPublicTransportationEmission(emission1);
         float setPublicTransportationEmission = emissionReduction.getPublicTransportationEmission();
         float expected = 1234;
-        Assert.assertEquals(setPublicTransportationEmission, expected);
+        Assert.assertEquals(setPublicTransportationEmission, expected,  0.0001);
     }
     @Test
     public void getPublicTransportationEmissionTest() {
@@ -38,7 +40,7 @@ class EmissionReductionsTest {
         emissionReduction.setPublicTransportationEmission(emission1);
         float setPublicTransportationEmission = emissionReduction.getPublicTransportationEmission();
         float expected = 1234;
-        Assert.assertEquals(setPublicTransportationEmission, expected);
+        Assert.assertEquals(setPublicTransportationEmission, expected,  0.0001);
     }
     @Test
     public void setVegetarianMealEmissionTest() {
@@ -46,7 +48,7 @@ class EmissionReductionsTest {
         emissionReduction.setVegetarianMealEmission(emission1);
         float setVegetarianMealEmission = emissionReduction.getVegetarianMealEmission();
         float expected = 1234;
-        Assert.assertEquals(setVegetarianMealEmission, expected);
+        Assert.assertEquals(setVegetarianMealEmission, expected,  0.0001);
     }
     @Test
     public void getVegetarianMealEmissionTest() {
@@ -54,7 +56,7 @@ class EmissionReductionsTest {
         emissionReduction.setVegetarianMealEmission(emission1);
         float setVegetarianMealEmission = emissionReduction.getVegetarianMealEmission();
         float expected = 1234;
-        Assert.assertEquals(setVegetarianMealEmission, expected);
+        Assert.assertEquals(setVegetarianMealEmission, expected,  0.0001);
     }
     @Test
     public void getLoweringTemperatureEmissionTest() {
@@ -62,7 +64,7 @@ class EmissionReductionsTest {
         emissionReduction.setLoweringTemperatureEmission(emission1);
         float setLoweringTemperatureEmission= emissionReduction.getLoweringTemperatureEmission();
         float expected = 1234;
-        Assert.assertEquals(setLoweringTemperatureEmission, expected);
+        Assert.assertEquals(setLoweringTemperatureEmission, expected,  0.0001);
     }
 
     @Test
@@ -71,7 +73,7 @@ class EmissionReductionsTest {
         emissionReduction.setLoweringTemperatureEmission(emission1);
         float setLoweringTemperatureEmission= emissionReduction.getLoweringTemperatureEmission();
         float expected = 1234;
-        Assert.assertEquals(setLoweringTemperatureEmission, expected);
+        Assert.assertEquals(setLoweringTemperatureEmission, expected,  0.0001);
     }
     @Test
     public void setRideBikeEmissionTest() {
@@ -79,7 +81,7 @@ class EmissionReductionsTest {
         emissionReduction.setRideBikeEmission(emission1);
         float setRideBikeEmission= emissionReduction.getRideBikeEmission();
         float expected = 1234;
-        Assert.assertEquals(setRideBikeEmission, expected);
+        Assert.assertEquals(setRideBikeEmission, expected,  0.0001);
     }
     @Test
     public void getRideBikeEmissionTest() {
@@ -87,7 +89,7 @@ class EmissionReductionsTest {
         emissionReduction.setRideBikeEmission(emission1);
         float setRideBikeEmission= emissionReduction.getRideBikeEmission();
         float expected = 1234;
-        Assert.assertEquals(setRideBikeEmission, expected);
+        Assert.assertEquals(setRideBikeEmission, expected,  0.0001);
     }
 
 }
