@@ -1,12 +1,10 @@
 package server.model;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.Assert;
 import org.junit.Test;
 
 
-class EmissionTypeTest {
+public class EmissionTypeTest {
     EmissionType emission=new EmissionType();
     @Test
     public void setEmissionIdTest() {

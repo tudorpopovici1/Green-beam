@@ -1,11 +1,10 @@
 package server.model;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.Assert;
 import org.junit.Test;
 
 
-class ErrorDetailsTest {
+public class ErrorDetailsTest {
     ErrorDetails errorDetail=new ErrorDetails();
     @Test
     public void getStatusTest() {
