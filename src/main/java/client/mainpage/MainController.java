@@ -1,12 +1,30 @@
 package client.mainpage;
 
+
+
+import client.Url;
+import client.UserToken;
+import client.services.ApiService;
+import client.services.UserService;
 import javafx.animation.FadeTransition;
 import javafx.animation.SequentialTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
+import javafx.scene.image.ImageView;
+import javafx.scene.control.TextField;
+import org.springframework.web.client.RestTemplate;
+import server.model.EmissionsClient;
+import server.model.Meal;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 
 /**
