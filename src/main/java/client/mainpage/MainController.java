@@ -113,6 +113,7 @@ public class MainController {
     public void emissionsPage(ActionEvent event) {
         emissionsWindow.setVisible(true);
         emissionsWindow.toFront();
+        emissionsPageShow();
         animatePane(emissionsWindow);
     }
 
@@ -126,6 +127,74 @@ public class MainController {
         progressWindow.toFront();
         animatePane(progressWindow);
         progressWindow.setStyle("-fx-background-color: #000000");
+    }
+    public void emissionsPageShow() {
+        foodIcon.setVisible(true);
+        mealButton.setVisible(true);
+        transportationIcon.setVisible(true);
+        transportationButton.setVisible(true);
+        tempIcon.setVisible(true);
+        temperatureButton.setVisible(true);
+        renewableEnergyButton.setVisible(true);
+        energyIcon.setVisible(true);
+        customButton.setVisible(true);
+        customIcon.setVisible(true);
+        vegetarianMealButton.setVisible(false);
+        localProduceText.setVisible(false);
+        dairyText.setVisible(false);
+        cerealText.setVisible(false);
+        fruitsAndVegetablesText.setVisible(false);
+        otherVegetarianMealText.setVisible(false);
+        addEmissionsText.setText("Choose Your Emission Type");
+        addButton.setVisible(false);
+    }
+
+    public void emissionsPageHide() {
+        foodIcon.setVisible(false);
+        mealButton.setVisible(false);
+        transportationIcon.setVisible(false);
+        transportationButton.setVisible(false);
+        tempIcon.setVisible(false);
+        temperatureButton.setVisible(false);
+        renewableEnergyButton.setVisible(false);
+        energyIcon.setVisible(false);
+        customButton.setVisible(false);
+        customIcon.setVisible(false);
+    }
+
+    public void mealButtonOnClick(ActionEvent event) {
+        emissionsPageHide();
+        vegetarianMealButton.setVisible(true);
+        localProduceText.setVisible(true);
+        addEmissionsText.setText("    Choose Your Meal Type");
+    }
+
+    public void vegetarianMealButtonOnClick(ActionEvent event) {
+        vegetarianMealButton.setVisible(false);
+        localProduceText.setVisible(false);
+        dairyText.setVisible(true);
+        cerealText.setVisible(true);
+        fruitsAndVegetablesText.setVisible(true);
+        otherVegetarianMealText.setVisible(true);
+        addButton.setVisible(true);
+    }
+
+    public void addEmissionsUser() {
+        final String token = UserToken.getUserToken();
+
+        Meal meal = new Meal(Float.parseFloat(dairyText.getText()),
+                Float.parseFloat(otherVegetarianMealText.getText()),
+                Float.parseFloat(fruitsAndVegetablesText.getText()),
+                Float.parseFloat(cerealText.getText()));
+
+        float carbonEmission = apiService.getVegetarianMealEmissions(meal);
+
+        DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+        Date today = Calendar.getInstance().getTime();
+        EmissionsClient emissionsClient = new EmissionsClient("1", carbonEmission, today);
+        String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                69L, emissionsClient, token);
+        System.out.println(response);
     }
 
     /**
