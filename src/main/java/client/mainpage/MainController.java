@@ -23,6 +23,60 @@ public class MainController {
     private Pane emissionsWindow;
 
     @FXML
+    private Label addEmissionsText;
+
+    @FXML
+    private ImageView foodIcon;
+
+    @FXML
+    private ImageView transportationIcon;
+
+    @FXML
+    private ImageView tempIcon;
+
+    @FXML
+    private ImageView energyIcon;
+
+    @FXML
+    private ImageView customIcon;
+
+    @FXML
+    private Button mealButton;
+
+    @FXML
+    private Button vegetarianMealButton;
+
+    @FXML
+    private TextField localProduceText;
+
+    @FXML
+    private TextField dairyText;
+
+    @FXML
+    private TextField cerealText;
+
+    @FXML
+    private TextField fruitsAndVegetablesText;
+
+    @FXML
+    private TextField otherVegetarianMealText;
+
+    @FXML
+    private Button addButton;
+
+    @FXML
+    private Button transportationButton;
+
+    @FXML
+    private Button temperatureButton;
+
+    @FXML
+    private Button renewableEnergyButton;
+
+    @FXML
+    private Button customButton;
+
+    @FXML
     private Pane progressWindow;
 
     @FXML
@@ -34,6 +88,9 @@ public class MainController {
     @FXML
     private Pane settingsWindow;
 
+    private RestTemplate restTemplate = new RestTemplate();
+    private ApiService apiService = new ApiService();
+    private UserService userService = new UserService();
 
 
     /**
