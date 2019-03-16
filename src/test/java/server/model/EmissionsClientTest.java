@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class EmissionsClientTest {
+public class EmissionsClientTest {
     EmissionsClient emissionsClient = new EmissionsClient();
 
 
@@ -17,4 +17,14 @@ class EmissionsClientTest {
         String expected = "abc";
         Assert.assertEquals(setEmissionType, expected);
     }
+    @Test
+    public void getEmissionTypeTest() {
+        String username = "abc";
+        emissionsClient.setEmissionType(username);
+        String setEmissionType = emissionsClient.getEmissionType();
+        String expected = "abc";
+        Assert.assertEquals(setEmissionType, expected);
+    }
+
+
 }
