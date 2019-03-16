@@ -117,17 +117,6 @@ public class MainController {
         animatePane(emissionsWindow);
     }
 
-    /**
-     * Renders the progress page.
-     * @param event - once a user clicks the button linked to
-     *              this method, it starts to execute.
-     */
-    public void progressPage(ActionEvent event) {
-        progressWindow.setVisible(true);
-        progressWindow.toFront();
-        animatePane(progressWindow);
-        progressWindow.setStyle("-fx-background-color: #000000");
-    }
     public void emissionsPageShow() {
         foodIcon.setVisible(true);
         mealButton.setVisible(true);
@@ -195,6 +184,22 @@ public class MainController {
         String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
                 69L, emissionsClient, token);
         System.out.println(response);
+    }
+
+
+
+
+
+    /**
+     * Renders the progress page.
+     * @param event - once a user clicks the button linked to
+     *              this method, it starts to execute.
+     */
+    public void progressPage(ActionEvent event) {
+        progressWindow.setVisible(true);
+        progressWindow.toFront();
+        animatePane(progressWindow);
+        progressWindow.setStyle("-fx-background-color: #000000");
     }
 
     /**
