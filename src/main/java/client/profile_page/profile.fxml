@@ -78,6 +78,58 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../mainpage/images/added_3friends.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+               <image>
+                  <Image url="@../mainpage/images/best_ofweek.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+               <image>
+                  <Image url="@../mainpage/images/bike_car.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+               <image>
+                  <Image url="@../mainpage/images/firstveg_meal.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
+               <image>
+                  <Image url="@../mainpage/images/localproducts.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../mainpage/images/publictransport_car.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../mainpage/images/solar_panels.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../mainpage/images/streak_gold.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../mainpage/images/streakveg_gold.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../mainpage/images/using_GreenBeam.png" />
+               </image>
+            </ImageView>
+         </children>
       </GridPane>
       <Label layoutX="493.0" layoutY="312.0" text="MAX:" textFill="#243665">
          <font>
@@ -99,5 +151,11 @@
             <Font name="BebasNeue" size="18.0" />
          </font>
       </Label>
+      <JFXButton layoutX="576.0" layoutY="22.0" styleClass="buttons" stylesheets="@profile.css" text="FRIENDS" textFill="WHITE">
+         <font>
+            <Font name="Gotham-Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXHamburger fx:id="hamburger" layoutX="665.0" layoutY="25.0" styleClass="jfx-hamburger" stylesheets="@profile.css" />
     </children>
 </Pane>
