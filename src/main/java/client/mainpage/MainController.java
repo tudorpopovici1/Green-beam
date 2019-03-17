@@ -2,7 +2,6 @@ package client.mainpage;
 
 import client.Url;
 import client.UserToken;
-import client.loginpage.LoginController;
 import client.services.ApiService;
 import client.services.UserService;
 import javafx.animation.FadeTransition;
@@ -12,10 +11,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-import javafx.scene.image.ImageView;
-import javafx.scene.control.TextField;
 import org.springframework.web.client.RestTemplate;
 import server.model.EmissionsClient;
 import server.model.Meal;
@@ -36,7 +35,7 @@ public class MainController {
     private Pane mainWindow;
 
     @FXML
-    Label usernameDisplayMainText;
+    private Label usernameDisplayMainText;
 
     @FXML
     private Pane emissionsWindow;
@@ -316,7 +315,7 @@ public class MainController {
     }
 
     /**
-     * This methods adds a meal in to the user's database. 
+     * This methods adds a meal in to the user's database.
      */
     public void addEmissionsUser() {
         final String token = UserToken.getUserToken();
