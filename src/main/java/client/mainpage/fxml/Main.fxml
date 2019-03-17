@@ -15,6 +15,11 @@
 <?import javafx.scene.control.TextField?>
 
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Separator?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import javafx.scene.control.DatePicker?>
+<?import com.jfoenix.controls.JFXPasswordField?>
 <AnchorPane fx:id="main" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.mainpage.MainController">
     <ImageView fx:id="mainBackground" fitHeight="700.0" fitWidth="931.0">
@@ -398,7 +403,115 @@
             </Pane>
         </content>
     </ScrollPane>
-    <Pane fx:id="settingsWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
+    <!--<Pane fx:id="settingsWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>-->
+    <Pane fx:id="settingsWindow" layoutX="222.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="709.0" visible="false" styleClass="dark-panel" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+        <children>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="709.0" styleClass="dark-panel" >
+                <children>
+                    <Label layoutX="288.0" layoutY="77.0" text="PROFILE SETTINGS" textFill="WHITE">
+                        <font>
+                            <Font name="BebasNeue" size="24.0" />
+                        </font>
+                    </Label>
+                    <Separator layoutX="53.0" layoutY="114.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" />
+                    <Label layoutX="36.0" layoutY="231.0" text="CHANGE NAME" textFill="#e1dada">
+                        <font>
+                            <Font name="Gotham-Bold" size="15.0" />
+                        </font>
+                    </Label>
+                    <Label layoutX="36.0" layoutY="240.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="293.0"  />
+                    <Label layoutX="36.0" layoutY="291.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0"  />
+                    <Label layoutX="36.0" layoutY="274.0" text="CHANGE DATE OF BIRTH" textFill="#e1dada">
+                        <font>
+                            <Font name="Gotham-Bold" size="15.0" />
+                        </font>
+                    </Label>
+                    <Label layoutX="36.0" layoutY="334.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0" />
+                    <Label layoutX="36.0" layoutY="317.0" text="CHANGE COUNTRY" textFill="#e1dada">
+                        <font>
+                            <Font name="Gotham-Bold" size="15.0" />
+                        </font>
+                    </Label>
+                    <Label layoutX="36.0" layoutY="360.0" text="CHANGE EMAIL" textFill="#e1dada">
+                        <font>
+                            <Font name="Gotham-Bold" size="15.0" />
+                        </font>
+                    </Label>
+                    <Label layoutX="36.0" layoutY="377.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0" />
+                    <Label layoutX="34.0" layoutY="555.0" text="RECEIVE NOTIFICATIONS" textFill="#e1dada">
+                        <font>
+                            <Font name="Gotham-Bold" size="15.0" />
+                        </font>
+                    </Label>
+                    <JFXToggleButton layoutX="554.0" layoutY="546.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="65.0" toggleColor="WHITE" toggleLineColor="#f3a978" />
+                    <JFXSlider layoutX="305.0" layoutY="598.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="350.0" />
+                    <ImageView fitHeight="137.0" fitWidth="52.0" layoutX="485.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../images/userProfile.png" />
+                        </image>
+                    </ImageView>
+                    <Label layoutX="36.0" layoutY="147.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0" />
+                    <Label layoutX="36.0" layoutY="130.0" text="ANONYMOUS PROFILE" textFill="#e1dada">
+                        <font>
+                            <Font name="Gotham-Bold" size="15.0" />
+                        </font>
+                    </Label>
+                    <JFXToggleButton layoutX="555.0" layoutY="130.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="65.0" toggleColor="WHITE" toggleLineColor="#f3a978" />
+                    <Label layoutX="36.0" layoutY="207.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0" />
+                    <Label layoutX="36.0" layoutY="190.0" text="CHANGE PROFILE PICTURE" textFill="#e1dada">
+                        <font>
+                            <Font name="Gotham-Bold" size="15.0" />
+                        </font>
+                    </Label>
+                    <JFXButton layoutX="537.0" layoutY="189.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="100.0" ripplerFill="WHITE" styleClass="buttons" text="UPLOAD">
+                        <font>
+                            <Font name="System Bold" size="13.0" />
+                        </font>
+                    </JFXButton>
+                    <JFXTextField focusColor="#a8bdff" layoutX="513.0" layoutY="237.0" promptText="Name, Surname" styleClass="buttons" unFocusColor="WHITE" />
+                    <DatePicker layoutX="501.0" layoutY="279.0" promptText="14-07-1998" styleClass="buttons" />
+                    <JFXTextField focusColor="#a8bdff" layoutX="512.0" layoutY="318.0" promptText="Country" styleClass="buttons" unFocusColor="WHITE" />
+                    <Separator layoutX="53.0" layoutY="491.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" />
+                    <JFXPasswordField focusColor="#a8bdff" layoutX="512.0" layoutY="403.0" promptText="Old password" styleClass="buttons" unFocusColor="WHITE" />
+                    <JFXTextField focusColor="#a8bdff" layoutX="512.0" layoutY="361.0" promptText="Email address" styleClass="buttons" unFocusColor="WHITE" />
+                    <Label layoutX="36.0" layoutY="418.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0" />
+                    <Label layoutX="36.0" layoutY="401.0" text="CHANGE PASSWORD" textFill="#e1dada">
+                        <font>
+                            <Font name="Gotham-Bold" size="15.0" />
+                        </font>
+                    </Label>
+                    <JFXPasswordField focusColor="#a8bdff" layoutX="512.0" layoutY="443.0" promptText="New password" styleClass="buttons" unFocusColor="WHITE" />
+                    <Label layoutX="284.0" layoutY="501.0" text="GENERAL SETTINGS" textFill="WHITE">
+                        <font>
+                            <Font name="BebasNeue" size="24.0" />
+                        </font>
+                    </Label>
+                    <Separator layoutX="53.0" layoutY="538.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" />
+                    <Label layoutX="34.0" layoutY="596.0" text="CHANGE BRIGHTNESS" textFill="#e1dada">
+                        <font>
+                            <Font name="Gotham-Bold" size="15.0" />
+                        </font>
+                    </Label>
+                    <JFXButton layoutX="537.0" layoutY="643.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="100.0" ripplerFill="WHITE" styleClass="buttons" text="SAVE">
+                        <font>
+                            <Font name="System Bold" size="13.0" />
+                        </font>
+                    </JFXButton>
+                    <JFXButton layoutX="414.0" layoutY="643.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="100.0" ripplerFill="WHITE" styleClass="buttons" text="CANCEL">
+                        <font>
+                            <Font name="System Bold" size="13.0" />
+                        </font>
+                    </JFXButton>
+                    <Label layoutX="36.0" layoutY="17.0" text="SETTINGS" textFill="WHITE">
+                        <font>
+                            <Font name="Gotham-Black" size="36.0" />
+                        </font>
+                    </Label>
+                </children>
+            </Pane>
+        </children>
+    </Pane>
+
     <Pane fx:id="logoutWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
     <Label fx:id="welcomeText" layoutX="383.0" layoutY="140.0" prefHeight="132.0" prefWidth="467.0" text="Welcome to"/>
     <stylesheets>
