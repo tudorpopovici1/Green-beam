@@ -38,6 +38,9 @@ public class MainController {
     private Label usernameDisplayMainText;
 
     @FXML
+    private Label totalCO2SavedLabel;
+
+    @FXML
     private Pane emissionsWindow;
 
     @FXML
@@ -63,6 +66,9 @@ public class MainController {
 
     @FXML
     private Button addTransportationButton;
+
+    @FXML
+    private Label transportationStatus;
 
     @FXML
     private Button backToTransportationTypePageButton;
@@ -93,6 +99,9 @@ public class MainController {
 
     @FXML
     private Button backToEmissionPageButton;
+
+    @FXML
+    private Label vegetarianMealStatus;
 
     @FXML
     private TextField dairyText;
@@ -137,6 +146,7 @@ public class MainController {
     private ApiService apiService = new ApiService();
     private UserService userService = new UserService();
 
+    /**---------------------------- MAIN PAGE -----------------------------------------**/
 
     /**
      * Renders the main page.
@@ -158,6 +168,8 @@ public class MainController {
     public void displayUsernameOnMain(String username) {
         usernameDisplayMainText.setText(username);
     }
+
+    /**---------------------------- EMISSION PAGE -----------------------------------------**/
 
     /**
      * Renders the emissions page.
@@ -202,6 +214,8 @@ public class MainController {
         backToEmissionPageButton.setVisible(false);
         backToMealTypePageButton.setVisible(false);
         backToTransportationTypePageButton.setVisible(false);
+        vegetarianMealStatus.setVisible(false);
+        transportationStatus.setVisible(false);
     }
 
     /**
@@ -255,6 +269,7 @@ public class MainController {
         vegetarianIcon.setVisible(false);
         localProduceIcon.setVisible(false);
         backToMealTypePageButton.setVisible(true);
+        vegetarianMealStatus.setVisible(true);
     }
 
     /**
@@ -272,6 +287,7 @@ public class MainController {
         vegetarianIcon.setVisible(true);
         localProduceIcon.setVisible(true);
         backToMealTypePageButton.setVisible(false);
+        vegetarianMealStatus.setVisible(false);
     }
 
     /**
@@ -297,6 +313,7 @@ public class MainController {
         addTransportationButton.setVisible(true);
         backToEmissionPageButton.setVisible(false);
         backToTransportationTypePageButton.setVisible(true);
+        transportationStatus.setVisible(true);
     }
 
     /**
@@ -312,6 +329,7 @@ public class MainController {
         backToEmissionPageButton.setVisible(true);
         backToTransportationTypePageButton.setVisible(false);
         rideABikeButton.setVisible(true);
+        transportationStatus.setVisible(false);
     }
 
     /**
@@ -335,6 +353,8 @@ public class MainController {
         System.out.println(response);
     }
 
+    /**---------------------------- PROGRESS PAGE -----------------------------------------**/
+
     /**
      * Renders the progress page.
      * @param event - once a user clicks the button linked to
@@ -346,6 +366,8 @@ public class MainController {
         animatePane(progressWindow);
         progressWindow.setStyle("-fx-background-color: #000000");
     }
+
+    /**---------------------------- PROFILE PAGE -----------------------------------------**/
 
     /**
      * Renders the profile page.
@@ -359,6 +381,8 @@ public class MainController {
         profileWindow.setStyle("-fx-background-color: white");
     }
 
+    /**---------------------------- ABOUT US PAGE -----------------------------------------**/
+
     /**
      * Renders the about us page.
      * @param event - once a user clicks the button linked to
@@ -370,6 +394,8 @@ public class MainController {
         animateScrollPane(aboutUsWindow);
         aboutUsWindow.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
     }
+
+    /**---------------------------- SETTINGS PAGE -----------------------------------------**/
 
     /**
      * Renders the settings page.
@@ -383,6 +409,8 @@ public class MainController {
         settingsWindow.setStyle("-fx-background-color: orange");
     }
 
+    /**---------------------------- LOGOUT -----------------------------------------**/
+
     /**
      * Renders the login page once user logs out.
      * @param event - once a user clicks the button linked to
@@ -392,6 +420,8 @@ public class MainController {
         LogoutController logoutController = new LogoutController();
         logoutController.logout();
     }
+
+    /**---------------------------- ANIMATIONS -----------------------------------------**/
 
     /**
      * Animates a pane.

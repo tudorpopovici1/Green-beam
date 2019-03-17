@@ -3,6 +3,7 @@ package server.model;
 import org.junit.Assert;
 import org.junit.Test;
 
+import javax.validation.constraints.AssertTrue;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -180,4 +181,33 @@ public class UsersTest {
         Assert.assertEquals(user.toString(), expected);
     }
 
+    @Test
+    public void equalsFalseTest() throws ParseException {
+        String date = "12/34/5678";
+        Date dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(date);
+        Users user1 = new Users(1234L, "abc", "ghi", "jkl", "mno", "pqr", "stu", dateOfBirth, "vxy");
+        Users user2 = new Users(1234L, "def", "ghi", "jkl", "mno", "pqr", "stu", dateOfBirth, "vxy");
+        Users user3 = new Users(1234L, "def", "ghi", "jkl", "mno", "pqr", "stu", dateOfBirth, "vxy");
+        Assert.assertEquals(false, user1.equals(user3));
+    }
+
+    @Test
+    public void equalsTrueTest() throws ParseException {
+        String date = "12/34/5678";
+        Date dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(date);
+        Users user1 = new Users(1234L, "abc", "ghi", "jkl", "mno", "pqr", "stu", dateOfBirth, "vxy");
+        Users user2 = new Users(1234L, "def", "ghi", "jkl", "mno", "pqr", "stu", dateOfBirth, "vxy");
+        Users user3 = new Users(1234L, "def", "ghi", "jkl", "mno", "pqr", "stu", dateOfBirth, "vxy");
+        Assert.assertEquals(true, user2.equals(user3));
+    }
+
+    @Test
+    public void equalsNullTest() throws ParseException {
+        String date = "12/34/5678";
+        Date dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(date);
+        Users user1 = new Users(1234L, "abc", "ghi", "jkl", "mno", "pqr", "stu", dateOfBirth, "vxy");
+        Users user2 = null;
+        Users user3 = new Users(1234L, "def", "ghi", "jkl", "mno", "pqr", "stu", dateOfBirth, "vxy");
+        Assert.assertEquals(false, user1.equals(user2));
+    }
 }
