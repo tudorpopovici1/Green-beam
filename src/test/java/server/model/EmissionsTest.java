@@ -5,8 +5,8 @@ package server.model;
 import org.junit.Assert;
 import org.junit.Test;
 
-class EmissionsTest {
-Emissions emission=new Emissions();
+public class EmissionsTest {
+Emissions emission = new Emissions();
 
     @Test
     public void setCarbonFootprintTest() {
