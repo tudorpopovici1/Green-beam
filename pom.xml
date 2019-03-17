@@ -203,7 +203,7 @@
         <dependency>
             <groupId>de.jensd</groupId>
             <artifactId>fontawesomefx-commons</artifactId>
-            <version>8.15</version>
+            <version>9.1.2</version>
             <type>pom</type>
         </dependency>
 
