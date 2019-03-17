@@ -1,6 +1,7 @@
 package server.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,15 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 import server.exception.BadCredentialsException;
 import server.exception.ResourceNotFoundException;
 import server.exception.UserAlreadyRegistered;
-import server.model.Emissions;
-import server.model.EmissionsClient;
-import server.model.FriendsUserResp;
-import server.model.JwtUser;
-import server.model.Users;
+import server.model.*;
+import server.repository.AchievementRepository;
 import server.repository.EmissionRepository;
+import server.repository.FriendsRepository;
 import server.repository.UserRepository;
 import server.security.JwtValidator;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
@@ -32,6 +34,12 @@ public class UserController {
 
     @Autowired
     private EmissionRepository emissionRepository;
+
+    @Autowired
+    private AchievementRepository achievementRepository;
+
+    @Autowired
+    private FriendsRepository friendsRepository;
 
     private JwtValidator jwtValidator = new JwtValidator();
 
@@ -147,6 +155,72 @@ public class UserController {
 
         response = "Saved";
         return "Saved";
+    }
+
+    @GetMapping("/user/get/friends/emission/{id}")
+    private List<EmissionFriend> getAllFriendsTotalEmissions(HttpServletRequest httpServletRequest,
+                                                        @PathVariable("id")
+                                                        Long userId) throws BadCredentialsException {
+        if(isIncorrectUser(httpServletRequest, userId)) {
+            throw new BadCredentialsException("Bad credentials");
+        }
+        List<FriendsUserResp> top = userRepository.findAllFriendsUser(userId);
+
+        List<EmissionFriend> listTop = new ArrayList<>();
+
+        for( FriendsUserResp f : top) {
+
+            Double response = emissionRepository.getAllEmisionsOfUser(f.getUsername());
+            if (response != null) {
+                EmissionFriend emiss = new EmissionFriend(f.getUsername(), response);
+                listTop.add(emiss);
+            }
+        }
+        return listTop;
+    }
+
+    @GetMapping("/user/get/top/friends/emission/{id}")
+    private List<EmissionFriend> getTop5FriendsEmissions(HttpServletRequest httpServletRequest,
+                                                         @PathVariable("id")
+                                                                 Long userId) throws BadCredentialsException {
+        if (isIncorrectUser(httpServletRequest, userId)) {
+           throw new BadCredentialsException("Bad credentials");
+        }
+        List<EmissionFriend> allFriendsEmissions = getAllFriendsTotalEmissions(httpServletRequest, userId);
+        Collections.sort(allFriendsEmissions, (o1, o2) -> {
+            int result = (int) (o1.getCarbonEmission() - o2.getCarbonEmission());
+            return result;
+        });
+        Collections.reverse(allFriendsEmissions);
+
+        List<EmissionFriend> toReturn = new ArrayList<>();
+
+        if(allFriendsEmissions.size() > 4) {
+            for (int i = 0; i < 5; i++) {
+                toReturn.add(allFriendsEmissions.get(i));
+            }
+        }
+        else
+        {
+            toReturn = allFriendsEmissions;
+        }
+        return toReturn;
+    }
+
+    @GetMapping("/user/get/all/emissions/{id}")
+    private EmissionFriend getEmissionsOfUser(HttpServletRequest httpServletRequest,
+                                              @PathVariable("id") Long userId) throws BadCredentialsException {
+        if(isIncorrectUser(httpServletRequest, userId)) {
+            throw new BadCredentialsException("Bad credentials");
+        }
+        String username = userRepository.findUserUsername(userId);
+        Double result = emissionRepository.getAllEmisionsOfUser(username);
+
+        if (result != null) {
+            EmissionFriend returnEmi = new EmissionFriend(username, result);
+            return returnEmi;
+        }
+        return null;
     }
 
     private boolean isIncorrectUser(HttpServletRequest request, Long id) {
