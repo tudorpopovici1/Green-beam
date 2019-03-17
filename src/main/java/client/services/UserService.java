@@ -1,15 +1,11 @@
 package client.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
-import server.model.AuthenticateUser;
-import server.model.ErrorDetails;
-import server.model.FriendsUserResp;
-import server.model.Users;
+import server.model.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -123,6 +119,28 @@ public class UserService {
             }
         }
         return token;
+    }
+
+    public String addEmissionOfUser(final RestTemplate restTemplate, final String url,
+                                    final Long userId, final EmissionsClient emissionsClient,
+                                    final String token) {
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.set("Authorisation", "Token " + token);
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<EmissionsClient> entity = new HttpEntity<>(emissionsClient, httpHeaders);
+
+        String response = "";
+        try {
+            ResponseEntity<String> responseString = restTemplate.exchange(url + "/" + userId, HttpMethod.POST,
+                    entity, String.class);
+            response = responseString.getBody();
+        } catch(HttpStatusCodeException e) {
+            if(e.getStatusCode() == HttpStatus.FORBIDDEN) {
+                response = outputErrorMessage(objectMapper, e.getResponseBodyAsString());
+            }
+        }
+        return response;
     }
 
     private String outputErrorMessage(ObjectMapper objectMapper, String responseString) {

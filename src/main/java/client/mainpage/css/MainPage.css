@@ -1,12 +1,13 @@
-#mainButton, #emissionsButton, #progressButton, #profileButton, #settingsButton , #aboutUsButton, #logoutButton{
+#mainButton, #emissionsButton, #progressButton, #profileButton, #settingsButton , #aboutUsButton,
+#logoutButton{
     -fx-font-family: "Apple Chancery";
     -fx-font-size: 22px;
     -fx-text-fill: white;
     -fx-background-color: transparent;
 }
 
-#mainButton:hover, #emissionsButton:hover, #progressButton:hover, #profileButton:hover, #settingsButton:hover,
- #aboutUsButton:hover, #logoutButton:hover{
+#mainButton:hover, #emissionsButton:hover, #progressButton:hover, #profileButton:hover,
+#settingsButton:hover, #aboutUsButton:hover, #logoutButton:hover{
      -fx-font-size: 29px;
  }
 
@@ -61,6 +62,20 @@
     -fx-text-fill: white;
     -fx-font-weight: bolder;
 }
+
+#logo1, #logo2 {
+    -fx-scale-x: 0.6;
+    -fx-scale-y: 0.6;
+}
+
+#statBox {
+    -fx-border-color: white;
+    -fx-border-width: 1.5px;
+}
+
+
+
+
 
 
 

@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import server.exception.BadCredentialsException;
 import server.exception.ResourceNotFoundException;
 import server.exception.UserAlreadyRegistered;
-import server.model.FriendsUserResp;
-import server.model.JwtUser;
-import server.model.Users;
+import server.model.*;
+import server.repository.EmissionRepository;
 import server.repository.UserRepository;
 import server.security.JwtValidator;
 
@@ -22,6 +21,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private EmissionRepository emissionRepository;
 
     private JwtValidator jwtValidator = new JwtValidator();
 
@@ -119,6 +121,23 @@ public class UserController {
         }
 
         return userRepository.findAllFriendsUser(id);
+    }
+
+    @PostMapping("/user/add/emission/{id}")
+    private String addEmissions(HttpServletRequest httpServletRequest,
+                                @PathVariable("id") Long id,
+                                @RequestBody EmissionsClient emissionsClient) throws BadCredentialsException {
+        String response = "";
+        if(isIncorrectUser(httpServletRequest, id)) {
+            throw new BadCredentialsException("Bad credentials");
+        }
+        Users user = userRepository.findUserById(id);
+        Emissions emissions = new Emissions(id, emissionsClient.getEmissionType(),
+                emissionsClient.getCarbonEmission(), emissionsClient.getDate());
+        emissionRepository.save(emissions);
+
+        response = "Saved";
+        return "Saved";
     }
 
     private boolean isIncorrectUser(HttpServletRequest request, Long id) {

@@ -2,6 +2,7 @@ package client.loginpage;
 
 import client.Url;
 import client.UserToken;
+import client.mainpage.MainController;
 import client.services.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,6 +38,7 @@ import java.util.regex.Pattern;
  * This class handles all the functionality that is in
  * the main login page of the application.
  */
+@SuppressWarnings("Duplicates")
 public class LoginController {
 
     public static final Pattern VALIDEMAIL =
@@ -57,6 +59,7 @@ public class LoginController {
 
     @FXML
     private Label lblStatus2;
+
     /**
      * This is getting all the textField attributes from the
      * Login.fxml file.

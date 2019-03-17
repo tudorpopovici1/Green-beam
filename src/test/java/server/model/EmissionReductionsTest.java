@@ -6,7 +6,7 @@ import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class EmissionReductionsTest {
-    EmissionReductions emissionReduction=new EmissionReductions();
+    EmissionReductions emissionReduction=new EmissionReductions(0f, 0f, 0f, 0f, 0f);
 
     @Test
     public void getLocalProduceEmissionTest() {
@@ -90,6 +90,13 @@ public class EmissionReductionsTest {
         float setRideBikeEmission= emissionReduction.getRideBikeEmission();
         float expected = 1234;
         Assert.assertEquals(setRideBikeEmission, expected,  0.0001);
+    }
+
+    @Test
+    public void toStringTest() {
+        EmissionReductions emissionreduction = new EmissionReductions(1.2f, 3.4f, 5.6f, 7.8f, 9.0f);
+        String expected = "EmissionReductions{rideBikeEmission=1.2, publicTransportationEmission=3.4, localProduceEmission=5.6, loweringTemperatureEmission=7.8, vegetarianMealEmission=9.0}";
+        Assert.assertEquals(emissionreduction.toString(), expected);
     }
 
 }
