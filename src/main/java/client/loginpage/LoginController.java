@@ -37,6 +37,7 @@ import java.util.regex.Pattern;
  * This class handles all the functionality that is in
  * the main login page of the application.
  */
+@SuppressWarnings("Duplicates")
 public class LoginController {
 
     public static final Pattern VALIDEMAIL =

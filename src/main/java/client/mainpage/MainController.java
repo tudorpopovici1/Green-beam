@@ -4,10 +4,13 @@ import javafx.animation.FadeTransition;
 import javafx.animation.SequentialTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-
+import javafx.scene.image.ImageView;
+import javafx.scene.control.TextField;
 
 /**
  * This is the main controller for the application
@@ -23,6 +26,60 @@ public class MainController {
     private Pane emissionsWindow;
 
     @FXML
+    private Label addEmissionsText;
+
+    @FXML
+    private ImageView foodIcon;
+
+    @FXML
+    private ImageView transportationIcon;
+
+    @FXML
+    private ImageView tempIcon;
+
+    @FXML
+    private ImageView energyIcon;
+
+    @FXML
+    private ImageView customIcon;
+
+    @FXML
+    private Button mealButton;
+
+    @FXML
+    private Button vegetarianMealButton;
+
+    @FXML
+    private TextField localProduceText;
+
+    @FXML
+    private TextField dairyText;
+
+    @FXML
+    private TextField cerealText;
+
+    @FXML
+    private TextField fruitsAndVegetablesText;
+
+    @FXML
+    private TextField otherVegetarianMealText;
+
+    @FXML
+    private Button addButton;
+
+    @FXML
+    private Button transportationButton;
+
+    @FXML
+    private Button temperatureButton;
+
+    @FXML
+    private Button renewableEnergyButton;
+
+    @FXML
+    private Button customButton;
+
+    @FXML
     private Pane progressWindow;
 
     @FXML
@@ -33,7 +90,6 @@ public class MainController {
 
     @FXML
     private Pane settingsWindow;
-
 
 
     /**
@@ -56,7 +112,59 @@ public class MainController {
     public void emissionsPage(ActionEvent event) {
         emissionsWindow.setVisible(true);
         emissionsWindow.toFront();
+        emissionsPageShow();
         animatePane(emissionsWindow);
+    }
+
+    public void emissionsPageShow() {
+        foodIcon.setVisible(true);
+        mealButton.setVisible(true);
+        transportationIcon.setVisible(true);
+        transportationButton.setVisible(true);
+        tempIcon.setVisible(true);
+        temperatureButton.setVisible(true);
+        renewableEnergyButton.setVisible(true);
+        energyIcon.setVisible(true);
+        customButton.setVisible(true);
+        customIcon.setVisible(true);
+        vegetarianMealButton.setVisible(false);
+        localProduceText.setVisible(false);
+        dairyText.setVisible(false);
+        cerealText.setVisible(false);
+        fruitsAndVegetablesText.setVisible(false);
+        otherVegetarianMealText.setVisible(false);
+        addEmissionsText.setText("Choose Your Emission Type");
+        addButton.setVisible(false);
+    }
+
+    public void emissionsPageHide() {
+        foodIcon.setVisible(false);
+        mealButton.setVisible(false);
+        transportationIcon.setVisible(false);
+        transportationButton.setVisible(false);
+        tempIcon.setVisible(false);
+        temperatureButton.setVisible(false);
+        renewableEnergyButton.setVisible(false);
+        energyIcon.setVisible(false);
+        customButton.setVisible(false);
+        customIcon.setVisible(false);
+    }
+
+    public void mealButtonOnClick(ActionEvent event) {
+        emissionsPageHide();
+        vegetarianMealButton.setVisible(true);
+        localProduceText.setVisible(true);
+        addEmissionsText.setText("    Choose Your Meal Type");
+    }
+
+    public void vegetarianMealButtonOnClick(ActionEvent event) {
+        vegetarianMealButton.setVisible(false);
+        localProduceText.setVisible(false);
+        dairyText.setVisible(true);
+        cerealText.setVisible(true);
+        fruitsAndVegetablesText.setVisible(true);
+        otherVegetarianMealText.setVisible(true);
+        addButton.setVisible(true);
     }
 
     /**
