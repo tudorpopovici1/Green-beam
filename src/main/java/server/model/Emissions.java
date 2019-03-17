@@ -1,7 +1,13 @@
 package server.model;
 
-import javax.persistence.*;
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 
 @Entity
 @Table(
@@ -27,6 +33,13 @@ public class Emissions {
     @Column(name = "date_of_emission")
     private Date date;
 
+    /**
+     * Constructor for the emissions object.
+     * @param userId - the userId
+     * @param emissionType - type of emission
+     * @param carbonFootprint - the units of Co2
+     * @param date - timestamp
+     */
     public Emissions(Long userId, String emissionType, float carbonFootprint, Date date) {
         this.userId = userId;
         this.emissionType = emissionType;

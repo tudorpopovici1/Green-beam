@@ -2,12 +2,20 @@ package server.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import server.exception.BadCredentialsException;
 import server.exception.ResourceNotFoundException;
 import server.exception.UserAlreadyRegistered;
-import server.model.*;
+import server.model.Emissions;
+import server.model.EmissionsClient;
+import server.model.FriendsUserResp;
+import server.model.JwtUser;
+import server.model.Users;
 import server.repository.EmissionRepository;
 import server.repository.UserRepository;
 import server.security.JwtValidator;
@@ -126,9 +134,10 @@ public class UserController {
     @PostMapping("/user/add/emission/{id}")
     private String addEmissions(HttpServletRequest httpServletRequest,
                                 @PathVariable("id") Long id,
-                                @RequestBody EmissionsClient emissionsClient) throws BadCredentialsException {
+                                @RequestBody EmissionsClient emissionsClient)
+                                throws BadCredentialsException {
         String response = "";
-        if(isIncorrectUser(httpServletRequest, id)) {
+        if (isIncorrectUser(httpServletRequest, id)) {
             throw new BadCredentialsException("Bad credentials");
         }
         Users user = userRepository.findUserById(id);
