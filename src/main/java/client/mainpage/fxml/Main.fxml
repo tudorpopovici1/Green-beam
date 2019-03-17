@@ -177,11 +177,6 @@
                 <Image url="@../images/energyIcon.png"/>
             </image>
         </ImageView>
-        <ImageView fx:id="customIcon" fitHeight="60" fitWidth="60" layoutX="170.0" layoutY="560.0">
-            <image>
-                <Image url="@../images/customIcon.png"/>
-            </image>
-        </ImageView>
         <ImageView fx:id="vegetarianIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="193.0" visible="false">
         <image>
             <Image url="@../images/vegetarianIcon.png"/>
@@ -192,17 +187,30 @@
                 <Image url="@../images/localProduceIcon.png"/>
             </image>
         </ImageView>
+        <ImageView fx:id="bikeIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="193.0" visible="false">
+            <image>
+                <Image url="@../images/bikeIcon.png"/>
+            </image>
+        </ImageView>
         <Label fx:id="addEmissionsText" layoutX="70.0" layoutY="10.0" text="Choose Your Emission Type"/>
         <Button fx:id="mealButton" layoutX="260.0" layoutY="193.0" mnemonicParsing="false" prefHeight="75.0"
                 prefWidth="184.0" text="Food" onAction="#mealButtonOnClick"/>
         <Button fx:id="transportationButton" layoutX="260.0" layoutY="280.0" mnemonicParsing="false" prefHeight="75.0"
-                prefWidth="184.0" text="Transportation"/>
+                prefWidth="184.0" text="Transportation" onAction="#transportationButtonOnClick"/>
         <Button fx:id="temperatureButton" layoutX="260.0" layoutY="369.0" mnemonicParsing="false" prefHeight="75.0"
                 prefWidth="184.0" text="Temperature"/>
         <Button fx:id="renewableEnergyButton" layoutX="260.0" layoutY="459.0" mnemonicParsing="false" prefHeight="75.0"
                 prefWidth="184.0" text="Renewable Energy"/>
-        <Button fx:id="customButton" layoutX="260.0" layoutY="549.0" mnemonicParsing="false" prefHeight="75.0"
-                prefWidth="184.0" text="Custom"/>
+        <Button fx:id="rideABikeButton" layoutX="260.0" layoutY="193" mnemonicParsing="false" prefHeight="75.0"
+                prefWidth="184.0" text="Ride A Bike" visible="false" onAction="#rideABikeButtonOnClick"/>
+        <TextField fx:id="litresOfFuelText" layoutX="260.0" layoutY="193.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Litres of Fuel (per/km)" visible="false" />
+        <TextField fx:id="carMileageText" layoutX="260.0" layoutY="280.0"  prefHeight="75.0"
+                   prefWidth="184.0" promptText="Total Mileage of the Car)" visible="false"/>
+        <TextField fx:id="fuelTypeText" layoutX="260.0" layoutY="369.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Fuel Type (Benzine or Diesel)" visible="false"/>
+        <Button fx:id="addTransportationButton" layoutX="260.0" layoutY="600.0" mnemonicParsing="false" prefHeight="75.0"
+                prefWidth="184.0" text="Add" visible="false"/>
         <Button fx:id="vegetarianMealButton" layoutX="260.0" layoutY="193.0" mnemonicParsing="false" prefHeight="75.0"
                 prefWidth="184.0" text="Add Vegetarian Meal" visible="false" onAction="#vegetarianMealButtonOnClick"/>
         <Button fx:id="localProduceButton" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
@@ -216,7 +224,7 @@
         <TextField fx:id="otherVegetarianMealText" layoutX="260.0" layoutY="459.0" prefHeight="75.0"
                 prefWidth="184.0" promptText="Other Calories (kcal)" visible="false"/>
         <TextField fx:id="caloriesTextBox" layoutX="381.0" layoutY="184.0" prefHeight="40.0" prefWidth="181.0" promptText="Calories (kcal)" visible="false" />
-        <Button fx:id="addButton" layoutX="260.0" layoutY="600.0" mnemonicParsing="false" prefHeight="75.0"
+        <Button fx:id="addMealButton" layoutX="260.0" layoutY="600.0" mnemonicParsing="false" prefHeight="75.0"
                 prefWidth="184.0" text="Add" visible="false"/>
     </Pane>
     <Pane fx:id="progressWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>

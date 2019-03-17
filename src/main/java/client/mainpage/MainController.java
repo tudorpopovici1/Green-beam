@@ -49,13 +49,28 @@ public class MainController {
     private ImageView transportationIcon;
 
     @FXML
+    private Button rideABikeButton;
+
+    @FXML
+    private TextField litresOfFuelText;
+
+    @FXML
+    private TextField carMileageText;
+
+    @FXML
+    private TextField fuelTypeText;
+
+    @FXML
+    private Button addTransportationButton;
+
+    @FXML
+    private ImageView bikeIcon;
+
+    @FXML
     private ImageView tempIcon;
 
     @FXML
     private ImageView energyIcon;
-
-    @FXML
-    private ImageView customIcon;
 
     @FXML
     private ImageView vegetarianIcon;
@@ -85,7 +100,7 @@ public class MainController {
     private TextField otherVegetarianMealText;
 
     @FXML
-    private Button addButton;
+    private Button addMealButton;
 
     @FXML
     private Button transportationButton;
@@ -95,9 +110,6 @@ public class MainController {
 
     @FXML
     private Button renewableEnergyButton;
-
-    @FXML
-    private Button customButton;
 
     @FXML
     private Pane progressWindow;
@@ -149,8 +161,6 @@ public class MainController {
         temperatureButton.setVisible(true);
         renewableEnergyButton.setVisible(true);
         energyIcon.setVisible(true);
-        customButton.setVisible(true);
-        customIcon.setVisible(true);
         vegetarianIcon.setVisible(false);
         localProduceIcon.setVisible(false);
         vegetarianMealButton.setVisible(false);
@@ -160,7 +170,13 @@ public class MainController {
         fruitsAndVegetablesText.setVisible(false);
         otherVegetarianMealText.setVisible(false);
         addEmissionsText.setText("Choose Your Emission Type");
-        addButton.setVisible(false);
+        addMealButton.setVisible(false);
+        rideABikeButton.setVisible(false);
+        bikeIcon.setVisible(false);
+        litresOfFuelText.setVisible(false);
+        carMileageText.setVisible(false);
+        fuelTypeText.setVisible(false);
+        addTransportationButton.setVisible(false);
     }
 
     public void emissionsPageHide() {
@@ -172,8 +188,6 @@ public class MainController {
         temperatureButton.setVisible(false);
         renewableEnergyButton.setVisible(false);
         energyIcon.setVisible(false);
-        customButton.setVisible(false);
-        customIcon.setVisible(false);
     }
 
     public void mealButtonOnClick(ActionEvent event) {
@@ -192,9 +206,23 @@ public class MainController {
         cerealText.setVisible(true);
         fruitsAndVegetablesText.setVisible(true);
         otherVegetarianMealText.setVisible(true);
-        addButton.setVisible(true);
+        addMealButton.setVisible(true);
         vegetarianIcon.setVisible(false);
         localProduceIcon.setVisible(false);
+    }
+
+    public void transportationButtonOnClick() {
+        emissionsPageHide();
+        rideABikeButton.setVisible(true);
+        bikeIcon.setVisible(true);
+    }
+
+    public void rideABikeButtonOnClick(ActionEvent event) {
+        litresOfFuelText.setVisible(true);
+        carMileageText.setVisible(true);
+        fuelTypeText.setVisible(true);
+        bikeIcon.setVisible(false);
+        addTransportationButton.setVisible(true);
     }
 
     public void addEmissionsUser() {
