@@ -1,6 +1,5 @@
 package client.mainpage;
 
-
 import client.Url;
 import client.UserToken;
 import client.services.ApiService;
@@ -24,7 +23,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
 
 /**
  * This is the main controller for the application
@@ -202,6 +200,9 @@ public class MainController {
                 69L, emissionsClient, token);
         System.out.println(response);
     }
+
+
+
 
 
     /**
