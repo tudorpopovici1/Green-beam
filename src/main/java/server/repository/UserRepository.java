@@ -4,8 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import server.model.Achievements;
-import server.model.AchievementsType;
 import server.model.FriendsUserResp;
 import server.model.Users;
 
@@ -48,21 +46,22 @@ public interface UserRepository extends JpaRepository<Users, Long> {
     FriendsUserResp findSpecificUserById(Long userId);
 
 
-   /* @Query(value = "SELECT new server.model.FriendsUserResp " +
-            "(u.username, u.dateOfBirth, u.firstName " +
-            "u.lastName, u.country, u.email), " +
-            "SUM(e.carbon_footprint) AS summed " +
-            "FROM user_data u " +
-            "JOIN emissions e ON u.user_id = e.user_id " +
-            "GROUP BY u.user_id " +
-            "ORDER BY summed " +
-            "LIMIT 5")
-    List<FriendsUserResp> getTop5Friends(Long userId);*/
+    //    @Query(value = "SELECT new server.model.FriendsUserResp " +
+    //    "(u.username, u.dateOfBirth, u.firstName " +
+    //    "u.lastName, u.country, u.email), " +
+    //    "SUM(e.carbon_footprint) AS summed " +
+    //    "FROM user_data u " +
+    //    "JOIN emissions e ON u.user_id = e.user_id " +
+    //    "GROUP BY u.user_id " +
+    //    "ORDER BY summed " +
+    //    "LIMIT 5")
+    //    List<FriendsUserResp> getTop5Friends(Long userId);
 
-    @Query(value = "SELECT new server.model.FriendsUserResp " +
-            "(u.username, u.dateOfBirth, u.firstName, " +
-            "u.lastName, u.country, u.email) FROM user_data u " +
-            "WHERE u.username LIKE %:username% ")
+
+    @Query(value = "SELECT new server.model.FriendsUserResp "
+            + "(u.username, u.dateOfBirth, u.firstName, "
+            + "u.lastName, u.country, u.email) FROM user_data u "
+            + "WHERE u.username LIKE %:username% ")
     List<FriendsUserResp> queryFriends(String username);
 
     @Transactional

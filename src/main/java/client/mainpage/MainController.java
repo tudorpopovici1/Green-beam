@@ -2,7 +2,6 @@ package client.mainpage;
 
 import client.Url;
 import client.UserToken;
-import client.loginpage.LoginController;
 import client.services.ApiService;
 import client.services.UserService;
 import javafx.animation.FadeTransition;
@@ -12,10 +11,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-import javafx.scene.image.ImageView;
-import javafx.scene.control.TextField;
 import org.springframework.web.client.RestTemplate;
 import server.model.EmissionsClient;
 import server.model.Meal;
@@ -36,7 +35,10 @@ public class MainController {
     private Pane mainWindow;
 
     @FXML
-    Label usernameDisplayMainText;
+    private Label usernameDisplayMainText;
+
+    @FXML
+    private Label totalCO2SavedLabel;
 
     @FXML
     private Pane emissionsWindow;
@@ -64,6 +66,9 @@ public class MainController {
 
     @FXML
     private Button addTransportationButton;
+
+    @FXML
+    private Label transportationStatus;
 
     @FXML
     private Button backToTransportationTypePageButton;
@@ -94,6 +99,9 @@ public class MainController {
 
     @FXML
     private Button backToEmissionPageButton;
+
+    @FXML
+    private Label vegetarianMealStatus;
 
     @FXML
     private TextField dairyText;
@@ -138,6 +146,7 @@ public class MainController {
     private ApiService apiService = new ApiService();
     private UserService userService = new UserService();
 
+    /**---------------------------- MAIN PAGE -----------------------------------------**/
 
     /**
      * Renders the main page.
@@ -152,9 +161,15 @@ public class MainController {
         displayUsernameOnMain("user: irtazahashmi");
     }
 
+    /**
+     * Takes the username and displays it on the main page.
+     * @param username the username of the user
+     */
     public void displayUsernameOnMain(String username) {
         usernameDisplayMainText.setText(username);
     }
+
+    /**---------------------------- EMISSION PAGE -----------------------------------------**/
 
     /**
      * Renders the emissions page.
@@ -168,6 +183,9 @@ public class MainController {
         animatePane(emissionsWindow);
     }
 
+    /**
+     * Shows the main page of the emissions page.
+     */
     public void emissionsPageShow() {
         foodIcon.setVisible(true);
         mealButton.setVisible(true);
@@ -196,8 +214,13 @@ public class MainController {
         backToEmissionPageButton.setVisible(false);
         backToMealTypePageButton.setVisible(false);
         backToTransportationTypePageButton.setVisible(false);
+        vegetarianMealStatus.setVisible(false);
+        transportationStatus.setVisible(false);
     }
 
+    /**
+     * Hide the main emission page.
+     */
     public void emissionsPageHide() {
         foodIcon.setVisible(false);
         mealButton.setVisible(false);
@@ -209,6 +232,10 @@ public class MainController {
         energyIcon.setVisible(false);
     }
 
+    /**
+     * Functionality when the user click the meal button.
+     * @param event mouse click.
+     */
     public void mealButtonOnClick(ActionEvent event) {
         emissionsPageHide();
         vegetarianMealButton.setVisible(true);
@@ -219,10 +246,18 @@ public class MainController {
         backToEmissionPageButton.setVisible(true);
     }
 
+    /**
+     * Functionality of the back button to the main emissions page.
+     * @param event mouse click
+     */
     public void backToEmissionPageButtonOnClick(ActionEvent event) {
         emissionsPageShow();
     }
 
+    /**
+     * Functionality when the user click the vegetarian meal button.
+     * @param event mouse click.
+     */
     public void vegetarianMealButtonOnClick(ActionEvent event) {
         vegetarianMealButton.setVisible(false);
         localProduceButton.setVisible(false);
@@ -234,8 +269,13 @@ public class MainController {
         vegetarianIcon.setVisible(false);
         localProduceIcon.setVisible(false);
         backToMealTypePageButton.setVisible(true);
+        vegetarianMealStatus.setVisible(true);
     }
 
+    /**
+     * Functionality of the back button to the meal type page.
+     * @param event mouse click
+     */
     public void backToMealTypeButtonOnClick(ActionEvent event) {
         vegetarianMealButton.setVisible(true);
         localProduceButton.setVisible(true);
@@ -247,15 +287,24 @@ public class MainController {
         vegetarianIcon.setVisible(true);
         localProduceIcon.setVisible(true);
         backToMealTypePageButton.setVisible(false);
+        vegetarianMealStatus.setVisible(false);
     }
 
-    public void transportationButtonOnClick() {
+    /**
+     * Functionality when the user clicks the vegetarian meal button.
+     * @param event mouse click.
+     */
+    public void transportationButtonOnClick(ActionEvent event) {
         emissionsPageHide();
         rideABikeButton.setVisible(true);
         bikeIcon.setVisible(true);
         backToEmissionPageButton.setVisible(true);
     }
 
+    /**
+     * Functionality when the user clicks the ride a bike button.
+     * @param event mouse click.
+     */
     public void rideABikeButtonOnClick(ActionEvent event) {
         litresOfFuelText.setVisible(true);
         carMileageText.setVisible(true);
@@ -264,8 +313,13 @@ public class MainController {
         addTransportationButton.setVisible(true);
         backToEmissionPageButton.setVisible(false);
         backToTransportationTypePageButton.setVisible(true);
+        transportationStatus.setVisible(true);
     }
 
+    /**
+     * Functionality of the back button to the transportation page.
+     * @param event mouse click
+     */
     public void backToTransportationTypeButtonOnClick(ActionEvent event) {
         litresOfFuelText.setVisible(false);
         carMileageText.setVisible(false);
@@ -275,9 +329,12 @@ public class MainController {
         backToEmissionPageButton.setVisible(true);
         backToTransportationTypePageButton.setVisible(false);
         rideABikeButton.setVisible(true);
+        transportationStatus.setVisible(false);
     }
 
-
+    /**
+     * This methods adds a meal in to the user's database.
+     */
     public void addEmissionsUser() {
         final String token = UserToken.getUserToken();
 
@@ -296,6 +353,8 @@ public class MainController {
         System.out.println(response);
     }
 
+    /**---------------------------- PROGRESS PAGE -----------------------------------------**/
+
     /**
      * Renders the progress page.
      * @param event - once a user clicks the button linked to
@@ -307,6 +366,8 @@ public class MainController {
         animatePane(progressWindow);
         progressWindow.setStyle("-fx-background-color: #000000");
     }
+
+    /**---------------------------- PROFILE PAGE -----------------------------------------**/
 
     /**
      * Renders the profile page.
@@ -320,6 +381,8 @@ public class MainController {
         profileWindow.setStyle("-fx-background-color: white");
     }
 
+    /**---------------------------- ABOUT US PAGE -----------------------------------------**/
+
     /**
      * Renders the about us page.
      * @param event - once a user clicks the button linked to
@@ -331,6 +394,8 @@ public class MainController {
         animateScrollPane(aboutUsWindow);
         aboutUsWindow.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
     }
+
+    /**---------------------------- SETTINGS PAGE -----------------------------------------**/
 
     /**
      * Renders the settings page.
@@ -344,6 +409,8 @@ public class MainController {
         settingsWindow.setStyle("-fx-background-color: orange");
     }
 
+    /**---------------------------- LOGOUT -----------------------------------------**/
+
     /**
      * Renders the login page once user logs out.
      * @param event - once a user clicks the button linked to
@@ -353,6 +420,8 @@ public class MainController {
         LogoutController logoutController = new LogoutController();
         logoutController.logout();
     }
+
+    /**---------------------------- ANIMATIONS -----------------------------------------**/
 
     /**
      * Animates a pane.

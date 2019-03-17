@@ -21,7 +21,19 @@ public class EmissionReductions {
     @JsonProperty ("low_carbon_diet")
     private float vegetarianMealEmission;
 
-    public EmissionReductions(float rideBikeEmission, float publicTransportationEmission, float localProduceEmission, float loweringTemperatureEmission, float vegetarianMealEmission) {
+    /**
+     * Constructor of the class.
+     * @param rideBikeEmission - takes a float number of the C02 emission
+     * @param publicTransportationEmission - takes a float number of the C02 emission
+     * @param localProduceEmission - takes a float number of the C02 emission
+     * @param loweringTemperatureEmission - takes a float number of the C02 emission
+     * @param vegetarianMealEmission - takes a float number of the C02 emission
+     */
+    public EmissionReductions(float rideBikeEmission,
+                              float publicTransportationEmission,
+                              float localProduceEmission,
+                              float loweringTemperatureEmission,
+                              float vegetarianMealEmission) {
         this.rideBikeEmission = rideBikeEmission;
         this.publicTransportationEmission = publicTransportationEmission;
         this.localProduceEmission = localProduceEmission;

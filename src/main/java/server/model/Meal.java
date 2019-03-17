@@ -7,7 +7,15 @@ public class Meal {
     private float fruitVegetablesCalories;
     private float cerealCalories;
 
-    public Meal(float dairyCalories, float otherFoodCalories, float fruitVegetablesCalories, float cerealCalories) {
+    /**
+     * Meal of object constructor.
+     * @param dairyCalories - calories (parameter)
+     * @param otherFoodCalories - calories (parameter)
+     * @param fruitVegetablesCalories - calories (parameter)
+     * @param cerealCalories - calories (parameter)
+     */
+    public Meal(float dairyCalories, float otherFoodCalories,
+                float fruitVegetablesCalories, float cerealCalories) {
         this.dairyCalories = dairyCalories;
         this.otherFoodCalories = otherFoodCalories;
         this.fruitVegetablesCalories = fruitVegetablesCalories;

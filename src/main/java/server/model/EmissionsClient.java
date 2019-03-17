@@ -8,6 +8,12 @@ public class EmissionsClient {
     private float carbonEmission;
     private Date date;
 
+    /**
+     * Emission client object constructor.
+     * @param emissionType - type of emission
+     * @param carbonEmission - CO2 unit
+     * @param date - timestamp
+     */
     public EmissionsClient(String emissionType, float carbonEmission, Date date) {
         this.emissionType = emissionType;
         this.carbonEmission = carbonEmission;
