@@ -154,7 +154,7 @@
     <Pane fx:id="emissionsWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false">
         <ImageView fx:id="backgroundImage" fitHeight="700.0" fitWidth="931.0">
             <image>
-                <Image url="@../images/addEmissionsBackground.jpeg"/>
+                <Image url="@../images/backgrounBush.jpeg"/>
             </image>
         </ImageView>
         <ImageView fx:id="foodIcon" fitHeight="60" fitWidth="60" layoutX="170.0" layoutY="200.0">
@@ -286,12 +286,12 @@
             <Pane minHeight="0.0" minWidth="0.0" prefHeight="1200" prefWidth="660">
                 <ImageView fitHeight="700.0" fitWidth="931.0">
                     <image>
-                        <Image url="@../images/aboutUsBackground.jpeg"/>
+                        <Image url="@../images/backgroundStars.jpeg"/>
                     </image>
                 </ImageView>
                 <ImageView fitHeight="700" fitWidth="931.0" layoutY="700">
                     <image>
-                        <Image url="@../images/aboutUsBackground.jpeg"/>
+                        <Image url="@../images/backgroundStars.jpeg"/>
                     </image>
                 </ImageView>
                 <ImageView fx:id="irtaza" fitHeight="150.0" fitWidth="175.0" layoutX="50" layoutY="150">
