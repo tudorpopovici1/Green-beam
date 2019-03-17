@@ -2,7 +2,6 @@ package client.mainpage;
 
 import client.Url;
 import client.UserToken;
-import client.loginpage.LoginController;
 import client.services.ApiService;
 import client.services.UserService;
 import javafx.animation.FadeTransition;
@@ -12,10 +11,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-import javafx.scene.image.ImageView;
-import javafx.scene.control.TextField;
 import org.springframework.web.client.RestTemplate;
 import server.model.EmissionsClient;
 import server.model.Meal;
@@ -36,7 +35,7 @@ public class MainController {
     private Pane mainWindow;
 
     @FXML
-    Label usernameDisplayMainText;
+    private Label usernameDisplayMainText;
 
     @FXML
     private Pane emissionsWindow;
@@ -152,6 +151,10 @@ public class MainController {
         displayUsernameOnMain("user: irtazahashmi");
     }
 
+    /**
+     * Takes the username and displays it on the main page.
+     * @param username the username of the user
+     */
     public void displayUsernameOnMain(String username) {
         usernameDisplayMainText.setText(username);
     }
@@ -168,6 +171,9 @@ public class MainController {
         animatePane(emissionsWindow);
     }
 
+    /**
+     * Shows the main page of the emissions page.
+     */
     public void emissionsPageShow() {
         foodIcon.setVisible(true);
         mealButton.setVisible(true);
@@ -198,6 +204,9 @@ public class MainController {
         backToTransportationTypePageButton.setVisible(false);
     }
 
+    /**
+     * Hide the main emission page.
+     */
     public void emissionsPageHide() {
         foodIcon.setVisible(false);
         mealButton.setVisible(false);
@@ -209,6 +218,10 @@ public class MainController {
         energyIcon.setVisible(false);
     }
 
+    /**
+     * Functionality when the user click the meal button.
+     * @param event mouse click.
+     */
     public void mealButtonOnClick(ActionEvent event) {
         emissionsPageHide();
         vegetarianMealButton.setVisible(true);
@@ -219,10 +232,18 @@ public class MainController {
         backToEmissionPageButton.setVisible(true);
     }
 
+    /**
+     * Functionality of the back button to the main emissions page.
+     * @param event mouse click
+     */
     public void backToEmissionPageButtonOnClick(ActionEvent event) {
         emissionsPageShow();
     }
 
+    /**
+     * Functionality when the user click the vegetarian meal button.
+     * @param event mouse click.
+     */
     public void vegetarianMealButtonOnClick(ActionEvent event) {
         vegetarianMealButton.setVisible(false);
         localProduceButton.setVisible(false);
@@ -236,6 +257,10 @@ public class MainController {
         backToMealTypePageButton.setVisible(true);
     }
 
+    /**
+     * Functionality of the back button to the meal type page.
+     * @param event mouse click
+     */
     public void backToMealTypeButtonOnClick(ActionEvent event) {
         vegetarianMealButton.setVisible(true);
         localProduceButton.setVisible(true);
@@ -249,13 +274,21 @@ public class MainController {
         backToMealTypePageButton.setVisible(false);
     }
 
-    public void transportationButtonOnClick() {
+    /**
+     * Functionality when the user clicks the vegetarian meal button.
+     * @param event mouse click.
+     */
+    public void transportationButtonOnClick(ActionEvent event) {
         emissionsPageHide();
         rideABikeButton.setVisible(true);
         bikeIcon.setVisible(true);
         backToEmissionPageButton.setVisible(true);
     }
 
+    /**
+     * Functionality when the user clicks the ride a bike button.
+     * @param event mouse click.
+     */
     public void rideABikeButtonOnClick(ActionEvent event) {
         litresOfFuelText.setVisible(true);
         carMileageText.setVisible(true);
@@ -266,6 +299,10 @@ public class MainController {
         backToTransportationTypePageButton.setVisible(true);
     }
 
+    /**
+     * Functionality of the back button to the transportation page.
+     * @param event mouse click
+     */
     public void backToTransportationTypeButtonOnClick(ActionEvent event) {
         litresOfFuelText.setVisible(false);
         carMileageText.setVisible(false);
@@ -277,7 +314,9 @@ public class MainController {
         rideABikeButton.setVisible(true);
     }
 
-
+    /**
+     * This methods adds a meal in to the user's database.
+     */
     public void addEmissionsUser() {
         final String token = UserToken.getUserToken();
 
