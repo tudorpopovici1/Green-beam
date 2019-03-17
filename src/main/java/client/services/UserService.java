@@ -1,11 +1,21 @@
 package client.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.http.*;
+
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
-import server.model.*;
+import server.model.AuthenticateUser;
+import server.model.EmissionsClient;
+import server.model.ErrorDetails;
+import server.model.FriendsUserResp;
+import server.model.Users;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -121,6 +131,16 @@ public class UserService {
         return token;
     }
 
+    /**
+     * Adds emission of a user.
+     * @param restTemplate restTemplate
+     * @param url url
+     * @param userId user Id.
+     * @param emissionsClient emission Client.
+     * @param token token of user.
+     * @return string representing the result.
+     */
+
     public String addEmissionOfUser(final RestTemplate restTemplate, final String url,
                                     final Long userId, final EmissionsClient emissionsClient,
                                     final String token) {
@@ -132,11 +152,12 @@ public class UserService {
 
         String response = "";
         try {
-            ResponseEntity<String> responseString = restTemplate.exchange(url + "/" + userId, HttpMethod.POST,
+            ResponseEntity<String> responseString = restTemplate.exchange(
+                    url + "/" + userId, HttpMethod.POST,
                     entity, String.class);
             response = responseString.getBody();
-        } catch(HttpStatusCodeException e) {
-            if(e.getStatusCode() == HttpStatus.FORBIDDEN) {
+        } catch (HttpStatusCodeException e) {
+            if (e.getStatusCode() == HttpStatus.FORBIDDEN) {
                 response = outputErrorMessage(objectMapper, e.getResponseBodyAsString());
             }
         }

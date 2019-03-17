@@ -1,15 +1,16 @@
-package client.settings_page;
+package client.settingspage;
 
-import java.net.URL;
-import java.io.File;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.Parent;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 
-public class Main_settings extends Application {
+public class MainSettings extends Application {
     public static void main(String[] args) {
         launch(args);
     }
@@ -18,14 +19,13 @@ public class Main_settings extends Application {
     public void start(Stage primaryStage) {
         try {
             URL url = new File(
-                    "src/main/java/client/settings_page/settings.fxml").toURI().toURL();
+                    "src/main/java/client/settingspage/settings.fxml").toURI().toURL();
             Parent root = FXMLLoader.load(url);
             primaryStage.setTitle("Hello World");
             primaryStage.setScene(new Scene(root, 709, 700));
             primaryStage.setResizable(false);
             primaryStage.show();
-        }
-        catch (Exception e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
