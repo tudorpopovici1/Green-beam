@@ -86,6 +86,9 @@ public class MainController {
     private Button localProduceButton;
 
     @FXML
+    private Button backToEmissionPageButton;
+
+    @FXML
     private TextField dairyText;
 
     @FXML
@@ -99,6 +102,9 @@ public class MainController {
 
     @FXML
     private Button addMealButton;
+
+    @FXML
+    private Button backToMealTypePageButton;
 
     @FXML
     private Button transportationButton;
@@ -175,6 +181,8 @@ public class MainController {
         carMileageText.setVisible(false);
         fuelTypeText.setVisible(false);
         addTransportationButton.setVisible(false);
+        backToEmissionPageButton.setVisible(false);
+        backToMealTypePageButton.setVisible(false);
     }
 
     public void emissionsPageHide() {
@@ -195,6 +203,11 @@ public class MainController {
         addEmissionsText.setText("    Choose Your Meal Type");
         vegetarianIcon.setVisible(true);
         localProduceIcon.setVisible(true);
+        backToEmissionPageButton.setVisible(true);
+    }
+
+    public void backToEmissionPageButtonOnClick(ActionEvent event) {
+        emissionsPageShow();
     }
 
     public void vegetarianMealButtonOnClick(ActionEvent event) {
@@ -207,7 +220,22 @@ public class MainController {
         addMealButton.setVisible(true);
         vegetarianIcon.setVisible(false);
         localProduceIcon.setVisible(false);
+        backToMealTypePageButton.setVisible(true);
     }
+
+    public void backToMealTypeButtonOnClick(ActionEvent event) {
+        vegetarianMealButton.setVisible(true);
+        localProduceButton.setVisible(true);
+        dairyText.setVisible(false);
+        cerealText.setVisible(false);
+        fruitsAndVegetablesText.setVisible(false);
+        otherVegetarianMealText.setVisible(false);
+        addMealButton.setVisible(false);
+        vegetarianIcon.setVisible(true);
+        localProduceIcon.setVisible(true);
+        backToMealTypePageButton.setVisible(false);
+    }
+
 
     public void transportationButtonOnClick() {
         emissionsPageHide();
@@ -240,10 +268,6 @@ public class MainController {
                 69L, emissionsClient, token);
         System.out.println(response);
     }
-
-
-
-
 
     /**
      * Renders the progress page.
