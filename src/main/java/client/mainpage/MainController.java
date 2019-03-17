@@ -58,13 +58,19 @@ public class MainController {
     private ImageView customIcon;
 
     @FXML
+    private ImageView vegetarianIcon;
+
+    @FXML
+    private ImageView localProduceIcon;
+
+    @FXML
     private Button mealButton;
 
     @FXML
     private Button vegetarianMealButton;
 
     @FXML
-    private TextField localProduceText;
+    private Button localProduceButton;
 
     @FXML
     private TextField dairyText;
@@ -145,8 +151,10 @@ public class MainController {
         energyIcon.setVisible(true);
         customButton.setVisible(true);
         customIcon.setVisible(true);
+        vegetarianIcon.setVisible(false);
+        localProduceIcon.setVisible(false);
         vegetarianMealButton.setVisible(false);
-        localProduceText.setVisible(false);
+        localProduceButton.setVisible(false);
         dairyText.setVisible(false);
         cerealText.setVisible(false);
         fruitsAndVegetablesText.setVisible(false);
@@ -171,18 +179,22 @@ public class MainController {
     public void mealButtonOnClick(ActionEvent event) {
         emissionsPageHide();
         vegetarianMealButton.setVisible(true);
-        localProduceText.setVisible(true);
+        localProduceButton.setVisible(true);
         addEmissionsText.setText("    Choose Your Meal Type");
+        vegetarianIcon.setVisible(true);
+        localProduceIcon.setVisible(true);
     }
 
     public void vegetarianMealButtonOnClick(ActionEvent event) {
         vegetarianMealButton.setVisible(false);
-        localProduceText.setVisible(false);
+        localProduceButton.setVisible(false);
         dairyText.setVisible(true);
         cerealText.setVisible(true);
         fruitsAndVegetablesText.setVisible(true);
         otherVegetarianMealText.setVisible(true);
         addButton.setVisible(true);
+        vegetarianIcon.setVisible(false);
+        localProduceIcon.setVisible(false);
     }
 
     public void addEmissionsUser() {
