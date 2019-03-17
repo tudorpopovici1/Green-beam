@@ -21,7 +21,7 @@ public class Main_settings extends Application {
                     "src/main/java/client/settings_page/settings.fxml").toURI().toURL();
             Parent root = FXMLLoader.load(url);
             primaryStage.setTitle("Hello World");
-            primaryStage.setScene(new Scene(root, 900, 600));
+            primaryStage.setScene(new Scene(root, 709, 700));
             primaryStage.setResizable(false);
             primaryStage.show();
         }
