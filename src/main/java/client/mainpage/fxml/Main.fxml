@@ -209,7 +209,7 @@
                    prefWidth="184.0" promptText="Total Mileage of the Car)" visible="false"/>
         <TextField fx:id="fuelTypeText" layoutX="260.0" layoutY="369.0" prefHeight="75.0"
                    prefWidth="184.0" promptText="Fuel Type (Benzine or Diesel)" visible="false"/>
-        <Button fx:id="addTransportationButton" layoutX="260.0" layoutY="600.0" mnemonicParsing="false" prefHeight="75.0"
+        <Button fx:id="addTransportationButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false" prefHeight="75.0"
                 prefWidth="184.0" text="Add" visible="false"/>
         <Button fx:id="vegetarianMealButton" layoutX="260.0" layoutY="193.0" mnemonicParsing="false" prefHeight="75.0"
                 prefWidth="184.0" text="Add Vegetarian Meal" visible="false" onAction="#vegetarianMealButtonOnClick"/>
