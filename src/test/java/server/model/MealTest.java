@@ -3,56 +3,75 @@ package server.model;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 public class MealTest {
 
-    Meal meal = new Meal("", 0, true);
+    Meal meal = new Meal (0L, 0L, 0L, 0L);
 
     @Test
-    public void getMealNameTest() {
-        String mealName = "abc";
-        meal.setMealName(mealName);
-        String expected = "abc";
-        Assert.assertEquals(meal.getMealName(), expected);
+    public void getFruitVegetableCaloriesTest() {
+        meal.setFruitVegetablesCalories(10);
+        float mealCalories = meal.getFruitVegetablesCalories();
+        float expected = 10;
+        Assert.assertEquals(mealCalories, expected, 0);
     }
 
     @Test
-    public void setMealNameTest() {
-        String mealName = "abc";
-        meal.setMealName(mealName);
-        String setmealName = meal.getMealName();
-        String expected = "abc";
-        Assert.assertEquals(setmealName, expected);
+    public void setFruitVegetableCaloriesTest() {
+        meal.setFruitVegetablesCalories(10);
+        float mealCalories = meal.getFruitVegetablesCalories();
+        float expected = 10;
+        Assert.assertEquals(mealCalories, expected, 0);
     }
 
     @Test
-    public void getCalories() {
-        int calories = '1';
-        meal.setCalories(calories);
-        int expected = '1';
-        Assert.assertEquals(meal.getCalories(), expected);
+    public void getCerealCaloriesTest() {
+        meal.setCerealCalories(10);
+        float mealCalories = meal.getCerealCalories();
+        float expected = 10;
+        Assert.assertEquals(mealCalories, expected, 0);
     }
 
     @Test
-    public void setCalories() {
-        int calories = '1';
-        meal.setCalories(calories);
-        int setCalories = meal.getCalories();
-        int expected = '1';
-        Assert.assertEquals(setCalories, expected);
+    public void setCerealCaloriesTest() {
+        meal.setCerealCalories(10);
+        float mealCalories = meal.getCerealCalories();
+        float expected = 10;
+        Assert.assertEquals(mealCalories, expected, 0);
     }
 
     @Test
-    public void isVeganTest() {
-        boolean vegan = true;
-
+    public void getDairyCaloriesTest() {
+        meal.setDairyCalories(10);
+        float mealCalories = meal.getDairyCalories();
+        float expected = 10;
+        Assert.assertEquals(mealCalories, expected, 0);
     }
 
     @Test
-    public void setVeganTest() {
-        meal.setVegan(true);
-        boolean expected = true;
-        Assert.assertEquals(meal.isVegan(), expected);
+    public void setDairyCaloriesTest() {
+        meal.setDairyCalories(10);
+        float mealCalories = meal.getDairyCalories();
+        float expected = 10;
+        Assert.assertEquals(mealCalories, expected, 0);
     }
+
+    @Test
+    public void getOtherFoodCaloriesTest() {
+        meal.setOtherFoodCalories(10);
+        float mealCalories = meal.getOtherFoodCalories();
+        float expected = 10;
+        Assert.assertEquals(mealCalories, expected, 0);
+    }
+
+    @Test
+    public void setOtherFoodCaloriesTest() {
+        meal.setOtherFoodCalories(10);
+        float mealCalories = meal.getOtherFoodCalories();
+        float expected = 10;
+        Assert.assertEquals(mealCalories, expected, 0);
+    }
+
+
+
+
 }

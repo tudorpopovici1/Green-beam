@@ -3,13 +3,13 @@ package server.model;
 public class Meal {
 
     private float dairyCalories;
-    private float otherfoodCalories;
+    private float otherFoodCalories;
     private float fruitVegetablesCalories;
     private float cerealCalories;
 
-    public Meal(float dairyCalories, float otherfoodCalories, float fruitVegetablesCalories, float cerealCalories) {
+    public Meal(float dairyCalories, float otherFoodCalories, float fruitVegetablesCalories, float cerealCalories) {
         this.dairyCalories = dairyCalories;
-        this.otherfoodCalories = otherfoodCalories;
+        this.otherFoodCalories = otherFoodCalories;
         this.fruitVegetablesCalories = fruitVegetablesCalories;
         this.cerealCalories = cerealCalories;
     }
@@ -34,12 +34,12 @@ public class Meal {
     }
 
     /**
-     * Gets otherfoodCalories.
+     * Gets otherFoodCalories.
      *
-     * @return Value of otherfoodCalories.
+     * @return Value of otherFoodCalories.
      */
-    public float getOtherfoodCalories() {
-        return otherfoodCalories;
+    public float getOtherFoodCalories() {
+        return otherFoodCalories;
     }
 
     /**
@@ -52,12 +52,12 @@ public class Meal {
     }
 
     /**
-     * Sets new otherfoodCalories.
+     * Sets new otherFoodCalories.
      *
-     * @param otherfoodCalories New value of otherfoodCalories.
+     * @param otherFoodCalories New value of otherFoodCalories.
      */
-    public void setOtherfoodCalories(float otherfoodCalories) {
-        this.otherfoodCalories = otherfoodCalories;
+    public void setOtherFoodCalories(float otherFoodCalories) {
+        this.otherFoodCalories = otherFoodCalories;
     }
 
     /**

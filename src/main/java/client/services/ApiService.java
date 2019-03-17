@@ -20,10 +20,7 @@ public class ApiService {
 
     private RestTemplate restTemplate  = new RestTemplate();
 
-    public ApiService() {
-
-
-    }
+    public ApiService() {}
 
     public float getVegetarianMealEmissions(Meal meal) {
 
@@ -98,7 +95,7 @@ public class ApiService {
                 .queryParam("input_footprint_shopping_food_meat_fish", 0)
                 .queryParam("input_footprint_shopping_food_meat_other", 0)
                 .queryParam("input_footprint_shopping_food_dairy", meal.getDairyCalories())
-                .queryParam("input_footprint_shopping_food_otherfood", meal.getOtherfoodCalories())
+                .queryParam("input_footprint_shopping_food_otherfood", meal.getOtherFoodCalories())
                 .queryParam("input_footprint_shopping_food_fruitvegetables", meal.getFruitVegetablesCalories())
                 .queryParam("input_footprint_shopping_food_cereals", meal.getCerealCalories())
                 .queryParam("input_footprint_shopping_food_meattype", 1)
