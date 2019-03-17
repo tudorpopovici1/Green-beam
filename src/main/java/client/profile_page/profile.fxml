@@ -61,12 +61,12 @@
                   </ImageView>
                 </children>
       </Pane>
-      <ProgressBar layoutX="133.0" layoutY="278.0" prefHeight="18.0" prefWidth="443.0" progress="0.67" />
+      <ProgressBar layoutX="133.0" layoutY="278.0" prefHeight="18.0" prefWidth="443.0" progress="0.39" />
       <Label layoutX="232.0" layoutY="220.0" text="YOUR TOTAL CO2 TODAY:" textFill="#243665">
          <font>
             <Font name="BebasNeue" size="36.0" />
          </font></Label>
-      <GridPane layoutY="368.0" prefHeight="339.0" prefWidth="717.0" style="-fx-background-color: #243665;">
+      <GridPane layoutY="368.0" prefHeight="344.0" prefWidth="719.0" style="-fx-background-color: #243665;">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
