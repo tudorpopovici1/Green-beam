@@ -98,6 +98,9 @@ public class MainController {
     private Button backToEmissionPageButton;
 
     @FXML
+    private Label vegetarianMealStatus;
+
+    @FXML
     private TextField dairyText;
 
     @FXML
@@ -140,6 +143,7 @@ public class MainController {
     private ApiService apiService = new ApiService();
     private UserService userService = new UserService();
 
+    /**---------------------------- MAIN PAGE -----------------------------------------**/
 
     /**
      * Renders the main page.
@@ -161,6 +165,8 @@ public class MainController {
     public void displayUsernameOnMain(String username) {
         usernameDisplayMainText.setText(username);
     }
+
+    /**---------------------------- EMISSION PAGE -----------------------------------------**/
 
     /**
      * Renders the emissions page.
@@ -205,6 +211,7 @@ public class MainController {
         backToEmissionPageButton.setVisible(false);
         backToMealTypePageButton.setVisible(false);
         backToTransportationTypePageButton.setVisible(false);
+        vegetarianMealStatus.setVisible(false);
     }
 
     /**
@@ -258,6 +265,7 @@ public class MainController {
         vegetarianIcon.setVisible(false);
         localProduceIcon.setVisible(false);
         backToMealTypePageButton.setVisible(true);
+        vegetarianMealStatus.setVisible(true);
     }
 
     /**
@@ -338,6 +346,8 @@ public class MainController {
         System.out.println(response);
     }
 
+    /**---------------------------- PROGRESS PAGE -----------------------------------------**/
+
     /**
      * Renders the progress page.
      * @param event - once a user clicks the button linked to
@@ -349,6 +359,8 @@ public class MainController {
         animatePane(progressWindow);
         progressWindow.setStyle("-fx-background-color: #000000");
     }
+
+    /**---------------------------- PROFILE PAGE -----------------------------------------**/
 
     /**
      * Renders the profile page.
@@ -362,6 +374,8 @@ public class MainController {
         profileWindow.setStyle("-fx-background-color: white");
     }
 
+    /**---------------------------- ABOUT US PAGE -----------------------------------------**/
+
     /**
      * Renders the about us page.
      * @param event - once a user clicks the button linked to
@@ -373,6 +387,8 @@ public class MainController {
         animateScrollPane(aboutUsWindow);
         aboutUsWindow.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
     }
+
+    /**---------------------------- SETTINGS PAGE -----------------------------------------**/
 
     /**
      * Renders the settings page.
@@ -386,6 +402,8 @@ public class MainController {
         settingsWindow.setStyle("-fx-background-color: orange");
     }
 
+    /**---------------------------- LOGOUT -----------------------------------------**/
+
     /**
      * Renders the login page once user logs out.
      * @param event - once a user clicks the button linked to
@@ -395,6 +413,8 @@ public class MainController {
         LogoutController logoutController = new LogoutController();
         logoutController.logout();
     }
+
+    /**---------------------------- ANIMATIONS -----------------------------------------**/
 
     /**
      * Animates a pane.
