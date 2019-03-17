@@ -22,6 +22,7 @@ public class Main_settings extends Application {
             Parent root = FXMLLoader.load(url);
             primaryStage.setTitle("Hello World");
             primaryStage.setScene(new Scene(root, 900, 600));
+            primaryStage.setResizable(false);
             primaryStage.show();
         }
         catch (Exception e){
