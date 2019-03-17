@@ -149,6 +149,7 @@ public class MainController {
         mainWindow.setVisible(true);
         mainWindow.toFront();
         animatePane(mainWindow);
+        displayUsernameOnMain("user: irtazahashmi");
     }
 
     public void displayUsernameOnMain(String username) {

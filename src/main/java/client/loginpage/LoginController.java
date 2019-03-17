@@ -59,6 +59,7 @@ public class LoginController {
 
     @FXML
     private Label lblStatus2;
+
     /**
      * This is getting all the textField attributes from the
      * Login.fxml file.

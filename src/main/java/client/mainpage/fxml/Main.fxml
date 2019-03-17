@@ -152,7 +152,7 @@
         <Label fx:id="dailyFixedPointsText" layoutX="220.0" layoutY="260" text="Daily Fixed Points:"/>
         <Label fx:id="totalPointsText" layoutX="214.0" layoutY="350.0" text="Total Points Earned:"/>
         <Label fx:id="totalCO2SavedText" layoutX="18.0" layoutY="350.0" text="Total CO2 Saved:"/>
-        <Label fx:id="usernameDisplayMainText" layoutX="28.0" layoutY="28.0" prefHeight="33.0" prefWidth="47.0" text="User:" textFill="WHITE">
+        <Label fx:id="usernameDisplayMainText" layoutX="28.0" layoutY="28.0" prefHeight="33.0" prefWidth="170.0" text="User:" textFill="WHITE">
         <font>
         <Font size="16.0" />
         </font></Label>
