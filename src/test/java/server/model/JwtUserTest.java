@@ -6,9 +6,7 @@ import org.junit.Test;
 
 public class JwtUserTest {
 
-
     JwtUser jwtUser = new JwtUser();
-
 
     @Test
     public void getUserNameTest() {

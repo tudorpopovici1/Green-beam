@@ -1,5 +1,10 @@
 package client.mainpage;
 
+
+import client.Url;
+import client.UserToken;
+import client.services.ApiService;
+import client.services.UserService;
 import javafx.animation.FadeTransition;
 import javafx.animation.SequentialTransition;
 import javafx.event.ActionEvent;
@@ -11,6 +16,15 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.TextField;
+import org.springframework.web.client.RestTemplate;
+import server.model.EmissionsClient;
+import server.model.Meal;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 
 /**
  * This is the main controller for the application
@@ -91,6 +105,10 @@ public class MainController {
     @FXML
     private Pane settingsWindow;
 
+    private RestTemplate restTemplate = new RestTemplate();
+    private ApiService apiService = new ApiService();
+    private UserService userService = new UserService();
+
 
     /**
      * Renders the main page.
@@ -166,6 +184,25 @@ public class MainController {
         otherVegetarianMealText.setVisible(true);
         addButton.setVisible(true);
     }
+
+    public void addEmissionsUser() {
+        final String token = UserToken.getUserToken();
+
+        Meal meal = new Meal(Float.parseFloat(dairyText.getText()),
+                Float.parseFloat(otherVegetarianMealText.getText()),
+                Float.parseFloat(fruitsAndVegetablesText.getText()),
+                Float.parseFloat(cerealText.getText()));
+
+        float carbonEmission = apiService.getVegetarianMealEmissions(meal);
+
+        DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+        Date today = Calendar.getInstance().getTime();
+        EmissionsClient emissionsClient = new EmissionsClient("1", carbonEmission, today);
+        String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                69L, emissionsClient, token);
+        System.out.println(response);
+    }
+
 
     /**
      * Renders the progress page.
