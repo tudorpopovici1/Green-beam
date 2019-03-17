@@ -68,6 +68,9 @@ public class MainController {
     private Button addTransportationButton;
 
     @FXML
+    private Label transportationStatus;
+
+    @FXML
     private Button backToTransportationTypePageButton;
 
     @FXML
@@ -212,6 +215,7 @@ public class MainController {
         backToMealTypePageButton.setVisible(false);
         backToTransportationTypePageButton.setVisible(false);
         vegetarianMealStatus.setVisible(false);
+        transportationStatus.setVisible(false);
     }
 
     /**
@@ -283,6 +287,7 @@ public class MainController {
         vegetarianIcon.setVisible(true);
         localProduceIcon.setVisible(true);
         backToMealTypePageButton.setVisible(false);
+        vegetarianMealStatus.setVisible(false);
     }
 
     /**
@@ -308,6 +313,7 @@ public class MainController {
         addTransportationButton.setVisible(true);
         backToEmissionPageButton.setVisible(false);
         backToTransportationTypePageButton.setVisible(true);
+        transportationStatus.setVisible(true);
     }
 
     /**
@@ -323,6 +329,7 @@ public class MainController {
         backToEmissionPageButton.setVisible(true);
         backToTransportationTypePageButton.setVisible(false);
         rideABikeButton.setVisible(true);
+        transportationStatus.setVisible(false);
     }
 
     /**

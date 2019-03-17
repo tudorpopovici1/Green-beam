@@ -248,6 +248,11 @@
         <Button fx:id="addTransportationButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
                 prefHeight="75.0"
                 prefWidth="184.0" text="Add" visible="false"/>
+        <Label fx:id="transportationStatus" layoutX="230" layoutY="140" text="Input the parameters required" visible="false">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
         <Button fx:id="backToTransportationTypePageButton" layoutX="20.0" layoutY="600.0" mnemonicParsing="false"
                 prefHeight="50.0"
                 prefWidth="50" text="Back" visible="false" onAction="#backToTransportationTypeButtonOnClick"/>

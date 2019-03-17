@@ -73,7 +73,7 @@
     -fx-border-width: 1.5px;
 }
 
-#vegetarianMealStatus {
+#vegetarianMealStatus, #transportationStatus {
     -fx-text-fill: white;
 }
 
