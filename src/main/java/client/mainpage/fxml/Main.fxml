@@ -213,6 +213,8 @@
         <Button fx:id="addTransportationButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
                 prefHeight="75.0"
                 prefWidth="184.0" text="Add" visible="false"/>
+        <Button fx:id="backToTransportationTypePageButton" layoutX="20.0" layoutY="600.0" mnemonicParsing="false" prefHeight="50.0"
+                prefWidth="50" text="Back" visible="false" onAction="#backToTransportationTypeButtonOnClick"/>
         <Button fx:id="vegetarianMealButton" layoutX="260.0" layoutY="193.0" mnemonicParsing="false" prefHeight="75.0"
                 prefWidth="184.0" text="Add Vegetarian Meal" visible="false" onAction="#vegetarianMealButtonOnClick"/>
         <Button fx:id="localProduceButton" layoutX="260.0" layoutY="280.0" prefHeight="75.0"

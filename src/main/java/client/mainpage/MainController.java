@@ -62,6 +62,9 @@ public class MainController {
     private Button addTransportationButton;
 
     @FXML
+    private Button backToTransportationTypePageButton;
+
+    @FXML
     private ImageView bikeIcon;
 
     @FXML
@@ -183,6 +186,7 @@ public class MainController {
         addTransportationButton.setVisible(false);
         backToEmissionPageButton.setVisible(false);
         backToMealTypePageButton.setVisible(false);
+        backToTransportationTypePageButton.setVisible(false);
     }
 
     public void emissionsPageHide() {
@@ -236,11 +240,11 @@ public class MainController {
         backToMealTypePageButton.setVisible(false);
     }
 
-
     public void transportationButtonOnClick() {
         emissionsPageHide();
         rideABikeButton.setVisible(true);
         bikeIcon.setVisible(true);
+        backToEmissionPageButton.setVisible(true);
     }
 
     public void rideABikeButtonOnClick(ActionEvent event) {
@@ -249,7 +253,21 @@ public class MainController {
         fuelTypeText.setVisible(true);
         bikeIcon.setVisible(false);
         addTransportationButton.setVisible(true);
+        backToEmissionPageButton.setVisible(false);
+        backToTransportationTypePageButton.setVisible(true);
     }
+
+    public void backToTransportationTypeButtonOnClick(ActionEvent event) {
+        litresOfFuelText.setVisible(false);
+        carMileageText.setVisible(false);
+        fuelTypeText.setVisible(false);
+        bikeIcon.setVisible(true);
+        addTransportationButton.setVisible(false);
+        backToEmissionPageButton.setVisible(true);
+        backToTransportationTypePageButton.setVisible(false);
+        rideABikeButton.setVisible(true);
+    }
+
 
     public void addEmissionsUser() {
         final String token = UserToken.getUserToken();
