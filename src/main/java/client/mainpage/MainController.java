@@ -38,6 +38,9 @@ public class MainController {
     private Label usernameDisplayMainText;
 
     @FXML
+    private Label totalCO2SavedLabel;
+
+    @FXML
     private Pane emissionsWindow;
 
     @FXML
