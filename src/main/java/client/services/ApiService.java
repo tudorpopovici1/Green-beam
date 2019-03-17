@@ -10,9 +10,9 @@ import server.model.ApiRequestResponse;
 import server.model.EmissionReductions;
 import server.model.Meal;
 
-import javax.xml.bind.JAXB;
 import java.io.IOException;
 import java.io.StringReader;
+import javax.xml.bind.JAXB;
 
 public class ApiService {
 
@@ -21,6 +21,12 @@ public class ApiService {
     private RestTemplate restTemplate  = new RestTemplate();
 
     public ApiService() {}
+
+    /**
+     * Retrives the carbon emissions calculated with the API.
+     * @param meal meal object
+     * @return carbon emission saved
+     */
 
     public float getVegetarianMealEmissions(Meal meal) {
 
@@ -96,7 +102,8 @@ public class ApiService {
                 .queryParam("input_footprint_shopping_food_meat_other", 0)
                 .queryParam("input_footprint_shopping_food_dairy", meal.getDairyCalories())
                 .queryParam("input_footprint_shopping_food_otherfood", meal.getOtherFoodCalories())
-                .queryParam("input_footprint_shopping_food_fruitvegetables", meal.getFruitVegetablesCalories())
+                .queryParam("input_footprint_shopping_food_fruitvegetables",
+                        meal.getFruitVegetablesCalories())
                 .queryParam("input_footprint_shopping_food_cereals", meal.getCerealCalories())
                 .queryParam("input_footprint_shopping_food_meattype", 1)
                 .queryParam("input_footprint_shopping_goods_type", 0)

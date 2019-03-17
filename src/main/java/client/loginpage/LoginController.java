@@ -2,7 +2,6 @@ package client.loginpage;
 
 import client.Url;
 import client.UserToken;
-import client.mainpage.MainController;
 import client.services.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
