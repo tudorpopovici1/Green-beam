@@ -63,6 +63,16 @@
     -fx-font-weight: bolder;
 }
 
+#logo1, #logo2 {
+    -fx-scale-x: 0.6;
+    -fx-scale-y: 0.6;
+}
+
+#statBox {
+    -fx-border-color: white;
+    -fx-border-width: 1.5px;
+}
+
 
 
 

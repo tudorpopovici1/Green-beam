@@ -14,6 +14,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 
+<?import javafx.scene.layout.BorderPane?>
 <AnchorPane fx:id="main" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.mainpage.MainController">
     <ImageView fx:id="mainBackground" fitHeight="700.0" fitWidth="931.0">
@@ -117,39 +118,80 @@
             </AnchorPane>
         </children>
     </AnchorPane>
-    <Pane fx:id="mainWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false">
-        <ImageView fitHeight="700.0" fitWidth="931.0">
-            <image>
-                <Image url="@../images/mainBackgroud.jpg"/>
-            </image>
-        </ImageView>
-        <ImageView fitHeight="162.0" fitWidth="149.0" layoutX="87.0" layoutY="-3.0">
-            <image>
-                <Image url="@../images/logo1.png"/>
-            </image>
-        </ImageView>
-        <ImageView fitHeight="69.0" fitWidth="363.0" layoutX="138.0" layoutY="41.0">
-            <image>
-                <Image url="@../images/logo2.png"/>
-            </image>
-        </ImageView>
-        <ImageView fitHeight="60" fitWidth="40" layoutX="210.0" layoutY="185.0">
-            <image>
-                <Image url="@../images/fireIcon.png"/>
-            </image>
-        </ImageView>
-        <ImageView fitHeight="60" fitWidth="40" layoutX="440.0" layoutY="185.0">
-            <image>
-                <Image url="@../images/fireIcon.png"/>
-            </image>
-        </ImageView>
+    <!--<Pane fx:id="mainWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false">-->
+        <!--<ImageView fitHeight="700.0" fitWidth="931.0">-->
+            <!--<image>-->
+                <!--<Image url="@../images/backgrounBush.jpeg"/>-->
+            <!--</image>-->
+        <!--</ImageView>-->
+        <!--<ImageView fx:id="logo1" fitHeight="162.0" fitWidth="149.0" layoutX="180.0" layoutY="-24.0">-->
+            <!--<image>-->
+                <!--<Image url="@../images/logo1.png"/>-->
+            <!--</image>-->
+        <!--</ImageView>-->
+        <!--<ImageView fx:id="logo2" fitHeight="69.0" fitWidth="363.0" layoutX="170.0" layoutY="21.0">-->
+            <!--<image>-->
+                <!--<Image url="@../images/logo2.png"/>-->
+            <!--</image>-->
+        <!--</ImageView>-->
+        <!--<ImageView fitHeight="60" fitWidth="40" layoutX="210.0" layoutY="185.0">-->
+            <!--<image>-->
+                <!--<Image url="@../images/fireIcon.png"/>-->
+            <!--</image>-->
+        <!--</ImageView>-->
+        <!--<ImageView fitHeight="60" fitWidth="40" layoutX="440.0" layoutY="185.0">-->
+            <!--<image>-->
+                <!--<Image url="@../images/fireIcon.png"/>-->
+            <!--</image>-->
+        <!--</ImageView>-->
 
-        <Label fx:id="currentStreakText" layoutX="120.0" layoutY="150" text="Current Streak:"/>
-        <Label fx:id="longestStreakText" layoutX="350.0" layoutY="150.0" text="Longest Streak:"/>
-        <Label fx:id="travelText" layoutX="120.0" layoutY="250.0" text="Total Green Travel:"/>
-        <Label fx:id="dailyFixedPointsText" layoutX="350.0" layoutY="250" text="Daily Fixed Points:"/>
-        <Label fx:id="totalPointsText" layoutX="350.0" layoutY="350.0" text="Total Points Earned:"/>
-        <Label fx:id="totalCO2SavedText" layoutX="120.0" layoutY="350.0" text="Total CO2 Saved:"/>
+        <!--<Label fx:id="currentStreakText" layoutX="120.0" layoutY="150" text="Current Streak:"/>-->
+        <!--<Label fx:id="longestStreakText" layoutX="350.0" layoutY="150.0" text="Longest Streak:"/>-->
+        <!--<Label fx:id="travelText" layoutX="120.0" layoutY="250.0" text="Total Green Travel:"/>-->
+        <!--<Label fx:id="dailyFixedPointsText" layoutX="350.0" layoutY="250" text="Daily Fixed Points:"/>-->
+        <!--<Label fx:id="totalPointsText" layoutX="350.0" layoutY="350.0" text="Total Points Earned:"/>-->
+        <!--<Label fx:id="totalCO2SavedText" layoutX="120.0" layoutY="350.0" text="Total CO2 Saved:"/>-->
+    <!--</Pane>-->
+    <Pane fx:id="mainWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false">
+        <ImageView fx:id="userText" fitHeight="700.0" fitWidth="709.0">
+            <image>
+                <Image url="@../images/backgrounBush.jpeg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="logo1" fitHeight="162.0" fitWidth="149.0" layoutX="180.0" layoutY="-24.0">
+            <image>
+                <Image url="@../images/logo1.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="logo2" fitHeight="69.0" fitWidth="363.0" layoutX="170.0" layoutY="21.0">
+            <image>
+                <Image url="@../images/logo2.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="52.0" fitWidth="34.0" layoutX="132.0" layoutY="201.0">
+            <image>
+                <Image url="@../images/fireIcon.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="52.0" fitWidth="34.0" layoutX="297.0" layoutY="201.0">
+            <image>
+                <Image url="@../images/fireIcon.png" />
+            </image>
+        </ImageView>
+        <BorderPane fx:id="statBox" layoutX="12.0" layoutY="133.0" prefHeight="311.0" prefWidth="418.0" AnchorPane.topAnchor="133.0" />
+        <Label fx:id="currentStreakText" layoutX="38.0" layoutY="153.0" prefHeight="33.0" prefWidth="150.0" text="Current Streak:" />
+        <Label fx:id="longestStreakText" layoutX="201.0" layoutY="153.0" text="Longest Streak:" />
+        <Label fx:id="travelText" layoutX="18.0" layoutY="260.0" text="Total Green Travel:" />
+        <Label fx:id="dailyFixedPointsText" layoutX="220.0" layoutY="260.0" text="Daily Fixed Points:" />
+        <Label fx:id="totalPointsText" layoutX="214.0" layoutY="350.0" text="Total Points Earned:" />
+        <Label fx:id="totalCO2SavedText" layoutX="18.0" layoutY="350.0" text="Total CO2 Saved:" />
+        <Label layoutX="28.0" layoutY="28.0" prefHeight="33.0" prefWidth="47.0" text="User:" textFill="WHITE">
+            <font>
+                <Font size="16.0" />
+            </font></Label>
+        <stylesheets>
+            <URL value="@../css/MainPage.css" />
+        </stylesheets>
     </Pane>
     <Pane fx:id="emissionsWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false">
         <ImageView fx:id="backgroundImage" fitHeight="700.0" fitWidth="931.0">
