@@ -403,10 +403,15 @@
             </Pane>
         </content>
     </ScrollPane>
-    <!--<Pane fx:id="settingsWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>-->
-    <Pane fx:id="settingsWindow" layoutX="222.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="709.0" visible="false" styleClass="dark-panel" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+    <Pane fx:id="settingsWindow" layoutX="222.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+          prefHeight="700.0" prefWidth="709.0" visible="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
         <children>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="709.0" styleClass="dark-panel" >
+            <ImageView fitHeight="700.0" fitWidth="931.0">
+                <image>
+                    <Image url="@../images/backgroundStars.jpeg"/>
+                </image>
+            </ImageView>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="709.0"  >
                 <children>
                     <Label layoutX="288.0" layoutY="77.0" text="PROFILE SETTINGS" textFill="WHITE">
                         <font>
@@ -469,7 +474,7 @@
                         </font>
                     </JFXButton>
                     <JFXTextField focusColor="#a8bdff" layoutX="513.0" layoutY="237.0" promptText="Name, Surname" styleClass="buttons" unFocusColor="WHITE" />
-                    <DatePicker layoutX="501.0" layoutY="279.0" promptText="14-07-1998" styleClass="buttons" />
+                    <DatePicker layoutX="490.0" layoutY="279.0" promptText="14-07-1998" styleClass="buttons" />
                     <JFXTextField focusColor="#a8bdff" layoutX="512.0" layoutY="318.0" promptText="Country" styleClass="buttons" unFocusColor="WHITE" />
                     <Separator layoutX="53.0" layoutY="491.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" />
                     <JFXPasswordField focusColor="#a8bdff" layoutX="512.0" layoutY="403.0" promptText="Old password" styleClass="buttons" unFocusColor="WHITE" />
@@ -511,7 +516,6 @@
             </Pane>
         </children>
     </Pane>
-
     <Pane fx:id="logoutWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
     <Label fx:id="welcomeText" layoutX="383.0" layoutY="140.0" prefHeight="132.0" prefWidth="467.0" text="Welcome to"/>
     <stylesheets>
