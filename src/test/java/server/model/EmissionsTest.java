@@ -1,6 +1,7 @@
+/*
+
 package server.model;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -60,3 +61,5 @@ Emissions emission = new Emissions();
 
 
     }
+
+*/

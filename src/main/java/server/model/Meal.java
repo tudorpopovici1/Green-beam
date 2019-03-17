@@ -1,46 +1,89 @@
 package server.model;
 
 public class Meal {
-    private String mealName;
-    private int calories;
-    private boolean isVegan;
 
-    public Meal(String mealName, int calories, boolean isVegan) {
-        this.mealName = mealName;
-        this.calories = calories;
-        this.isVegan = isVegan;
+    private float dairyCalories;
+    private float otherfoodCalories;
+    private float fruitVegetablesCalories;
+    private float cerealCalories;
+
+    public Meal(float dairyCalories, float otherfoodCalories, float fruitVegetablesCalories, float cerealCalories) {
+        this.dairyCalories = dairyCalories;
+        this.otherfoodCalories = otherfoodCalories;
+        this.fruitVegetablesCalories = fruitVegetablesCalories;
+        this.cerealCalories = cerealCalories;
     }
 
-    public String getMealName() {
-        return mealName;
+
+    /**
+     * Sets new fruitVegetablesCalories.
+     *
+     * @param fruitVegetablesCalories New value of fruitVegetablesCalories.
+     */
+    public void setFruitVegetablesCalories(float fruitVegetablesCalories) {
+        this.fruitVegetablesCalories = fruitVegetablesCalories;
     }
 
-    public void setMealName(String mealName) {
-        this.mealName = mealName;
+    /**
+     * Gets dairyCalories.
+     *
+     * @return Value of dairyCalories.
+     */
+    public float getDairyCalories() {
+        return dairyCalories;
     }
 
-    public int getCalories() {
-        return calories;
+    /**
+     * Gets otherfoodCalories.
+     *
+     * @return Value of otherfoodCalories.
+     */
+    public float getOtherfoodCalories() {
+        return otherfoodCalories;
     }
 
-    public void setCalories(int calories) {
-        this.calories = calories;
+    /**
+     * Sets new cerealCalories.
+     *
+     * @param cerealCalories New value of cerealCalories.
+     */
+    public void setCerealCalories(float cerealCalories) {
+        this.cerealCalories = cerealCalories;
     }
 
-    public boolean isVegan() {
-        return isVegan;
+    /**
+     * Sets new otherfoodCalories.
+     *
+     * @param otherfoodCalories New value of otherfoodCalories.
+     */
+    public void setOtherfoodCalories(float otherfoodCalories) {
+        this.otherfoodCalories = otherfoodCalories;
     }
 
-    public void setVegan(boolean vegan) {
-        isVegan = vegan;
+    /**
+     * Gets fruitVegetablesCalories.
+     *
+     * @return Value of fruitVegetablesCalories.
+     */
+    public float getFruitVegetablesCalories() {
+        return fruitVegetablesCalories;
     }
 
-    @Override
-    public String toString() {
-        return "Meal{"
-                + "mealName='" + mealName + '\''
-                + ", calories=" + calories
-                + ", isVegan=" + isVegan
-                + '}';
+    /**
+     * Sets new dairyCalories.
+     *
+     * @param dairyCalories New value of dairyCalories.
+     */
+    public void setDairyCalories(float dairyCalories) {
+        this.dairyCalories = dairyCalories;
+    }
+
+    /**
+     * Gets cerealCalories.
+     *
+     * @return Value of cerealCalories.
+     */
+    public float getCerealCalories() {
+        return cerealCalories;
     }
 }

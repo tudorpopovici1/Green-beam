@@ -15,11 +15,14 @@ class EmissionType {
 
     @Id
     @GeneratedValue
-    @Column(columnDefinition = "emission_id")
+    @Column(name = "emission_id")
     private Long emissionId;
 
-    @Column(columnDefinition = "emission_name")
+    @Column(name = "emission_name")
     private String emissionName;
+
+    @Column(name = "emission_type")
+    private String emissionType;
 
 
     /**
