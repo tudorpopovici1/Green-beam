@@ -61,8 +61,24 @@ public class JwtUserDetailsTest {
         Assert.assertEquals(setId, expected);
     }
 
+    @Test
+    public void equalsFalseTest() {
+        JwtUserDetails jwtUserDetails1 = new JwtUserDetails("abc", 1234L, "def", null);
+        JwtUserDetails jwtUserDetails2 = new JwtUserDetails("cba", 1234L, "def", null);
+        Assert.assertEquals(false, jwtUserDetails1.equals(jwtUserDetails2));
+    }
 
+    @Test
+    public void equalsTrueTest() {
+        JwtUserDetails jwtUserDetails3 = new JwtUserDetails("abc", 1234L, "def", null);
+        JwtUserDetails jwtUserDetails4 = new JwtUserDetails("abc", 1234L, "def", null);
+        Assert.assertEquals(true, jwtUserDetails3.equals(jwtUserDetails4));
+    }
 
-
-
+    @Test
+    public void equalsNullTest() {
+        JwtUserDetails jwtUserDetails5 = new JwtUserDetails("abc", 1234L, "def", null);
+        JwtUserDetails jwtUserDetails6 = null;
+        Assert.assertEquals(false, jwtUserDetails5.equals(jwtUserDetails6));
+    }
 }

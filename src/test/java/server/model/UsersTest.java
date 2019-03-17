@@ -210,6 +210,4 @@ public class UsersTest {
         Users user3 = new Users(1234L, "def", "ghi", "jkl", "mno", "pqr", "stu", dateOfBirth, "vxy");
         Assert.assertEquals(false, user1.equals(user2));
     }
-
-
 }
