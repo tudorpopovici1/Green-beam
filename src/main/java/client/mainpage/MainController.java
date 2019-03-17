@@ -2,6 +2,7 @@ package client.mainpage;
 
 import client.Url;
 import client.UserToken;
+import client.loginpage.LoginController;
 import client.services.ApiService;
 import client.services.UserService;
 import javafx.animation.FadeTransition;
@@ -33,6 +34,9 @@ public class MainController {
 
     @FXML
     private Pane mainWindow;
+
+    @FXML
+    Label usernameDisplayMainText;
 
     @FXML
     private Pane emissionsWindow;
@@ -145,6 +149,10 @@ public class MainController {
         mainWindow.setVisible(true);
         mainWindow.toFront();
         animatePane(mainWindow);
+    }
+
+    public void displayUsernameOnMain(String username) {
+        usernameDisplayMainText.setText(username);
     }
 
     /**
