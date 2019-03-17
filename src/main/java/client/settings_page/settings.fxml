@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="709.0" styleClass="dark-panel" stylesheets="@settings_stylescheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.settings_page.SettingsController">
+   <children>
+      <Label layoutX="38.0" layoutY="42.0" text="CHANGES 01" textFill="#e1dada">
+         <font>
+            <Font name="Gotham-Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="38.0" layoutY="59.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0" text="Lorem ipsum" textFill="#b5b2b2" wrapText="true" />
+      <JFXToggleButton layoutX="556.0" layoutY="42.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="65.0" toggleColor="WHITE" toggleLineColor="#f3a978" />
+      <JFXToggleButton layoutX="556.0" layoutY="110.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="65.0" toggleColor="WHITE" toggleLineColor="#f3a978" />
+      <Label layoutX="38.0" layoutY="127.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0" text="Lorem ipsum" textFill="#b5b2b2" wrapText="true" />
+      <Label layoutX="38.0" layoutY="110.0" text="CHANGES 02" textFill="#e1dada">
+         <font>
+            <Font name="Gotham-Bold" size="15.0" />
+         </font>
+      </Label>
+      <JFXToggleButton layoutX="556.0" layoutY="170.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="65.0" toggleColor="WHITE" toggleLineColor="#f3a978" />
+      <Label layoutX="38.0" layoutY="187.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0" text="Lorem ipsum" textFill="#b5b2b2" wrapText="true" />
+      <Label layoutX="38.0" layoutY="170.0" text="CHANGES 03" textFill="#e1dada">
+         <font>
+            <Font name="Gotham-Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="38.0" layoutY="239.0" text="CHANGES 04" textFill="#e1dada">
+         <font>
+            <Font name="Gotham-Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="38.0" layoutY="256.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0" text="Lorem ipsum" textFill="#b5b2b2" wrapText="true" />
+      <JFXToggleButton layoutX="556.0" layoutY="239.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="65.0" toggleColor="WHITE" toggleLineColor="#f3a978" />
+      <Label layoutX="36.0" layoutY="290.0" text="CHANGES 05" textFill="#e1dada">
+         <font>
+            <Font name="Gotham-Bold" size="15.0" />
+         </font>
+      </Label>
+      <JFXSlider layoutX="36.0" layoutY="316.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="350.0" />
+      <JFXButton layoutX="539.0" layoutY="638.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="100.0" ripplerFill="WHITE" styleClass="buttons" text="SAVE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="416.0" layoutY="638.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="100.0" ripplerFill="WHITE" styleClass="buttons" text="CANCEL">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+   </children>
+</Pane>
