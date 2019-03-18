@@ -8,7 +8,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AuthenticateUserTest {
 
-    AuthenticateUser authenticateUser= new AuthenticateUser();
+    AuthenticateUser authenticateUser = new AuthenticateUser();
+    AuthenticateUser authenticateUser2 = new AuthenticateUser();
+
 
     @Test
     public void getUsernameTest() {
@@ -35,20 +37,13 @@ public class AuthenticateUserTest {
     }
 
     @Test
-    public void notgetPasswordTest() {
-        String username = "pass";
-        authenticateUser.setPassword(username);
-        String notexpected = "notpass";
-        Assert.assertNotEquals(authenticateUser.getPassword(), notexpected);
-    }
-    @Test
     public void setPasswordTest() {
         String username = "pass";
         authenticateUser.setPassword(username);
-        String setPassword = authenticateUser.getPassword();
         String expected = "pass";
-        Assert.assertEquals(setPassword, expected);
+        Assert.assertEquals(authenticateUser.getPassword(), expected);
     }
+
     @Test
     public void setTokenTest() {
         String username = "pass";
@@ -65,6 +60,66 @@ public class AuthenticateUserTest {
         Assert.assertEquals(authenticateUser.getToken(), expected);
     }
 
+    @Test
+    public void toStringTest() {
+        authenticateUser.setUsername("irtaza");
+        authenticateUser.setPassword("123");
+        authenticateUser.setToken("231");
+        String expcted = "AuthenticateUser{username='irtaza', password='123', token='231'}";
+        Assert.assertEquals(expcted, authenticateUser.toString());
+    }
 
+    @Test
+    public void equalsMethodSameObjectTest() {
+        authenticateUser.setUsername("irtaza");
+        authenticateUser.setPassword("123");
+        authenticateUser.setToken("231");
+        authenticateUser2 = authenticateUser;
+        Assert.assertEquals(authenticateUser, authenticateUser2);
+    }
+
+    @Test
+    public void equalsMethodDifferentObjectTest() {
+        authenticateUser.setUsername("irtaza");
+        authenticateUser.setPassword("123");
+        authenticateUser.setToken("231");
+        authenticateUser2.setUsername("irtaza");
+        authenticateUser2.setPassword("123");
+        authenticateUser2.setToken("231");
+        Assert.assertEquals(authenticateUser, authenticateUser2);
+    }
+
+    @Test
+    public void equalsMethodDifferentUsernameTest() {
+        authenticateUser.setUsername("irtaza");
+        authenticateUser.setPassword("123");
+        authenticateUser2.setToken("231");
+        authenticateUser.setUsername("irtazahashmi");
+        authenticateUser2.setPassword("123");
+        authenticateUser2.setToken("231");
+        Assert.assertNotEquals(authenticateUser, authenticateUser2);
+    }
+
+    @Test
+    public void equalsMethodDifferentPasswordTest() {
+        authenticateUser.setUsername("irtaza");
+        authenticateUser.setPassword("123");
+        authenticateUser2.setToken("231");
+        authenticateUser.setUsername("irtaza");
+        authenticateUser2.setPassword("123456");
+        authenticateUser2.setToken("231");
+        Assert.assertNotEquals(authenticateUser, authenticateUser2);
+    }
+
+    @Test
+    public void equalsMethodDifferentTokenTest() {
+        authenticateUser.setUsername("irtaza");
+        authenticateUser.setPassword("123");
+        authenticateUser2.setToken("231");
+        authenticateUser.setUsername("irtaza");
+        authenticateUser2.setPassword("123");
+        authenticateUser2.setToken("2312312");
+        Assert.assertNotEquals(authenticateUser, authenticateUser2);
+    }
 
 }
