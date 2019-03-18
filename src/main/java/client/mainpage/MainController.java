@@ -17,12 +17,15 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import org.springframework.web.client.RestTemplate;
 import server.model.EmissionsClient;
+import server.model.JwtUser;
 import server.model.Meal;
+import server.security.JwtValidator;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
 
 /**
  * This is the main controller for the application
@@ -145,6 +148,10 @@ public class MainController {
     private RestTemplate restTemplate = new RestTemplate();
     private ApiService apiService = new ApiService();
     private UserService userService = new UserService();
+    private JwtValidator jwtValidator = new JwtValidator();
+
+    private JwtUser jwtUser;
+
 
     /**---------------------------- MAIN PAGE -----------------------------------------**/
 
@@ -158,7 +165,7 @@ public class MainController {
         mainWindow.setVisible(true);
         mainWindow.toFront();
         animatePane(mainWindow);
-        displayUsernameOnMain("user: irtazahashmi");
+        displayUsernameOnMain(jwtUser.getUserName());
     }
 
     /**
@@ -338,6 +345,8 @@ public class MainController {
     public void addEmissionsUser() {
         final String token = UserToken.getUserToken();
 
+        jwtUser = jwtValidator.validate(token);
+
         Meal meal = new Meal(Float.parseFloat(dairyText.getText()),
                 Float.parseFloat(otherVegetarianMealText.getText()),
                 Float.parseFloat(fruitsAndVegetablesText.getText()),
@@ -349,7 +358,7 @@ public class MainController {
         Date today = Calendar.getInstance().getTime();
         EmissionsClient emissionsClient = new EmissionsClient("1", carbonEmission, today);
         String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
-                69L, emissionsClient, token);
+                jwtUser.getId(), emissionsClient, token);
         System.out.println(response);
     }
 
