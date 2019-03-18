@@ -38,6 +38,13 @@ public class ApiService {
 
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(url)
 
+                .queryParam("input_takeaction_low_carbon_diet", 1)
+                .queryParam("input_takeaction_low_carbon_diet_dairyfootprint", 0.65)
+                .queryParam("input_takeaction_low_carbon_diet_fvfootprint", 0.65)
+                .queryParam("input_takeaction_low_carbon_diet_meatfootprint", 0)
+                .queryParam("input_takeaction_low_carbon_diet_cerealsfootprint", 0.65)
+                .queryParam("input_takeaction_low_carbon_diet_otherfootprint", 0.65)
+
                 .queryParam("input_changed", 1)
                 .queryParam("input_location_mode", "1")
                 .queryParam("input_location", "95843")
@@ -96,6 +103,9 @@ public class ApiService {
                 .queryParam("input_footprint_housing_electricity_kwh", 350)
                 .queryParam("input_footprint_housing_naturalgas_cuft", 500)
                 .queryParam("input_footprint_housing_heatingoil_gallons", 200)
+
+                //.queryParam("input_footprint_shopping_food_meatfisheggs", 300)
+
                 .queryParam("input_footprint_shopping_food_meat_beefpork", 0)
                 .queryParam("input_footprint_shopping_food_meat_poultry", 0)
                 .queryParam("input_footprint_shopping_food_meat_fish", 0)
