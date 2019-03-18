@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Objects;
 
 @Entity
 @Table(
@@ -57,4 +58,22 @@ public class AchievementsType {
     public String getAchievementName() {
         return achievementName;
     }
+
+    @Override
+    public String toString() {
+        return "AchievementsType{"
+                + "achievementId=" + achievementId
+                + ", achievementName='" + achievementName + '\''
+                + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AchievementsType)) return false;
+        AchievementsType that = (AchievementsType) o;
+        return getAchievementId().equals(that.getAchievementId()) &&
+                getAchievementName().equals(that.getAchievementName());
+    }
+
 }
