@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Objects;
 
 @Entity
 @Table(
@@ -59,5 +60,33 @@ class EmissionType {
      */
     public String getEmissionName() {
         return emissionName;
+    }
+
+
+    public String getEmissionType() {
+        return emissionType;
+    }
+
+    public void setEmissionType(String emissionType) {
+        this.emissionType = emissionType;
+    }
+
+    @Override
+    public String toString() {
+        return "EmissionType{"
+                + "emissionId=" + emissionId
+                +  ", emissionName='" + emissionName + '\''
+                + ", emissionType='" + emissionType + '\''
+                + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof EmissionType)) return false;
+        EmissionType that = (EmissionType) o;
+        return Objects.equals(getEmissionId(), that.getEmissionId()) &&
+                Objects.equals(getEmissionName(), that.getEmissionName()) &&
+                Objects.equals(getEmissionType(), that.getEmissionType());
     }
 }
