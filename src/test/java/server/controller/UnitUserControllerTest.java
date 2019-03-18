@@ -358,7 +358,7 @@ public class UnitUserControllerTest {
     public void BadCredentialsTop5Emissions() throws BadCredentialsException {
         MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
         httpServletRequest.addHeader("Authorisation", "Token ");
-        userController.getAllFriendsTotalEmissions(httpServletRequest,
+        userController.getTop5FriendsEmissions(httpServletRequest,
                 1L);
     }
 
