@@ -1,6 +1,7 @@
 package client;
 
 public class UserToken {
+
     private static String userToken;
 
     public static String getUserToken() {

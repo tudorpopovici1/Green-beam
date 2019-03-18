@@ -6,9 +6,8 @@ import org.junit.Test;
 
 public class JwtUserTest {
 
-
     JwtUser jwtUser = new JwtUser();
-
+    JwtUser jwtUser2 = new JwtUser();
 
     @Test
     public void getUserNameTest() {
@@ -59,6 +58,66 @@ public class JwtUserTest {
         String setRole = jwtUser.getRole();
         String expected = "abc";
         Assert.assertEquals(setRole, expected);
+    }
+
+    @Test
+    public void toStringTest() {
+        JwtUser jwtUser = new JwtUser("abc", 1234L, "xyz");
+        String expected = "JwtUser{userName='abc', id=1234, role='xyz'}";
+        Assert.assertEquals(jwtUser.toString(), expected);
+    }
+
+    @Test
+    public void equalsMethodSameObjectTest()  {
+        jwtUser.setId(123L);
+        jwtUser.setRole("user");
+        jwtUser.setUserName("irtaza");
+        jwtUser2 = jwtUser;
+        Assert.assertEquals(jwtUser, jwtUser2);
+    }
+
+    @Test
+    public void equalsMethodDifferentObjectTest()  {
+        jwtUser.setId(123L);
+        jwtUser.setRole("user");
+        jwtUser.setUserName("irtaza");
+        jwtUser2.setId(123L);
+        jwtUser2.setRole("user");
+        jwtUser2.setUserName("irtaza");
+        Assert.assertEquals(jwtUser, jwtUser2);
+    }
+
+    @Test
+    public void equalsMethodDifferentIdTest()  {
+        jwtUser.setId(1223L);
+        jwtUser.setRole("user");
+        jwtUser.setUserName("irtaza");
+        jwtUser2.setId(123L);
+        jwtUser2.setRole("user");
+        jwtUser2.setUserName("irtaza");
+        Assert.assertNotEquals(jwtUser, jwtUser2);
+    }
+
+    @Test
+    public void equalsMethodDifferentRoleTest()  {
+        jwtUser.setId(123L);
+        jwtUser.setRole("admin");
+        jwtUser.setUserName("irtaza");
+        jwtUser2.setId(123L);
+        jwtUser2.setRole("user");
+        jwtUser2.setUserName("irtaza");
+        Assert.assertNotEquals(jwtUser, jwtUser2);
+    }
+
+    @Test
+    public void equalsMethodDifferentUsernameTest()  {
+        jwtUser.setId(123L);
+        jwtUser.setRole("user");
+        jwtUser.setUserName("tudors");
+        jwtUser2.setId(123L);
+        jwtUser2.setRole("user");
+        jwtUser2.setUserName("irtaza");
+        Assert.assertNotEquals(jwtUser, jwtUser2);
     }
 
 }

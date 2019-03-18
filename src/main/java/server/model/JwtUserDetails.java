@@ -16,9 +16,10 @@ public class JwtUserDetails implements UserDetails {
 
     /**
      * Main constructor of this class.
-     * @param userName username
-     * @param id id
-     * @param token token
+     *
+     * @param userName           username
+     * @param id                 id
+     * @param token              token
      * @param grantedAuthorities grantedAuthorities
      */
     public JwtUserDetails(String userName,
@@ -28,21 +29,6 @@ public class JwtUserDetails implements UserDetails {
         this.id = id;
         this.token = token;
         this.authorities = grantedAuthorities;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        JwtUserDetails that = (JwtUserDetails) obj;
-        return Objects.equals(userName, that.userName)
-                && Objects.equals(token, that.token)
-                && Objects.equals(id, that.id)
-                && Objects.equals(authorities, that.authorities);
     }
 
     @Override
@@ -107,4 +93,32 @@ public class JwtUserDetails implements UserDetails {
     public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
         this.authorities = authorities;
     }
+
+    @Override
+    public String
+    toString() {
+        return "JwtUserDetails{" +
+                "userName='" + userName + '\'' +
+                ", token='" + token + '\'' +
+                ", id=" + id +
+                ", authorities=" + authorities +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        JwtUserDetails that = (JwtUserDetails) obj;
+        return Objects.equals(userName, that.userName)
+                && Objects.equals(token, that.token)
+                && Objects.equals(id, that.id)
+                && Objects.equals(authorities, that.authorities);
+    }
 }
+
+

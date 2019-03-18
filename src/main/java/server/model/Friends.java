@@ -1,11 +1,7 @@
 package server.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
+import java.util.Objects;
 
 @Entity(name = "friends_relationship")
 @Table(
@@ -14,10 +10,10 @@ import javax.persistence.UniqueConstraint;
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = {"relating_user_id", "related_user_id"})}
 )
-class Friends {
+public class Friends {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private Long id;
 
@@ -102,4 +98,26 @@ class Friends {
     public Long getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "Friends{" +
+                "id=" + id +
+                ", relatingUserId=" + relatingUserId +
+                ", relatedUserId=" + relatedUserId +
+                ", relationshipType='" + relationshipType + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Friends)) return false;
+        Friends friends = (Friends) o;
+        return Objects.equals(getId(), friends.getId()) &&
+                Objects.equals(getRelatingUserId(), friends.getRelatingUserId()) &&
+                Objects.equals(getRelatedUserId(), friends.getRelatedUserId()) &&
+                Objects.equals(getRelationshipType(), friends.getRelationshipType());
+    }
+
 }
