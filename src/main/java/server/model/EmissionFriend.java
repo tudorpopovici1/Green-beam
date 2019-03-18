@@ -1,5 +1,7 @@
 package server.model;
 
+import java.util.Objects;
+
 public class EmissionFriend {
 
     private String userName;
@@ -12,6 +14,7 @@ public class EmissionFriend {
 
     public EmissionFriend() {
     }
+
 
     /**
      * Sets new username.
@@ -51,9 +54,18 @@ public class EmissionFriend {
 
     @Override
     public String toString() {
-        return "EmissionFriend{" +
-                "username='" + userName + '\'' +
-                ", carbonEmission=" + carbonEmission +
-                '}';
+        return "EmissionFriend{"
+                + "username='" + userName + '\''
+                + ", carbonEmission=" + carbonEmission
+                + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof EmissionFriend)) return false;
+        EmissionFriend that = (EmissionFriend) o;
+        return Double.compare(that.getCarbonEmission(), getCarbonEmission()) == 0 &&
+                Objects.equals(userName, that.userName);
     }
 }

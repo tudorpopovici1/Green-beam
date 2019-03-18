@@ -3,10 +3,8 @@ package server.model;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 public class EmissionReductionsTest {
-    EmissionReductions emissionReduction=new EmissionReductions(0f, 0f, 0f, 0f, 0f);
+    EmissionReductions emissionReduction = new EmissionReductions(0f, 0f, 0f, 0f, 0f);
 
     @Test
     public void getLocalProduceEmissionTest() {
