@@ -140,7 +140,7 @@ public class UserController {
     }
 
     @PostMapping("/user/add/emission/{id}")
-    private String addEmissions(HttpServletRequest httpServletRequest,
+    public String addEmissions(HttpServletRequest httpServletRequest,
                                 @PathVariable("id") Long id,
                                 @RequestBody EmissionsClient emissionsClient)
                                 throws BadCredentialsException {
@@ -158,7 +158,7 @@ public class UserController {
     }
 
     @GetMapping("/user/get/friends/emission/{id}")
-    private List<EmissionFriend> getAllFriendsTotalEmissions(HttpServletRequest httpServletRequest,
+    public List<EmissionFriend> getAllFriendsTotalEmissions(HttpServletRequest httpServletRequest,
                                                         @PathVariable("id")
                                                         Long userId) throws BadCredentialsException {
         if(isIncorrectUser(httpServletRequest, userId)) {
@@ -180,7 +180,7 @@ public class UserController {
     }
 
     @GetMapping("/user/get/top/friends/emission/{id}")
-    private List<EmissionFriend> getTop5FriendsEmissions(HttpServletRequest httpServletRequest,
+    public List<EmissionFriend> getTop5FriendsEmissions(HttpServletRequest httpServletRequest,
                                                          @PathVariable("id")
                                                                  Long userId) throws BadCredentialsException {
         if (isIncorrectUser(httpServletRequest, userId)) {
@@ -208,7 +208,7 @@ public class UserController {
     }
 
     @GetMapping("/user/get/all/emissions/{id}")
-    private EmissionFriend getEmissionsOfUser(HttpServletRequest httpServletRequest,
+    public EmissionFriend getEmissionsOfUser(HttpServletRequest httpServletRequest,
                                               @PathVariable("id") Long userId) throws BadCredentialsException {
         if(isIncorrectUser(httpServletRequest, userId)) {
             throw new BadCredentialsException("Bad credentials");
