@@ -289,7 +289,7 @@
         <TextField fx:id="caloriesTextBox" layoutX="381.0" layoutY="184.0" prefHeight="40.0" prefWidth="181.0"
                    promptText="Calories (kcal)" visible="false"/>
         <Button fx:id="addMealButton" layoutX="260.0" layoutY="600.0" mnemonicParsing="false" prefHeight="75.0"
-                prefWidth="184.0" text="Add" visible="false"/>
+                prefWidth="184.0" text="Add" visible="false" onAction="#addEmissionsUser"/>
         <Button fx:id="backToMealTypePageButton" layoutX="20.0" layoutY="600.0" mnemonicParsing="false"
                 prefHeight="50.0"
                 prefWidth="50" text="Back" visible="false" onAction="#backToMealTypeButtonOnClick"/>
