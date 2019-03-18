@@ -4,7 +4,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class EmissionReductionsTest {
-    EmissionReductions emissionReduction = new EmissionReductions(0f, 0f, 0f, 0f, 0f);
+    EmissionReductions emissionReduction = new EmissionReductions();
+    EmissionReductions emissionReduction2 = new EmissionReductions();
+
 
     @Test
     public void getLocalProduceEmissionTest() {
@@ -97,4 +99,104 @@ public class EmissionReductionsTest {
         Assert.assertEquals(emissionreduction.toString(), expected);
     }
 
+    @Test
+    public void equalsMethodSameObjectTest() {
+        emissionReduction.setPublicTransportationEmission(10);
+        emissionReduction.setLocalProduceEmission(11);
+        emissionReduction.setVegetarianMealEmission(12);
+        emissionReduction.setLoweringTemperatureEmission(13);
+        emissionReduction.setRideBikeEmission(14);
+        emissionReduction2 = emissionReduction;
+        Assert.assertEquals(emissionReduction, emissionReduction2);
+    }
+
+    @Test
+    public void equalsMethodDifferentObjectTest() {
+        emissionReduction.setPublicTransportationEmission(10);
+        emissionReduction.setLocalProduceEmission(11);
+        emissionReduction.setVegetarianMealEmission(12);
+        emissionReduction.setLoweringTemperatureEmission(13);
+        emissionReduction.setRideBikeEmission(14);
+        emissionReduction2.setPublicTransportationEmission(10);
+        emissionReduction2.setLocalProduceEmission(11);
+        emissionReduction2.setVegetarianMealEmission(12);
+        emissionReduction2.setLoweringTemperatureEmission(13);
+        emissionReduction2.setRideBikeEmission(14);
+        Assert.assertEquals(emissionReduction, emissionReduction2);
+    }
+
+    @Test
+    public void equalsMethodDifferentPublicTransportationEmissionTest() {
+        emissionReduction.setPublicTransportationEmission(10);
+        emissionReduction.setLocalProduceEmission(11);
+        emissionReduction.setVegetarianMealEmission(12);
+        emissionReduction.setLoweringTemperatureEmission(13);
+        emissionReduction.setRideBikeEmission(14);
+        emissionReduction2.setPublicTransportationEmission(11);
+        emissionReduction2.setLocalProduceEmission(11);
+        emissionReduction2.setVegetarianMealEmission(12);
+        emissionReduction2.setLoweringTemperatureEmission(13);
+        emissionReduction2.setRideBikeEmission(14);
+        Assert.assertNotEquals(emissionReduction, emissionReduction2);
+    }
+
+    @Test
+    public void equalsMethodDifferentLocalProduceEmissionTest() {
+        emissionReduction.setPublicTransportationEmission(10);
+        emissionReduction.setLocalProduceEmission(11);
+        emissionReduction.setVegetarianMealEmission(12);
+        emissionReduction.setLoweringTemperatureEmission(13);
+        emissionReduction.setRideBikeEmission(14);
+        emissionReduction2.setPublicTransportationEmission(10);
+        emissionReduction2.setLocalProduceEmission(12);
+        emissionReduction2.setVegetarianMealEmission(12);
+        emissionReduction2.setLoweringTemperatureEmission(13);
+        emissionReduction2.setRideBikeEmission(14);
+        Assert.assertNotEquals(emissionReduction, emissionReduction2);
+    }
+
+    @Test
+    public void equalsMethodDifferentVegetarianMealEmissionTest() {
+        emissionReduction.setPublicTransportationEmission(10);
+        emissionReduction.setLocalProduceEmission(11);
+        emissionReduction.setVegetarianMealEmission(12);
+        emissionReduction.setLoweringTemperatureEmission(13);
+        emissionReduction.setRideBikeEmission(14);
+        emissionReduction2.setPublicTransportationEmission(10);
+        emissionReduction2.setLocalProduceEmission(11);
+        emissionReduction2.setVegetarianMealEmission(13);
+        emissionReduction2.setLoweringTemperatureEmission(13);
+        emissionReduction2.setRideBikeEmission(14);
+        Assert.assertNotEquals(emissionReduction, emissionReduction2);
+    }
+
+    @Test
+    public void equalsMethodDifferentLoweringTemperatureEmissionTest() {
+        emissionReduction.setPublicTransportationEmission(10);
+        emissionReduction.setLocalProduceEmission(11);
+        emissionReduction.setVegetarianMealEmission(12);
+        emissionReduction.setLoweringTemperatureEmission(13);
+        emissionReduction.setRideBikeEmission(14);
+        emissionReduction2.setPublicTransportationEmission(10);
+        emissionReduction2.setLocalProduceEmission(11);
+        emissionReduction2.setVegetarianMealEmission(12);
+        emissionReduction2.setLoweringTemperatureEmission(14);
+        emissionReduction2.setRideBikeEmission(14);
+        Assert.assertNotEquals(emissionReduction, emissionReduction2);
+    }
+
+    @Test
+    public void equalsMethodDifferentRideBikeEmissionTest() {
+        emissionReduction.setPublicTransportationEmission(10);
+        emissionReduction.setLocalProduceEmission(11);
+        emissionReduction.setVegetarianMealEmission(12);
+        emissionReduction.setLoweringTemperatureEmission(13);
+        emissionReduction.setRideBikeEmission(14);
+        emissionReduction2.setPublicTransportationEmission(10);
+        emissionReduction2.setLocalProduceEmission(11);
+        emissionReduction2.setVegetarianMealEmission(12);
+        emissionReduction2.setLoweringTemperatureEmission(13);
+        emissionReduction2.setRideBikeEmission(15);
+        Assert.assertNotEquals(emissionReduction, emissionReduction2);
+    }
 }
