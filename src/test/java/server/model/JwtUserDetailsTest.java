@@ -2,12 +2,17 @@ package server.model;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.security.core.GrantedAuthority;
+
+import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class JwtUserDetailsTest {
 
     JwtUserDetails jwtUserDetails = new JwtUserDetails(null, 0L, null,null);
+    JwtUserDetails jwtUserDetails2= new JwtUserDetails(null, 0L, null,null);
+
 
     @Test
     public void getUserNameTest() {
@@ -62,6 +67,16 @@ public class JwtUserDetailsTest {
     }
 
     @Test
+    public void toStringTest() {
+        jwtUserDetails.setId(123L);
+        jwtUserDetails.setToken("he");
+        jwtUserDetails.setUserName("irtaza");
+        jwtUserDetails.setAuthorities(null);
+        String expected = "JwtUserDetails{userName='irtaza', token='he', id=123, authorities=null}";
+        Assert.assertEquals(expected, jwtUserDetails.toString());
+    }
+
+    @Test
     public void equalsFalseTest() {
         JwtUserDetails jwtUserDetails1 = new JwtUserDetails("abc", 1234L, "def", null);
         JwtUserDetails jwtUserDetails2 = new JwtUserDetails("cba", 1234L, "def", null);
@@ -80,5 +95,67 @@ public class JwtUserDetailsTest {
         JwtUserDetails jwtUserDetails5 = new JwtUserDetails("abc", 1234L, "def", null);
         JwtUserDetails jwtUserDetails6 = null;
         Assert.assertEquals(false, jwtUserDetails5.equals(jwtUserDetails6));
+    }
+
+    @Test
+    public void equalsMethodSameObjectTest()  {
+        jwtUserDetails.setId(123L);
+        jwtUserDetails.setToken("he");
+        jwtUserDetails.setUserName("irtaza");
+        jwtUserDetails.setAuthorities(null);
+        jwtUserDetails2 = jwtUserDetails;
+        Assert.assertEquals(jwtUserDetails, jwtUserDetails2);
+    }
+
+    @Test
+    public void equalsMethodDifferentObjectTest()  {
+        jwtUserDetails.setId(123L);
+        jwtUserDetails.setToken("he");
+        jwtUserDetails.setUserName("irtaza");
+        jwtUserDetails.setAuthorities(null);
+        jwtUserDetails2.setId(123L);
+        jwtUserDetails2.setToken("he");
+        jwtUserDetails2.setUserName("irtaza");
+        jwtUserDetails2.setAuthorities(null);
+        Assert.assertEquals(jwtUserDetails, jwtUserDetails2);
+    }
+
+    @Test
+    public void equalsMethodDifferentIdTest()  {
+        jwtUserDetails.setId(1232L);
+        jwtUserDetails.setToken("he");
+        jwtUserDetails.setUserName("irtaza");
+        jwtUserDetails.setAuthorities(null);
+        jwtUserDetails2.setId(123L);
+        jwtUserDetails2.setToken("he");
+        jwtUserDetails2.setUserName("irtaza");
+        jwtUserDetails2.setAuthorities(null);
+        Assert.assertNotEquals(jwtUserDetails, jwtUserDetails2);
+    }
+
+    @Test
+    public void equalsMethodDifferentTokenTest()  {
+        jwtUserDetails.setId(123L);
+        jwtUserDetails.setToken("hse");
+        jwtUserDetails.setUserName("irtaza");
+        jwtUserDetails.setAuthorities(null);
+        jwtUserDetails2.setId(123L);
+        jwtUserDetails2.setToken("he");
+        jwtUserDetails2.setUserName("irtaza");
+        jwtUserDetails2.setAuthorities(null);
+        Assert.assertNotEquals(jwtUserDetails, jwtUserDetails2);
+    }
+
+    @Test
+    public void equalsMethodDifferentUsernameTest()  {
+        jwtUserDetails.setId(123L);
+        jwtUserDetails.setToken("he");
+        jwtUserDetails.setUserName("tudor");
+        jwtUserDetails.setAuthorities(null);
+        jwtUserDetails2.setId(123L);
+        jwtUserDetails2.setToken("he");
+        jwtUserDetails2.setUserName("irtaza");
+        jwtUserDetails2.setAuthorities(null);
+        Assert.assertNotEquals(jwtUserDetails, jwtUserDetails2);
     }
 }
