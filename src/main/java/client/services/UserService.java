@@ -11,11 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
-import server.model.AuthenticateUser;
-import server.model.EmissionsClient;
-import server.model.ErrorDetails;
-import server.model.FriendsUserResp;
-import server.model.Users;
+import server.model.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -162,6 +158,30 @@ public class UserService {
             }
         }
         return response;
+    }
+
+    public EmissionFriend getEmissionsOfUser(final RestTemplate restTemplate, final String url,
+                                             final Long userId, final String token) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.set("Authorisation", "Token " + token);
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<EmissionsClient> entity = new HttpEntity<>(httpHeaders);
+
+        EmissionFriend emissionFriend;
+
+        try {
+            ResponseEntity<EmissionFriend> responseString = restTemplate.exchange(
+                    url + "/" + userId, HttpMethod.GET,
+                    entity, EmissionFriend.class);
+            emissionFriend = responseString.getBody();
+            return emissionFriend;
+        } catch (HttpStatusCodeException e) {
+            if (e.getStatusCode() == HttpStatus.FORBIDDEN) {
+                //emissionFriend = null;
+                //response = outputErrorMessage(objectMapper, e.getResponseBodyAsString());
+            }
+        }
+        return null;
     }
 
     private String outputErrorMessage(ObjectMapper objectMapper, String responseString) {
