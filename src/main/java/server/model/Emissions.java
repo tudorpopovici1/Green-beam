@@ -1,6 +1,7 @@
 package server.model;
 
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -46,6 +47,8 @@ public class Emissions {
         this.carbonFootprint = carbonFootprint;
         this.date = date;
     }
+
+    public Emissions() {};
 
 
     /**
@@ -138,4 +141,28 @@ public class Emissions {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    @Override
+    public String toString() {
+        return "Emissions{"
+                + "id=" + id
+                + ", userId=" + userId
+                + ", emissionType='" + emissionType + '\''
+                + ", carbonFootprint=" + carbonFootprint
+                + ", date=" + date
+                + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Emissions)) return false;
+        Emissions emissions = (Emissions) o;
+        return Float.compare(emissions.getCarbonFootprint(), getCarbonFootprint()) == 0 &&
+                Objects.equals(getId(), emissions.getId()) &&
+                Objects.equals(getUserId(), emissions.getUserId()) &&
+                Objects.equals(getEmissionType(), emissions.getEmissionType()) &&
+                Objects.equals(getDate(), emissions.getDate());
+    }
+
 }
