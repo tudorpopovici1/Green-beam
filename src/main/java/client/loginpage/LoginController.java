@@ -2,6 +2,7 @@ package client.loginpage;
 
 import client.Url;
 import client.UserToken;
+import client.mainpage.MainController;
 import client.services.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +24,7 @@ import javafx.stage.Stage;
 import org.springframework.web.client.RestTemplate;
 import server.model.AuthenticateUser;
 import server.model.Users;
+import server.security.JwtValidator;
 
 import java.io.File;
 import java.net.URL;

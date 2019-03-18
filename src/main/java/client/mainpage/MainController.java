@@ -15,11 +15,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
+import org.apache.catalina.User;
 import org.springframework.web.client.RestTemplate;
+import server.model.EmissionFriend;
 import server.model.EmissionsClient;
+import server.model.JwtUser;
 import server.model.Meal;
+import server.security.JwtValidator;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -145,6 +150,7 @@ public class MainController {
     private RestTemplate restTemplate = new RestTemplate();
     private ApiService apiService = new ApiService();
     private UserService userService = new UserService();
+    private JwtValidator jwtValidator = new JwtValidator();
 
     /**---------------------------- MAIN PAGE -----------------------------------------**/
 
@@ -155,10 +161,18 @@ public class MainController {
      *
      */
     public void mainPage(ActionEvent event) {
+        String token = UserToken.getUserToken();
+        JwtUser jwtUser = jwtValidator.validate(token);
+
+        EmissionFriend emissionFriend = userService.getEmissionsOfUser(restTemplate, Url.GET_EMISSION_USER.getUrl(),
+                jwtUser.getId(), token);
+
         mainWindow.setVisible(true);
         mainWindow.toFront();
         animatePane(mainWindow);
-        displayUsernameOnMain("user: irtazahashmi");
+        displayUsernameOnMain(emissionFriend.getUsername());
+        String number = String.format("%.5f", emissionFriend.getCarbonEmission());
+        totalCO2SavedLabel.setText(number + " CO2 tons.");
     }
 
     /**
@@ -342,14 +356,15 @@ public class MainController {
                 Float.parseFloat(otherVegetarianMealText.getText()),
                 Float.parseFloat(fruitsAndVegetablesText.getText()),
                 Float.parseFloat(cerealText.getText()));
-
+        JwtUser jwtUser = jwtValidator.validate(token);
         float carbonEmission = apiService.getVegetarianMealEmissions(meal);
-
+        String number = String.format("%.5f", carbonEmission);
+        vegetarianMealStatus.setText("You have saved: " + number + " tons of CO2.");
         DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
         Date today = Calendar.getInstance().getTime();
         EmissionsClient emissionsClient = new EmissionsClient("1", carbonEmission, today);
         String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
-                69L, emissionsClient, token);
+                jwtUser.getId(), emissionsClient, token);
         System.out.println(response);
     }
 
