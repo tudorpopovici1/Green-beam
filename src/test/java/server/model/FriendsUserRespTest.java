@@ -1,5 +1,6 @@
 package server.model;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,6 +12,7 @@ public class FriendsUserRespTest {
 
 
     FriendsUserResp friendsUserResp = new FriendsUserResp();
+    FriendsUserResp friendsUserResp2 = new FriendsUserResp();
 
 
     @Test
@@ -127,6 +129,182 @@ public class FriendsUserRespTest {
         FriendsUserResp friendsUserResp = new FriendsUserResp("abc", dateOfBirth, "def", "ghi", "jkl", "mno");
         String expected = "FriendsUserResp{username='abc', dateOfBirth=Sat Oct 12 00:00:00 CEST 5680, firstName='def', lastName='ghi', country='jkl', email='mno'}";
         Assert.assertEquals(friendsUserResp.toString(), expected);
+    }
+
+    @Test
+    public void equalsMethodSameObjectTest() throws ParseException {
+        friendsUserResp.setFirstName("irtaza");
+        friendsUserResp.setLastName("hashmi");
+        friendsUserResp.setCountry("pakistan");
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        friendsUserResp.setDateOfBirth(dateObject);
+        friendsUserResp.setEmail("i@gmail.com");
+        friendsUserResp.setUsername("irtazahashmi");
+        friendsUserResp2 = friendsUserResp;
+        Assert.assertEquals(friendsUserResp, friendsUserResp2);
+    }
+
+    @Test
+    public void equalsMethodDifferentObjectTest() throws ParseException {
+        friendsUserResp.setFirstName("irtaza");
+        friendsUserResp.setLastName("hashmi");
+        friendsUserResp.setCountry("pakistan");
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        friendsUserResp.setDateOfBirth(dateObject);
+        friendsUserResp.setEmail("i@gmail.com");
+        friendsUserResp.setUsername("irtazahashmi");
+        friendsUserResp2.setFirstName("irtaza");
+        friendsUserResp2.setLastName("hashmi");
+        friendsUserResp2.setCountry("pakistan");
+        DateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString2 = "2014-02-11";
+        Date dateObject2 = sdf2.parse(dateString2);
+        friendsUserResp2.setDateOfBirth(dateObject2);
+        friendsUserResp2.setEmail("i@gmail.com");
+        friendsUserResp2.setUsername("irtazahashmi");
+        Assert.assertEquals(friendsUserResp, friendsUserResp2);
+    }
+
+    @Test
+    public void equalsMethodDifferentFirstNameTest() throws ParseException {
+        friendsUserResp.setFirstName("irtaza");
+        friendsUserResp.setLastName("hashmi");
+        friendsUserResp.setCountry("pakistan");
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        friendsUserResp.setDateOfBirth(dateObject);
+        friendsUserResp.setEmail("i@gmail.com");
+        friendsUserResp.setUsername("irtazahashmi");
+        friendsUserResp2.setFirstName("tudor");
+        friendsUserResp2.setLastName("hashmi");
+        friendsUserResp2.setCountry("pakistan");
+        DateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString2 = "2014-02-11";
+        Date dateObject2 = sdf2.parse(dateString2);
+        friendsUserResp2.setDateOfBirth(dateObject2);
+        friendsUserResp2.setEmail("i@gmail.com");
+        friendsUserResp2.setUsername("irtazahashmi");
+        Assert.assertNotEquals(friendsUserResp, friendsUserResp2);
+    }
+
+    @Test
+    public void equalsMethodDifferentLastNameTest() throws ParseException {
+        friendsUserResp.setFirstName("irtaza");
+        friendsUserResp.setLastName("hashmi");
+        friendsUserResp.setCountry("pakistan");
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        friendsUserResp.setDateOfBirth(dateObject);
+        friendsUserResp.setEmail("i@gmail.com");
+        friendsUserResp.setUsername("irtazahashmi");
+        friendsUserResp2.setFirstName("irtaza");
+        friendsUserResp2.setLastName("something");
+        friendsUserResp2.setCountry("pakistan");
+        DateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString2 = "2014-02-11";
+        Date dateObject2 = sdf2.parse(dateString2);
+        friendsUserResp2.setDateOfBirth(dateObject2);
+        friendsUserResp2.setEmail("i@gmail.com");
+        friendsUserResp2.setUsername("irtazahashmi");
+        Assert.assertNotEquals(friendsUserResp, friendsUserResp2);
+    }
+
+    @Test
+    public void equalsMethodDifferentCountryTest() throws ParseException {
+        friendsUserResp.setFirstName("irtaza");
+        friendsUserResp.setLastName("hashmi");
+        friendsUserResp.setCountry("pakistan");
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        friendsUserResp.setDateOfBirth(dateObject);
+        friendsUserResp.setEmail("i@gmail.com");
+        friendsUserResp.setUsername("irtazahashmi");
+        friendsUserResp2.setFirstName("irtaza");
+        friendsUserResp2.setLastName("hashmi");
+        friendsUserResp2.setCountry("finland");
+        DateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString2 = "2014-02-11";
+        Date dateObject2 = sdf2.parse(dateString2);
+        friendsUserResp2.setDateOfBirth(dateObject2);
+        friendsUserResp2.setEmail("i@gmail.com");
+        friendsUserResp2.setUsername("irtazahashmi");
+        Assert.assertNotEquals(friendsUserResp, friendsUserResp2);
+    }
+
+    @Test
+    public void equalsMethodDifferentDOBTest() throws ParseException {
+        friendsUserResp.setFirstName("irtaza");
+        friendsUserResp.setLastName("hashmi");
+        friendsUserResp.setCountry("pakistan");
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        friendsUserResp.setDateOfBirth(dateObject);
+        friendsUserResp.setEmail("i@gmail.com");
+        friendsUserResp.setUsername("irtazahashmi");
+        friendsUserResp2.setFirstName("irtaza");
+        friendsUserResp2.setLastName("hashmi");
+        friendsUserResp2.setCountry("pakistan");
+        DateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString2 = "2012-02-11";
+        Date dateObject2 = sdf2.parse(dateString2);
+        friendsUserResp2.setDateOfBirth(dateObject2);
+        friendsUserResp2.setEmail("i@gmail.com");
+        friendsUserResp2.setUsername("irtazahashmi");
+        Assert.assertNotEquals(friendsUserResp, friendsUserResp2);
+    }
+
+    @Test
+    public void equalsMethodDifferentEmailTest() throws ParseException {
+        friendsUserResp.setFirstName("irtaza");
+        friendsUserResp.setLastName("hashmi");
+        friendsUserResp.setCountry("pakistan");
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        friendsUserResp.setDateOfBirth(dateObject);
+        friendsUserResp.setEmail("i@gmail.com");
+        friendsUserResp.setUsername("irtazahashmi");
+        friendsUserResp2.setFirstName("irtaza");
+        friendsUserResp2.setLastName("hashmi");
+        friendsUserResp2.setCountry("pakistan");
+        DateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString2 = "2014-02-11";
+        Date dateObject2 = sdf2.parse(dateString2);
+        friendsUserResp2.setDateOfBirth(dateObject2);
+        friendsUserResp2.setEmail("idsad@gmail.com");
+        friendsUserResp2.setUsername("irtazahashmi");
+        Assert.assertNotEquals(friendsUserResp, friendsUserResp2);
+    }
+
+    @Test
+    public void equalsMethodDifferentUsernameTest() throws ParseException {
+        friendsUserResp.setFirstName("irtaza");
+        friendsUserResp.setLastName("hashmi");
+        friendsUserResp.setCountry("pakistan");
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        friendsUserResp.setDateOfBirth(dateObject);
+        friendsUserResp.setEmail("i@gmail.com");
+        friendsUserResp.setUsername("irtazahashmi");
+        friendsUserResp2.setFirstName("irtaza");
+        friendsUserResp2.setLastName("hashmi");
+        friendsUserResp2.setCountry("pakistan");
+        DateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString2 = "2014-02-11";
+        Date dateObject2 = sdf2.parse(dateString2);
+        friendsUserResp2.setDateOfBirth(dateObject2);
+        friendsUserResp2.setEmail("i@gmail.com");
+        friendsUserResp2.setUsername("something");
+        Assert.assertNotEquals(friendsUserResp, friendsUserResp2);
     }
 
 }

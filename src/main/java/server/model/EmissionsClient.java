@@ -1,6 +1,7 @@
 package server.model;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class EmissionsClient {
 
@@ -76,4 +77,24 @@ public class EmissionsClient {
     public Date getDate() {
         return date;
     }
+
+    @Override
+    public String toString() {
+        return "EmissionsClient{"
+                + "emissionType='" + emissionType + '\''
+                + ", carbonEmission=" + carbonEmission
+                + ", date=" + date
+                + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof EmissionsClient)) return false;
+        EmissionsClient that = (EmissionsClient) o;
+        return Float.compare(that.getCarbonEmission(), getCarbonEmission()) == 0 &&
+                getEmissionType().equals(that.getEmissionType()) &&
+                getDate().equals(that.getDate());
+    }
+
 }

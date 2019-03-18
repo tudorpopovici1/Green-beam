@@ -1,6 +1,7 @@
 package server.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity(name = "friends_relationship")
 @Table(
@@ -97,4 +98,26 @@ public class Friends {
     public Long getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "Friends{" +
+                "id=" + id +
+                ", relatingUserId=" + relatingUserId +
+                ", relatedUserId=" + relatedUserId +
+                ", relationshipType='" + relationshipType + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Friends)) return false;
+        Friends friends = (Friends) o;
+        return Objects.equals(getId(), friends.getId()) &&
+                Objects.equals(getRelatingUserId(), friends.getRelatingUserId()) &&
+                Objects.equals(getRelatedUserId(), friends.getRelatedUserId()) &&
+                Objects.equals(getRelationshipType(), friends.getRelationshipType());
+    }
+
 }

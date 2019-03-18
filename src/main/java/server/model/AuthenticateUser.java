@@ -47,6 +47,15 @@ public class AuthenticateUser {
     }
 
     @Override
+    public String toString() {
+        return "AuthenticateUser{"
+                + "username='" + username + '\''
+                + ", password='" + password + '\''
+                + ", token='" + token + '\''
+                + '}';
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -58,10 +67,5 @@ public class AuthenticateUser {
         return Objects.equals(username, that.username)
                 && Objects.equals(password, that.password)
                 && Objects.equals(token, that.token);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(username, password, token);
     }
 }

@@ -2,6 +2,8 @@ package server.model;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
+import java.util.Objects;
+
 public class JwtAuthenticationToken extends UsernamePasswordAuthenticationToken {
 
     private String token;
@@ -27,5 +29,21 @@ public class JwtAuthenticationToken extends UsernamePasswordAuthenticationToken 
     @Override
     public Object getPrincipal() {
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return "JwtAuthenticationToken{" +
+                "token='" + token + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof JwtAuthenticationToken)) return false;
+        if (!super.equals(o)) return false;
+        JwtAuthenticationToken that = (JwtAuthenticationToken) o;
+        return Objects.equals(getToken(), that.getToken());
     }
 }

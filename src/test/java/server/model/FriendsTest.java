@@ -5,7 +5,8 @@ import org.junit.Test;
 
 
 public class FriendsTest {
-    Friends friends= new Friends();
+    Friends friends = new Friends();
+    Friends friends2 = new Friends();
 
     @Test
     public void getRelatingUserIdTest() {
@@ -17,7 +18,7 @@ public class FriendsTest {
     }
 
     @Test
-    public void  getRelationshipTypeTest() {
+    public void getRelationshipTypeTest() {
         String relationshipType = "abc";
         friends.setRelationshipType(relationshipType);
         String setRelationshipType = friends.getRelationshipType();
@@ -78,4 +79,91 @@ public class FriendsTest {
         long expected = 1234L;
         Assert.assertEquals(setId, expected);
     }
+
+    @Test
+    public void toStringTest() {
+        friends.setId(123L);
+        friends.setRelatedUserId(456L);
+        friends.setRelatingUserId(789L);
+        friends.setRelationshipType("bro");
+        String expected = "Friends{id=123, relatingUserId=789, relatedUserId=456, relationshipType='bro'}";
+        Assert.assertEquals(expected, friends.toString());
+    }
+
+    @Test
+    public void equalsMethodSameObjectTest() {
+        friends.setId(123L);
+        friends.setRelatedUserId(456L);
+        friends.setRelatingUserId(789L);
+        friends.setRelationshipType("bro");
+        friends2 = friends;
+        Assert.assertEquals(friends, friends2);
+    }
+
+    @Test
+    public void equalsMethodDifferentObjectTest() {
+        friends.setId(123L);
+        friends.setRelatedUserId(456L);
+        friends.setRelatingUserId(789L);
+        friends.setRelationshipType("bro");
+        friends2.setId(123L);
+        friends2.setRelatedUserId(456L);
+        friends2.setRelatingUserId(789L);
+        friends2.setRelationshipType("bro");
+        Assert.assertEquals(friends, friends2);
+    }
+
+    @Test
+    public void equalsMethodDifferenIdTest() {
+        friends.setId(123L);
+        friends.setRelatedUserId(456L);
+        friends.setRelatingUserId(789L);
+        friends.setRelationshipType("bro");
+        friends2.setId(1233L);
+        friends2.setRelatedUserId(456L);
+        friends2.setRelatingUserId(789L);
+        friends2.setRelationshipType("bro");
+        Assert.assertNotEquals(friends, friends2);
+    }
+
+    @Test
+    public void equalsMethodDifferenRelatedUserIdTest() {
+        friends.setId(123L);
+        friends.setRelatedUserId(456L);
+        friends.setRelatingUserId(789L);
+        friends.setRelationshipType("bro");
+        friends2.setId(123L);
+        friends2.setRelatedUserId(45633L);
+        friends2.setRelatingUserId(789L);
+        friends2.setRelationshipType("bro");
+        Assert.assertNotEquals(friends, friends2);
+    }
+
+    @Test
+    public void equalsMethodDifferenRelatingUserIdTest() {
+        friends.setId(123L);
+        friends.setRelatedUserId(456L);
+        friends.setRelatingUserId(789L);
+        friends.setRelationshipType("bro");
+        friends2.setId(123L);
+        friends2.setRelatedUserId(456L);
+        friends2.setRelatingUserId(78931L);
+        friends2.setRelationshipType("bro");
+        Assert.assertNotEquals(friends, friends2);
+    }
+
+    @Test
+    public void equalsMethodDifferenRelationshipTypeTest() {
+        friends.setId(123L);
+        friends.setRelatedUserId(456L);
+        friends.setRelatingUserId(789L);
+        friends.setRelationshipType("bro");
+        friends2.setId(123L);
+        friends2.setRelatedUserId(456L);
+        friends2.setRelatingUserId(789L);
+        friends2.setRelationshipType("sis");
+        Assert.assertNotEquals(friends, friends2);
+    }
+
+
 }

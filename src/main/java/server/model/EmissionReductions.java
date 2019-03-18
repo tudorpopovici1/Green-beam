@@ -3,6 +3,8 @@ package server.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Objects;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EmissionReductions {
 
@@ -40,6 +42,8 @@ public class EmissionReductions {
         this.loweringTemperatureEmission = loweringTemperatureEmission;
         this.vegetarianMealEmission = vegetarianMealEmission;
     }
+
+    public EmissionReductions() {};
 
     /**
      * Gets localProduceEmission.
@@ -141,5 +145,17 @@ public class EmissionReductions {
                 + ", loweringTemperatureEmission=" + loweringTemperatureEmission
                 + ", vegetarianMealEmission=" + vegetarianMealEmission
                 + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof EmissionReductions)) return false;
+        EmissionReductions that = (EmissionReductions) o;
+        return Float.compare(that.getRideBikeEmission(), getRideBikeEmission()) == 0 &&
+                Float.compare(that.getPublicTransportationEmission(), getPublicTransportationEmission()) == 0 &&
+                Float.compare(that.getLocalProduceEmission(), getLocalProduceEmission()) == 0 &&
+                Float.compare(that.getLoweringTemperatureEmission(), getLoweringTemperatureEmission()) == 0 &&
+                Float.compare(that.getVegetarianMealEmission(), getVegetarianMealEmission()) == 0;
     }
 }
