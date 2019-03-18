@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import javax.validation.constraints.AssertTrue;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,6 +14,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UsersTest {
 
     Users user = new Users();
+    Users user2 = new Users();
+
 
     @Test
     public void setFirstNameTest() {
@@ -209,5 +212,315 @@ public class UsersTest {
         Users user2 = null;
         Users user3 = new Users(1234L, "def", "ghi", "jkl", "mno", "pqr", "stu", dateOfBirth, "vxy");
         Assert.assertEquals(false, user1.equals(user2));
+    }
+
+
+    @Test
+    public void equalsMethodSameObjectTest() throws ParseException {
+        user.setFirstName("irtaza");
+        user.setLastName("hashmi");
+        user.setCountry("pakistan");
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        user.setDateOfBirth(dateObject);
+        user.setUsername("irtazahashmi");
+        user.setPassword("123");
+        user.setEmail("i@gmail.com");
+        user.setId(123L);
+        user.setRole("admin");
+        user2 = user;
+        Assert.assertEquals(user, user2);
+    }
+
+    @Test
+    public void equalsMethodDifferentObjectTest() throws ParseException {
+        user.setFirstName("irtaza");
+        user.setLastName("hashmi");
+        user.setCountry("pakistan");
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        user.setDateOfBirth(dateObject);
+        user.setUsername("irtazahashmi");
+        user.setPassword("123");
+        user.setEmail("i@gmail.com");
+        user.setId(123L);
+        user.setRole("admin");
+        user2.setFirstName("irtaza");
+        user2.setLastName("hashmi");
+        user2.setCountry("pakistan");
+        DateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString2 = "2014-02-11";
+        Date dateObject2 = sdf2.parse(dateString2);
+        user2.setDateOfBirth(dateObject2);
+        user2.setUsername("irtazahashmi");
+        user2.setPassword("123");
+        user2.setEmail("i@gmail.com");
+        user2.setId(123L);
+        user2.setRole("admin");
+        Assert.assertEquals(user, user2);
+    }
+
+    @Test
+    public void equalsMethodDifferentFirstNameTest() throws ParseException {
+        user.setFirstName("irtazaaa");
+        user.setLastName("hashmi");
+        user.setCountry("pakistan");
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        user.setDateOfBirth(dateObject);
+        user.setUsername("irtazahashmi");
+        user.setPassword("123");
+        user.setEmail("i@gmail.com");
+        user.setId(123L);
+        user.setRole("admin");
+        user2.setFirstName("irtaza");
+        user2.setLastName("hashmi");
+        user2.setCountry("pakistan");
+        DateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString2 = "2014-02-11";
+        Date dateObject2 = sdf2.parse(dateString2);
+        user2.setDateOfBirth(dateObject2);
+        user2.setUsername("irtazahashmi");
+        user2.setPassword("123");
+        user2.setEmail("i@gmail.com");
+        user2.setId(123L);
+        user2.setRole("admin");
+        Assert.assertNotEquals(user, user2);
+    }
+
+    @Test
+    public void equalsMethodDifferentLastNameTest() throws ParseException {
+        user.setFirstName("irtaza");
+        user.setLastName("hashmiiii");
+        user.setCountry("pakistan");
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        user.setDateOfBirth(dateObject);
+        user.setUsername("irtazahashmi");
+        user.setPassword("123");
+        user.setEmail("i@gmail.com");
+        user.setId(123L);
+        user.setRole("admin");
+        user2.setFirstName("irtaza");
+        user2.setLastName("hashmi");
+        user2.setCountry("pakistan");
+        DateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString2 = "2014-02-11";
+        Date dateObject2 = sdf2.parse(dateString2);
+        user2.setDateOfBirth(dateObject2);
+        user2.setUsername("irtazahashmi");
+        user2.setPassword("123");
+        user2.setEmail("i@gmail.com");
+        user2.setId(123L);
+        user2.setRole("admin");
+        Assert.assertNotEquals(user, user2);
+    }
+
+    @Test
+    public void equalsMethodDifferentCountryTest() throws ParseException {
+        user.setFirstName("irtaza");
+        user.setLastName("hashmi");
+        user.setCountry("pakistannnn");
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        user.setDateOfBirth(dateObject);
+        user.setUsername("irtazahashmi");
+        user.setPassword("123");
+        user.setEmail("i@gmail.com");
+        user.setId(123L);
+        user.setRole("admin");
+        user2.setFirstName("irtaza");
+        user2.setLastName("hashmi");
+        user2.setCountry("pakistan");
+        DateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString2 = "2014-02-11";
+        Date dateObject2 = sdf2.parse(dateString2);
+        user2.setDateOfBirth(dateObject2);
+        user2.setUsername("irtazahashmi");
+        user2.setPassword("123");
+        user2.setEmail("i@gmail.com");
+        user2.setId(123L);
+        user2.setRole("admin");
+        Assert.assertNotEquals(user, user2);
+    }
+
+    @Test
+    public void equalsMethodDifferentDOBTest() throws ParseException {
+        user.setFirstName("irtaza");
+        user.setLastName("hashmi");
+        user.setCountry("pakistan");
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2013-02-11";
+        Date dateObject = sdf.parse(dateString);
+        user.setDateOfBirth(dateObject);
+        user.setUsername("irtazahashmi");
+        user.setPassword("123");
+        user.setEmail("i@gmail.com");
+        user.setId(123L);
+        user.setRole("admin");
+        user2.setFirstName("irtaza");
+        user2.setLastName("hashmi");
+        user2.setCountry("pakistan");
+        DateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString2 = "2014-02-11";
+        Date dateObject2 = sdf2.parse(dateString2);
+        user2.setDateOfBirth(dateObject2);
+        user2.setUsername("irtazahashmi");
+        user2.setPassword("123");
+        user2.setEmail("i@gmail.com");
+        user2.setId(123L);
+        user2.setRole("admin");
+        Assert.assertNotEquals(user, user2);
+    }
+
+    @Test
+    public void equalsMethodDifferentUsernameTest() throws ParseException {
+        user.setFirstName("irtaza");
+        user.setLastName("hashmi");
+        user.setCountry("pakistan");
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        user.setDateOfBirth(dateObject);
+        user.setUsername("irtazahashmiii");
+        user.setPassword("123");
+        user.setEmail("i@gmail.com");
+        user.setId(123L);
+        user.setRole("admin");
+        user2.setFirstName("irtaza");
+        user2.setLastName("hashmi");
+        user2.setCountry("pakistan");
+        DateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString2 = "2014-02-11";
+        Date dateObject2 = sdf2.parse(dateString2);
+        user2.setDateOfBirth(dateObject2);
+        user2.setUsername("irtazahashmi");
+        user2.setPassword("123");
+        user2.setEmail("i@gmail.com");
+        user2.setId(123L);
+        user2.setRole("admin");
+        Assert.assertNotEquals(user, user2);
+    }
+
+
+    @Test
+    public void equalsMethodDifferentPasswordTest() throws ParseException {
+        user.setFirstName("irtaza");
+        user.setLastName("hashmi");
+        user.setCountry("pakistan");
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        user.setDateOfBirth(dateObject);
+        user.setUsername("irtazahashmi");
+        user.setPassword("12345");
+        user.setEmail("i@gmail.com");
+        user.setId(123L);
+        user.setRole("admin");
+        user2.setFirstName("irtaza");
+        user2.setLastName("hashmi");
+        user2.setCountry("pakistan");
+        DateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString2 = "2014-02-11";
+        Date dateObject2 = sdf2.parse(dateString2);
+        user2.setDateOfBirth(dateObject2);
+        user2.setUsername("irtazahashmi");
+        user2.setPassword("123");
+        user2.setEmail("i@gmail.com");
+        user2.setId(123L);
+        user2.setRole("admin");
+        Assert.assertNotEquals(user, user2);
+    }
+
+    @Test
+    public void equalsMethodDifferentEmailTest() throws ParseException {
+        user.setFirstName("irtaza");
+        user.setLastName("hashmi");
+        user.setCountry("pakistan");
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        user.setDateOfBirth(dateObject);
+        user.setUsername("irtazahashmi");
+        user.setPassword("123");
+        user.setEmail("i222@gmail.com");
+        user.setId(123L);
+        user.setRole("admin");
+        user2.setFirstName("irtaza");
+        user2.setLastName("hashmi");
+        user2.setCountry("pakistan");
+        DateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString2 = "2014-02-11";
+        Date dateObject2 = sdf2.parse(dateString2);
+        user2.setDateOfBirth(dateObject2);
+        user2.setUsername("irtazahashmi");
+        user2.setPassword("123");
+        user2.setEmail("i@gmail.com");
+        user2.setId(123L);
+        user2.setRole("admin");
+        Assert.assertNotEquals(user, user2);
+    }
+
+    @Test
+    public void equalsMethodDifferentIdTest() throws ParseException {
+        user.setFirstName("irtaza");
+        user.setLastName("hashmi");
+        user.setCountry("pakistan");
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        user.setDateOfBirth(dateObject);
+        user.setUsername("irtazahashmi");
+        user.setPassword("123");
+        user.setEmail("i@gmail.com");
+        user.setId(123222L);
+        user.setRole("admin");
+        user2.setFirstName("irtaza");
+        user2.setLastName("hashmi");
+        user2.setCountry("pakistan");
+        DateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString2 = "2014-02-11";
+        Date dateObject2 = sdf2.parse(dateString2);
+        user2.setDateOfBirth(dateObject2);
+        user2.setUsername("irtazahashmi");
+        user2.setPassword("123");
+        user2.setEmail("i@gmail.com");
+        user2.setId(123L);
+        user2.setRole("admin");
+        Assert.assertNotEquals(user, user2);
+    }
+
+    @Test
+    public void equalsMethodDifferentRoleTest() throws ParseException {
+        user.setFirstName("irtaza");
+        user.setLastName("hashmi");
+        user.setCountry("pakistan");
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        user.setDateOfBirth(dateObject);
+        user.setUsername("irtazahashmi");
+        user.setPassword("123");
+        user.setEmail("i@gmail.com");
+        user.setId(123L);
+        user.setRole("user");
+        user2.setFirstName("irtaza");
+        user2.setLastName("hashmi");
+        user2.setCountry("pakistan");
+        DateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString2 = "2014-02-11";
+        Date dateObject2 = sdf2.parse(dateString2);
+        user2.setDateOfBirth(dateObject2);
+        user2.setUsername("irtazahashmi");
+        user2.setPassword("123");
+        user2.setEmail("i@gmail.com");
+        user2.setId(123L);
+        user2.setRole("admin");
+        Assert.assertNotEquals(user, user2);
     }
 }
