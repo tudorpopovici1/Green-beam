@@ -1,5 +1,7 @@
 package server.model;
 
+import java.util.Objects;
+
 public class Meal {
 
     private float dairyCalories;
@@ -93,5 +95,26 @@ public class Meal {
      */
     public float getCerealCalories() {
         return cerealCalories;
+    }
+
+    @Override
+    public String toString() {
+        return "Meal{" +
+                "dairyCalories=" + dairyCalories +
+                ", otherFoodCalories=" + otherFoodCalories +
+                ", fruitVegetablesCalories=" + fruitVegetablesCalories +
+                ", cerealCalories=" + cerealCalories +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Meal)) return false;
+        Meal meal = (Meal) o;
+        return Float.compare(meal.getDairyCalories(), getDairyCalories()) == 0 &&
+                Float.compare(meal.getOtherFoodCalories(), getOtherFoodCalories()) == 0 &&
+                Float.compare(meal.getFruitVegetablesCalories(), getFruitVegetablesCalories()) == 0 &&
+                Float.compare(meal.getCerealCalories(), getCerealCalories()) == 0;
     }
 }
