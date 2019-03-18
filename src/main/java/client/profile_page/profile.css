@@ -1,0 +1,15 @@
+.jfx-hamburger StackPane {
+    -fx-background-color: white;
+}
+
+.buttons{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-text-fill: white;
+}
+
+.buttons:hover{
+    -fx-background-color: #F3A978;
+    -fx-background-radius: 0px;
+    -fx-text-fill: white;
+}
