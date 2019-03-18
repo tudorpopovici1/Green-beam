@@ -1,6 +1,7 @@
 package server.model;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class FriendsUserResp {
 
@@ -93,5 +94,18 @@ public class FriendsUserResp {
                 + ", country='" + country + '\''
                 + ", email='" + email + '\''
                 + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof FriendsUserResp)) return false;
+        FriendsUserResp that = (FriendsUserResp) o;
+        return Objects.equals(getUsername(), that.getUsername()) &&
+                Objects.equals(getDateOfBirth(), that.getDateOfBirth()) &&
+                Objects.equals(getFirstName(), that.getFirstName()) &&
+                Objects.equals(getLastName(), that.getLastName()) &&
+                Objects.equals(getCountry(), that.getCountry()) &&
+                Objects.equals(getEmail(), that.getEmail());
     }
 }
