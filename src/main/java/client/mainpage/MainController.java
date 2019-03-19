@@ -364,19 +364,23 @@ public class MainController {
     public void addEmissionsForRidingABike() {
         final String token = UserToken.getUserToken();
 
-        BikeRide ride = new BikeRide(Float.parseFloat(numberOfMilesText.getText()),
-                Float.parseFloat(carMileageText.getText()),
-                fuelTypeText.getText());
-        JwtUser jwtUser = jwtValidator.validate(token);
-        float carbonEmission = apiService.getRideBikeEmissions(ride);
-        String number = String.format("%.5f", carbonEmission);
-        transportationStatus.setText("You have saved: " + number + " tons of CO2");
-        DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
-        Date today = Calendar.getInstance().getTime();
-        EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
-        String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
-                jwtUser.getId(), emissionsClient, token);
-        System.out.println(response);
+        if (!emptyRideABikeBoxes()) {
+            Float numberOfMiles = Float.parseFloat(numberOfMilesText.getText());
+            Float numberOfKilometres = numberOfMiles * 1.6f;
+            BikeRide ride = new BikeRide(numberOfKilometres,
+                    Float.parseFloat(carMileageText.getText()),
+                    fuelTypeText.getText());
+            JwtUser jwtUser = jwtValidator.validate(token);
+            float carbonEmission = apiService.getRideBikeEmissions(ride);
+            String number = String.format("%.5f", carbonEmission);
+            transportationStatus.setText("You have saved: " + number + " tons of CO2");
+            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+            Date today = Calendar.getInstance().getTime();
+            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
+            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                    jwtUser.getId(), emissionsClient, token);
+            System.out.println(response);
+        }
     }
 
     /**
@@ -387,6 +391,16 @@ public class MainController {
     private boolean emptyVegetarianMealBoxes() {
         if (checkEmptyOrNullBox
                 (dairyText, cerealText, fruitsAndVegetablesText, otherVegetarianMealText)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptyRideABikeBoxes() {
+        if (checkEmptyOrNullBox
+                (carMileageText, fuelTypeText, numberOfMilesText)) {
             emptyTextBoxPopup();
             return true;
         } else {
