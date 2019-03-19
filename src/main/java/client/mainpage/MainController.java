@@ -13,10 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import org.springframework.web.client.RestTemplate;
-import server.model.EmissionFriend;
-import server.model.EmissionsClient;
-import server.model.JwtUser;
-import server.model.Meal;
+import server.model.*;
 import server.security.JwtValidator;
 
 import java.text.DateFormat;
@@ -56,7 +53,7 @@ public class MainController {
     private Button rideABikeButton;
 
     @FXML
-    private TextField litresOfFuelText;
+    private TextField numberOfMilesText;
 
     @FXML
     private TextField carMileageText;
@@ -165,7 +162,7 @@ public class MainController {
         animatePane(mainWindow);
         displayUsernameOnMain("username: " + jwtUser.getUserName());
         String number = String.format("%.5f", emissionFriend.getCarbonEmission());
-        totalCO2SavedLabel.setText(number + " CO2 tons");
+        totalCO2SavedLabel.setText(number + " tons");
         totalCO2SavedLabel.setStyle("-fx-font: 16 arial;");
     }
 
@@ -215,7 +212,7 @@ public class MainController {
         addMealButton.setVisible(false);
         rideABikeButton.setVisible(false);
         bikeIcon.setVisible(false);
-        litresOfFuelText.setVisible(false);
+        numberOfMilesText.setVisible(false);
         carMileageText.setVisible(false);
         fuelTypeText.setVisible(false);
         addTransportationButton.setVisible(false);
@@ -314,7 +311,7 @@ public class MainController {
      * @param event mouse click.
      */
     public void rideABikeButtonOnClick(ActionEvent event) {
-        litresOfFuelText.setVisible(true);
+        numberOfMilesText.setVisible(true);
         carMileageText.setVisible(true);
         fuelTypeText.setVisible(true);
         bikeIcon.setVisible(false);
@@ -329,7 +326,7 @@ public class MainController {
      * @param event mouse click
      */
     public void backToTransportationTypeButtonOnClick(ActionEvent event) {
-        litresOfFuelText.setVisible(false);
+        numberOfMilesText.setVisible(false);
         carMileageText.setVisible(false);
         fuelTypeText.setVisible(false);
         bikeIcon.setVisible(true);
@@ -343,7 +340,7 @@ public class MainController {
     /**
      * This methods adds a meal in to the user's database.
      */
-    public void addEmissionsForVegetarianUser() {
+    public void addEmissionsForAVegetarianMeal() {
         final String token = UserToken.getUserToken();
 
         if (!emptyVegetarianMealBoxes()) {
@@ -354,10 +351,32 @@ public class MainController {
             JwtUser jwtUser = jwtValidator.validate(token);
             float carbonEmission = apiService.getVegetarianMealEmissions(meal);
             String number = String.format("%.5f", carbonEmission);
-            vegetarianMealStatus.setText("You have saved: " + number + " tons of CO2.");
+            vegetarianMealStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
             EmissionsClient emissionsClient = new EmissionsClient("1", carbonEmission, today);
+            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                    jwtUser.getId(), emissionsClient, token);
+            System.out.println(response);
+        }
+    }
+
+    public void addEmissionsForRidingABike() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptyRideABikeBoxes()) {
+            Float numberOfMiles = Float.parseFloat(numberOfMilesText.getText());
+            Float numberOfKilometres = numberOfMiles * 1.6f;
+            BikeRide ride = new BikeRide(numberOfKilometres,
+                    Float.parseFloat(carMileageText.getText()),
+                    fuelTypeText.getText());
+            JwtUser jwtUser = jwtValidator.validate(token);
+            float carbonEmission = apiService.getRideBikeEmissions(ride);
+            String number = String.format("%.5f", carbonEmission);
+            transportationStatus.setText("You have saved: " + number + " tons of CO2");
+            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+            Date today = Calendar.getInstance().getTime();
+            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
             String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
@@ -372,6 +391,16 @@ public class MainController {
     private boolean emptyVegetarianMealBoxes() {
         if (checkEmptyOrNullBox
                 (dairyText, cerealText, fruitsAndVegetablesText, otherVegetarianMealText)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptyRideABikeBoxes() {
+        if (checkEmptyOrNullBox
+                (carMileageText, fuelTypeText, numberOfMilesText)) {
             emptyTextBoxPopup();
             return true;
         } else {
