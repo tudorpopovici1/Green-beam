@@ -361,6 +361,9 @@ public class MainController {
         }
     }
 
+    /**
+     * This methods adds riding a bike in to the user's database.
+     */
     public void addEmissionsForRidingABike() {
         final String token = UserToken.getUserToken();
 
@@ -381,6 +384,13 @@ public class MainController {
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
         }
+    }
+
+    /**
+     * This methods adds a public transportation in to the user's database.
+     */
+    public void addEmissionsPublicTransportation() {
+        final String token = UserToken.getUserToken();
     }
 
     /**
@@ -407,6 +417,7 @@ public class MainController {
             return false;
         }
     }
+
 
     /**
      * This method handles the functionality of checking whether a
