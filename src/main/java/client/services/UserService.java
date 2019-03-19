@@ -101,6 +101,7 @@ public class UserService {
         return friendsList;
     }
 
+
     /**
      * Method that checks the credentials of a user.
      * @param restTemplate restTemplate to use.

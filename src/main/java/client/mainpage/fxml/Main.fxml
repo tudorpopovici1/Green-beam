@@ -11,7 +11,6 @@
 <?import javafx.scene.text.Font?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 
 <?import javafx.scene.layout.BorderPane?>
@@ -249,15 +248,15 @@
                 prefWidth="184.0" text="Renewable Energy"/>
         <Button fx:id="rideABikeButton" layoutX="260.0" layoutY="193" mnemonicParsing="false" prefHeight="75.0"
                 prefWidth="184.0" text="Ride A Bike" visible="false" onAction="#rideABikeButtonOnClick"/>
-        <TextField fx:id="litresOfFuelText" layoutX="260.0" layoutY="193.0" prefHeight="75.0"
-                   prefWidth="184.0" promptText="Litres of Fuel (per/km)" visible="false"/>
+        <TextField fx:id="numberOfMilesText" layoutX="260.0" layoutY="193.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Number of kilometers" visible="false"/>
         <TextField fx:id="carMileageText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
-                   prefWidth="184.0" promptText="Total Mileage of the Car)" visible="false"/>
+                   prefWidth="184.0" promptText="Total Mileage of the Car" visible="false"/>
         <TextField fx:id="fuelTypeText" layoutX="260.0" layoutY="369.0" prefHeight="75.0"
                    prefWidth="184.0" promptText="Fuel Type (Benzine or Diesel)" visible="false"/>
         <Button fx:id="addTransportationButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
                 prefHeight="75.0"
-                prefWidth="184.0" text="Add" visible="false"/>
+                prefWidth="184.0" text="Add" visible="false" onAction="#addEmissionsForRidingABike"/>
         <Label fx:id="transportationStatus" layoutX="230" layoutY="140" text="Input the parameters required" visible="false">
             <font>
                 <Font size="20.0"/>
@@ -289,7 +288,7 @@
         <TextField fx:id="caloriesTextBox" layoutX="381.0" layoutY="184.0" prefHeight="40.0" prefWidth="181.0"
                    promptText="Calories (kcal)" visible="false"/>
         <Button fx:id="addMealButton" layoutX="260.0" layoutY="600.0" mnemonicParsing="false" prefHeight="75.0"
-                prefWidth="184.0" text="Add" visible="false" onAction="#addEmissionsUser"/>
+                prefWidth="184.0" text="Add" visible="false" onAction="#addEmissionsForAVegetarianMeal"/>
         <Button fx:id="backToMealTypePageButton" layoutX="20.0" layoutY="600.0" mnemonicParsing="false"
                 prefHeight="50.0"
                 prefWidth="50" text="Back" visible="false" onAction="#backToMealTypeButtonOnClick"/>

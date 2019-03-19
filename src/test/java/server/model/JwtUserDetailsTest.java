@@ -158,4 +158,39 @@ public class JwtUserDetailsTest {
         jwtUserDetails2.setAuthorities(null);
         Assert.assertNotEquals(jwtUserDetails, jwtUserDetails2);
     }
+
+    @Test
+    public void getAuthoritiesTest() {
+        Assert.assertEquals(jwtUserDetails.getAuthorities(), null);
+    }
+
+    @Test
+    public void getPasswordTest() {
+        Assert.assertEquals(jwtUserDetails.getPassword(), null);
+    }
+
+    @Test
+    public void getUsernameTest() {
+        Assert.assertEquals(jwtUserDetails.getUserName(), null);
+    }
+
+    @Test
+    public void isAccountNonExpiredTest() {
+        Assert.assertEquals(jwtUserDetails.isAccountNonExpired(), true);
+    }
+
+    @Test
+    public void isAccountNonLockedTest() {
+        Assert.assertEquals(jwtUserDetails.isAccountNonLocked(), true);
+    }
+
+    @Test
+    public void isCredentialsNonExpiredTest() {
+        Assert.assertEquals(jwtUserDetails.isCredentialsNonExpired(), true);
+    }
+
+    @Test
+    public void isEnabledTest() {
+        Assert.assertEquals(jwtUserDetails.isEnabled(), true);
+    }
 }
