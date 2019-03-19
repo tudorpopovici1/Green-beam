@@ -38,6 +38,8 @@ public class BikeRide {
         this.fuelType = fuelType;
     }
 
+    public BikeRide() {}
+
     @Override
     public String toString() {
         return "bikeRide{" +
