@@ -365,7 +365,9 @@ public class MainController {
         final String token = UserToken.getUserToken();
 
         if (!emptyRideABikeBoxes()) {
-            BikeRide ride = new BikeRide(Float.parseFloat(numberOfMilesText.getText()),
+            Float numberOfMiles = Float.parseFloat(numberOfMilesText.getText());
+            Float numberOfKilometres = numberOfMiles * 1.6f;
+            BikeRide ride = new BikeRide(numberOfKilometres,
                     Float.parseFloat(carMileageText.getText()),
                     fuelTypeText.getText());
             JwtUser jwtUser = jwtValidator.validate(token);
@@ -377,7 +379,7 @@ public class MainController {
             EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
             String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
-
+            System.out.println(response);
         }
     }
 
