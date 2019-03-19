@@ -21,7 +21,7 @@ public class TemporaryMainLauncher extends Application {
     public void start(Stage primaryStage) {
         try {
             URL url = new File(
-                    "src\\main\\java\\client\\mainpage\\fxml\\Main.fxml").toURI().toURL();
+                    "src/main/java/client/mainpage/fxml/Main.fxml").toURI().toURL();
             Parent root = FXMLLoader.load(url);
             Scene scene = new Scene(root, 900, 700);
             primaryStage.setScene(scene);

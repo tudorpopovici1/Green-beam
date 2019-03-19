@@ -13,10 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import org.springframework.web.client.RestTemplate;
-import server.model.EmissionFriend;
-import server.model.EmissionsClient;
-import server.model.JwtUser;
-import server.model.Meal;
+import server.model.*;
 import server.security.JwtValidator;
 
 import java.text.DateFormat;
@@ -215,7 +212,7 @@ public class MainController {
         addMealButton.setVisible(false);
         rideABikeButton.setVisible(false);
         bikeIcon.setVisible(false);
-        litresOfFuelText.setVisible(false);
+        numberOfMilesText.setVisible(false);
         carMileageText.setVisible(false);
         fuelTypeText.setVisible(false);
         addTransportationButton.setVisible(false);

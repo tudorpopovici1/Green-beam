@@ -17,7 +17,7 @@ import javax.xml.bind.JAXB;
 @SuppressWarnings("Duplicates")
 public class ApiService {
 
-    private final String url = "https://a...content-available-to-author-only...y.edu/coolclimate/footprint";
+    private final String url = "https://apis.berkeley.edu/coolclimate/footprint";
 
     private RestTemplate restTemplate  = new RestTemplate();
 
@@ -231,7 +231,7 @@ public class ApiService {
                 .queryParam("input_footprint_shopping_food_dairy", 0)
                 .queryParam("input_footprint_shopping_food_otherfood", 0)
                 .queryParam("input_footprint_shopping_food_fruitvegetables",
-                        0)
+                       0)
                 .queryParam("input_footprint_shopping_food_cereals", 0)
                 .queryParam("input_footprint_shopping_food_meattype", 1)
                 .queryParam("input_footprint_shopping_goods_type", 0)
