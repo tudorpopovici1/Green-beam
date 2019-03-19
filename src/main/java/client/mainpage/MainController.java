@@ -361,13 +361,16 @@ public class MainController {
         }
     }
 
+    /**
+     * This methods adds riding a bike in to the user's database.
+     */
     public void addEmissionsForRidingABike() {
         final String token = UserToken.getUserToken();
 
         if (!emptyRideABikeBoxes()) {
-            Float numberOfMiles = Float.parseFloat(numberOfMilesText.getText());
-            Float numberOfKilometres = numberOfMiles * 1.6f;
-            BikeRide ride = new BikeRide(numberOfKilometres,
+            Float numberOfKilometers = Float.parseFloat(numberOfMilesText.getText());
+            Float numberOfMiles = numberOfKilometers * 1.6f;
+            BikeRide ride = new BikeRide(numberOfMiles,
                     Float.parseFloat(carMileageText.getText()),
                     fuelTypeText.getText());
             JwtUser jwtUser = jwtValidator.validate(token);
@@ -381,6 +384,13 @@ public class MainController {
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
         }
+    }
+
+    /**
+     * This methods adds a public transportation in to the user's database.
+     */
+    public void addEmissionsPublicTransportation() {
+        final String token = UserToken.getUserToken();
     }
 
     /**
@@ -407,6 +417,7 @@ public class MainController {
             return false;
         }
     }
+
 
     /**
      * This method handles the functionality of checking whether a

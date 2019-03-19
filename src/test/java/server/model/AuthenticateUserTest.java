@@ -122,4 +122,15 @@ public class AuthenticateUserTest {
         Assert.assertNotEquals(authenticateUser, authenticateUser2);
     }
 
+    @Test
+    public void equalsMethodNullTest() {
+        Assert.assertEquals(false, authenticateUser.equals(null));
+    }
+
+    @Test
+    public void ConstructorTest() {
+        AuthenticateUser authenticateUser = new AuthenticateUser("abc", "def");
+        String result = authenticateUser.getPassword();
+        Assert.assertEquals(result, authenticateUser.getPassword());
+    }
 }
