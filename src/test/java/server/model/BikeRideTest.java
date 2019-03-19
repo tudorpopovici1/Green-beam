@@ -8,6 +8,7 @@ import org.junit.Test;
 public class BikeRideTest {
 
     BikeRide bike = new BikeRide(0f, 0f, "");
+    BikeRide bike2 = new BikeRide(0f, 0f, "");
 
     @Test
     public void getNumberOfMilesTest() {
@@ -55,6 +56,66 @@ public class BikeRideTest {
         String fuelType = bike.getFuelType();
         String expected = "Diesel";
         Assert.assertEquals(expected, fuelType);
+    }
+
+    @Test
+    public void equalsMethodSameObjectTest() {
+        bike.setCarMileage(100);
+        bike.setNumberOfMiles(100);
+        bike.setFuelType("Diesel");
+        bike2 = bike;
+        Assert.assertEquals(bike, bike2);
+    }
+
+    @Test
+    public void equalsMethodDifferentObjectTest() {
+        bike.setCarMileage(100);
+        bike.setNumberOfMiles(100);
+        bike.setFuelType("Diesel");
+        bike2.setCarMileage(100);
+        bike2.setNumberOfMiles(100);
+        bike2.setFuelType("Diesel");
+        Assert.assertEquals(bike, bike2);
+    }
+
+    @Test
+    public void equalsMethodDifferentCarMileageTest() {
+        bike.setCarMileage(200);
+        bike.setNumberOfMiles(100);
+        bike.setFuelType("Diesel");
+        bike2.setCarMileage(100);
+        bike2.setNumberOfMiles(100);
+        bike2.setFuelType("Diesel");
+        Assert.assertNotEquals(bike, bike2);
+    }
+
+    @Test
+    public void equalsMethodDifferentNumberOfMilesTest() {
+        bike.setCarMileage(100);
+        bike.setNumberOfMiles(200);
+        bike.setFuelType("Diesel");
+        bike2.setCarMileage(100);
+        bike2.setNumberOfMiles(100);
+        bike2.setFuelType("Diesel");
+        Assert.assertNotEquals(bike, bike2);
+    }
+
+    @Test
+    public void equalsMethodDifferentFuelTypeTest() {
+        bike.setCarMileage(100);
+        bike.setNumberOfMiles(100);
+        bike.setFuelType("Benzine");
+        bike2.setCarMileage(100);
+        bike2.setNumberOfMiles(100);
+        bike2.setFuelType("Diesel");
+        Assert.assertNotEquals(bike, bike2);
+    }
+
+    @Test
+    public void toStringTest() {
+        BikeRide bikeRide = new BikeRide(123f, 456f, "abc");
+        String expected = "bikeRide{numberOfMiles=123.0, carMileage=456.0, fuelType='abc'}";
+        Assert.assertEquals(expected, bikeRide.toString());
     }
 }
 
