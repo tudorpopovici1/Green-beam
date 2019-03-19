@@ -23,6 +23,11 @@ public class PublicTransportation {
         this.fuelType = fuelType;
     }
 
+    public PublicTransportation(float milesTraveled, String fuelType) {
+        this.milesTraveled = milesTraveled;
+        this.fuelType = fuelType;
+    }
+
     @Override
     public String toString() {
         return "PublicTransportation{" +
