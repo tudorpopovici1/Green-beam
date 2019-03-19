@@ -80,4 +80,11 @@ public class EmissionFriendTest {
         emissionFriend2.setCarbonEmission(12.3);
         Assert.assertNotEquals(emissionFriend, emissionFriend2);
     }
+
+    @Test
+    public void constructorTest() {
+        EmissionFriend emissionFriend = new EmissionFriend("abc", 1.2);
+        String result = emissionFriend.getUsername();
+        Assert.assertEquals(result, emissionFriend.getUsername());
+    }
 }

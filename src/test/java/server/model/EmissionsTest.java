@@ -242,5 +242,15 @@ public class EmissionsTest {
         String expected = "Emissions{id=123, userId=456, emissionType='bike', carbonFootprint=12.0, date=Tue Feb 11 00:00:00 CET 2014}";
         Assert.assertEquals(expected, emission.toString());
     }
+
+    @Test
+    public void constructorTest() throws ParseException {
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        Emissions emissions = new Emissions(1234L, "abc", 5678f, dateObject);
+        String result = emissions.getEmissionType();
+        Assert.assertEquals(result, emissions.getEmissionType());
+    }
 }
 
