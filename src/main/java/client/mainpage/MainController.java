@@ -170,7 +170,7 @@ public class MainController {
         mainWindow.setVisible(true);
         mainWindow.toFront();
         animatePane(mainWindow);
-        displayUsernameOnMain(emissionFriend.getUsername());
+        displayUsernameOnMain("username: " + emissionFriend.getUsername());
         String number = String.format("%.5f", emissionFriend.getCarbonEmission());
         totalCO2SavedLabel.setText(number + " CO2 tons.");
     }
