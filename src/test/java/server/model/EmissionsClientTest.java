@@ -158,4 +158,15 @@ public class EmissionsClientTest {
         emissionsClient2.setDate(dateObject2);
         Assert.assertNotEquals(emissionsClient, emissionsClient2);
     }
+
+    @Test
+    public void constructorTest() throws ParseException {
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        EmissionsClient emissionsClient = new EmissionsClient("abc", 1234f, dateObject);
+        String result = emissionsClient.getEmissionType();
+        Assert.assertEquals(result, emissionsClient.getEmissionType());
+
+    }
 }
