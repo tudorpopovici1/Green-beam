@@ -8,14 +8,10 @@ import javafx.animation.FadeTransition;
 import javafx.animation.SequentialTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-import org.apache.catalina.User;
 import org.springframework.web.client.RestTemplate;
 import server.model.EmissionFriend;
 import server.model.EmissionsClient;
@@ -24,7 +20,6 @@ import server.model.Meal;
 import server.security.JwtValidator;
 
 import java.text.DateFormat;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -163,16 +158,15 @@ public class MainController {
     public void mainPage(ActionEvent event) {
         String token = UserToken.getUserToken();
         JwtUser jwtUser = jwtValidator.validate(token);
-
-        EmissionFriend emissionFriend = userService.getEmissionsOfUser(restTemplate, Url.GET_EMISSION_USER.getUrl(),
-                jwtUser.getId(), token);
-
+        EmissionFriend emissionFriend = userService.getEmissionsOfUser(
+                restTemplate, Url.GET_EMISSION_USER.getUrl(), jwtUser.getId(), token);
         mainWindow.setVisible(true);
         mainWindow.toFront();
         animatePane(mainWindow);
-        displayUsernameOnMain("username: " + emissionFriend.getUsername());
+        displayUsernameOnMain("username: " + jwtUser.getUserName());
         String number = String.format("%.5f", emissionFriend.getCarbonEmission());
-        totalCO2SavedLabel.setText(number + " CO2 tons.");
+        totalCO2SavedLabel.setText(number + " CO2 tons");
+        totalCO2SavedLabel.setStyle("-fx-font: 16 arial;");
     }
 
     /**
@@ -349,23 +343,69 @@ public class MainController {
     /**
      * This methods adds a meal in to the user's database.
      */
-    public void addEmissionsUser() {
+    public void addEmissionsForVegetarianUser() {
         final String token = UserToken.getUserToken();
 
-        Meal meal = new Meal(Float.parseFloat(dairyText.getText()),
-                Float.parseFloat(otherVegetarianMealText.getText()),
-                Float.parseFloat(fruitsAndVegetablesText.getText()),
-                Float.parseFloat(cerealText.getText()));
-        JwtUser jwtUser = jwtValidator.validate(token);
-        float carbonEmission = apiService.getVegetarianMealEmissions(meal);
-        String number = String.format("%.5f", carbonEmission);
-        vegetarianMealStatus.setText("You have saved: " + number + " tons of CO2.");
-        DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
-        Date today = Calendar.getInstance().getTime();
-        EmissionsClient emissionsClient = new EmissionsClient("1", carbonEmission, today);
-        String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
-                jwtUser.getId(), emissionsClient, token);
-        System.out.println(response);
+        if (!emptyVegetarianMealBoxes()) {
+            Meal meal = new Meal(Float.parseFloat(dairyText.getText()),
+                    Float.parseFloat(otherVegetarianMealText.getText()),
+                    Float.parseFloat(fruitsAndVegetablesText.getText()),
+                    Float.parseFloat(cerealText.getText()));
+            JwtUser jwtUser = jwtValidator.validate(token);
+            float carbonEmission = apiService.getVegetarianMealEmissions(meal);
+            String number = String.format("%.5f", carbonEmission);
+            vegetarianMealStatus.setText("You have saved: " + number + " tons of CO2.");
+            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+            Date today = Calendar.getInstance().getTime();
+            EmissionsClient emissionsClient = new EmissionsClient("1", carbonEmission, today);
+            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                    jwtUser.getId(), emissionsClient, token);
+            System.out.println(response);
+        }
+    }
+
+    /**
+     * This method handles the functionality of giving an error when
+     * any of the fields in the adding a vegetarian meal is empty.
+     * @return boolean - returns true if the field is null or empty and false if not.
+     * */
+    private boolean emptyVegetarianMealBoxes() {
+        if (checkEmptyOrNullBox
+                (dairyText, cerealText, fruitsAndVegetablesText, otherVegetarianMealText)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * This method handles the functionality of checking whether a
+     * box is null or empty.
+     * @param textFields - any box in the login page.
+     * @return boolean - returns true if the field is null or empty and false if not.
+     */
+
+    private boolean checkEmptyOrNullBox(TextField... textFields) {
+        for (TextField textField : textFields) {
+            if (textField.getText() == null || textField.getText().equals("")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * This method handles the functionality of giving an error
+     * either the username or password box is empty.
+     * */
+    private void emptyTextBoxPopup() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText("Either of your boxes is empty!"
+                + "\nPlease try again.");
+        alert.showAndWait();
     }
 
     /**---------------------------- PROGRESS PAGE -----------------------------------------**/
