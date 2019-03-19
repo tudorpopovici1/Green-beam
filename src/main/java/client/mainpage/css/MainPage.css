@@ -1,0 +1,156 @@
+#mainButton, #emissionsButton, #progressButton, #profileButton, #settingsButton , #aboutUsButton,
+#logoutButton{
+    -fx-font-family: "Apple Chancery";
+    -fx-font-size: 22px;
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+}
+
+#mainButton:hover, #emissionsButton:hover, #progressButton:hover, #profileButton:hover,
+#settingsButton:hover, #aboutUsButton:hover, #logoutButton:hover{
+     -fx-font-size: 29px;
+ }
+
+#sideBar{
+    -fx-background-color: transparent;
+}
+
+#aboutUsText {
+    -fx-font-family: "Apple Chancery";
+    -fx-font-size: 52px;
+    -fx-text-fill: white;
+}
+
+#welcomeText {
+    -fx-font-family: "Apple Chancery";
+    -fx-font-size: 80px;
+    -fx-text-fill: white;
+}
+
+
+#addEmissionsText {
+    -fx-font-family: "Apple Chancery";
+    -fx-font-size: 47px;
+    -fx-text-fill: white;
+}
+
+#irtazaText, #mariaText, #severText, #merelText, #tudorText {
+    -fx-font-size: 20px;
+    -fx-font-family: "Apple Chancery";
+    -fx-text-fill: white;
+    -fx-font-weight: bolder;
+}
+
+#mealButton, #transportationButton, #renewableEnergyButton, #temperatureButton, #customButton {
+    -fx-text-fill: #654b00;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-padding: 10 20 10 20;
+}
+
+#currentStreakText, #longestStreakText, #travelText, #totalPointsText, #totalCO2SavedText,
+#dailyFixedPointsText {
+    -fx-font-size: 22px;
+    -fx-font-family: "Apple Chancery";
+    -fx-text-fill: white;
+    -fx-font-weight: bolder;
+}
+
+#saveThePlanetText {
+    -fx-font-size: 30px;
+    -fx-font-family: "Apple Chancery";
+    -fx-text-fill: white;
+    -fx-font-weight: bolder;
+}
+
+#logo1, #logo2 {
+    -fx-scale-x: 0.6;
+    -fx-scale-y: 0.6;
+}
+
+#statBox {
+    -fx-border-color: white;
+    -fx-border-width: 1.5px;
+}
+
+#vegetarianMealStatus, #transportationStatus {
+    -fx-text-fill: white;
+}
+
+.parent{
+    -fx-background-color: transparent;
+}
+
+.dark-panel{
+    -fx-background-color: #45515F;
+}
+
+.main-btns{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-text-fill: transparent;
+}
+
+.icons{
+    -fx-fill: #596575;
+}
+
+.main-btns:hover{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-border-color: #F3A978;
+    -fx-border-width: opx opx 3px 0px;
+    -fx-border-radius: 0px;
+    -fx-text-fill: transparent;
+}
+
+.main-btns:hover .icons{
+    -fx-fill: white;
+}
+
+.buttons{
+    -fx-background-color: #596575;
+    -fx-background-radius: 0px;
+    -fx-text-fill: white;
+}
+
+.buttons:hover{
+    -fx-background-color: #F3A978;
+    -fx-background-radius: 0px;
+    -fx-text-fill: white;
+}
+
+.jfx-hamburger StackPane {
+    -fx-background-color: white;
+}
+
+.buttons{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-text-fill: white;
+}
+
+.buttons:hover{
+    -fx-background-color: #F3A978;
+    -fx-background-radius: 0px;
+    -fx-text-fill: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
