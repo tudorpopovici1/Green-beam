@@ -139,6 +139,25 @@ public class MainController {
     @FXML
     private Pane settingsWindow;
 
+    //ID activation for the public transport ride button
+    @FXML
+    private Button rideABusButton;
+
+    @FXML
+    private ImageView busIcon;
+
+    @FXML
+    private Button addPublicTransportationButton;
+
+    @FXML
+    private TextField numberOfMilesTextPublic;
+
+    @FXML
+    private TextField carMileageTextPublic;
+
+    @FXML
+    private TextField fuelTypeTextPublic;
+
     private RestTemplate restTemplate = new RestTemplate();
     private ApiService apiService = new ApiService();
     private UserService userService = new UserService();
@@ -221,6 +240,14 @@ public class MainController {
         backToTransportationTypePageButton.setVisible(false);
         vegetarianMealStatus.setVisible(false);
         transportationStatus.setVisible(false);
+
+        //Emissionspage initial visibility - ride bus button view
+        rideABusButton.setVisible(false);
+        busIcon.setVisible(false);
+        addPublicTransportationButton.setVisible(false);
+        numberOfMilesTextPublic.setVisible(false);
+        carMileageTextPublic.setVisible(false);
+        fuelTypeTextPublic.setVisible(false);
     }
 
     /**
@@ -303,6 +330,11 @@ public class MainController {
         emissionsPageHide();
         rideABikeButton.setVisible(true);
         bikeIcon.setVisible(true);
+
+        //ride bus button visible
+        rideABusButton.setVisible(true);
+        busIcon.setVisible(true);
+
         backToEmissionPageButton.setVisible(true);
     }
 
@@ -314,11 +346,38 @@ public class MainController {
         numberOfMilesText.setVisible(true);
         carMileageText.setVisible(true);
         fuelTypeText.setVisible(true);
+
+        rideABikeButton.setVisible(false);
         bikeIcon.setVisible(false);
         addTransportationButton.setVisible(true);
         backToEmissionPageButton.setVisible(false);
         backToTransportationTypePageButton.setVisible(true);
         transportationStatus.setVisible(true);
+
+        //ride bus button visible off
+        rideABusButton.setVisible(false);
+        busIcon.setVisible(false);
+    }
+
+    /**
+     * Functionality when the user clicks the ride a car button.
+     * @param event mouse click.
+     */
+    public void rideABusButtonOnClick(ActionEvent event) {
+        rideABikeButton.setVisible(false);
+        bikeIcon.setVisible(false);
+
+        addPublicTransportationButton.setVisible(true);
+        backToEmissionPageButton.setVisible(false);
+        backToTransportationTypePageButton.setVisible(true);
+        transportationStatus.setVisible(true);
+
+        //ride bus button visible off
+        rideABusButton.setVisible(false);
+        busIcon.setVisible(false);
+        numberOfMilesTextPublic.setVisible(true);
+        carMileageTextPublic.setVisible(true);
+        fuelTypeTextPublic.setVisible(true);
     }
 
     /**
@@ -329,12 +388,22 @@ public class MainController {
         numberOfMilesText.setVisible(false);
         carMileageText.setVisible(false);
         fuelTypeText.setVisible(false);
+
         bikeIcon.setVisible(true);
+        busIcon.setVisible(true);
         addTransportationButton.setVisible(false);
+        addPublicTransportationButton.setVisible(false);
         backToEmissionPageButton.setVisible(true);
         backToTransportationTypePageButton.setVisible(false);
         rideABikeButton.setVisible(true);
         transportationStatus.setVisible(false);
+
+        //ride bus button visible
+        rideABusButton.setVisible(true);
+        busIcon.setVisible(true);
+        numberOfMilesTextPublic.setVisible(false);
+        carMileageTextPublic.setVisible(false);
+        fuelTypeTextPublic.setVisible(false);
     }
 
     /**
@@ -387,6 +456,31 @@ public class MainController {
     }
 
     /**
+     * This methods adds using public transportation in to the user's database.
+     */
+    public void addEmissionsForRidingAPublicTransport() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptyRideABusBoxes()) {
+            Float numberOfKilometers = Float.parseFloat(numberOfMilesTextPublic.getText());
+//            Float numberOfMiles = numberOfKilometers * 1.6f;
+//            BikeRide ride = new BikeRide(numberOfMiles,
+//                    Float.parseFloat(carMileageText.getText()),
+//                    fuelTypeText.getText());
+//            JwtUser jwtUser = jwtValidator.validate(token);
+//            float carbonEmission = apiService.getRideBikeEmissions(ride);
+//            String number = String.format("%.5f", carbonEmission);
+//            transportationStatus.setText("You have saved: " + number + " tons of CO2");
+//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+//            Date today = Calendar.getInstance().getTime();
+//            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
+//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+//                    jwtUser.getId(), emissionsClient, token);
+//            System.out.println(response);
+        }
+    }
+
+    /**
      * This methods adds a public transportation in to the user's database.
      */
     public void addEmissionsPublicTransportation() {
@@ -411,6 +505,16 @@ public class MainController {
     private boolean emptyRideABikeBoxes() {
         if (checkEmptyOrNullBox
                 (carMileageText, fuelTypeText, numberOfMilesText)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptyRideABusBoxes() {
+        if (checkEmptyOrNullBox
+                (carMileageTextPublic, fuelTypeTextPublic, numberOfMilesTextPublic)) {
             emptyTextBoxPopup();
             return true;
         } else {
