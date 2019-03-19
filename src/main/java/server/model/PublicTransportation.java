@@ -14,6 +14,7 @@ public class PublicTransportation {
         this.milesTraveled = milesTraveled;
     }
 
+
     public String getFuelType() {
         return fuelType;
     }

@@ -365,9 +365,9 @@ public class MainController {
         final String token = UserToken.getUserToken();
 
         if (!emptyRideABikeBoxes()) {
-            Float numberOfMiles = Float.parseFloat(numberOfMilesText.getText());
-            Float numberOfKilometres = numberOfMiles * 1.6f;
-            BikeRide ride = new BikeRide(numberOfKilometres,
+            Float numberOfKilometers = Float.parseFloat(numberOfMilesText.getText());
+            Float numberOfMiles = numberOfKilometers * 1.6f;
+            BikeRide ride = new BikeRide(numberOfMiles,
                     Float.parseFloat(carMileageText.getText()),
                     fuelTypeText.getText());
             JwtUser jwtUser = jwtValidator.validate(token);
