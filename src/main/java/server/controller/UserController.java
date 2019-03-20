@@ -153,9 +153,30 @@ public class UserController {
                 emissionsClient.getCarbonEmission(), emissionsClient.getDate());
         emissionRepository.save(emissions);
 
+        int numberVegMeals = emissionRepository.getNumberTimesVegMeal(id);
+        if(numberVegMeals >= 3) {
+            Achievements achievements = new Achievements(id, 1L);
+            achievementRepository.save(achievements);
+        }
+
         response = "Saved";
         return "Saved";
     }
+
+    @PostMapping("/user/change/country/{id}")
+    public String changeCountry(@RequestBody String country,
+                                @PathVariable("id") Long userId,
+                                HttpServletRequest httpServletRequest) throws BadCredentialsException {
+        String response = "";
+        if (isIncorrectUser(httpServletRequest, userId)) {
+            throw new BadCredentialsException("Bad credentials");
+        }
+
+        userRepository.updateCountryUser(country, userId);
+        response = "Changed";
+        return response;
+    }
+
 
     @GetMapping("/user/get/friends/emission/{id}")
     public List<EmissionFriend> getAllFriendsTotalEmissions(HttpServletRequest httpServletRequest,

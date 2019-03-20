@@ -1,10 +1,9 @@
 package server.model;
 
-import java.util.Objects;
-
 public class PublicTransportation {
+    private float carMileage;
     private float milesTraveled;
-    private String fuelType;
+    private int fuelType;
 
     public float getMilesTraveled() {
         return milesTraveled;
@@ -14,16 +13,25 @@ public class PublicTransportation {
         this.milesTraveled = milesTraveled;
     }
 
+    public float getCarMileage() {
+        return carMileage;
+    }
 
-    public String getFuelType() {
+    public void setCarMileage(float carMileage) {
+        this.carMileage = carMileage;
+    }
+
+    public int getFuelType() {
         return fuelType;
     }
 
-    public void setFuelType(String fuelType) {
+    public void setFuelType(int fuelType) {
         this.fuelType = fuelType;
     }
 
-    public PublicTransportation(float milesTraveled, String fuelType) {
+
+    public PublicTransportation(float carMileage, float milesTraveled, int fuelType) {
+        this.carMileage = carMileage;
         this.milesTraveled = milesTraveled;
         this.fuelType = fuelType;
     }
@@ -31,8 +39,9 @@ public class PublicTransportation {
     @Override
     public String toString() {
         return "PublicTransportation{" +
-                "milesTraveled=" + milesTraveled +
-                ", fuelType='" + fuelType + '\'' +
+                "carMileage=" + carMileage +
+                ", milesTraveled=" + milesTraveled +
+                ", fuelType=" + fuelType +
                 '}';
     }
 
@@ -41,8 +50,9 @@ public class PublicTransportation {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PublicTransportation that = (PublicTransportation) o;
-        return Float.compare(that.milesTraveled, milesTraveled) == 0 &&
-                Objects.equals(fuelType, that.fuelType);
+        return Float.compare(that.carMileage, carMileage) == 0 &&
+                Float.compare(that.milesTraveled, milesTraveled) == 0 &&
+                fuelType == that.fuelType;
     }
 }
 
