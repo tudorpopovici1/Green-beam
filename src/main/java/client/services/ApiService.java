@@ -273,7 +273,8 @@ public class ApiService {
         HttpEntity<?> httpEntity = new HttpEntity<>(httpHeaders);
 
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(url)
-
+                .queryParam("input_takeaction_transportation_bus", 1)
+                .queryParam("input_takeaction_transportation_bus_mileage", 0.65)
                 .queryParam("input_takeaction_transportation_miles_traveled", 0.65)
                 .queryParam("input_takeaction_transportation_fuel_type", 0.65)
 
@@ -289,9 +290,9 @@ public class ApiService {
                 .queryParam("input_footprint_transportation_airtotal", 10000)
                 .queryParam("input_footprint_transportation_publictrans", 300)
                 .queryParam("input_footprint_transportation_num_vehicles", 1)
-                .queryParam("input_footprint_transportation_miles1", 10000)
-                .queryParam("input_footprint_transportation_mpg1", 30)
-                .queryParam("input_footprint_transportation_fuel1", 0)
+                .queryParam("input_footprint_transportation_miles1", transportation.getMilesTraveled())
+                .queryParam("input_footprint_transportation_mpg1", transportation.getCarMileage())
+                .queryParam("input_footprint_transportation_fuel1", transportation.getFuelType())
                 .queryParam("input_footprint_transportation_miles2", 0)
                 .queryParam("input_footprint_transportation_mpg2", 35)
                 .queryParam("input_footprint_transportation_fuel2", 1)

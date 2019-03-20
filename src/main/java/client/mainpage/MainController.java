@@ -464,28 +464,21 @@ public class MainController {
 
         if (!emptyRideABusBoxes()) {
             Float numberOfKilometers = Float.parseFloat(numberOfMilesTextPublic.getText());
-//            Float numberOfMiles = numberOfKilometers * 1.6f;
-//            BikeRide ride = new BikeRide(numberOfMiles,
-//                    Float.parseFloat(carMileageText.getText()),
-//                    fuelTypeText.getText());
-//            JwtUser jwtUser = jwtValidator.validate(token);
-//            float carbonEmission = apiService.getRideBikeEmissions(ride);
-//            String number = String.format("%.5f", carbonEmission);
-//            transportationStatus.setText("You have saved: " + number + " tons of CO2");
-//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
-//            Date today = Calendar.getInstance().getTime();
-//            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
-//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
-//                    jwtUser.getId(), emissionsClient, token);
-//            System.out.println(response);
+            Float numberOfMiles = numberOfKilometers * 1.6f;
+            int fuelType = Integer.parseInt(fuelTypeTextPublic.getText());
+            PublicTransportation bus = new PublicTransportation(Float.parseFloat(carMileageTextPublic.getText()),
+                    numberOfMiles, fuelType);
+            JwtUser jwtUser = jwtValidator.validate(token);
+            float carbonEmission = apiService.getPublicTransportationEmissions(bus);
+            String number = String.format("%.5f", carbonEmission);
+            transportationStatus.setText("You have saved: " + number + " tons of CO2");
+            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+            Date today = Calendar.getInstance().getTime();
+            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
+            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                    jwtUser.getId(), emissionsClient, token);
+            System.out.println(response);
         }
-    }
-
-    /**
-     * This methods adds a public transportation in to the user's database.
-     */
-    public void addEmissionsPublicTransportation() {
-        final String token = UserToken.getUserToken();
     }
 
     /**
@@ -522,7 +515,6 @@ public class MainController {
             return false;
         }
     }
-
 
     /**
      * This method handles the functionality of checking whether a
