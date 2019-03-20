@@ -171,6 +171,18 @@ public class UserController {
             achievementRepository.save(achievements);
         }
 
+        int numberBike = emissionRepository.getNumberTransportationInsteadCar(id);
+        if(numberBike >= 10) {
+            Achievements achievements = new Achievements(id, 4L);
+            achievementRepository.save(achievements);
+        }
+
+        int numberTransportation = emissionRepository.getNumberTransportationInsteadCar(id);
+        if(numberTransportation >= 30) {
+            Achievements achievements = new Achievements(id, 5L);
+            achievementRepository.save(achievements);
+        }
+
         response = "Saved";
         return "Saved";
     }
