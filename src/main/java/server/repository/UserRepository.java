@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import server.model.FriendsUserResp;
 import server.model.Users;
 
+import java.util.Date;
 import java.util.List;
 import javax.transaction.Transactional;
 
@@ -67,6 +68,21 @@ public interface UserRepository extends JpaRepository<Users, Long> {
 
     @Transactional
     @Modifying
-    @Query(value = "UPDDATE user_date u SET u.name = ?1 WHERE u.userId = ?2")
+    @Query(value = "UPDDATE user_data u SET u.name = ?1 WHERE u.userId = ?2")
     void updateNameUser(String name, Long userId);
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE user_data u SET u.dateOfBirth = ?1 WHERE u.user_id = ?2")
+    void updateDateOfBirthUser(Date dateOfBirth, Long userId);
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE user_data u SET u.email = ?1 WHERE u.user_id = ?2")
+    void updateEmailUser(String email, Long userId);
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE user_data u SET u.password = ?1 WHERE u.user_id = ?2")
+    void updatePasswordUser(String password, Long userId);
 }
