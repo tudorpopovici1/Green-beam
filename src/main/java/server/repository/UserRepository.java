@@ -49,8 +49,6 @@ public interface UserRepository extends JpaRepository<Users, Long> {
             + "WHERE u.id=?1")
     FriendsUserResp findSpecificUserById(Long userId);
 
-
-
     @Query(value = "SELECT new server.model.FriendsUserResp "
             + "(u.username, u.dateOfBirth, u.firstName, "
             + "u.lastName, u.country, u.email) FROM user_data u "
@@ -66,4 +64,9 @@ public interface UserRepository extends JpaRepository<Users, Long> {
     @Modifying
     @Query(value = "UPDATE user_data u SET u.country = ?1 WHERE u.userId = ?2")
     void updateCountryUser(String country, Long userId);
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDDATE user_date u SET u.name = ?1 WHERE u.userId = ?2")
+    void updateNameUser(String name, Long userId);
 }

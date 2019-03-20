@@ -201,6 +201,20 @@ public class UserController {
         return response;
     }
 
+    @PostMapping("/user/change/name/{id}")
+    public String changeName(@RequestBody String name,
+                                @PathVariable("id") Long userId,
+                                HttpServletRequest httpServletRequest) throws BadCredentialsException {
+        String response = "";
+        if (isIncorrectUser(httpServletRequest, userId)) {
+            throw new BadCredentialsException("Bad credentials");
+        }
+
+        userRepository.updateNameUser(name, userId);
+        response = "Changed";
+        return response;
+    }
+
 
     @GetMapping("/user/get/friends/emission/{id}")
     public List<EmissionFriend> getAllFriendsTotalEmissions(HttpServletRequest httpServletRequest,
