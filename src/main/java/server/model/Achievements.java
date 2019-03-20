@@ -37,6 +37,8 @@ public class Achievements {
         this.achievementId = achievementId;
     }
 
+    public Achievements(){}
+
 
     public Long getId() {
         return id;
