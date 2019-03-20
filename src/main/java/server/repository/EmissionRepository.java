@@ -16,7 +16,7 @@ public interface EmissionRepository extends JpaRepository<Emissions, Long> {
     @Query( value = "SELECT COUNT(*) " +
             "FROM Emissions e " +
             "WHERE e.userId = ?1 AND e.emissionType = '2'")
-    Integer getNumberBikeInsteadCar(Long userId);
+    Integer getNumberTransportationInsteadCar(Long userId);
 
     @Query(value = "SELECT SUM(emi.carbonFootprint)" +
             "FROM Emissions emi " +

@@ -19,10 +19,7 @@ import server.repository.FriendsRepository;
 import server.repository.UserRepository;
 import server.security.JwtValidator;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
@@ -171,6 +168,18 @@ public class UserController {
             achievementRepository.save(achievements);
         }
 
+        int numberBike = emissionRepository.getNumberTransportationInsteadCar(id);
+        if(numberBike >= 10) {
+            Achievements achievements = new Achievements(id, 4L);
+            achievementRepository.save(achievements);
+        }
+
+        int numberTransportation = emissionRepository.getNumberTransportationInsteadCar(id);
+        if(numberTransportation >= 30) {
+            Achievements achievements = new Achievements(id, 5L);
+            achievementRepository.save(achievements);
+        }
+
         response = "Saved";
         return "Saved";
     }
@@ -189,6 +198,61 @@ public class UserController {
         return response;
     }
 
+    @PostMapping("/user/change/name/{id}")
+    public String changeName(@RequestBody String name,
+                                @PathVariable("id") Long userId,
+                                HttpServletRequest httpServletRequest) throws BadCredentialsException {
+        String response = "";
+        if (isIncorrectUser(httpServletRequest, userId)) {
+            throw new BadCredentialsException("Bad credentials");
+        }
+
+        userRepository.updateNameUser(name, userId);
+        response = "Changed";
+        return response;
+    }
+
+    @PostMapping("/user/change/dateOfBirth/{id}")
+    public String changeDateOfBirth(@RequestBody Date dateOfBirth,
+                             @PathVariable("id") Long userId,
+                             HttpServletRequest httpServletRequest) throws BadCredentialsException {
+        String response = "";
+        if (isIncorrectUser(httpServletRequest, userId)) {
+            throw new BadCredentialsException("Bad credentials");
+        }
+
+        userRepository.updateDateOfBirthUser(dateOfBirth, userId);
+        response = "Changed";
+        return response;
+    }
+
+    @PostMapping("/user/change/email/{id}")
+    public String changeEmail(@RequestBody String email,
+                                    @PathVariable("id") Long userId,
+                                    HttpServletRequest httpServletRequest) throws BadCredentialsException {
+        String response = "";
+        if (isIncorrectUser(httpServletRequest, userId)) {
+            throw new BadCredentialsException("Bad credentials");
+        }
+
+        userRepository.updateEmailUser(email, userId);
+        response = "Changed";
+        return response;
+    }
+
+    @PostMapping("/user/change/password/{id}")
+    public String changePassword(@RequestBody String password,
+                                    @PathVariable("id") Long userId,
+                                    HttpServletRequest httpServletRequest) throws BadCredentialsException {
+        String response = "";
+        if (isIncorrectUser(httpServletRequest, userId)) {
+            throw new BadCredentialsException("Bad credentials");
+        }
+
+        userRepository.updatePasswordUser(password, userId);
+        response = "Changed";
+        return response;
+    }
 
     @GetMapping("/user/get/friends/emission/{id}")
     public List<EmissionFriend> getAllFriendsTotalEmissions(HttpServletRequest httpServletRequest,
