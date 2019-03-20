@@ -153,9 +153,21 @@ public class UserController {
                 emissionsClient.getCarbonEmission(), emissionsClient.getDate());
         emissionRepository.save(emissions);
 
-        int numberVegMeals = emissionRepository.getNumberTimesVegMeal(id);
-        if(numberVegMeals >= 3) {
+        int numberVegMeals1 = emissionRepository.getNumberTimesVegMeal(id);
+        if(numberVegMeals1 >= 3) {
             Achievements achievements = new Achievements(id, 1L);
+            achievementRepository.save(achievements);
+        }
+
+        int numberVegMeals2 = emissionRepository.getNumberTimesVegMeal(id);
+        if(numberVegMeals2 >= 7) {
+            Achievements achievements = new Achievements(id, 2L);
+            achievementRepository.save(achievements);
+        }
+
+        int numberVegMeals3 = emissionRepository.getNumberTimesVegMeal(id);
+        if(numberVegMeals3 >= 30) {
+            Achievements achievements = new Achievements(id, 3L);
             achievementRepository.save(achievements);
         }
 
