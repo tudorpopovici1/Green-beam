@@ -1,7 +1,6 @@
 package client.profile_page;
 
-import com.jfoenix.controls.JFXDrawer;
-import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import com.jfoenix.transitions.hamburger.HamburgerNextArrowBasicTransition;
 import javafx.fxml.Initializable;
@@ -36,9 +35,19 @@ public class ProfileController implements Initializable {
     @FXML
     private JFXDrawer drawer;
 
+    @FXML
+    private JFXButton addFriendsButton;
+
+    @FXML
+    private ListView<Label> friendslistView;
+
+    @FXML
+    private JFXTextField searchFriends;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+//        Label lbl = new Label("Item 2");
+//        friendslistView.getItems().add(lbl);
         try {
             //FXMLLoader loader = new FXMLLoader(getClass().getResource("src/main/java/client/profile_page/side_panel.fxml"));
             URL url = new File(
