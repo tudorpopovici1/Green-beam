@@ -64,7 +64,6 @@ public class Achievements {
         this.achievementId = achievementId1;
     }
 
-    public  Achievements() {}
     @Override
     public String toString() {
         return "Achievements{"
