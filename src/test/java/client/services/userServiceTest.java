@@ -15,8 +15,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.MvcResult;
@@ -26,6 +25,7 @@ import org.springframework.web.client.RestTemplate;
 import server.exception.ResourceNotFoundException;
 import server.exception.UserAlreadyRegistered;
 import server.model.AuthenticateUser;
+import server.model.EmissionsClient;
 import server.model.FriendsUserResp;
 import server.model.Users;
 
@@ -308,6 +308,84 @@ public class userServiceTest {
             e.printStackTrace();
         }
         return jsonString;
+    }
+
+    @Test
+    public void HttpStatusForbiddenAddEmissionUser() {
+
+        Date date = Mockito.mock(Date.class);
+        EmissionsClient emissionsClient = new EmissionsClient("123", 0.2F, date);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.set("Authorisation", "Token 123");
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<EmissionsClient> httpEntity = new HttpEntity<>(emissionsClient, httpHeaders);
+
+        when(restTemplate.exchange(Url.ADD_EMISSION.getUrl() + "/1",
+                HttpMethod.POST, httpEntity, String.class))
+                .thenThrow(new HttpStatusCodeException(HttpStatus.FORBIDDEN) {
+                    @Override
+                    public HttpStatus getStatusCode() {
+                        return HttpStatus.FORBIDDEN;
+                    }
+
+                    @Override
+                    public String getResponseBodyAsString() {
+                        return writeSpecificErrorAsJson(
+                                "Bad credentials");
+                    }
+                });
+
+        String response = userService
+                .addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                        1L, emissionsClient, "123");
+
+        Assert.assertEquals("Bad credentials", response);
+
+    }
+
+    @Test
+    public void OtherHttpStatusCodeFailAddEmissionUser() {
+
+        Date date = Mockito.mock(Date.class);
+        EmissionsClient emissionsClient = new EmissionsClient("123", 0.2F, date);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.set("Authorisation", "Token 123");
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<EmissionsClient> httpEntity = new HttpEntity<>(emissionsClient, httpHeaders);
+
+        when(restTemplate.exchange(Url.ADD_EMISSION.getUrl() + "/1",
+                HttpMethod.POST, httpEntity, String.class))
+                .thenThrow(new HttpStatusCodeException(HttpStatus.INTERNAL_SERVER_ERROR) {
+                    @Override
+                    public HttpStatus getStatusCode() {
+                        return HttpStatus.INTERNAL_SERVER_ERROR;
+                    }
+                });
+        String response = userService
+                .addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                        1L, emissionsClient, "123");
+        Assert.assertEquals("", response);
+    }
+
+
+    @Test
+    public void successfulAddEmissionUser() {
+        Date date = Mockito.mock(Date.class);
+        EmissionsClient emissionsClient = new EmissionsClient("123", 0.2F, date);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.set("Authorisation", "Token 123");
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<EmissionsClient> httpEntity = new HttpEntity<>(emissionsClient, httpHeaders);
+        String expected = "Saved";
+        ResponseEntity<String> responseEntity = new ResponseEntity<>(
+                "Saved", HttpStatus.OK);
+        when(restTemplate.exchange(Url.ADD_EMISSION.getUrl() + "/1",
+                HttpMethod.POST, httpEntity, String.class))
+                .thenReturn(responseEntity);
+        String result = userService.addEmissionOfUser(restTemplate,
+                Url.ADD_EMISSION.getUrl(), 1L, emissionsClient,
+                "123");
+        Assert.assertEquals(expected, result);
     }
 
     private String writeSpecificErrorAsJson() {

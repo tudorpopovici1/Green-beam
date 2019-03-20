@@ -3,13 +3,18 @@ package server.model;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class JwtAuthenticationTokenTest {
 
 
-    JwtAuthenticationToken jwtAuthenticationToken = new JwtAuthenticationToken("");
+    JwtAuthenticationToken jwtAuthenticationToken = new JwtAuthenticationToken(null);
+    JwtAuthenticationToken jwtAuthenticationToken2 = new JwtAuthenticationToken(null);
 
-    
     @Test
     public void getTokenTest() {
         String token = "abc";
@@ -27,5 +32,36 @@ public class JwtAuthenticationTokenTest {
         Assert.assertEquals(setToken, expected);
     }
 
+    @Test
+    public void toStringTest() {
+        jwtAuthenticationToken.setToken("123");
+        String expected = "JwtAuthenticationToken{token='123'}";
+        Assert.assertEquals(expected, jwtAuthenticationToken.toString());
+    }
+
+    @Test
+    public void equalsMethodSameObjectTest()  {
+        jwtAuthenticationToken.setToken("123");
+        jwtAuthenticationToken2 = jwtAuthenticationToken;
+        Assert.assertEquals(jwtAuthenticationToken, jwtAuthenticationToken2);
+    }
+
+    @Test
+    public void equalsMethodDifferentObjectTest()  {
+        jwtAuthenticationToken.setToken("123");
+        jwtAuthenticationToken2.setToken("123");
+        Assert.assertEquals(jwtAuthenticationToken, jwtAuthenticationToken2);
+    }
+
+    @Test
+    public void equalsMethodDifferentTokenTest()  {
+        jwtAuthenticationToken.setToken("123");
+        jwtAuthenticationToken2.setToken("123213");
+        Assert.assertNotEquals(jwtAuthenticationToken, jwtAuthenticationToken2);
+    }
+
+
 
 }
+
+

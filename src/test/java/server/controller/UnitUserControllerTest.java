@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -14,9 +15,8 @@ import server.controller.UserController;
 import server.exception.BadCredentialsException;
 import server.exception.ResourceNotFoundException;
 import server.exception.UserAlreadyRegistered;
-import server.model.FriendsUserResp;
-import server.model.JwtUser;
-import server.model.Users;
+import server.model.*;
+import server.repository.EmissionRepository;
 import server.repository.UserRepository;
 import server.security.JwtGenerator;
 
@@ -39,6 +39,9 @@ public class UnitUserControllerTest {
 
     @Mock
     private UserRepository userRepository;
+
+    @Mock
+    private EmissionRepository emissionRepository;
 
     private static Users user1;
     private static Users user2;
@@ -209,6 +212,199 @@ public class UnitUserControllerTest {
         when(userRepository.findAllFriendsUser(1L)).thenReturn(expected);
         List<FriendsUserResp> response = userController.getFriendsUser(httpServletRequest, 1L);
     }
+
+    @Test
+    public void successfulAddEmission() throws BadCredentialsException {
+        Date date = Mockito.mock(Date.class);
+        Emissions emission = new Emissions(0L, "1",
+                0.2F, date);
+        EmissionsClient emissionsClient = new EmissionsClient("123",
+                0.2F, date);
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        when(userRepository.findUserById(user1.getId())).thenReturn(user1);
+        when(emissionRepository.save(emission)).thenReturn(emission);
+        String response = userController.addEmissions(httpServletRequest, 1L, emissionsClient);
+        Assert.assertEquals("Saved", response);
+    }
+
+    @Test (expected = BadCredentialsException.class)
+    public void BadCredentialsAddEmission() throws BadCredentialsException {
+        Date date = Mockito.mock(Date.class);
+        Emissions emission = new Emissions(0L, "1",
+                0.2F, date);
+        EmissionsClient emissionsClient = new EmissionsClient("123",
+                0.2F, date);
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token ");
+        userController.addEmissions(httpServletRequest, 1L, emissionsClient);
+    }
+
+    @Test (expected = BadCredentialsException.class)
+    public void GetAllEmissionsOfUserBadCredentials() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token ");
+        userController.getEmissionsOfUser(httpServletRequest, 1L);
+    }
+
+    @Test
+    public void resultIsNullGetEmissionsOfUser() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        when(userRepository.findUserUsername(user1.getId())).thenReturn(user1.getUsername());
+        when(emissionRepository.getAllEmisionsOfUser(user1.getUsername())).thenReturn(null);
+        EmissionFriend response = userController.getEmissionsOfUser(httpServletRequest,
+                1L);
+        Assert.assertEquals(null, response);
+    }
+
+    @Test
+    public void successfulGetEmissionsOfUser() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        when(userRepository.findUserUsername(user1.getId())).thenReturn(user1.getUsername());
+        Double expected = 0.2D;
+        when(emissionRepository.getAllEmisionsOfUser(user1.getUsername())).thenReturn(expected);
+        EmissionFriend result = userController.getEmissionsOfUser(httpServletRequest,
+                1L);
+        EmissionFriend emissionFriendExpected = new EmissionFriend(user1.getUsername(),
+                expected);
+        Assert.assertEquals(emissionFriendExpected.getUsername(), result.getUsername());
+        Assert.assertTrue(emissionFriendExpected.getCarbonEmission() == result.getCarbonEmission());
+    }
+
+    @Test (expected = BadCredentialsException.class)
+    public void BadCredentialsGetFriendsTotalEmissions() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token ");
+        userController.getAllFriendsTotalEmissions(httpServletRequest,
+                1L);
+    }
+
+    @Test
+    public void WillReturnNullGetAllEmissionsFriends() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        when(userRepository.findAllFriendsUser(user1.getId())).thenReturn(new ArrayList<>());
+        List<EmissionFriend> expected = new ArrayList<>();
+        List<EmissionFriend> result = userController.getAllFriendsTotalEmissions(
+                httpServletRequest, 1L);
+        Assert.assertEquals(expected, result);
+    }
+
+    @Test
+    public void HasNullElementsGetAllEmissionsFriends() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+
+        List<FriendsUserResp> friendList = new ArrayList<>();
+        friendList.add(userResp1);
+        friendList.add(userResp2);
+
+        when(userRepository.findAllFriendsUser(user1.getId())).thenReturn(friendList);
+        when(emissionRepository.getAllEmisionsOfUser(userResp1.getUsername()))
+                .thenReturn(1D);
+        when(emissionRepository.getAllEmisionsOfUser(userResp2.getUsername()))
+                .thenReturn(null);
+        List<EmissionFriend> result = userController.getAllFriendsTotalEmissions(
+                httpServletRequest, 1L);
+        List<EmissionFriend> expected = new ArrayList<>();
+        expected.add(new EmissionFriend("userno1", 1D));
+        Assert.assertEquals(expected.get(0).getUsername(), result.get(0).getUsername());
+        Assert.assertTrue(expected.get(0).getCarbonEmission() ==
+                result.get(0).getCarbonEmission());
+    }
+
+    @Test
+    public void successfulGetAllEmissionsFriends() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+
+        List<FriendsUserResp> friendList = new ArrayList<>();
+        friendList.add(userResp1);
+        friendList.add(userResp2);
+
+        when(userRepository.findAllFriendsUser(user1.getId())).thenReturn(friendList);
+        when(emissionRepository.getAllEmisionsOfUser(userResp1.getUsername()))
+                .thenReturn(1D);
+        when(emissionRepository.getAllEmisionsOfUser(userResp2.getUsername()))
+                .thenReturn(1D);
+        List<EmissionFriend> result = userController.getAllFriendsTotalEmissions(
+                httpServletRequest, 1L);
+        List<EmissionFriend> expected = new ArrayList<>();
+        expected.add(new EmissionFriend("userno1", 1D));
+        expected.add(new EmissionFriend("userno5", 1D));
+        Assert.assertEquals(expected.get(0).getUsername(), result.get(0).getUsername());
+        Assert.assertTrue(expected.get(0).getCarbonEmission() ==
+                result.get(0).getCarbonEmission());
+        Assert.assertEquals(expected.get(1).getUsername(), result.get(1).getUsername());
+        Assert.assertTrue(expected.get(1).getCarbonEmission() ==
+                result.get(1).getCarbonEmission());
+    }
+
+    @Test (expected = BadCredentialsException.class)
+    public void BadCredentialsTop5Emissions() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token ");
+        userController.getTop5FriendsEmissions(httpServletRequest,
+                1L);
+    }
+
+    /*@Test
+    public void friendListLessOrEqualTo4TopEmissions() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+
+        List<FriendsUserResp> friendList = new ArrayList<>();
+        friendList.add(userResp1);
+        friendList.add(userResp2);
+
+        List<EmissionFriend> expected = new ArrayList<>();
+        expected.add(new EmissionFriend("userno1", 1D));
+        expected.add(new EmissionFriend("userno5", 1D));
+
+        when(userRepository.findAllFriendsUser(user1.getId()))
+                .thenReturn(friendList);
+
+        when(emissionRepository.getAllEmisionsOfUser(userResp1.getUsername()))
+                .thenReturn(0.1D);
+        when(emissionRepository.getAllEmisionsOfUser(userResp2.getUsername()))
+                .thenReturn(0.1D);
+
+        when(userController.getAllFriendsTotalEmissions(httpServletRequest,
+                user1.getId())).thenReturn(expected);
+
+        List<EmissionFriend> result = userController
+                .getTop5FriendsEmissions(httpServletRequest,
+                        1L);
+
+        Assert.assertEquals(expected.get(0).getUsername(), result.get(0).getUsername());
+        Assert.assertTrue(expected.get(0).getCarbonEmission() ==
+                result.get(0).getCarbonEmission());
+        Assert.assertEquals(expected.get(1).getUsername(), result.get(1).getUsername());
+        Assert.assertTrue(expected.get(1).getCarbonEmission() ==
+                result.get(1).getCarbonEmission());
+        *//*Assert.assertEquals(expected.get(3).getUsername(), result.get(3).getUsername());
+        Assert.assertTrue(expected.get(3).getCarbonEmission() ==
+                result.get(3).getCarbonEmission());
+        Assert.assertEquals(expected.get(4).getUsername(), result.get(4).getUsername());
+        Assert.assertTrue(expected.get(4).getCarbonEmission() ==
+                result.get(4).getCarbonEmission());*//*
+    }*/
 
     //Helper method of this testing class.
     private String getTokenOfUser(String username, String role, Long id) {

@@ -1,5 +1,7 @@
 package server.model;
 
+import java.util.Objects;
+
 public class JwtUser {
 
     private String userName;
@@ -56,5 +58,20 @@ public class JwtUser {
                 + role
                 + '\''
                 + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof JwtUser)) return false;
+        JwtUser jwtUser = (JwtUser) o;
+        return getId() == jwtUser.getId() &&
+                Objects.equals(getUserName(), jwtUser.getUserName()) &&
+                Objects.equals(getRole(), jwtUser.getRole());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getUserName(), getId(), getRole());
     }
 }

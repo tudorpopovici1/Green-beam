@@ -25,7 +25,6 @@ import server.model.AuthenticateUser;
 import server.model.Users;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -38,6 +37,7 @@ import java.util.regex.Pattern;
  * This class handles all the functionality that is in
  * the main login page of the application.
  */
+@SuppressWarnings("Duplicates")
 public class LoginController {
 
     public static final Pattern VALIDEMAIL =
@@ -58,6 +58,7 @@ public class LoginController {
 
     @FXML
     private Label lblStatus2;
+
     /**
      * This is getting all the textField attributes from the
      * Login.fxml file.
@@ -99,6 +100,9 @@ public class LoginController {
      * This is getting all the button attributes from the
      * Login.fxml file.
      */
+    @FXML
+    private Button loginButton;
+
     @FXML
     private Button nextButton;
 
@@ -145,7 +149,7 @@ public class LoginController {
      * @param event - Whenever a user clicks the "login" button, this method starts to run.
      * */
 
-    public void login(ActionEvent event) throws IOException {
+    public void login(ActionEvent event) throws Exception {
         if (!txtUsername.getText().equals("")
                 && !txtPassword.getText().equals("")) {
             AuthenticateUser authenticateUser =
@@ -168,6 +172,7 @@ public class LoginController {
                 mainPageStage.setScene(scene);
                 mainPageStage.setResizable(false);
                 mainPageStage.show();
+                loginButton.getScene().getWindow().hide();
             }
         } else if (txtUsername.getText().equals("") || txtPassword.getText().equals("")) {
             emptyLoginBoxPopup();
