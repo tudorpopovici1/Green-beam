@@ -439,9 +439,10 @@ public class MainController {
         if (!emptyRideABikeBoxes()) {
             Float numberOfKilometers = Float.parseFloat(numberOfMilesText.getText());
             Float numberOfMiles = numberOfKilometers * 1.6f;
+            int fuelType = Integer.parseInt(fuelTypeText.getText());
             BikeRide ride = new BikeRide(numberOfMiles,
                     Float.parseFloat(carMileageText.getText()),
-                    fuelTypeText.getText());
+                    fuelType);
             JwtUser jwtUser = jwtValidator.validate(token);
             float carbonEmission = apiService.getRideBikeEmissions(ride);
             String number = String.format("%.5f", carbonEmission);
