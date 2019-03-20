@@ -253,7 +253,7 @@
         <TextField fx:id="carMileageText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
                    prefWidth="184.0" promptText="Total Mileage of the Car" visible="false"/>
         <TextField fx:id="fuelTypeText" layoutX="260.0" layoutY="369.0" prefHeight="75.0"
-                   prefWidth="184.0" promptText="Fuel Type (Benzine or Diesel)" visible="false"/>
+                   prefWidth="184.0" promptText="Fuel Type. Benzine 0, Else 1)" visible="false"/>
         <Button fx:id="addTransportationButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
                 prefHeight="75.0"
                 prefWidth="184.0" text="Add" visible="false" onAction="#addEmissionsForRidingABike"/>
@@ -292,6 +292,26 @@
         <Button fx:id="backToMealTypePageButton" layoutX="20.0" layoutY="600.0" mnemonicParsing="false"
                 prefHeight="50.0"
                 prefWidth="50" text="Back" visible="false" onAction="#backToMealTypeButtonOnClick"/>
+
+        <!--GUI for the public transport ride-->
+        <Button fx:id="rideABusButton" layoutX="260.0" layoutY="280" mnemonicParsing="false" prefHeight="75.0"
+                prefWidth="184.0" text="Ride Public Transport" visible="false" onAction="#rideABusButtonOnClick"/>
+        <ImageView fx:id="busIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="280.0"
+                   visible="false">
+            <image>
+                <Image url="@../images/publicTransportIcon.png"/>
+            </image>
+        </ImageView>
+        <Button fx:id="addPublicTransportationButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
+                prefHeight="75.0"
+                prefWidth="184.0" text="Add" visible="false" onAction="#addEmissionsForRidingAPublicTransport"/>
+        <TextField fx:id="numberOfMilesTextPublic" layoutX="260.0" layoutY="193.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Number of kilometers" visible="false"/>
+        <TextField fx:id="carMileageTextPublic" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Total Mileage of the Car" visible="false"/>
+        <TextField fx:id="fuelTypeTextPublic" layoutX="260.0" layoutY="369.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Fuel Type (Benzine or Diesel)" visible="false"/>
+
     </Pane>
     <Pane fx:id="progressWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
     <Pane fx:id="profileWindow" layoutX="222.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"

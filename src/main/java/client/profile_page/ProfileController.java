@@ -3,8 +3,10 @@ package client.profile_page;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
+import com.jfoenix.transitions.hamburger.HamburgerNextArrowBasicTransition;
 import javafx.fxml.Initializable;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,6 +15,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -36,16 +39,19 @@ public class ProfileController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-//        try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("src/main/java/client/profile_page/side_panel.fxml"));
-//            VBox box = loader.load();
-//            drawer.setSidePane(box);
-//        } catch (IOException ex) {
-//            Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            //FXMLLoader loader = new FXMLLoader(getClass().getResource("src/main/java/client/profile_page/side_panel.fxml"));
+            URL url = new File(
+                    "src/main/java/client/profile_page/sidepanel.fxml").toURI().toURL();
+            VBox box = FXMLLoader.load(url);
+            //VBox box = FXMLLoader.load(getClass().getResource("client.profile_page.sidepanel.fxml"));
+            drawer.setSidePane(box);
+        } catch (IOException ex) {
+            Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         System.out.println("View is now loaded!");
-        HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
+        HamburgerNextArrowBasicTransition transition = new HamburgerNextArrowBasicTransition(hamburger);
         transition.setRate(-1);
         hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
             transition.setRate(transition.getRate() * -1);

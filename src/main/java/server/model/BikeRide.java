@@ -6,7 +6,7 @@ public class BikeRide {
 
     private float numberOfMiles;
     private float carMileage;
-    private String fuelType;
+    private int fuelType;
 
     public float getNumberOfMiles() {
         return numberOfMiles;
@@ -24,15 +24,15 @@ public class BikeRide {
         this.carMileage = carMileage;
     }
 
-    public String getFuelType() {
+    public int getFuelType() {
         return fuelType;
     }
 
-    public void setFuelType(String fuelType) {
+    public void setFuelType(int fuelType) {
         this.fuelType = fuelType;
     }
 
-    public BikeRide(float numberOfMiles, float carMileage, String fuelType) {
+    public BikeRide(float numberOfMiles, float carMileage, int fuelType) {
         this.numberOfMiles = numberOfMiles;
         this.carMileage = carMileage;
         this.fuelType = fuelType;
@@ -50,10 +50,10 @@ public class BikeRide {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof BikeRide)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         BikeRide bikeRide = (BikeRide) o;
-        return Float.compare(bikeRide.getNumberOfMiles(), getNumberOfMiles()) == 0 &&
-                Float.compare(bikeRide.getCarMileage(), getCarMileage()) == 0 &&
-                Objects.equals(getFuelType(), bikeRide.getFuelType());
+        return Float.compare(bikeRide.numberOfMiles, numberOfMiles) == 0 &&
+                Float.compare(bikeRide.carMileage, carMileage) == 0 &&
+                fuelType == bikeRide.fuelType;
     }
 }

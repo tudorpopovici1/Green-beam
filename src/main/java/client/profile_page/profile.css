@@ -2,6 +2,11 @@
     -fx-background-color: white;
 }
 
+.jfx-hamburger-black StackPane {
+    -fx-background-color: white;
+}
+
+
 .buttons{
     -fx-background-color: transparent;
     -fx-background-radius: 0px;
