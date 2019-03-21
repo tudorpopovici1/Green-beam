@@ -205,6 +205,8 @@ public class MainController {
     private UserService userService = new UserService();
     private JwtValidator jwtValidator = new JwtValidator();
 
+    private String userTokenString;
+
     /**---------------------------- MAIN PAGE -----------------------------------------**/
 
     /**
@@ -214,10 +216,10 @@ public class MainController {
      *
      */
     public void mainPage(ActionEvent event) {
-        String token = UserToken.getUserToken();
-        JwtUser jwtUser = jwtValidator.validate(token);
+        this.userTokenString = UserToken.getUserToken();
+        JwtUser jwtUser = jwtValidator.validate(userTokenString);
         EmissionFriend emissionFriend = userService.getEmissionsOfUser(
-                restTemplate, Url.GET_EMISSION_USER.getUrl(), jwtUser.getId(), token);
+                restTemplate, Url.GET_EMISSION_USER.getUrl(), jwtUser.getId(), userTokenString);
         mainWindow.setVisible(true);
         mainWindow.toFront();
         animatePane(mainWindow);
