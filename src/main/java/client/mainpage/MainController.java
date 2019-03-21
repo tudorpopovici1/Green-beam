@@ -4,6 +4,7 @@ import client.Url;
 import client.UserToken;
 import client.services.ApiService;
 import client.services.UserService;
+import com.jfoenix.controls.JFXSlider;
 import javafx.animation.FadeTransition;
 import javafx.animation.SequentialTransition;
 import javafx.event.ActionEvent;
@@ -83,16 +84,10 @@ public class MainController {
     private ImageView vegetarianIcon;
 
     @FXML
-    private ImageView localProduceIcon;
-
-    @FXML
     private Button mealButton;
 
     @FXML
     private Button vegetarianMealButton;
-
-    @FXML
-    private Button localProduceButton;
 
     @FXML
     private Button backToEmissionPageButton;
@@ -139,7 +134,8 @@ public class MainController {
     @FXML
     private Pane settingsWindow;
 
-    //ID activation for the public transport ride button
+    /** ID activation for the public transport ride button **/
+
     @FXML
     private Button rideABusButton;
 
@@ -157,6 +153,35 @@ public class MainController {
 
     @FXML
     private TextField fuelTypeTextPublic;
+
+    /** ID activation for the local produce button **/
+
+    @FXML
+    private Button localProduceButton;
+
+    @FXML
+    private ImageView localProduceIcon;
+
+    @FXML
+    private Label localProduceStatus;
+
+    @FXML
+    private Label percentFoodProductionLabel;
+
+    @FXML
+    private Label percentPackagedLabel;
+
+    @FXML
+    private JFXSlider percentFoodProductionSlider;
+
+    @FXML
+    private JFXSlider percentPackagedSlider;
+
+    @FXML
+    private Button addProduceButton;
+
+    @FXML
+    private Button backToMealTypePageButtonProduce;
 
     private RestTemplate restTemplate = new RestTemplate();
     private ApiService apiService = new ApiService();
@@ -220,9 +245,7 @@ public class MainController {
         renewableEnergyButton.setVisible(true);
         energyIcon.setVisible(true);
         vegetarianIcon.setVisible(false);
-        localProduceIcon.setVisible(false);
         vegetarianMealButton.setVisible(false);
-        localProduceButton.setVisible(false);
         dairyText.setVisible(false);
         cerealText.setVisible(false);
         fruitsAndVegetablesText.setVisible(false);
@@ -241,13 +264,25 @@ public class MainController {
         vegetarianMealStatus.setVisible(false);
         transportationStatus.setVisible(false);
 
-        //Emissionspage initial visibility - ride bus button view
+        /** Emissionspage initial visibility - ride bus button view **/
         rideABusButton.setVisible(false);
         busIcon.setVisible(false);
         addPublicTransportationButton.setVisible(false);
         numberOfMilesTextPublic.setVisible(false);
         carMileageTextPublic.setVisible(false);
         fuelTypeTextPublic.setVisible(false);
+
+        /** Emissionspage initial visibility - local produce button view **/
+        localProduceButton.setVisible(false);
+        localProduceIcon.setVisible(false);
+        localProduceStatus.setVisible(false);
+        percentFoodProductionLabel.setVisible(false);
+        percentPackagedLabel.setVisible(false);
+        percentFoodProductionSlider.setVisible(false);
+        percentPackagedSlider.setVisible(false);
+        addProduceButton.setVisible(false);
+        backToMealTypePageButtonProduce.setVisible(false);
+
     }
 
     /**
@@ -305,6 +340,26 @@ public class MainController {
     }
 
     /**
+     * Functionality when the user clicks the local produce button.
+     * @param event mouse click.
+     */
+    public void localProduceButtonOnClick(ActionEvent event) {
+        vegetarianMealButton.setVisible(false);
+        localProduceButton.setVisible(false);
+        vegetarianIcon.setVisible(false);
+        localProduceIcon.setVisible(false);
+
+        localProduceStatus.setVisible(true);
+        percentFoodProductionLabel.setVisible(true);
+        percentPackagedLabel.setVisible(true);
+        percentFoodProductionSlider.setVisible(true);
+        percentPackagedSlider.setVisible(true);
+        addProduceButton.setVisible(true);
+        backToMealTypePageButtonProduce.setVisible(true);
+    }
+
+
+    /**
      * Functionality of the back button to the meal type page.
      * @param event mouse click
      */
@@ -320,6 +375,26 @@ public class MainController {
         localProduceIcon.setVisible(true);
         backToMealTypePageButton.setVisible(false);
         vegetarianMealStatus.setVisible(false);
+    }
+
+    /**
+     * Functionality of the back button to the meal type page for local produce.
+     * @param event mouse click
+     */
+    public void backToMealTypeButtonOnClickProduce(ActionEvent event) {
+        vegetarianMealButton.setVisible(true);
+        localProduceButton.setVisible(true);
+        vegetarianIcon.setVisible(true);
+        localProduceIcon.setVisible(true);
+
+        localProduceStatus.setVisible(false);
+        percentFoodProductionLabel.setVisible(false);
+        percentPackagedLabel.setVisible(false);
+        percentFoodProductionSlider.setVisible(false);
+        percentPackagedSlider.setVisible(false);
+        addProduceButton.setVisible(false);
+        backToMealTypePageButtonProduce.setVisible(false);
+;
     }
 
     /**
@@ -428,6 +503,32 @@ public class MainController {
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
         }
+    }
+
+    /**
+     * This methods adds local produce in to the user's database.
+     */
+    public void addEmissionsForLocalProduce() {
+        final String token = UserToken.getUserToken();
+
+        Double sliderFoodProduction = percentFoodProductionSlider.getValue();
+        Double sliderPackaged = percentPackagedSlider.getValue();
+        System.out.println(sliderFoodProduction.intValue() + " " + sliderPackaged.intValue());
+//        Meal meal = new Meal(Float.parseFloat(dairyText.getText()),
+//                Float.parseFloat(otherVegetarianMealText.getText()),
+//                Float.parseFloat(fruitsAndVegetablesText.getText()),
+//                Float.parseFloat(cerealText.getText()));
+//        JwtUser jwtUser = jwtValidator.validate(token);
+//        float carbonEmission = apiService.getVegetarianMealEmissions(meal);
+//        String number = String.format("%.5f", carbonEmission);
+//        vegetarianMealStatus.setText("You have saved: " + number + " tons of CO2");
+//        DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+//        Date today = Calendar.getInstance().getTime();
+//        EmissionsClient emissionsClient = new EmissionsClient("1", carbonEmission, today);
+//        String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+//                jwtUser.getId(), emissionsClient, token);
+//        System.out.println(response);
+
     }
 
     /**

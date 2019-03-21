@@ -226,12 +226,6 @@
                 <Image url="@../images/vegetarianIcon.png"/>
             </image>
         </ImageView>
-        <ImageView fx:id="localProduceIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="280.0"
-                   visible="false">
-            <image>
-                <Image url="@../images/localProduceIcon.png"/>
-            </image>
-        </ImageView>
         <ImageView fx:id="bikeIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="193.0" visible="false">
             <image>
                 <Image url="@../images/bikeIcon.png"/>
@@ -267,8 +261,6 @@
                 prefWidth="50" text="Back" visible="false" onAction="#backToTransportationTypeButtonOnClick"/>
         <Button fx:id="vegetarianMealButton" layoutX="260.0" layoutY="193.0" mnemonicParsing="false" prefHeight="75.0"
                 prefWidth="184.0" text="Add Vegetarian Meal" visible="false" onAction="#vegetarianMealButtonOnClick"/>
-        <Button fx:id="localProduceButton" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
-                prefWidth="184.0" text="Add a Local Produce" visible="false"/>
         <Button fx:id="backToEmissionPageButton" layoutX="20.0" layoutY="600.0" mnemonicParsing="false"
                 prefHeight="50.0"
                 prefWidth="50" text="Back" visible="false" onAction="#backToEmissionPageButtonOnClick"/>
@@ -311,6 +303,40 @@
                    prefWidth="184.0" promptText="Total Mileage of the Car" visible="false"/>
         <TextField fx:id="fuelTypeTextPublic" layoutX="260.0" layoutY="369.0" prefHeight="75.0"
                    prefWidth="184.0" promptText="Fuel Type (Benzine = 0 else 1)" visible="false"/>
+
+        <!--GUI for the local produce-->
+        <ImageView fx:id="localProduceIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="280.0"
+                   visible="false">
+            <image>
+                <Image url="@../images/localProduceIcon.png"/>
+            </image>
+        </ImageView>
+        <Button fx:id="localProduceButton" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
+                prefWidth="184.0" text="Add a Local Produce" visible="false" onAction="#localProduceButtonOnClick"/>
+        <Label fx:id="localProduceStatus" layoutX="210" layoutY="140" text="Input the information required" styleClass="whitelabels" visible="false">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
+        <Label fx:id="percentFoodProductionLabel" layoutX="160" layoutY="193.0" text="How much percent of your food is locally produced?" styleClass="whitelabels" visible="false">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Label>
+        <Label fx:id="percentPackagedLabel" layoutX="140" layoutY="300" text="How much percent of your food is packaged/processed?" styleClass="whitelabels" visible="false">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Label>
+        <JFXSlider fx:id="percentFoodProductionSlider" layoutX="165" layoutY="230" maxHeight="-Infinity" maxWidth="-Infinity"
+                   minHeight="-Infinity" minWidth="-Infinity" prefWidth="350.0" indicatorPosition="RIGHT" visible="false"/>
+        <JFXSlider fx:id="percentPackagedSlider" layoutX="165" layoutY="337" maxHeight="-Infinity" maxWidth="-Infinity"
+                   minHeight="-Infinity" minWidth="-Infinity" prefWidth="350.0" indicatorPosition="RIGHT" visible="false"/>
+        <Button fx:id="addProduceButton" layoutX="260.0" layoutY="600.0" mnemonicParsing="false" prefHeight="75.0"
+                prefWidth="184.0" text="Add" visible="false" onAction="#addEmissionsForLocalProduce"/>
+        <Button fx:id="backToMealTypePageButtonProduce" layoutX="20.0" layoutY="600.0" mnemonicParsing="false"
+                prefHeight="50.0"
+                prefWidth="50" text="Back" visible="false" onAction="#backToMealTypeButtonOnClickProduce"/>
 
     </Pane>
     <Pane fx:id="progressWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
