@@ -216,11 +216,6 @@
                 <Image url="@../images/tempIcon.png"/>
             </image>
         </ImageView>
-        <ImageView fx:id="energyIcon" fitHeight="60" fitWidth="60" layoutX="170.0" layoutY="470.0">
-            <image>
-                <Image url="@../images/energyIcon.png"/>
-            </image>
-        </ImageView>
         <ImageView fx:id="vegetarianIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="193.0" visible="false">
             <image>
                 <Image url="@../images/vegetarianIcon.png"/>
@@ -238,8 +233,6 @@
                 prefWidth="184.0" text="Transportation" onAction="#transportationButtonOnClick"/>
         <Button fx:id="temperatureButton" layoutX="260.0" layoutY="369.0" mnemonicParsing="false" prefHeight="75.0"
                 prefWidth="184.0" text="Temperature"/>
-        <Button fx:id="renewableEnergyButton" layoutX="260.0" layoutY="459.0" mnemonicParsing="false" prefHeight="75.0"
-                prefWidth="184.0" text="Renewable Energy"/>
         <Button fx:id="rideABikeButton" layoutX="260.0" layoutY="193" mnemonicParsing="false" prefHeight="75.0"
                 prefWidth="184.0" text="Ride A Bike" visible="false" onAction="#rideABikeButtonOnClick"/>
         <TextField fx:id="numberOfMilesText" layoutX="260.0" layoutY="193.0" prefHeight="75.0"
@@ -337,6 +330,30 @@
         <Button fx:id="backToMealTypePageButtonProduce" layoutX="20.0" layoutY="600.0" mnemonicParsing="false"
                 prefHeight="50.0"
                 prefWidth="50" text="Back" visible="false" onAction="#backToMealTypeButtonOnClickProduce"/>
+
+        <!--GUI for solar panel addition-->
+        <ImageView fx:id="energyIcon" fitHeight="60" fitWidth="60" layoutX="170.0" layoutY="470.0">
+            <image>
+                <Image url="@../images/energyIcon.png"/>
+            </image>
+        </ImageView>
+        <Button fx:id="renewableEnergyButton" layoutX="260.0" layoutY="459.0" mnemonicParsing="false" prefHeight="75.0"
+                prefWidth="184.0" text="Renewable Energy" onAction="#solarPanelButtonOnClick"/>
+        <TextField fx:id="systemSizeText" layoutX="260.0" layoutY="193.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="System size (kW)" visible="false"/>
+        <TextField fx:id="annualSolarEnergyText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Total Mileage of the Car" visible="false"/>
+        <Button fx:id="addSolarPanelButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
+                prefHeight="75.0"
+                prefWidth="184.0" text="Add" visible="false" onAction="#addEmissionsForSolarPanelBike"/>
+        <Label fx:id="solarPanelStatus" layoutX="230" layoutY="140" text="Input the parameters required" styleClass="whitelabels" visible="false">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
+        <Button fx:id="backToEmissionPageButtonSolar" layoutX="20.0" layoutY="600.0" mnemonicParsing="false"
+                prefHeight="50.0"
+                prefWidth="50" text="Back" visible="false" onAction="#backToEmissionPageButtonOnClickSolar"/>
 
     </Pane>
     <Pane fx:id="progressWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>

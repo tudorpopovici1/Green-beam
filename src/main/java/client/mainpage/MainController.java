@@ -183,6 +183,23 @@ public class MainController {
     @FXML
     private Button backToMealTypePageButtonProduce;
 
+    /** ID activation for the solar panel button **/
+
+    @FXML
+    private TextField systemSizeText;
+
+    @FXML
+    private TextField annualSolarEnergyText;
+
+    @FXML
+    private Button addSolarPanelButton;
+
+    @FXML
+    private Label solarPanelStatus;
+
+    @FXML
+    private Button backToEmissionPageButtonSolar;
+
     private RestTemplate restTemplate = new RestTemplate();
     private ApiService apiService = new ApiService();
     private UserService userService = new UserService();
@@ -283,6 +300,12 @@ public class MainController {
         addProduceButton.setVisible(false);
         backToMealTypePageButtonProduce.setVisible(false);
 
+        /** Emissionspage initial visibility - solar panel button view **/
+        systemSizeText.setVisible(false);
+        annualSolarEnergyText.setVisible(false);
+        addSolarPanelButton.setVisible(false);
+        solarPanelStatus.setVisible(false);
+        backToEmissionPageButtonSolar.setVisible(false);
     }
 
     /**
@@ -318,6 +341,14 @@ public class MainController {
      * @param event mouse click
      */
     public void backToEmissionPageButtonOnClick(ActionEvent event) {
+        emissionsPageShow();
+    }
+
+    /**
+     * Functionality of the back button to the main emissions page from the solar panel tab.
+     * @param event mouse click
+     */
+    public void backToEmissionPageButtonOnClickSolar(ActionEvent event) {
         emissionsPageShow();
     }
 
@@ -395,6 +426,20 @@ public class MainController {
         addProduceButton.setVisible(false);
         backToMealTypePageButtonProduce.setVisible(false);
 ;
+    }
+
+    /**
+     * Functionality when the user clicks the renewable energy button.
+     * @param event mouse click.
+     */
+    public void solarPanelButtonOnClick(ActionEvent event) {
+        emissionsPageHide();
+
+        systemSizeText.setVisible(true);
+        annualSolarEnergyText.setVisible(true);
+        addSolarPanelButton.setVisible(true);
+        solarPanelStatus.setVisible(true);
+        backToEmissionPageButtonSolar.setVisible(true);
     }
 
     /**
@@ -521,7 +566,7 @@ public class MainController {
 //        JwtUser jwtUser = jwtValidator.validate(token);
 //        float carbonEmission = apiService.getVegetarianMealEmissions(meal);
 //        String number = String.format("%.5f", carbonEmission);
-//        vegetarianMealStatus.setText("You have saved: " + number + " tons of CO2");
+        localProduceStatus.setText("You have saved: " + "" + " tons of CO2");
 //        DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
 //        Date today = Calendar.getInstance().getTime();
 //        EmissionsClient emissionsClient = new EmissionsClient("1", carbonEmission, today);
@@ -583,6 +628,30 @@ public class MainController {
     }
 
     /**
+     * This methods adds solar panels in to the user's database.
+     */
+    public void addEmissionsForSolarPanelBike() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptySolarPanelBoxes()) {
+//            Meal meal = new Meal(Float.parseFloat(dairyText.getText()),
+//                    Float.parseFloat(otherVegetarianMealText.getText()),
+//                    Float.parseFloat(fruitsAndVegetablesText.getText()),
+//                    Float.parseFloat(cerealText.getText()));
+//            JwtUser jwtUser = jwtValidator.validate(token);
+//            float carbonEmission = apiService.getVegetarianMealEmissions(meal);
+//            String number = String.format("%.5f", carbonEmission);
+            solarPanelStatus.setText("You have saved: " + "" + " tons of CO2");
+//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+//            Date today = Calendar.getInstance().getTime();
+//            EmissionsClient emissionsClient = new EmissionsClient("1", carbonEmission, today);
+//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+//                    jwtUser.getId(), emissionsClient, token);
+//            System.out.println(response);
+        }
+    }
+
+    /**
      * This method handles the functionality of giving an error when
      * any of the fields in the adding a vegetarian meal is empty.
      * @return boolean - returns true if the field is null or empty and false if not.
@@ -610,6 +679,16 @@ public class MainController {
     private boolean emptyRideABusBoxes() {
         if (checkEmptyOrNullBox
                 (carMileageTextPublic, fuelTypeTextPublic, numberOfMilesTextPublic)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptySolarPanelBoxes() {
+        if (checkEmptyOrNullBox
+                (systemSizeText, annualSolarEnergyText)) {
             emptyTextBoxPopup();
             return true;
         } else {
