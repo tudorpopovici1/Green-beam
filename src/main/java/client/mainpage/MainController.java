@@ -216,7 +216,9 @@ public class MainController {
      *
      */
     public void mainPage(ActionEvent event) {
-        this.userTokenString = UserToken.getUserToken();
+        if (this.userTokenString == null) {
+            this.userTokenString = UserToken.getUserToken();
+        }
         JwtUser jwtUser = jwtValidator.validate(userTokenString);
         EmissionFriend emissionFriend = userService.getEmissionsOfUser(
                 restTemplate, Url.GET_EMISSION_USER.getUrl(), jwtUser.getId(), userTokenString);
