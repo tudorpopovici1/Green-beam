@@ -32,6 +32,11 @@ public class Achievements {
     @Column(name = "achievement_id")
     public Long achievementId;
 
+    public Achievements(Long userId, Long achievementId) {
+        this.userId = userId;
+        this.achievementId = achievementId;
+    }
+
 
     public Long getId() {
         return id;
@@ -57,6 +62,7 @@ public class Achievements {
         this.achievementId = achievementId1;
     }
 
+    public  Achievements() {}
     @Override
     public String toString() {
         return "Achievements{"
