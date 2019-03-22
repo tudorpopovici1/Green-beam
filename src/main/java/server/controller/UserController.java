@@ -152,33 +152,47 @@ public class UserController {
         emissionRepository.save(emissions);
 
         int numberVegMeals1 = emissionRepository.getNumberTimesVegMeal(id);
-        if(numberVegMeals1 >= 3) {
+        if(achievementRepository.getNumberOfSpecificAchievement(1L, id) == 0
+                && numberVegMeals1 >= 3) {
             Achievements achievements = new Achievements(id, 1L);
             achievementRepository.save(achievements);
         }
-        if(numberVegMeals1 >= 7) {
+        if(achievementRepository.getNumberOfSpecificAchievement(2L, id) == 0
+                && numberVegMeals1 >= 7) {
             Achievements achievements = new Achievements(id, 2L);
             achievementRepository.save(achievements);
         }
-        if(numberVegMeals1 >= 30) {
+        if(achievementRepository.getNumberOfSpecificAchievement(3L, id) == 0
+                && numberVegMeals1 >= 30) {
             Achievements achievements = new Achievements(id, 3L);
             achievementRepository.save(achievements);
         }
 
         int numberBike = emissionRepository.getNumberTransportationInsteadCar(id);
-            if(numberBike >= 10) {
+            if(achievementRepository.getNumberOfSpecificAchievement(4L, id) == 0
+                    && numberBike >= 10) {
                 Achievements achievements = new Achievements(id, 4L);
                 achievementRepository.save(achievements);
         }
 
         int numberTransportation = emissionRepository.getNumberTransportationInsteadCar(id);
-        if(numberTransportation >= 30) {
+        if(achievementRepository.getNumberOfSpecificAchievement(5L, id) == 0
+                && numberTransportation >= 30) {
                 Achievements achievements = new Achievements(id, 5L);
                 achievementRepository.save(achievements);
         }
 
         response = "Saved";
         return "Saved";
+    }
+
+    @GetMapping("user/get/achievements/{id}")
+    public List<AchievementsType> getAchievementsUser(HttpServletRequest httpServletRequest,
+                                                      @PathVariable("id") Long id) throws BadCredentialsException {
+        if (isIncorrectUser(httpServletRequest, id)) {
+            throw new BadCredentialsException("Bad credentials");
+        }
+        return achievementRepository.getAllAchievementsTypeOfUser(id);
     }
 
     @GetMapping("/user/get/friend/request/sent/{id}")
@@ -199,7 +213,8 @@ public class UserController {
             @PathVariable("id") Long id,
             @RequestBody Long relatingUserId,
             HttpServletRequest httpServletRequest) throws BadCredentialsException {
-        if(isIncorrectUser(httpServletRequest, relatingUserId)) {
+
+        if(isIncorrectUser(httpServletRequest, id)) {
             throw new BadCredentialsException("Bad credentials");
         }
         Friends friendsFrom = new Friends(id, relatingUserId, "2");
@@ -210,10 +225,9 @@ public class UserController {
         return "Saved";
     }
 
-    @GetMapping("/user/get/friend/request/recieved/{id}")
+    @GetMapping("/user/get/friend/request/received/{id}")
     public List<Friends> friendRequestRecieved(HttpServletRequest httpServletRequest,
-                                           @PathVariable("id") Long id,
-                                           @RequestBody List<Friends> getFriendRequestRecieved)
+                                           @PathVariable("id") Long id)
             throws BadCredentialsException {
         String response = "";
         if (isIncorrectUser(httpServletRequest, id)) {
