@@ -99,6 +99,12 @@ public class Friends {
         return id;
     }
 
+    public Friends(Long relatingUserId, Long relatedUserId, String relationshipType) {
+        this.relatingUserId = relatingUserId;
+        this.relatedUserId = relatedUserId;
+        this.relationshipType = relationshipType;
+    }
+
     @Override
     public String toString() {
         return "Friends{" +
