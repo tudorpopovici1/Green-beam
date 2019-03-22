@@ -14,7 +14,16 @@ public class LocalProduce {
         this.foodProducedLocally = foodProducedLocally;
     }
 
-    public LocalProduce(String foodProducedLocally) {
+    public String getPackagedFood() {
+        return packagedFood;
+    }
+
+    public void setPackagedFood(String packagedFood) {
+        this.packagedFood = packagedFood;
+    }
+
+    public LocalProduce(String producedLocally, String foodProducedLocally) {
+        this.packagedFood = packagedFood;
         this.foodProducedLocally = foodProducedLocally;
     }
 
