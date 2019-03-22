@@ -608,8 +608,6 @@ public class MainController {
     }
 
 
-
-
     /**
      * This methods adds riding a bike in to the user's database.
      */
@@ -670,11 +668,12 @@ public class MainController {
         if (!emptySolarPanelBoxes()) {
             float factorOfCO2Avoidance = Float.parseFloat(systemSizeText.getText());
             float annualSolarEnergyProduction = Float.parseFloat(annualSolarEnergyText.getText());
+            int numberOfSolarPanels = Integer.parseInt(numberSolarPanels.getText());
 
-            SolarPanels solarPanel = new SolarPanels(factorOfCO2Avoidance, annualSolarEnergyProduction);
+            SolarPanels solarPanel = new SolarPanels(factorOfCO2Avoidance, annualSolarEnergyProduction, numberOfSolarPanels);
             JwtUser jwtUser = jwtValidator.validate(token);
             //Turning kg into tonnes by dividing it by a 1000
-            float carbonEmission = (annualSolarEnergyProduction * factorOfCO2Avoidance) / 1000f ;
+            float carbonEmission = (annualSolarEnergyProduction * factorOfCO2Avoidance * numberOfSolarPanels) / 1000f ;
             String number = String.format("%.5f", carbonEmission);
             solarPanelStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
