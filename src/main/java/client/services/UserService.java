@@ -74,6 +74,25 @@ public class UserService {
         return returnString;
     }
 
+    public String addFriend(final RestTemplate restTemplate, final String url,
+                            final Long relatedUserId, final Long relatingUserId, final String token) {
+        String returnString = "";
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.set("Authorisation", "Token " + token);
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Long> entity = new HttpEntity<>(relatingUserId, httpHeaders);
+        try {
+            ResponseEntity<String> response = restTemplate.exchange(url + "/" + relatedUserId, HttpMethod.POST, entity, String.class);
+            returnString = response.getBody();
+        }
+        catch (HttpStatusCodeException e) {
+            if (e.getStatusCode() == HttpStatus.FORBIDDEN) {
+                returnString = outputErrorMessage(objectMapper, e.getResponseBodyAsString());
+            }
+        }
+        return returnString;
+    }
+
     /**
      * Method to get all of a users' friends.
      * @param restTemplate restTemplate object

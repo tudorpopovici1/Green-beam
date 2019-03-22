@@ -17,7 +17,9 @@ public interface AchievementRepository extends JpaRepository<Achievements, Long>
             "WHERE u.id=?1")
     List<AchievementsType> getAllAchievementsTypeOfUser(Long userId);
 
-//    @Query("SELECT * FROM Achievements ach " +
-//            "WHERE ach.user_id = ?1 && ach.achievement_id = ?2")
-//    int getNumberOfBadges(Long userId, int achievement_id);
+    @Query(value = "SELECT COUNT(*) " +
+            "FROM Achievements a " +
+            "WHERE a.achievementId = ?1 AND a.userId = ?2")
+    Integer getNumberOfSpecificAchievement(Long achievementId, Long userId);
+
 }

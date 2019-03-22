@@ -8,7 +8,7 @@
 //    SolarPanels solarPanels2 = new SolarPanels(0f, 0f);
 //
 //    @Test
-//    public void getAnnualSolarEnergyProduction() {
+//    public void getAnnualSolarEnergyProductionTest() {
 //        float annualSolarEnergy = 1234f;
 //        solarPanels.setAnnualSolarEnergyProduction(annualSolarEnergy);
 //        float expected = 1234f;
@@ -16,7 +16,7 @@
 //    }
 //
 //    @Test
-//    public void setAnnualSolarEnergyProduction() {
+//    public void setAnnualSolarEnergyProductionTest() {
 //        float annualSolarEnergy = 1234f;
 //        solarPanels.setAnnualSolarEnergyProduction(annualSolarEnergy);
 //        float setAnnualSolarEnergyProduction = solarPanels.getAnnualSolarEnergyProduction();
@@ -25,11 +25,11 @@
 //    }
 //
 //    @Test
-//    public void getSystemSize() {
+//    public void getFactorOfCO2AvoidanceTest() {
 //        float systemSize = 1234f;
-//        solarPanels.setSystemSize(systemSize);
+//        solarPanels.setFactorOfCO2Avoidance(systemSize);
 //        float expected = 1234f;
-//        Assert.assertEquals(expected, solarPanels.getSystemSize(), 0);
+//        Assert.assertEquals(expected, solarPanels.getFactorOfCO2Avoidance(), 0);
 //    }
 //
 //    @Test

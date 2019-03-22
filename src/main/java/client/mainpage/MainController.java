@@ -200,6 +200,9 @@ public class MainController {
     @FXML
     private Button backToEmissionPageButtonSolar;
 
+    @FXML
+    private TextField numberSolarPanels;
+
     private RestTemplate restTemplate = new RestTemplate();
     private ApiService apiService = new ApiService();
     private UserService userService = new UserService();
@@ -308,6 +311,7 @@ public class MainController {
         addSolarPanelButton.setVisible(false);
         solarPanelStatus.setVisible(false);
         backToEmissionPageButtonSolar.setVisible(false);
+        numberSolarPanels.setVisible(false);
     }
 
     /**
@@ -441,6 +445,7 @@ public class MainController {
         addSolarPanelButton.setVisible(true);
         solarPanelStatus.setVisible(true);
         backToEmissionPageButtonSolar.setVisible(true);
+        numberSolarPanels.setVisible(true);
     }
 
     /**
@@ -558,24 +563,50 @@ public class MainController {
         final String token = UserToken.getUserToken();
 
         Double sliderFoodProduction = percentFoodProductionSlider.getValue();
-        Double sliderPackaged = percentPackagedSlider.getValue();
-        System.out.println(sliderFoodProduction.intValue() + " " + sliderPackaged.intValue());
-//        Meal meal = new Meal(Float.parseFloat(dairyText.getText()),
-//                Float.parseFloat(otherVegetarianMealText.getText()),
-//                Float.parseFloat(fruitsAndVegetablesText.getText()),
-//                Float.parseFloat(cerealText.getText()));
-//        JwtUser jwtUser = jwtValidator.validate(token);
-//        float carbonEmission = apiService.getVegetarianMealEmissions(meal);
-//        String number = String.format("%.5f", carbonEmission);
-        localProduceStatus.setText("You have saved: " + "" + " tons of CO2");
-//        DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
-//        Date today = Calendar.getInstance().getTime();
-//        EmissionsClient emissionsClient = new EmissionsClient("1", carbonEmission, today);
-//        String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
-//                jwtUser.getId(), emissionsClient, token);
-//        System.out.println(response);
+        Double sliderPackage = percentPackagedSlider.getValue();
+        LocalProduce localProduce = localProduceEmission(sliderFoodProduction, sliderPackage);
 
+        JwtUser jwtUser = jwtValidator.validate(token);
+        Double carbonEmissionDouble = localProduce.getFoodProducedLocally() + localProduce.getPackagedFood();
+        float carbonEmission = carbonEmissionDouble.floatValue();
+        String number = String.format("%.5f", carbonEmission);
+        localProduceStatus.setText("You have saved: " + number + " tons of CO2");
+        DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+        Date today = Calendar.getInstance().getTime();
+        EmissionsClient emissionsClient = new EmissionsClient("1", carbonEmission, today);
+        String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                jwtUser.getId(), emissionsClient, token);
+        System.out.println(response);
     }
+
+    public LocalProduce localProduceEmission(Double sliderFoodProduction, Double sliderPackage) {
+        double foodProductionEmission;
+
+        if (sliderFoodProduction <= 25) {
+            foodProductionEmission = 0.1;
+        } else if (sliderFoodProduction > 25 && sliderFoodProduction <= 50) {
+            foodProductionEmission = 0.2;
+        } else if (sliderFoodProduction > 50 && sliderFoodProduction <= 75) {
+            foodProductionEmission = 0.3;
+        } else {
+            foodProductionEmission = 0.4;
+        }
+
+        double foodPackagingEmission;
+
+        if (sliderPackage <= 25) {
+            foodPackagingEmission = 0.1;
+        } else if (sliderPackage > 25 && sliderPackage <= 50) {
+            foodPackagingEmission = 0.2;
+        } else if (sliderPackage > 50 && sliderPackage <= 75) {
+            foodPackagingEmission = 0.3;
+        } else {
+            foodPackagingEmission = 0.4;
+        }
+
+        return new LocalProduce(foodProductionEmission, foodPackagingEmission);
+    }
+
 
     /**
      * This methods adds riding a bike in to the user's database.
@@ -637,13 +668,14 @@ public class MainController {
         if (!emptySolarPanelBoxes()) {
             float factorOfCO2Avoidance = Float.parseFloat(systemSizeText.getText());
             float annualSolarEnergyProduction = Float.parseFloat(annualSolarEnergyText.getText());
+            int numberOfSolarPanels = Integer.parseInt(numberSolarPanels.getText());
 
-            SolarPanels solarPanel = new SolarPanels(factorOfCO2Avoidance, annualSolarEnergyProduction);
+            SolarPanels solarPanel = new SolarPanels(factorOfCO2Avoidance, annualSolarEnergyProduction, numberOfSolarPanels);
             JwtUser jwtUser = jwtValidator.validate(token);
-            //Formula to calculate solar panel emission
-            float carbonEmission = annualSolarEnergyProduction * factorOfCO2Avoidance;
+            //Turning kg into tonnes by dividing it by a 1000
+            float carbonEmission = (annualSolarEnergyProduction * factorOfCO2Avoidance * numberOfSolarPanels) / 1000f ;
             String number = String.format("%.5f", carbonEmission);
-            solarPanelStatus.setText("You have saved: " + "" + " tons of CO2");
+            solarPanelStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
             EmissionsClient emissionsClient = new EmissionsClient("4", carbonEmission, today);
@@ -690,7 +722,7 @@ public class MainController {
 
     private boolean emptySolarPanelBoxes() {
         if (checkEmptyOrNullBox
-                (systemSizeText, annualSolarEnergyText)) {
+                (systemSizeText, annualSolarEnergyText, numberSolarPanels)) {
             emptyTextBoxPopup();
             return true;
         } else {

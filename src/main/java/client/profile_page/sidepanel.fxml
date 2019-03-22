@@ -11,7 +11,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="700" prefWidth="200" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.profile_page.SidePanelController">
+<VBox prefHeight="700" prefWidth="200" stylesheets="@profile.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.profile_page.SidePanelController">
     <children>
       <Pane prefHeight="127.0" prefWidth="200">
          <children>
@@ -26,8 +26,10 @@
                   <Font name="Gotham-Bold" size="14.0" />
                </font>
             </JFXButton>
+            <TextArea fx:id="testarea" layoutY="3.0" prefHeight="77.0" prefWidth="200.0" />
          </children>
       </Pane>
-      <JFXListView fx:id="friendslistView" prefHeight="573.0" prefWidth="200.0" />
+      <JFXListView fx:id="friendslistView" prefHeight="573.0" prefWidth="200.0" style="-fx-cell-vertical-margin: 50;" styleClass="jfx-list-view" />
+      <!--<JFXPopup fx:id="popup" />-->
     </children>
 </VBox>
