@@ -22,10 +22,11 @@ public class SolarPanels {
         this.systemSize = systemSize;
     }
 
-    public SolarPanels(float systemSize) {
+    public SolarPanels(float systemSize, float annualSolarEnergyProduction) {
         this.systemSize = systemSize;
+        this.annualSolarEnergyProduction = annualSolarEnergyProduction;
     }
-
+    
 
     @Override
     public String toString() {
@@ -44,6 +45,6 @@ public class SolarPanels {
                 Float.compare(that.annualSolarEnergyProduction, annualSolarEnergyProduction) == 0;
     }
 
-    
+
 }
 
