@@ -3,8 +3,6 @@ package server.model;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class SolarPanelsTest {
 SolarPanels solarPanels=new SolarPanels(0f, 0f);
 
@@ -37,5 +35,6 @@ SolarPanels solarPanels=new SolarPanels(0f, 0f);
         float expected = 123;
         Assert.assertEquals(expected, solarPanels);
     }
+
 
 }
