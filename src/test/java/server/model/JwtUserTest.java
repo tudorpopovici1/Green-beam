@@ -120,4 +120,11 @@ public class JwtUserTest {
         Assert.assertNotEquals(jwtUser, jwtUser2);
     }
 
+    @Test
+    public void hashCodeTest() {
+        JwtUser jwtUser1 = new JwtUser("abc", 1234L, "def");
+        JwtUser jwtUser2 = new JwtUser("abc", 1234L, "def");
+        Assert.assertEquals(jwtUser1.hashCode(), jwtUser2.hashCode());
+    }
+
 }

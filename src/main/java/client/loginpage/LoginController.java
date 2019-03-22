@@ -2,6 +2,7 @@ package client.loginpage;
 
 import client.Url;
 import client.UserToken;
+import client.mainpage.MainController;
 import client.services.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +24,7 @@ import javafx.stage.Stage;
 import org.springframework.web.client.RestTemplate;
 import server.model.AuthenticateUser;
 import server.model.Users;
+import server.security.JwtValidator;
 
 import java.io.File;
 import java.net.URL;
@@ -142,7 +144,7 @@ public class LoginController {
     /**
      * Creating a newUser from the Users class.
      */
-    private Users newUser;
+    Users newUser;
 
     /**
      * This method handles the functionality of a user login.
@@ -163,7 +165,7 @@ public class LoginController {
             } else {
                 lblStatus.setText("You have successfuly logged in.");
                 System.out.println(response); // THIS IS THE TOKEN OF THE USER.
-                UserToken.setUserToken(response);
+                UserToken.setUserToken(response); // Setting the user token to the user object
                 Stage mainPageStage = new Stage();
                 URL url = new File(
                         "src/main/java/client/mainpage/fxml/Main.fxml").toURI().toURL();
@@ -434,7 +436,6 @@ public class LoginController {
      * @param textFields - any box in the login page.
      * @return boolean - returns true if the field is null or empty and false if not.
      */
-
     private boolean checkEmptyOrNullBox(TextField... textFields) {
         for (TextField textField : textFields) {
             if (textField.getText() == null || textField.getText().equals("")) {

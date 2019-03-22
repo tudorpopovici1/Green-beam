@@ -1,6 +1,8 @@
 package server.model;
 
-import org.junit.Assert;
+import
+
+        org.junit.Assert;
 import org.junit.Test;
 
 public class AchievementsTest {

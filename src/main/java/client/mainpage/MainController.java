@@ -4,20 +4,18 @@ import client.Url;
 import client.UserToken;
 import client.services.ApiService;
 import client.services.UserService;
+import com.jfoenix.controls.JFXSlider;
 import javafx.animation.FadeTransition;
 import javafx.animation.SequentialTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import org.springframework.web.client.RestTemplate;
-import server.model.EmissionsClient;
-import server.model.Meal;
+import server.model.*;
+import server.security.JwtValidator;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -56,7 +54,7 @@ public class MainController {
     private Button rideABikeButton;
 
     @FXML
-    private TextField litresOfFuelText;
+    private TextField numberOfMilesText;
 
     @FXML
     private TextField carMileageText;
@@ -86,16 +84,10 @@ public class MainController {
     private ImageView vegetarianIcon;
 
     @FXML
-    private ImageView localProduceIcon;
-
-    @FXML
     private Button mealButton;
 
     @FXML
     private Button vegetarianMealButton;
-
-    @FXML
-    private Button localProduceButton;
 
     @FXML
     private Button backToEmissionPageButton;
@@ -142,9 +134,78 @@ public class MainController {
     @FXML
     private Pane settingsWindow;
 
+    /** ID activation for the public transport ride button **/
+
+    @FXML
+    private Button rideABusButton;
+
+    @FXML
+    private ImageView busIcon;
+
+    @FXML
+    private Button addPublicTransportationButton;
+
+    @FXML
+    private TextField numberOfMilesTextPublic;
+
+    @FXML
+    private TextField carMileageTextPublic;
+
+    @FXML
+    private TextField fuelTypeTextPublic;
+
+    /** ID activation for the local produce button **/
+
+    @FXML
+    private Button localProduceButton;
+
+    @FXML
+    private ImageView localProduceIcon;
+
+    @FXML
+    private Label localProduceStatus;
+
+    @FXML
+    private Label percentFoodProductionLabel;
+
+    @FXML
+    private Label percentPackagedLabel;
+
+    @FXML
+    private JFXSlider percentFoodProductionSlider;
+
+    @FXML
+    private JFXSlider percentPackagedSlider;
+
+    @FXML
+    private Button addProduceButton;
+
+    @FXML
+    private Button backToMealTypePageButtonProduce;
+
+    /** ID activation for the solar panel button **/
+
+    @FXML
+    private TextField systemSizeText;
+
+    @FXML
+    private TextField annualSolarEnergyText;
+
+    @FXML
+    private Button addSolarPanelButton;
+
+    @FXML
+    private Label solarPanelStatus;
+
+    @FXML
+    private Button backToEmissionPageButtonSolar;
+
     private RestTemplate restTemplate = new RestTemplate();
     private ApiService apiService = new ApiService();
     private UserService userService = new UserService();
+    private JwtValidator jwtValidator = new JwtValidator();
+
+    private String userTokenString;
 
     /**---------------------------- MAIN PAGE -----------------------------------------**/
 
@@ -155,10 +216,19 @@ public class MainController {
      *
      */
     public void mainPage(ActionEvent event) {
+        if (this.userTokenString == null) {
+            this.userTokenString = UserToken.getUserToken();
+        }
+        JwtUser jwtUser = jwtValidator.validate(userTokenString);
+        EmissionFriend emissionFriend = userService.getEmissionsOfUser(
+                restTemplate, Url.GET_EMISSION_USER.getUrl(), jwtUser.getId(), userTokenString);
         mainWindow.setVisible(true);
         mainWindow.toFront();
         animatePane(mainWindow);
-        displayUsernameOnMain("user: irtazahashmi");
+        displayUsernameOnMain("username: " + jwtUser.getUserName());
+        String number = String.format("%.5f", emissionFriend.getCarbonEmission());
+        totalCO2SavedLabel.setText(number + " tons");
+        totalCO2SavedLabel.setStyle("-fx-font: 16 arial;");
     }
 
     /**
@@ -196,9 +266,7 @@ public class MainController {
         renewableEnergyButton.setVisible(true);
         energyIcon.setVisible(true);
         vegetarianIcon.setVisible(false);
-        localProduceIcon.setVisible(false);
         vegetarianMealButton.setVisible(false);
-        localProduceButton.setVisible(false);
         dairyText.setVisible(false);
         cerealText.setVisible(false);
         fruitsAndVegetablesText.setVisible(false);
@@ -207,7 +275,7 @@ public class MainController {
         addMealButton.setVisible(false);
         rideABikeButton.setVisible(false);
         bikeIcon.setVisible(false);
-        litresOfFuelText.setVisible(false);
+        numberOfMilesText.setVisible(false);
         carMileageText.setVisible(false);
         fuelTypeText.setVisible(false);
         addTransportationButton.setVisible(false);
@@ -216,6 +284,32 @@ public class MainController {
         backToTransportationTypePageButton.setVisible(false);
         vegetarianMealStatus.setVisible(false);
         transportationStatus.setVisible(false);
+
+        /** Emissionspage initial visibility - ride bus button view **/
+        rideABusButton.setVisible(false);
+        busIcon.setVisible(false);
+        addPublicTransportationButton.setVisible(false);
+        numberOfMilesTextPublic.setVisible(false);
+        carMileageTextPublic.setVisible(false);
+        fuelTypeTextPublic.setVisible(false);
+
+        /** Emissionspage initial visibility - local produce button view **/
+        localProduceButton.setVisible(false);
+        localProduceIcon.setVisible(false);
+        localProduceStatus.setVisible(false);
+        percentFoodProductionLabel.setVisible(false);
+        percentPackagedLabel.setVisible(false);
+        percentFoodProductionSlider.setVisible(false);
+        percentPackagedSlider.setVisible(false);
+        addProduceButton.setVisible(false);
+        backToMealTypePageButtonProduce.setVisible(false);
+
+        /** Emissionspage initial visibility - solar panel button view **/
+        systemSizeText.setVisible(false);
+        annualSolarEnergyText.setVisible(false);
+        addSolarPanelButton.setVisible(false);
+        solarPanelStatus.setVisible(false);
+        backToEmissionPageButtonSolar.setVisible(false);
     }
 
     /**
@@ -255,6 +349,14 @@ public class MainController {
     }
 
     /**
+     * Functionality of the back button to the main emissions page from the solar panel tab.
+     * @param event mouse click
+     */
+    public void backToEmissionPageButtonOnClickSolar(ActionEvent event) {
+        emissionsPageShow();
+    }
+
+    /**
      * Functionality when the user click the vegetarian meal button.
      * @param event mouse click.
      */
@@ -271,6 +373,26 @@ public class MainController {
         backToMealTypePageButton.setVisible(true);
         vegetarianMealStatus.setVisible(true);
     }
+
+    /**
+     * Functionality when the user clicks the local produce button.
+     * @param event mouse click.
+     */
+    public void localProduceButtonOnClick(ActionEvent event) {
+        vegetarianMealButton.setVisible(false);
+        localProduceButton.setVisible(false);
+        vegetarianIcon.setVisible(false);
+        localProduceIcon.setVisible(false);
+
+        localProduceStatus.setVisible(true);
+        percentFoodProductionLabel.setVisible(true);
+        percentPackagedLabel.setVisible(true);
+        percentFoodProductionSlider.setVisible(true);
+        percentPackagedSlider.setVisible(true);
+        addProduceButton.setVisible(true);
+        backToMealTypePageButtonProduce.setVisible(true);
+    }
+
 
     /**
      * Functionality of the back button to the meal type page.
@@ -291,6 +413,40 @@ public class MainController {
     }
 
     /**
+     * Functionality of the back button to the meal type page for local produce.
+     * @param event mouse click
+     */
+    public void backToMealTypeButtonOnClickProduce(ActionEvent event) {
+        vegetarianMealButton.setVisible(true);
+        localProduceButton.setVisible(true);
+        vegetarianIcon.setVisible(true);
+        localProduceIcon.setVisible(true);
+
+        localProduceStatus.setVisible(false);
+        percentFoodProductionLabel.setVisible(false);
+        percentPackagedLabel.setVisible(false);
+        percentFoodProductionSlider.setVisible(false);
+        percentPackagedSlider.setVisible(false);
+        addProduceButton.setVisible(false);
+        backToMealTypePageButtonProduce.setVisible(false);
+;
+    }
+
+    /**
+     * Functionality when the user clicks the renewable energy button.
+     * @param event mouse click.
+     */
+    public void solarPanelButtonOnClick(ActionEvent event) {
+        emissionsPageHide();
+
+        systemSizeText.setVisible(true);
+        annualSolarEnergyText.setVisible(true);
+        addSolarPanelButton.setVisible(true);
+        solarPanelStatus.setVisible(true);
+        backToEmissionPageButtonSolar.setVisible(true);
+    }
+
+    /**
      * Functionality when the user clicks the vegetarian meal button.
      * @param event mouse click.
      */
@@ -298,6 +454,11 @@ public class MainController {
         emissionsPageHide();
         rideABikeButton.setVisible(true);
         bikeIcon.setVisible(true);
+
+        //ride bus button visible
+        rideABusButton.setVisible(true);
+        busIcon.setVisible(true);
+
         backToEmissionPageButton.setVisible(true);
     }
 
@@ -306,14 +467,41 @@ public class MainController {
      * @param event mouse click.
      */
     public void rideABikeButtonOnClick(ActionEvent event) {
-        litresOfFuelText.setVisible(true);
+        numberOfMilesText.setVisible(true);
         carMileageText.setVisible(true);
         fuelTypeText.setVisible(true);
+
+        rideABikeButton.setVisible(false);
         bikeIcon.setVisible(false);
         addTransportationButton.setVisible(true);
         backToEmissionPageButton.setVisible(false);
         backToTransportationTypePageButton.setVisible(true);
         transportationStatus.setVisible(true);
+
+        //ride bus button visible off
+        rideABusButton.setVisible(false);
+        busIcon.setVisible(false);
+    }
+
+    /**
+     * Functionality when the user clicks the ride a car button.
+     * @param event mouse click.
+     */
+    public void rideABusButtonOnClick(ActionEvent event) {
+        rideABikeButton.setVisible(false);
+        bikeIcon.setVisible(false);
+
+        addPublicTransportationButton.setVisible(true);
+        backToEmissionPageButton.setVisible(false);
+        backToTransportationTypePageButton.setVisible(true);
+        transportationStatus.setVisible(true);
+
+        //ride bus button visible off
+        rideABusButton.setVisible(false);
+        busIcon.setVisible(false);
+        numberOfMilesTextPublic.setVisible(true);
+        carMileageTextPublic.setVisible(true);
+        fuelTypeTextPublic.setVisible(true);
     }
 
     /**
@@ -321,36 +509,224 @@ public class MainController {
      * @param event mouse click
      */
     public void backToTransportationTypeButtonOnClick(ActionEvent event) {
-        litresOfFuelText.setVisible(false);
+        numberOfMilesText.setVisible(false);
         carMileageText.setVisible(false);
         fuelTypeText.setVisible(false);
+
         bikeIcon.setVisible(true);
+        busIcon.setVisible(true);
         addTransportationButton.setVisible(false);
+        addPublicTransportationButton.setVisible(false);
         backToEmissionPageButton.setVisible(true);
         backToTransportationTypePageButton.setVisible(false);
         rideABikeButton.setVisible(true);
         transportationStatus.setVisible(false);
+
+        //ride bus button visible
+        rideABusButton.setVisible(true);
+        busIcon.setVisible(true);
+        numberOfMilesTextPublic.setVisible(false);
+        carMileageTextPublic.setVisible(false);
+        fuelTypeTextPublic.setVisible(false);
     }
 
     /**
      * This methods adds a meal in to the user's database.
      */
-    public void addEmissionsUser() {
+    public void addEmissionsForAVegetarianMeal() {
         final String token = UserToken.getUserToken();
 
-        Meal meal = new Meal(Float.parseFloat(dairyText.getText()),
-                Float.parseFloat(otherVegetarianMealText.getText()),
-                Float.parseFloat(fruitsAndVegetablesText.getText()),
-                Float.parseFloat(cerealText.getText()));
+        if (!emptyVegetarianMealBoxes()) {
+            Meal meal = new Meal(Float.parseFloat(dairyText.getText()),
+                    Float.parseFloat(otherVegetarianMealText.getText()),
+                    Float.parseFloat(fruitsAndVegetablesText.getText()),
+                    Float.parseFloat(cerealText.getText()));
+            JwtUser jwtUser = jwtValidator.validate(token);
+            float carbonEmission = apiService.getVegetarianMealEmissions(meal);
+            String number = String.format("%.5f", carbonEmission);
+            vegetarianMealStatus.setText("You have saved: " + number + " tons of CO2");
+            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+            Date today = Calendar.getInstance().getTime();
+            EmissionsClient emissionsClient = new EmissionsClient("1", carbonEmission, today);
+            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                    jwtUser.getId(), emissionsClient, token);
+            System.out.println(response);
+        }
+    }
 
-        float carbonEmission = apiService.getVegetarianMealEmissions(meal);
+    /**
+     * This methods adds local produce in to the user's database.
+     */
+    public void addEmissionsForLocalProduce() {
+        final String token = UserToken.getUserToken();
 
-        DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
-        Date today = Calendar.getInstance().getTime();
-        EmissionsClient emissionsClient = new EmissionsClient("1", carbonEmission, today);
-        String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
-                69L, emissionsClient, token);
-        System.out.println(response);
+        Double sliderFoodProduction = percentFoodProductionSlider.getValue();
+        Double sliderPackaged = percentPackagedSlider.getValue();
+        System.out.println(sliderFoodProduction.intValue() + " " + sliderPackaged.intValue());
+//        Meal meal = new Meal(Float.parseFloat(dairyText.getText()),
+//                Float.parseFloat(otherVegetarianMealText.getText()),
+//                Float.parseFloat(fruitsAndVegetablesText.getText()),
+//                Float.parseFloat(cerealText.getText()));
+//        JwtUser jwtUser = jwtValidator.validate(token);
+//        float carbonEmission = apiService.getVegetarianMealEmissions(meal);
+//        String number = String.format("%.5f", carbonEmission);
+        localProduceStatus.setText("You have saved: " + "" + " tons of CO2");
+//        DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+//        Date today = Calendar.getInstance().getTime();
+//        EmissionsClient emissionsClient = new EmissionsClient("1", carbonEmission, today);
+//        String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+//                jwtUser.getId(), emissionsClient, token);
+//        System.out.println(response);
+
+    }
+
+    /**
+     * This methods adds riding a bike in to the user's database.
+     */
+    public void addEmissionsForRidingABike() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptyRideABikeBoxes()) {
+            Float numberOfKilometers = Float.parseFloat(numberOfMilesText.getText());
+            Float numberOfMiles = numberOfKilometers * 1.6f;
+            int fuelType = Integer.parseInt(fuelTypeText.getText());
+            BikeRide ride = new BikeRide(numberOfMiles,
+                    Float.parseFloat(carMileageText.getText()),
+                    fuelType);
+            JwtUser jwtUser = jwtValidator.validate(token);
+            float carbonEmission = apiService.getRideBikeEmissions(ride);
+            String number = String.format("%.5f", carbonEmission);
+            transportationStatus.setText("You have saved: " + number + " tons of CO2");
+            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+            Date today = Calendar.getInstance().getTime();
+            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
+            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                    jwtUser.getId(), emissionsClient, token);
+            System.out.println(response);
+        }
+    }
+
+    /**
+     * This methods adds using public transportation in to the user's database.
+     */
+    public void addEmissionsForRidingAPublicTransport() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptyRideABusBoxes()) {
+            Float numberOfKilometers = Float.parseFloat(numberOfMilesTextPublic.getText());
+            Float numberOfMiles = numberOfKilometers * 1.6f;
+            int fuelType = Integer.parseInt(fuelTypeTextPublic.getText());
+            PublicTransportation bus = new PublicTransportation(Float.parseFloat(carMileageTextPublic.getText()),
+                    numberOfMiles, fuelType);
+            JwtUser jwtUser = jwtValidator.validate(token);
+            float carbonEmission = apiService.getPublicTransportationEmissions(bus);
+            String number = String.format("%.5f", carbonEmission);
+            transportationStatus.setText("You have saved: " + number + " tons of CO2");
+            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+            Date today = Calendar.getInstance().getTime();
+            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
+            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                    jwtUser.getId(), emissionsClient, token);
+            System.out.println(response);
+        }
+    }
+
+    /**
+     * This methods adds solar panels in to the user's database.
+     */
+    public void addEmissionsForSolarPanelBike() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptySolarPanelBoxes()) {
+//            Meal meal = new Meal(Float.parseFloat(dairyText.getText()),
+//                    Float.parseFloat(otherVegetarianMealText.getText()),
+//                    Float.parseFloat(fruitsAndVegetablesText.getText()),
+//                    Float.parseFloat(cerealText.getText()));
+//            JwtUser jwtUser = jwtValidator.validate(token);
+//            float carbonEmission = apiService.getVegetarianMealEmissions(meal);
+//            String number = String.format("%.5f", carbonEmission);
+            solarPanelStatus.setText("You have saved: " + "" + " tons of CO2");
+//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+//            Date today = Calendar.getInstance().getTime();
+//            EmissionsClient emissionsClient = new EmissionsClient("1", carbonEmission, today);
+//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+//                    jwtUser.getId(), emissionsClient, token);
+//            System.out.println(response);
+        }
+    }
+
+    /**
+     * This method handles the functionality of giving an error when
+     * any of the fields in the adding a vegetarian meal is empty.
+     * @return boolean - returns true if the field is null or empty and false if not.
+     * */
+    private boolean emptyVegetarianMealBoxes() {
+        if (checkEmptyOrNullBox
+                (dairyText, cerealText, fruitsAndVegetablesText, otherVegetarianMealText)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptyRideABikeBoxes() {
+        if (checkEmptyOrNullBox
+                (carMileageText, fuelTypeText, numberOfMilesText)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptyRideABusBoxes() {
+        if (checkEmptyOrNullBox
+                (carMileageTextPublic, fuelTypeTextPublic, numberOfMilesTextPublic)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptySolarPanelBoxes() {
+        if (checkEmptyOrNullBox
+                (systemSizeText, annualSolarEnergyText)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * This method handles the functionality of checking whether a
+     * box is null or empty.
+     * @param textFields - any box in the login page.
+     * @return boolean - returns true if the field is null or empty and false if not.
+     */
+
+    private boolean checkEmptyOrNullBox(TextField... textFields) {
+        for (TextField textField : textFields) {
+            if (textField.getText() == null || textField.getText().equals("")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * This method handles the functionality of giving an error
+     * either the username or password box is empty.
+     * */
+    private void emptyTextBoxPopup() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText("Either of your boxes is empty!"
+                + "\nPlease try again.");
+        alert.showAndWait();
     }
 
     /**---------------------------- PROGRESS PAGE -----------------------------------------**/
