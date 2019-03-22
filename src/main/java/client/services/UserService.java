@@ -93,6 +93,32 @@ public class UserService {
         return returnString;
     }
 
+    public List<AchievementsType> getAchievementsOfUser(
+            final RestTemplate restTemplate, final String url, final Long userId, final String token) {
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.set("Authorisation", "Token " + token);
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity entity = new HttpEntity(httpHeaders);
+
+        List<AchievementsType> achievementsTypesList = new ArrayList<>();
+        try {
+            ResponseEntity<AchievementsType[]> responseEntity =
+                    restTemplate.exchange(url + "/" + userId, HttpMethod.GET,
+                            entity, AchievementsType[].class);
+
+            if (responseEntity.getBody() != null) {
+                AchievementsType[] list = responseEntity.getBody();
+                for (AchievementsType u : list) {
+                    achievementsTypesList.add(u);
+                }
+            }
+        } catch (HttpStatusCodeException e) {
+
+        }
+        return achievementsTypesList;
+    }
+
     /**
      * Method to get all of a users' friends.
      * @param restTemplate restTemplate object
