@@ -152,42 +152,28 @@ public class UserController {
 
         int numberVegMeals1 = emissionRepository.getNumberTimesVegMeal(id);
         if(numberVegMeals1 >= 3) {
-//            if(achievementRepository.getNumberOfBadges(id ,1) != 0) {
-//                Achievements achievements = new Achievements(id, 1L);
-//                achievementRepository.save(achievements);
-//            }
+            Achievements achievements = new Achievements(id, 1L);
+            achievementRepository.save(achievements);
         }
-
-        int numberVegMeals2 = emissionRepository.getNumberTimesVegMeal(id);
-        if(numberVegMeals2 >= 7) {
-//            if(achievementRepository.getNumberOfBadges(id, 2) != 0) {
-//                Achievements achievements = new Achievements(id, 2L);
-//                achievementRepository.save(achievements);
-//            }
+        if(numberVegMeals1 >= 7) {
+            Achievements achievements = new Achievements(id, 2L);
+            achievementRepository.save(achievements);
         }
-
-        int numberVegMeals3 = emissionRepository.getNumberTimesVegMeal(id);
-        if(numberVegMeals3 >= 30) {
-//            if(achievementRepository.getNumberOfBadges(id, 3) != 0) {
-//                Achievements achievements = new Achievements(id, 3L);
-//                achievementRepository.save(achievements);
-//            }
+        if(numberVegMeals1 >= 30) {
+            Achievements achievements = new Achievements(id, 3L);
+            achievementRepository.save(achievements);
         }
 
         int numberBike = emissionRepository.getNumberTransportationInsteadCar(id);
-        if(numberBike >= 10) {
-//            if(achievementRepository.getNumberOfBadges(id, 4) != 0) {
-//                Achievements achievements = new Achievements(id, 4L);
-//                achievementRepository.save(achievements);
-//            }
+            if(numberBike >= 10) {
+                Achievements achievements = new Achievements(id, 4L);
+                achievementRepository.save(achievements);
         }
 
         int numberTransportation = emissionRepository.getNumberTransportationInsteadCar(id);
         if(numberTransportation >= 30) {
-//            if(achievementRepository.getNumberOfBadges(id, 5) != 0) {
-//                Achievements achievements = new Achievements(id, 5L);
-//                achievementRepository.save(achievements);
-//            }
+                Achievements achievements = new Achievements(id, 5L);
+                achievementRepository.save(achievements);
         }
 
         response = "Saved";
