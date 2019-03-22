@@ -21,11 +21,11 @@ public class SolarPanels {
         this.annualSolarEnergyProduction = annualSolarEnergyProduction;
     }
 
-    public int getNumberOfSolarPanels() {
-        return numberOfSolarPanels;
-    }
+    public int getNumberOfSolarPanels() { return numberOfSolarPanels; }
 
-    public void setNumberOfSolarPanels(int numberOfSolarPanels) {}
+    public void setNumberOfSolarPanels(int numberOfSolarPanels) {
+        this.numberOfSolarPanels = numberOfSolarPanels;
+    }
 
     public SolarPanels(float factorOfCO2Avoidance, float annualSolarEnergyProduction, int numberOfSolarPanels) {
         this.factorOfCO2Avoidance = factorOfCO2Avoidance;
