@@ -26,7 +26,7 @@ public class SolarPanels {
         this.systemSize = systemSize;
         this.annualSolarEnergyProduction = annualSolarEnergyProduction;
     }
-    
+
 
     @Override
     public String toString() {
