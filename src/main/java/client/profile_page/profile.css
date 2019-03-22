@@ -18,3 +18,15 @@
     -fx-background-radius: 0px;
     -fx-text-fill: white;
 }
+
+.buttonsfriends{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-text-fill: black;
+}
+
+.buttonsfriends:hover{
+    -fx-background-color: #F3A978;
+    -fx-background-radius: 0px;
+    -fx-text-fill: white;
+}
