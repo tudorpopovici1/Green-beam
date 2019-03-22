@@ -563,24 +563,51 @@ public class MainController {
         final String token = UserToken.getUserToken();
 
         Double sliderFoodProduction = percentFoodProductionSlider.getValue();
-        Double sliderPackaged = percentPackagedSlider.getValue();
-        System.out.println(sliderFoodProduction.intValue() + " " + sliderPackaged.intValue());
-//        Meal meal = new Meal(Float.parseFloat(dairyText.getText()),
-//                Float.parseFloat(otherVegetarianMealText.getText()),
-//                Float.parseFloat(fruitsAndVegetablesText.getText()),
-//                Float.parseFloat(cerealText.getText()));
-//        JwtUser jwtUser = jwtValidator.validate(token);
-//        float carbonEmission = apiService.getVegetarianMealEmissions(meal);
-//        String number = String.format("%.5f", carbonEmission);
-        localProduceStatus.setText("You have saved: " + "" + " tons of CO2");
-//        DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
-//        Date today = Calendar.getInstance().getTime();
-//        EmissionsClient emissionsClient = new EmissionsClient("1", carbonEmission, today);
-//        String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
-//                jwtUser.getId(), emissionsClient, token);
-//        System.out.println(response);
+        Double sliderPackage = percentPackagedSlider.getValue();
+        LocalProduce localProduce = localProduceEmission(sliderFoodProduction, sliderPackage);
 
+        JwtUser jwtUser = jwtValidator.validate(token);
+        Double carbonEmissionDouble = localProduce.getFoodProducedLocally() + localProduce.getPackagedFood();
+        float carbonEmission = carbonEmissionDouble.floatValue();
+        String number = String.format("%.5f", carbonEmission);
+        localProduceStatus.setText("You have saved: " + number + " tons of CO2");
+        DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+        Date today = Calendar.getInstance().getTime();
+        EmissionsClient emissionsClient = new EmissionsClient("1", carbonEmission, today);
+        String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                jwtUser.getId(), emissionsClient, token);
+        System.out.println(response);
     }
+
+    public LocalProduce localProduceEmission(Double sliderFoodProduction, Double sliderPackage) {
+        double foodProductionEmission = 0;
+        double foodPackagingEmission = 0;
+
+        if (sliderFoodProduction <= 0.25) {
+            foodProductionEmission = 0.1;
+        } else if (sliderFoodProduction > 0.25 && sliderFoodProduction <= 0.5) {
+            foodProductionEmission = 0.2;
+        } else if (sliderFoodProduction > 0.5 && sliderFoodProduction <= 0.75) {
+            foodProductionEmission = 0.3;
+        } else {
+            foodProductionEmission = 0.4;
+        }
+
+        if (sliderPackage <= 0.25) {
+            foodPackagingEmission = 0.1;
+        } else if (sliderPackage > 0.25 && sliderPackage <= 0.5) {
+            foodPackagingEmission = 0.2;
+        } else if (sliderPackage > 0.5 && sliderPackage <= 0.75) {
+            foodPackagingEmission = 0.3;
+        } else {
+            foodPackagingEmission = 0.4;
+        }
+
+        return new LocalProduce(foodProductionEmission, foodPackagingEmission);
+    }
+
+
+
 
     /**
      * This methods adds riding a bike in to the user's database.
