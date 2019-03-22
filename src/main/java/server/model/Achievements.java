@@ -37,6 +37,8 @@ public class Achievements {
         this.achievementId = achievementId;
     }
 
+    public Achievements(){}
+
 
     public Long getId() {
         return id;
@@ -62,7 +64,6 @@ public class Achievements {
         this.achievementId = achievementId1;
     }
 
-    public  Achievements() {}
     @Override
     public String toString() {
         return "Achievements{"
