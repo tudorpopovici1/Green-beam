@@ -580,24 +580,25 @@ public class MainController {
     }
 
     public LocalProduce localProduceEmission(Double sliderFoodProduction, Double sliderPackage) {
-        double foodProductionEmission = 0;
-        double foodPackagingEmission = 0;
+        double foodProductionEmission;
 
-        if (sliderFoodProduction <= 0.25) {
+        if (sliderFoodProduction <= 25) {
             foodProductionEmission = 0.1;
-        } else if (sliderFoodProduction > 0.25 && sliderFoodProduction <= 0.5) {
+        } else if (sliderFoodProduction > 25 && sliderFoodProduction <= 50) {
             foodProductionEmission = 0.2;
-        } else if (sliderFoodProduction > 0.5 && sliderFoodProduction <= 0.75) {
+        } else if (sliderFoodProduction > 50 && sliderFoodProduction <= 75) {
             foodProductionEmission = 0.3;
         } else {
             foodProductionEmission = 0.4;
         }
 
-        if (sliderPackage <= 0.25) {
+        double foodPackagingEmission;
+
+        if (sliderPackage <= 25) {
             foodPackagingEmission = 0.1;
-        } else if (sliderPackage > 0.25 && sliderPackage <= 0.5) {
+        } else if (sliderPackage > 25 && sliderPackage <= 50) {
             foodPackagingEmission = 0.2;
-        } else if (sliderPackage > 0.5 && sliderPackage <= 0.75) {
+        } else if (sliderPackage > 50 && sliderPackage <= 75) {
             foodPackagingEmission = 0.3;
         } else {
             foodPackagingEmission = 0.4;
@@ -605,8 +606,6 @@ public class MainController {
 
         return new LocalProduce(foodProductionEmission, foodPackagingEmission);
     }
-
-
 
 
     /**
@@ -669,11 +668,12 @@ public class MainController {
         if (!emptySolarPanelBoxes()) {
             float factorOfCO2Avoidance = Float.parseFloat(systemSizeText.getText());
             float annualSolarEnergyProduction = Float.parseFloat(annualSolarEnergyText.getText());
+            int numberOfSolarPanels = Integer.parseInt(numberSolarPanels.getText());
 
-            SolarPanels solarPanel = new SolarPanels(factorOfCO2Avoidance, annualSolarEnergyProduction);
+            SolarPanels solarPanel = new SolarPanels(factorOfCO2Avoidance, annualSolarEnergyProduction, numberOfSolarPanels);
             JwtUser jwtUser = jwtValidator.validate(token);
             //Turning kg into tonnes by dividing it by a 1000
-            float carbonEmission = (annualSolarEnergyProduction * factorOfCO2Avoidance) / 1000f ;
+            float carbonEmission = (annualSolarEnergyProduction * factorOfCO2Avoidance * numberOfSolarPanels) / 1000f ;
             String number = String.format("%.5f", carbonEmission);
             solarPanelStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");

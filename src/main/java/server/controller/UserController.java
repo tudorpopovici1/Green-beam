@@ -2,6 +2,7 @@ package server.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -178,6 +179,48 @@ public class UserController {
 
         response = "Saved";
         return "Saved";
+    }
+
+    @GetMapping("/user/get/friend/request/sent/{id}")
+    public List<Friends> friendRequestSend(HttpServletRequest httpServletRequest,
+                               @PathVariable("id") Long id,
+                               @RequestBody List<Friends> getFriendRequestSend)
+            throws BadCredentialsException {
+        String response = "";
+        if (isIncorrectUser(httpServletRequest, id)) {
+            throw new BadCredentialsException("Bad credentials");
+        }
+
+        return friendsRepository.getFriendRequestSend(id);
+    }
+
+    @PostMapping("/user/add/friend/{id}")
+    public String addFriend(
+            @PathVariable("id") Long id,
+            @RequestBody Long relatingUserId,
+            HttpServletRequest httpServletRequest) throws BadCredentialsException {
+        if(isIncorrectUser(httpServletRequest, relatingUserId)) {
+            throw new BadCredentialsException("Bad credentials");
+        }
+        Friends friendsFrom = new Friends(id, relatingUserId, "2");
+        Friends friendTo = new Friends(relatingUserId, id, "3");
+
+        friendsRepository.save(friendsFrom);
+        friendsRepository.save(friendTo);
+        return "Saved";
+    }
+
+    @GetMapping("/user/get/friend/request/recieved/{id}")
+    public List<Friends> friendRequestRecieved(HttpServletRequest httpServletRequest,
+                                           @PathVariable("id") Long id,
+                                           @RequestBody List<Friends> getFriendRequestRecieved)
+            throws BadCredentialsException {
+        String response = "";
+        if (isIncorrectUser(httpServletRequest, id)) {
+            throw new BadCredentialsException("Bad credentials");
+        }
+
+        return friendsRepository.getFriendRequestRecieved(id);
     }
 
     @PostMapping("/user/change/country/{id}")
