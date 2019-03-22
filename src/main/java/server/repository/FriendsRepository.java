@@ -14,22 +14,22 @@ import java.util.List;
 public interface FriendsRepository extends JpaRepository<Friends, Long> {
 
     @Query ("SELECT f " +
-            "FROM Friends f " +
+            "FROM server.model.Friends f " +
             "WHERE f.relatedUserId = ?1 AND f.relationshipType = '2'")
     List<Friends> getFriendRequestSend(Long relatedUserId);
 
     @Query ("SELECT f " +
-            "FROM Friends f " +
+            "FROM server.model.Friends f " +
             "WHERE f.relatedUserId = ?1 AND f.relationshipType = '3'")
     List<Friends> getFriendRequestRecieved(Long relatedUserId);
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE Friends f SET f.relationshipType = ?1 WHERE f.relatingUserId = ?2 AND f.relatedUserId = ?3")
+    @Query(value = "UPDATE server.model.Friends f SET f.relationshipType = ?1 WHERE f.relatingUserId = ?2 AND f.relatedUserId = ?3")
     void updateRelationshipType(String relationshipType, Long relatingUserId, Long relatedUserId);
 
     @Transactional
     @Modifying
-    @Query(value = "DELETE FROM Friends f WHERE f.relatingUserId = ?1 AND r.relatedUserId = ?2")
+    @Query(value = "DELETE FROM server.model.Friends f WHERE f.relatingUserId = ?1 AND f.relatedUserId = ?2")
     void deleteFriend(Long relatingUserId, Long relatedUserId);
 }
