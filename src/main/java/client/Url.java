@@ -14,7 +14,8 @@ public enum Url {
     GET_TOP_FRIENDS_EMISSION("http://localhost:8080/rest/user/get/top/friends/emission"),
     ADD_FRIEND("http://localhost:8080/rest/user/add/friend"),
     GET_FRIEND_REQ_SENT("http://localhost:8080/rest/user/get/friend/request/sent"),
-    GET_FRIEND_REQ_REC("http://localhost:8080/rest/user/get/friend/reuqest/received");
+    GET_FRIEND_REQ_REC("http://localhost:8080/rest/user/get/friend/reuqest/received"),
+    GET_ACHIEVEMENTS_USER("http://localhost:8080/rest/user/get/achievements");
 
     private final String url;
 
