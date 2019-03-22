@@ -105,6 +105,9 @@ public class Friends {
         this.relationshipType = relationshipType;
     }
 
+    public Friends(){}
+
+
     @Override
     public String toString() {
         return "Friends{" +
