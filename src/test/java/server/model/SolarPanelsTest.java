@@ -23,15 +23,15 @@ SolarPanels solarPanels=new SolarPanels(0f, 0f);
     }
     @Test
     public void getSystemSize() {
-        solarPanels.setSystemSize(123);
-        float numberOfMiles = solarPanels.getSystemSize();
+        solarPanels.setFactorOfCO2Avoidance(123);
+        float numberOfMiles = solarPanels.getFactorOfCO2Avoidance();
         float expected = 123;
         Assert.assertEquals(expected, solarPanels);
     }
     @Test
     public void setSystemSize() {
-        solarPanels.setSystemSize(123);
-        float numberOfMiles = solarPanels.getSystemSize();
+        solarPanels.setFactorOfCO2Avoidance(123);
+        float numberOfMiles = solarPanels.getFactorOfCO2Avoidance();
         float expected = 123;
         Assert.assertEquals(expected, solarPanels);
     }

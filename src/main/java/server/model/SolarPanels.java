@@ -1,9 +1,7 @@
 package server.model;
 
-import java.util.Objects;
-
 public class SolarPanels {
-    private float systemSize;
+    private float factorOfCO2Avoidance;
     private float annualSolarEnergyProduction;
 
     public float getAnnualSolarEnergyProduction() {
@@ -14,16 +12,16 @@ public class SolarPanels {
         this.annualSolarEnergyProduction = annualSolarEnergyProduction;
     }
 
-    public float getSystemSize() {
-        return systemSize;
+    public float getFactorOfCO2Avoidance() {
+        return factorOfCO2Avoidance;
     }
 
-    public void setSystemSize(float systemSize) {
-        this.systemSize = systemSize;
+    public void setFactorOfCO2Avoidance(float factorOfCO2Avoidance) {
+        this.factorOfCO2Avoidance = factorOfCO2Avoidance;
     }
 
-    public SolarPanels(float systemSize, float annualSolarEnergyProduction) {
-        this.systemSize = systemSize;
+    public SolarPanels(float factorOfCO2Avoidance, float annualSolarEnergyProduction) {
+        this.factorOfCO2Avoidance = factorOfCO2Avoidance;
         this.annualSolarEnergyProduction = annualSolarEnergyProduction;
     }
 
@@ -31,7 +29,7 @@ public class SolarPanels {
     @Override
     public String toString() {
         return "SolarPanels{" +
-                "systemSize=" + systemSize +
+                "factorOfCO2Avoidance=" + factorOfCO2Avoidance +
                 ", annualSolarEnergyProduction=" + annualSolarEnergyProduction +
                 '}';
     }
@@ -41,7 +39,7 @@ public class SolarPanels {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SolarPanels that = (SolarPanels) o;
-        return Float.compare(that.systemSize, systemSize) == 0 &&
+        return Float.compare(that.factorOfCO2Avoidance, factorOfCO2Avoidance) == 0 &&
                 Float.compare(that.annualSolarEnergyProduction, annualSolarEnergyProduction) == 0;
     }
 
