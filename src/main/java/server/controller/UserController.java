@@ -180,6 +180,32 @@ public class UserController {
         return "Saved";
     }
 
+    @GetMapping("/user/get/friend/request/sent/{id}")
+    public List<Friends> friendRequestSend(HttpServletRequest httpServletRequest,
+                               @PathVariable("id") Long id,
+                               @RequestBody List<Friends> getFriendRequestSend)
+            throws BadCredentialsException {
+        String response = "";
+        if (isIncorrectUser(httpServletRequest, id)) {
+            throw new BadCredentialsException("Bad credentials");
+        }
+
+        return friendsRepository.getFriendRequestSend(id);
+    }
+
+    @GetMapping("/user/get/friend/request/recieved/{id}")
+    public List<Friends> friendRequestRecieved(HttpServletRequest httpServletRequest,
+                                           @PathVariable("id") Long id,
+                                           @RequestBody List<Friends> getFriendRequestRecieved)
+            throws BadCredentialsException {
+        String response = "";
+        if (isIncorrectUser(httpServletRequest, id)) {
+            throw new BadCredentialsException("Bad credentials");
+        }
+
+        return friendsRepository.getFriendRequestRecieved(id);
+    }
+
     @PostMapping("/user/change/country/{id}")
     public String changeCountry(@RequestBody String country,
                                 @PathVariable("id") Long userId,
