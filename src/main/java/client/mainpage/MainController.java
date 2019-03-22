@@ -427,7 +427,6 @@ public class MainController {
         percentPackagedSlider.setVisible(false);
         addProduceButton.setVisible(false);
         backToMealTypePageButtonProduce.setVisible(false);
-;
     }
 
     /**
@@ -632,24 +631,24 @@ public class MainController {
     /**
      * This methods adds solar panels in to the user's database.
      */
-    public void addEmissionsForSolarPanelBike() {
+    public void addEmissionsForSolarPanel() {
         final String token = UserToken.getUserToken();
 
         if (!emptySolarPanelBoxes()) {
-//            Meal meal = new Meal(Float.parseFloat(dairyText.getText()),
-//                    Float.parseFloat(otherVegetarianMealText.getText()),
-//                    Float.parseFloat(fruitsAndVegetablesText.getText()),
-//                    Float.parseFloat(cerealText.getText()));
-//            JwtUser jwtUser = jwtValidator.validate(token);
-//            float carbonEmission = apiService.getVegetarianMealEmissions(meal);
-//            String number = String.format("%.5f", carbonEmission);
+            float factorOfCO2Avoidance = Float.parseFloat(systemSizeText.getText());
+            float annualSolarEnergyProduction = Float.parseFloat(annualSolarEnergyText.getText());
+
+            SolarPanels solarPanel = new SolarPanels(factorOfCO2Avoidance, annualSolarEnergyProduction);
+            JwtUser jwtUser = jwtValidator.validate(token);
+            float carbonEmission = annualSolarEnergyProduction * factorOfCO2Avoidance;
+            String number = String.format("%.5f", carbonEmission);
             solarPanelStatus.setText("You have saved: " + "" + " tons of CO2");
-//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
-//            Date today = Calendar.getInstance().getTime();
-//            EmissionsClient emissionsClient = new EmissionsClient("1", carbonEmission, today);
-//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
-//                    jwtUser.getId(), emissionsClient, token);
-//            System.out.println(response);
+            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+            Date today = Calendar.getInstance().getTime();
+            EmissionsClient emissionsClient = new EmissionsClient("4", carbonEmission, today);
+            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                    jwtUser.getId(), emissionsClient, token);
+            System.out.println(response);
         }
     }
 
