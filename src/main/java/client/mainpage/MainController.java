@@ -200,6 +200,9 @@ public class MainController {
     @FXML
     private Button backToEmissionPageButtonSolar;
 
+    @FXML
+    private TextField numberSolarPanels;
+
     private RestTemplate restTemplate = new RestTemplate();
     private ApiService apiService = new ApiService();
     private UserService userService = new UserService();
@@ -308,6 +311,7 @@ public class MainController {
         addSolarPanelButton.setVisible(false);
         solarPanelStatus.setVisible(false);
         backToEmissionPageButtonSolar.setVisible(false);
+        numberSolarPanels.setVisible(false);
     }
 
     /**
@@ -441,6 +445,7 @@ public class MainController {
         addSolarPanelButton.setVisible(true);
         solarPanelStatus.setVisible(true);
         backToEmissionPageButtonSolar.setVisible(true);
+        numberSolarPanels.setVisible(true);
     }
 
     /**
@@ -718,7 +723,7 @@ public class MainController {
 
     private boolean emptySolarPanelBoxes() {
         if (checkEmptyOrNullBox
-                (systemSizeText, annualSolarEnergyText)) {
+                (systemSizeText, annualSolarEnergyText, numberSolarPanels)) {
             emptyTextBoxPopup();
             return true;
         } else {
