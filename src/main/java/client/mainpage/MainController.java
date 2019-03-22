@@ -575,24 +575,25 @@ public class MainController {
     }
 
     public LocalProduce localProduceEmission(Double sliderFoodProduction, Double sliderPackage) {
-        double foodProductionEmission = 0;
-        double foodPackagingEmission = 0;
+        double foodProductionEmission;
 
-        if (sliderFoodProduction <= 0.25) {
+        if (sliderFoodProduction <= 25) {
             foodProductionEmission = 0.1;
-        } else if (sliderFoodProduction > 0.25 && sliderFoodProduction <= 0.5) {
+        } else if (sliderFoodProduction > 25 && sliderFoodProduction <= 50) {
             foodProductionEmission = 0.2;
-        } else if (sliderFoodProduction > 0.5 && sliderFoodProduction <= 0.75) {
+        } else if (sliderFoodProduction > 50 && sliderFoodProduction <= 75) {
             foodProductionEmission = 0.3;
         } else {
             foodProductionEmission = 0.4;
         }
 
-        if (sliderPackage <= 0.25) {
+        double foodPackagingEmission;
+
+        if (sliderPackage <= 25) {
             foodPackagingEmission = 0.1;
-        } else if (sliderPackage > 0.25 && sliderPackage <= 0.5) {
+        } else if (sliderPackage > 25 && sliderPackage <= 50) {
             foodPackagingEmission = 0.2;
-        } else if (sliderPackage > 0.5 && sliderPackage <= 0.75) {
+        } else if (sliderPackage > 50 && sliderPackage <= 75) {
             foodPackagingEmission = 0.3;
         } else {
             foodPackagingEmission = 0.4;
