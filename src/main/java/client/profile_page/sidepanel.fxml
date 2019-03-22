@@ -11,7 +11,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="700" prefWidth="200" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.profile_page.SidePanelController">
+<VBox prefHeight="700" prefWidth="200" stylesheets="@profile.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.profile_page.SidePanelController">
     <children>
       <Pane prefHeight="127.0" prefWidth="200">
          <children>
@@ -28,6 +28,6 @@
             </JFXButton>
          </children>
       </Pane>
-      <JFXListView fx:id="friendslistView" prefHeight="573.0" prefWidth="200.0" />
+      <JFXListView fx:id="friendslistView" prefHeight="573.0" prefWidth="200.0" styleClass="jfx-list-view" />
     </children>
 </VBox>

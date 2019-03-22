@@ -1,19 +1,9 @@
 package server.model;
 
-import java.util.Objects;
-
 public class SolarPanels {
     private float factorOfCO2Avoidance;
     private float annualSolarEnergyProduction;
     private int numberOfSolarPanels;
-
-    public float getAnnualSolarEnergyProduction() {
-        return annualSolarEnergyProduction;
-    }
-
-    public void setAnnualSolarEnergyProduction(float annualSolarEnergyProduction) {
-        this.annualSolarEnergyProduction = annualSolarEnergyProduction;
-    }
 
     public float getFactorOfCO2Avoidance() {
         return factorOfCO2Avoidance;
@@ -23,13 +13,19 @@ public class SolarPanels {
         this.factorOfCO2Avoidance = factorOfCO2Avoidance;
     }
 
+    public float getAnnualSolarEnergyProduction() {
+        return annualSolarEnergyProduction;
+    }
+
+    public void setAnnualSolarEnergyProduction(float annualSolarEnergyProduction) {
+        this.annualSolarEnergyProduction = annualSolarEnergyProduction;
+    }
+
     public int getNumberOfSolarPanels() {
         return numberOfSolarPanels;
     }
 
-    public void setNumberOfSolarPanels(int numberOfSolarPanels) {
-        this.numberOfSolarPanels = numberOfSolarPanels;
-    }
+    public void setNumberOfSolarPanels(int numberOfSolarPanels) {}
 
     public SolarPanels(float factorOfCO2Avoidance, float annualSolarEnergyProduction, int numberOfSolarPanels) {
         this.factorOfCO2Avoidance = factorOfCO2Avoidance;

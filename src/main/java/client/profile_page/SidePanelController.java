@@ -47,7 +47,7 @@ public class SidePanelController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         Label lbl = new Label("Item 2");
-        friendslistView.getItems().addAll("Iron Man", "Titanic", "Contact", "Surrogates", "Iron Man", "Titanic", "Contact", "Surrogates", "Iron Man", "Titanic", "Contact", "Surrogates", "Iron Man", "Titanic", "Contact", "Surrogates", "Iron Man", "Titanic", "Contact", "Surrogates", "Iron Man", "Titanic", "Contact", "Surrogates", "Iron Man", "Titanic", "Contact", "Surrogates", "Iron Man", "Titanic", "Contact", "Surrogates", "Iron Man", "Titanic", "Contact", "Surrogates", "Iron Man", "Titanic", "Contact", "Surrogates", "Iron Man", "Titanic", "Contact", "Surrogates", "Iron Man", "Titanic", "Contact", "Surrogates", "Iron Man", "Titanic", "Contact", "Surrogates", "Iron Man", "Titanic", "Contact", "Surrogates", "Iron Man", "Titanic", "Contact", "Surrogates");
+        friendslistView.getItems().addAll("Iron Man", "Titanic", "Contact", "Surrogates", "Iron Man", "Titanic", "Contact", "Surrogates", "Iron Man", "Titanic", "Contact");
         System.out.println("View is now loaded!");
     }
 

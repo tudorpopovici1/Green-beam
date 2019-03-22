@@ -354,6 +354,8 @@
         <Button fx:id="backToEmissionPageButtonSolar" layoutX="20.0" layoutY="600.0" mnemonicParsing="false"
                 prefHeight="50.0"
                 prefWidth="50" text="Back" visible="false" onAction="#backToEmissionPageButtonOnClickSolar"/>
+        <TextField fx:id="numberSolarPanels" layoutX="260.0" layoutY="369.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Number of solar panels" visible="false"/>
 
     </Pane>
     <Pane fx:id="progressWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
