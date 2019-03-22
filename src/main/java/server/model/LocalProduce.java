@@ -22,10 +22,19 @@ public class LocalProduce {
         this.packagedFood = packagedFood;
     }
 
-    public LocalProduce(String producedLocally, String foodProducedLocally) {
+    public LocalProduce(String packagedFood, String foodProducedLocally) {
         this.packagedFood = packagedFood;
         this.foodProducedLocally = foodProducedLocally;
     }
+
+//    @Override
+//    public String toString() {
+//        return "LocalProduce{" +
+//                "foodProducedLocally='" + foodProducedLocally + '\'' +
+//                ", packagedFood='" + packagedFood + '\'' +
+//                '}';
+//    }
+
 
     @Override
     public String toString() {
