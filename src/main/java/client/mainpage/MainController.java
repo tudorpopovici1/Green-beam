@@ -640,9 +640,10 @@ public class MainController {
 
             SolarPanels solarPanel = new SolarPanels(factorOfCO2Avoidance, annualSolarEnergyProduction);
             JwtUser jwtUser = jwtValidator.validate(token);
-            float carbonEmission = annualSolarEnergyProduction * factorOfCO2Avoidance;
+            //Turning kg into tonnes by dividing it by a 1000
+            float carbonEmission = (annualSolarEnergyProduction * factorOfCO2Avoidance) / 1000f ;
             String number = String.format("%.5f", carbonEmission);
-            solarPanelStatus.setText("You have saved: " + "" + " tons of CO2");
+            solarPanelStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
             EmissionsClient emissionsClient = new EmissionsClient("4", carbonEmission, today);
