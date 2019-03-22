@@ -338,11 +338,11 @@
             </image>
         </ImageView>
         <Button fx:id="renewableEnergyButton" layoutX="260.0" layoutY="459.0" mnemonicParsing="false" prefHeight="75.0"
-                prefWidth="184.0" text="Renewable Energy" onAction="#solarPanelButtonOnClick"/>
+                prefWidth="184.0" text="Solar Panels" onAction="#solarPanelButtonOnClick"/>
         <TextField fx:id="systemSizeText" layoutX="260.0" layoutY="193.0" prefHeight="75.0"
                    prefWidth="184.0" promptText="System size (kW)" visible="false"/>
         <TextField fx:id="annualSolarEnergyText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
-                   prefWidth="184.0" promptText="Total Mileage of the Car" visible="false"/>
+                   prefWidth="184.0" promptText="Annual Solar Energy (kW/year)" visible="false"/>
         <Button fx:id="addSolarPanelButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
                 prefHeight="75.0"
                 prefWidth="184.0" text="Add" visible="false" onAction="#addEmissionsForSolarPanelBike"/>
