@@ -640,6 +640,7 @@ public class MainController {
 
             SolarPanels solarPanel = new SolarPanels(factorOfCO2Avoidance, annualSolarEnergyProduction);
             JwtUser jwtUser = jwtValidator.validate(token);
+            //Formula to calculate solar panel emission
             float carbonEmission = annualSolarEnergyProduction * factorOfCO2Avoidance;
             String number = String.format("%.5f", carbonEmission);
             solarPanelStatus.setText("You have saved: " + "" + " tons of CO2");
