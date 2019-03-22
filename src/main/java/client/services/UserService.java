@@ -74,14 +74,15 @@ public class UserService {
         return returnString;
     }
 
-    public String addFriend(final RestTemplate restTemplate, final String url, final Long relatedUserID, final Long relatingUserId, final String token) {
+    public String addFriend(final RestTemplate restTemplate, final String url,
+                            final Long relatedUserId, final Long relatingUserId, final String token) {
         String returnString = "";
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set("Authorisation", "Token " + token);
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Long> entity = new HttpEntity<>(relatingUserId, httpHeaders);
         try {
-            ResponseEntity<String> response = restTemplate.exchange(url + "/" + relatedUserID, HttpMethod.POST, entity, String.class);
+            ResponseEntity<String> response = restTemplate.exchange(url + "/" + relatedUserId, HttpMethod.POST, entity, String.class);
             returnString = response.getBody();
         }
         catch (HttpStatusCodeException e) {
