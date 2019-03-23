@@ -93,6 +93,29 @@ public class UserService {
         return returnString;
     }
 
+//    public List<Friends> getFriendRequestSend(
+//            final RestTemplate restTemplate, final String url, final Long id, final String token) {
+//
+//        HttpHeaders httpHeaders = new HttpHeaders();
+//        httpHeaders.set("Authorisation", "Token " + token);
+//        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+//        HttpEntity entity = new HttpEntity(httpHeaders);
+//
+//        List<Friends> friends = new ArrayList<>();
+//        try {
+//            ResponseEntity<Friends[]> response = restTemplate.exchange(url + "/" + id, HttpMethod.POST, entity, Friends.class);
+//
+//            if(response.getBody() != null) {
+//                Friends[] list = response.getBody();
+//                for (Friends f : list) {
+//                    if(f.getRelationshipType() = '2') {
+//
+//                    }
+//                }
+//            }
+//        }
+//    }
+
     public List<AchievementsType> getAchievementsOfUser(
             final RestTemplate restTemplate, final String url, final Long userId, final String token) {
 
