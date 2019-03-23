@@ -225,6 +225,40 @@ public class UserController {
         return "Saved";
     }
 
+//    @PostMapping("/user/accept/friend/{id}")
+//    public String acceptFriend(
+//            @PathVariable("id") Long id,
+//            @RequestBody Long relatingUserId,
+//            HttpServletRequest httpServletRequest) throws BadCredentialsException {
+//
+//        if(isIncorrectUser(httpServletRequest, id)) {
+//            throw new BadCredentialsException("Bad credentials");
+//        }
+//        Friends friendsFrom = new Friends(id, relatingUserId, "1");
+//        Friends friendTo = new Friends(relatingUserId, id, "1");
+//
+//        friendsRepository.save(friendsFrom);
+//        friendsRepository.save(friendTo);
+//        return "Saved";
+//    }
+
+//    @PostMapping("/user/reject/friend/{id}")
+//    public String rejectFriend(
+//            @PathVariable("id") Long id,
+//            @RequestBody Long relatingUserId,
+//            HttpServletRequest httpServletRequest) throws BadCredentialsException {
+//
+//        if(isIncorrectUser(httpServletRequest, id)) {
+//            throw new BadCredentialsException("Bad credentials");
+//        }
+//        Friends friendsFrom = new Friends(id, relatingUserId, "2");
+//        Friends friendTo = new Friends(relatingUserId, id, "3");
+//
+//        friendsRepository.delete(friendsFrom);
+//        friendsRepository.delete(friendTo);
+//        return "Deleted";
+//    }
+
     @GetMapping("/user/get/friend/request/received/{id}")
     public List<Friends> friendRequestRecieved(HttpServletRequest httpServletRequest,
                                            @PathVariable("id") Long id)
