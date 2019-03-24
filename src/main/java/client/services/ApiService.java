@@ -6,11 +6,16 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-import server.model.*;
+import server.model.ApiRequestResponse;
+import server.model.BikeRide;
+import server.model.EmissionReductions;
+import server.model.Meal;
+import server.model.PublicTransportation;
 
 import java.io.IOException;
 import java.io.StringReader;
 import javax.xml.bind.JAXB;
+
 @SuppressWarnings("Duplicates")
 public class ApiService {
 
@@ -147,6 +152,11 @@ public class ApiService {
         return carbonEmission;
     }
 
+    /**
+     * This method gets the C02 emissions from the Cool Climate Api service.
+     * @param ride BikeRide object
+     * @return returns the C02 emission
+     */
     public float getRideBikeEmissions(BikeRide ride) {
 
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -264,6 +274,11 @@ public class ApiService {
         return carbonEmission;
     }
 
+    /**
+     * This method gets the C02 emissions from the Cool Climate Api service.
+     * @param transportation PublicTransportation object
+     * @return returns the C02 emission
+     */
     public float getPublicTransportationEmissions(PublicTransportation transportation) {
 
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -290,7 +305,8 @@ public class ApiService {
                 .queryParam("input_footprint_transportation_airtotal", 10000)
                 .queryParam("input_footprint_transportation_publictrans", 300)
                 .queryParam("input_footprint_transportation_num_vehicles", 1)
-                .queryParam("input_footprint_transportation_miles1", transportation.getMilesTraveled())
+                .queryParam("input_footprint_transportation_miles1",
+                        transportation.getMilesTraveled())
                 .queryParam("input_footprint_transportation_mpg1", transportation.getCarMileage())
                 .queryParam("input_footprint_transportation_fuel1", transportation.getFuelType())
                 .queryParam("input_footprint_transportation_miles2", 0)

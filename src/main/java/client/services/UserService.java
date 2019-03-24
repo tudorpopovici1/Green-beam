@@ -11,7 +11,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
-import server.model.*;
+import server.model.AchievementsType;
+import server.model.AuthenticateUser;
+import server.model.EmissionFriend;
+import server.model.EmissionsClient;
+import server.model.ErrorDetails;
+import server.model.FriendsUserResp;
+import server.model.Users;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,6 +27,7 @@ import java.util.List;
  * Class that represents UserService.
  */
 
+@SuppressWarnings("Duplicates")
 @Service
 public class UserService {
 
@@ -74,18 +81,28 @@ public class UserService {
         return returnString;
     }
 
+    /**
+     * Adding a new friend for the user.
+     * @param restTemplate restTemplate object
+     * @param url url where to send the request
+     * @param relatedUserId userID
+     * @param relatingUserId friendID
+     * @param token token of the user
+     * @return
+     */
     public String addFriend(final RestTemplate restTemplate, final String url,
-                            final Long relatedUserId, final Long relatingUserId, final String token) {
+                            final Long relatedUserId, final Long relatingUserId,
+                            final String token) {
         String returnString = "";
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set("Authorisation", "Token " + token);
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Long> entity = new HttpEntity<>(relatingUserId, httpHeaders);
         try {
-            ResponseEntity<String> response = restTemplate.exchange(url + "/" + relatedUserId, HttpMethod.POST, entity, String.class);
+            ResponseEntity<String> response = restTemplate.exchange(
+                    url + "/" + relatedUserId, HttpMethod.POST, entity, String.class);
             returnString = response.getBody();
-        }
-        catch (HttpStatusCodeException e) {
+        } catch (HttpStatusCodeException e) {
             if (e.getStatusCode() == HttpStatus.FORBIDDEN) {
                 returnString = outputErrorMessage(objectMapper, e.getResponseBodyAsString());
             }
@@ -93,31 +110,44 @@ public class UserService {
         return returnString;
     }
 
-//    public List<Friends> getFriendRequestSend(
-//            final RestTemplate restTemplate, final String url, final Long id, final String token) {
-//
-//        HttpHeaders httpHeaders = new HttpHeaders();
-//        httpHeaders.set("Authorisation", "Token " + token);
-//        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-//        HttpEntity entity = new HttpEntity(httpHeaders);
-//
-//        List<Friends> friends = new ArrayList<>();
-//        try {
-//            ResponseEntity<Friends[]> response = restTemplate.exchange(url + "/" + id, HttpMethod.POST, entity, Friends.class);
-//
-//            if(response.getBody() != null) {
-//                Friends[] list = response.getBody();
-//                for (Friends f : list) {
-//                    if(f.getRelationshipType() = '2') {
-//
-//                    }
-//                }
-//            }
-//        }
-//    }
+    /*
+    public List<Friends> getFriendRequestSend(
+        final RestTemplate restTemplate,
+        final String url, final Long id, final String token) {
 
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.set("Authorisation", "Token " + token);
+            httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+            HttpEntity entity = new HttpEntity(httpHeaders);
+
+            List<Friends> friends = new ArrayList<>();
+          try {
+            ResponseEntity<Friends[]> response = restTemplate.exchange(
+            url + "/" + id, HttpMethod.POST, entity, Friends.class);
+
+                if(response.getBody() != null) {
+                    Friends[] list = response.getBody();
+                    for (Friends f : list) {
+                    if(f.getRelationshipType() = '2') {
+
+                    }
+                }
+           }
+       }
+     }
+    */
+
+    /**
+     * Gets the achievements of the user.
+     * @param restTemplate restTemplate object
+     * @param url url where to send the request
+     * @param userId userId
+     * @param token userToken
+     * @return
+     */
     public List<AchievementsType> getAchievementsOfUser(
-            final RestTemplate restTemplate, final String url, final Long userId, final String token) {
+            final RestTemplate restTemplate,
+            final String url, final Long userId, final String token) {
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set("Authorisation", "Token " + token);
@@ -137,7 +167,7 @@ public class UserService {
                 }
             }
         } catch (HttpStatusCodeException e) {
-
+            e.printStackTrace();
         }
         return achievementsTypesList;
     }
@@ -229,6 +259,14 @@ public class UserService {
         return response;
     }
 
+    /**
+     * Gets the emisssion of the user.
+     * @param restTemplate restTemplate object
+     * @param url url where to send the request
+     * @param userId userID
+     * @param token token of the user
+     * @return
+     */
     public EmissionFriend getEmissionsOfUser(final RestTemplate restTemplate, final String url,
                                              final Long userId, final String token) {
         HttpHeaders httpHeaders = new HttpHeaders();
