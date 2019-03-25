@@ -18,14 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import org.springframework.web.client.RestTemplate;
-import server.model.BikeRide;
-import server.model.EmissionFriend;
-import server.model.EmissionsClient;
-import server.model.JwtUser;
-import server.model.LocalProduce;
-import server.model.Meal;
-import server.model.PublicTransportation;
-import server.model.SolarPanels;
+import server.model.*;
 import server.security.JwtValidator;
 
 import java.text.DateFormat;
@@ -631,7 +624,7 @@ public class MainController {
         localProduceStatus.setText("You have saved: " + number + " tons of CO2");
         DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
         Date today = Calendar.getInstance().getTime();
-        EmissionsClient emissionsClient = new EmissionsClient("1", carbonEmission, today);
+        EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
         String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
                 jwtUser.getId(), emissionsClient, token);
         System.out.println(response);
@@ -691,7 +684,7 @@ public class MainController {
             transportationStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
-            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
+            EmissionsClient emissionsClient = new EmissionsClient("5", carbonEmission, today);
             String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
@@ -717,7 +710,7 @@ public class MainController {
             transportationStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
-            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
+            EmissionsClient emissionsClient = new EmissionsClient("4", carbonEmission, today);
             String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
@@ -746,7 +739,7 @@ public class MainController {
             solarPanelStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
-            EmissionsClient emissionsClient = new EmissionsClient("4", carbonEmission, today);
+            EmissionsClient emissionsClient = new EmissionsClient("3", carbonEmission, today);
             String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
@@ -756,30 +749,28 @@ public class MainController {
     /**
      * This methods adds house temperature in to the user's database.
      */
-    public void addEmissionsForTemperature() {
+    public void addEmissionsForHouseTemperature() {
         final String token = UserToken.getUserToken();
 
         if (!emptyTemperatureBoxes()) {
-            float userhousetemperaturebefore = Float.parseFloat(whatTempText.getText());
-            float userhousetemperatureafter = Float.parseFloat(whatTempAfterText.getText());
-//            float annualSolarEnergyProduction = Float.parseFloat(annualSolarEnergyText.getText());
-//            int numberOfSolarPanels = Integer.parseInt(numberSolarPanels.getText());
-//
-//            SolarPanels solarPanel = new SolarPanels(factorOfCO2Avoidance,
-//                    annualSolarEnergyProduction, numberOfSolarPanels);
-//            JwtUser jwtUser = jwtValidator.validate(token);
-//            //Turning kg into tonnes by dividing it by a 1000
-//            float carbonEmission = (annualSolarEnergyProduction
-//                    * factorOfCO2Avoidance
-//                    * numberOfSolarPanels) / 1000f ;
-//            String number = String.format("%.5f", carbonEmission);
-//            solarPanelStatus.setText("You have saved: " + number + " tons of CO2");
-//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
-//            Date today = Calendar.getInstance().getTime();
-//            EmissionsClient emissionsClient = new EmissionsClient("4", carbonEmission, today);
-//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
-//                    jwtUser.getId(), emissionsClient, token);
-//            System.out.println(response);
+            Double userHouseTemperatureBefore = Double.valueOf(whatTempText.getText());
+            Double userHouseTemperatureAfter = Double.valueOf(whatTempAfterText.getText());
+            HouseTemperature houseTemperature = new HouseTemperature(
+                    userHouseTemperatureBefore, userHouseTemperatureAfter);
+
+            JwtUser jwtUser = jwtValidator.validate(token);
+            float carbonEmissionPPM = userHouseTemperatureBefore.floatValue()
+                    - userHouseTemperatureAfter.floatValue();
+            //1 degree C = 225ppm = 1.784 tons of C02
+            float carbonEmission = carbonEmissionPPM * 1.784f;
+            String number = String.format("%.5f", carbonEmission);
+            temperatureStatus.setText("You have saved: " + number + " tons of CO2");
+            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+            Date today = Calendar.getInstance().getTime();
+            EmissionsClient emissionsClient = new EmissionsClient("6", carbonEmission, today);
+            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                    jwtUser.getId(), emissionsClient, token);
+            System.out.println(response);
         }
     }
 
