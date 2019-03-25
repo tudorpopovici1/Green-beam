@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.awt.event.MouseEvent;
@@ -19,7 +20,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class SidePanelController implements Initializable,TextListener {
+public class SidePanelController implements Initializable {
 
     @FXML
     private JFXButton addFriendsButton;
@@ -31,15 +32,47 @@ public class SidePanelController implements Initializable,TextListener {
     private JFXTextField searchFriends;
 
     @FXML
-    private TextArea testarea;
+    private JFXListView<String> foundFriends;
+
+    @FXML
+    private JFXButton searchButton;
+
+    @FXML
+    private Pane searchBarBox;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Label lbl = new Label("Item 2");
-        friendslistView.getItems().addAll("Iron Man", "Titanic", "Contact", "Surrogates", "Iron Man", "Titanic", "Contact", "Surrogates", "Iron Man", "Titanic", "Contact");
+        friendslistView.getItems().addAll("Iron Man", "Titanic");
         System.out.println("View is now loaded!");
-        initPopup();
+
+        searchBarBox.setVisible(false);
+//        initPopup();
     }
+
+    /**
+     * Activates the search bar.
+     * @param event - once a user clicks the button linked to
+     *              this method, it starts to execute.
+     */
+    public void searchClicked(ActionEvent event) {
+        if (!(searchFriends.getText() == null) && !(searchFriends.getText().equals(""))) {
+            foundFriends.getItems().add(searchFriends.getText());
+            searchBarBox.setVisible(true);
+        }
+    }
+
+    /**
+     * Adds a friend to the friendslist
+     * @param event - once a user clicks the button linked to
+     *              this method, it starts to execute.
+     */
+    public void addFriendsClicked(ActionEvent event) {
+         String friend = foundFriends.getSelectionModel().getSelectedItem();
+        friendslistView.getItems().add(friend);
+        searchBarBox.setVisible(false);
+    }
+
+
 
     private void initPopup() {
         JFXButton b1 = new JFXButton("Something 01");
@@ -54,10 +87,10 @@ public class SidePanelController implements Initializable,TextListener {
 
     }
 
-    @Override
-    public void textValueChanged(TextEvent e){
-        testarea.setText(searchFriends.getText());
-    }
+//    @Override
+//    public void textValueChanged(TextEvent e){
+//        testarea.setText(searchFriends.getText());
+//    }
 
 
 

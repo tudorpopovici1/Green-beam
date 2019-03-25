@@ -40,6 +40,7 @@ public class ProfileController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 //        Label lbl = new Label("Item 2");
 //        friendslistView.getItems().add(lbl);
+
         try {
             //FXMLLoader loader = new FXMLLoader(getClass().getResource("src/main/java/client/profile_page/side_panel.fxml"));
             URL url = new File(

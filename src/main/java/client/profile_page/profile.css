@@ -22,7 +22,7 @@
 .buttonsfriends{
     -fx-background-color: transparent;
     -fx-background-radius: 0px;
-    -fx-text-fill: black;
+    -fx-text-fill: #45515F;
 }
 
 .buttonsfriends:hover{
@@ -51,5 +51,18 @@
     -fx-background-insets: 0;
     -fx-cell-vertical-margin: 10.0;
     -fx-vertical-gap: 10;
-    -fx-pref-width: 200;
+}
+
+.main-btnsprofile{
+    -fx-background-color: #45515F;
+    -fx-background-radius: 0px;
+    -fx-text-fill: white;
+}
+
+
+.main-btnsprofile:hover{
+    -fx-background-color: #45515F;
+    -fx-background-radius: 0px;
+    -fx-border-radius: 0px;
+    -fx-text-fill: #F3A978;
 }
