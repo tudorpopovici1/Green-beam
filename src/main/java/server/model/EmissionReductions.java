@@ -3,8 +3,6 @@ package server.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Objects;
-
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EmissionReductions {
 
@@ -43,7 +41,7 @@ public class EmissionReductions {
         this.vegetarianMealEmission = vegetarianMealEmission;
     }
 
-    public EmissionReductions() {};
+    public EmissionReductions() {}
 
     /**
      * Gets localProduceEmission.
@@ -148,14 +146,22 @@ public class EmissionReductions {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof EmissionReductions)) return false;
-        EmissionReductions that = (EmissionReductions) o;
-        return Float.compare(that.getRideBikeEmission(), getRideBikeEmission()) == 0 &&
-                Float.compare(that.getPublicTransportationEmission(), getPublicTransportationEmission()) == 0 &&
-                Float.compare(that.getLocalProduceEmission(), getLocalProduceEmission()) == 0 &&
-                Float.compare(that.getLoweringTemperatureEmission(), getLoweringTemperatureEmission()) == 0 &&
-                Float.compare(that.getVegetarianMealEmission(), getVegetarianMealEmission()) == 0;
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof EmissionReductions)) {
+            return false;
+        }
+        EmissionReductions that = (EmissionReductions) object;
+        return Float.compare(that.getRideBikeEmission(), getRideBikeEmission()) == 0
+                && Float.compare(that.getPublicTransportationEmission(),
+                getPublicTransportationEmission()) == 0
+                && Float.compare(that.getLocalProduceEmission(),
+                getLocalProduceEmission()) == 0
+                && Float.compare(that.getLoweringTemperatureEmission(),
+                getLoweringTemperatureEmission()) == 0
+                && Float.compare(that.getVegetarianMealEmission(),
+                        getVegetarianMealEmission()) == 0;
     }
 }

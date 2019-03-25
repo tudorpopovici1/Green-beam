@@ -213,7 +213,7 @@ public class UnitUserControllerTest {
         List<FriendsUserResp> response = userController.getFriendsUser(httpServletRequest, 1L);
     }
 
-    @Test
+    /*@Test
     public void successfulAddEmission() throws BadCredentialsException {
         Date date = Mockito.mock(Date.class);
         Emissions emission = new Emissions(0L, "1",
@@ -228,7 +228,7 @@ public class UnitUserControllerTest {
         when(emissionRepository.save(emission)).thenReturn(emission);
         String response = userController.addEmissions(httpServletRequest, 1L, emissionsClient);
         Assert.assertEquals("Saved", response);
-    }
+    }*/
 
     @Test (expected = BadCredentialsException.class)
     public void BadCredentialsAddEmission() throws BadCredentialsException {
