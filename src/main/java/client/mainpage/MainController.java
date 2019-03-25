@@ -708,6 +708,36 @@ public class MainController {
     }
 
     /**
+     * This methods adds c02 for house temperature in to the user's database.
+     */
+    public void addEmissionsForHouseTemperature() {
+        final String token = UserToken.getUserToken();
+
+//        if (!emptySolarPanelBoxes()) {
+            float factorOfCO2Avoidance = Float.parseFloat(systemSizeText.getText());
+            float annualSolarEnergyProduction = Float.parseFloat(annualSolarEnergyText.getText());
+            int numberOfSolarPanels = Integer.parseInt(numberSolarPanels.getText());
+
+            SolarPanels solarPanel = new SolarPanels(factorOfCO2Avoidance,
+                    annualSolarEnergyProduction, numberOfSolarPanels);
+            JwtUser jwtUser = jwtValidator.validate(token);
+            //Turning kg into tonnes by dividing it by a 1000
+            float carbonEmission = (annualSolarEnergyProduction
+                    * factorOfCO2Avoidance
+                    * numberOfSolarPanels) / 1000f ;
+            String number = String.format("%.5f", carbonEmission);
+            solarPanelStatus.setText("You have saved: " + number + " tons of CO2");
+            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+            Date today = Calendar.getInstance().getTime();
+            EmissionsClient emissionsClient = new EmissionsClient("4", carbonEmission, today);
+            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                    jwtUser.getId(), emissionsClient, token);
+            System.out.
+                    println(response);
+//        }
+    }
+
+    /**
      * This method handles the functionality of giving an error when
      * any of the fields in the adding a vegetarian meal is empty.
      * @return boolean - returns true if the field is null or empty and false if not.
