@@ -15,7 +15,7 @@
     <children>
       <Pane prefHeight="127.0" prefWidth="200">
          <children>
-              <ImageView fitHeight="127.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
+              <ImageView fx:id="imageSidePanel" fitHeight="127.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                       <Image url="@../mainpage/images/back.jpg" />
                   </image>
@@ -28,12 +28,14 @@
             </JFXButton>
             <Pane fx:id="searchBarBox" layoutX="-110.0" layoutY="95.0" prefHeight="200.0" prefWidth="110.0" style="-fx-background-color: white;">
                <children>
-                  <JFXListView fx:id="foundFriends" prefHeight="173.0" prefWidth="110.0" />
+                  <JFXListView fx:id="foundFriends" layoutY="24.0" prefHeight="148.0" prefWidth="110.0" />
                   <JFXButton fx:id="addFriendsButton" layoutY="173.0" onAction="#addFriendsClicked" prefHeight="20.0" prefWidth="110.0" styleClass="main-btnsprofile" stylesheets="@profile.css" text="ADD">
                      <font>
                         <Font name="Gotham-Bold" size="14.0" />
                      </font>
                   </JFXButton>
+                  <JFXButton alignment="TOP_LEFT" onAction="#backSidePanelClicked" prefWidth="110.0" styleClass="buttonsbackside" text="BACK" />
+                  <Separator layoutX="17.0" layoutY="23.0" prefWidth="75.0" style="-fx-background-color: black;" />
                </children>
             </Pane>
          </children>

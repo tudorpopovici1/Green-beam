@@ -66,3 +66,13 @@
     -fx-border-radius: 0px;
     -fx-text-fill: #F3A978;
 }
+
+.buttonsbackside{
+    -fx-background-color: #DCDCDC;
+    -fx-text-fill: #45515F;
+}
+
+.buttonsbackside:hover {
+    -fx-background-color: #F3A978;
+    -fx-text-fill: white;
+}
