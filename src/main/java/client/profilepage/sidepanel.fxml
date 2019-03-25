@@ -26,7 +26,7 @@
                   <Font name="Gotham-Bold" size="14.0" />
                </font>
             </JFXButton>
-            <TextArea fx:id="testarea" layoutY="3.0" prefHeight="77.0" prefWidth="200.0" />
+            <TextField fx:id="testforum" layoutX="14.0" layoutY="14.0" />
          </children>
       </Pane>
       <JFXListView fx:id="friendslistView" prefHeight="573.0" prefWidth="200.0" style="-fx-cell-vertical-margin: 50;" styleClass="jfx-list-view" />

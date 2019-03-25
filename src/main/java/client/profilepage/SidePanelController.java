@@ -3,11 +3,16 @@ package client.profilepage;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 
 import java.awt.event.TextEvent;
 import java.awt.event.TextListener;
@@ -27,10 +32,12 @@ public class SidePanelController implements Initializable,TextListener {
     private JFXTextField searchFriends;
 
     @FXML
-    private TextArea testarea;
+    private TextField testforum;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         Label lbl = new Label("Item 2");
         friendslistView.getItems().addAll(
                 "Iron Man", "Titanic", "Contact", "Surrogates",
@@ -55,7 +62,7 @@ public class SidePanelController implements Initializable,TextListener {
 
     @Override
     public void textValueChanged(TextEvent textEvent) {
-        testarea.setText(searchFriends.getText());
+        testforum.setText(searchFriends.getText());
     }
 
 
