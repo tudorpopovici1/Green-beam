@@ -86,9 +86,6 @@ public class MainController {
     private ImageView bikeIcon;
 
     @FXML
-    private ImageView tempIcon;
-
-    @FXML
     private ImageView energyIcon;
 
     @FXML
@@ -126,9 +123,6 @@ public class MainController {
 
     @FXML
     private Button transportationButton;
-
-    @FXML
-    private Button temperatureButton;
 
     @FXML
     private Button renewableEnergyButton;
@@ -214,6 +208,29 @@ public class MainController {
     @FXML
     private TextField numberSolarPanels;
 
+    /** ID activation for the temperature button. **/
+
+    @FXML
+    private TextField whatTempText;
+
+    @FXML
+    private TextField whatTempAfterText;
+
+    @FXML
+    private Label temperatureStatus;
+
+    @FXML
+    private Button backToEmissionPageButtonTemperature;
+
+    @FXML
+    private Button addTemperatureButton;
+
+    @FXML
+    private Button temperatureButton;
+
+    @FXML
+    private ImageView tempIcon;
+
     private RestTemplate restTemplate = new RestTemplate();
     private ApiService apiService = new ApiService();
     private UserService userService = new UserService();
@@ -273,8 +290,6 @@ public class MainController {
         mealButton.setVisible(true);
         transportationIcon.setVisible(true);
         transportationButton.setVisible(true);
-        tempIcon.setVisible(true);
-        temperatureButton.setVisible(true);
         renewableEnergyButton.setVisible(true);
         energyIcon.setVisible(true);
         vegetarianIcon.setVisible(false);
@@ -323,6 +338,15 @@ public class MainController {
         solarPanelStatus.setVisible(false);
         backToEmissionPageButtonSolar.setVisible(false);
         numberSolarPanels.setVisible(false);
+
+        /** Emissionspage initial visibility - temperature button view **/
+        tempIcon.setVisible(true);
+        temperatureButton.setVisible(true);
+        whatTempText.setVisible(false);
+        whatTempAfterText.setVisible(false);
+        temperatureStatus.setVisible(false);
+        backToEmissionPageButtonTemperature.setVisible(false);
+        addTemperatureButton.setVisible(false);
     }
 
     /**
@@ -366,6 +390,14 @@ public class MainController {
      * @param event mouse click
      */
     public void backToEmissionPageButtonOnClickSolar(ActionEvent event) {
+        emissionsPageShow();
+    }
+
+    /**
+     * Functionality of the back button to the main emissions page from the temperature tab.
+     * @param event mouse click
+     */
+    public void backToEmissionPageButtonOnClickTemperature(ActionEvent event) {
         emissionsPageShow();
     }
 
@@ -457,6 +489,20 @@ public class MainController {
         solarPanelStatus.setVisible(true);
         backToEmissionPageButtonSolar.setVisible(true);
         numberSolarPanels.setVisible(true);
+    }
+
+    /**
+     * Functionality when the user clicks the temperature button.
+     * @param event mouse click.
+     */
+    public void temperatureButtonOnClick(ActionEvent event) {
+        emissionsPageHide();
+
+        whatTempText.setVisible(true);
+        whatTempAfterText.setVisible(true);
+        temperatureStatus.setVisible(true);
+        backToEmissionPageButtonTemperature.setVisible(true);
+        addTemperatureButton.setVisible(true);
     }
 
     /**
@@ -708,33 +754,33 @@ public class MainController {
     }
 
     /**
-     * This methods adds c02 for house temperature in to the user's database.
+     * This methods adds house temperature in to the user's database.
      */
-    public void addEmissionsForHouseTemperature() {
+    public void addEmissionsForTemperature() {
         final String token = UserToken.getUserToken();
 
-//        if (!emptySolarPanelBoxes()) {
-            float factorOfCO2Avoidance = Float.parseFloat(systemSizeText.getText());
-            float annualSolarEnergyProduction = Float.parseFloat(annualSolarEnergyText.getText());
-            int numberOfSolarPanels = Integer.parseInt(numberSolarPanels.getText());
-
-            SolarPanels solarPanel = new SolarPanels(factorOfCO2Avoidance,
-                    annualSolarEnergyProduction, numberOfSolarPanels);
-            JwtUser jwtUser = jwtValidator.validate(token);
-            //Turning kg into tonnes by dividing it by a 1000
-            float carbonEmission = (annualSolarEnergyProduction
-                    * factorOfCO2Avoidance
-                    * numberOfSolarPanels) / 1000f ;
-            String number = String.format("%.5f", carbonEmission);
-            solarPanelStatus.setText("You have saved: " + number + " tons of CO2");
-            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
-            Date today = Calendar.getInstance().getTime();
-            EmissionsClient emissionsClient = new EmissionsClient("4", carbonEmission, today);
-            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
-                    jwtUser.getId(), emissionsClient, token);
-            System.out.
-                    println(response);
-//        }
+        if (!emptyTemperatureBoxes()) {
+            float userhousetemperaturebefore = Float.parseFloat(whatTempText.getText());
+            float userhousetemperatureafter = Float.parseFloat(whatTempAfterText.getText());
+//            float annualSolarEnergyProduction = Float.parseFloat(annualSolarEnergyText.getText());
+//            int numberOfSolarPanels = Integer.parseInt(numberSolarPanels.getText());
+//
+//            SolarPanels solarPanel = new SolarPanels(factorOfCO2Avoidance,
+//                    annualSolarEnergyProduction, numberOfSolarPanels);
+//            JwtUser jwtUser = jwtValidator.validate(token);
+//            //Turning kg into tonnes by dividing it by a 1000
+//            float carbonEmission = (annualSolarEnergyProduction
+//                    * factorOfCO2Avoidance
+//                    * numberOfSolarPanels) / 1000f ;
+//            String number = String.format("%.5f", carbonEmission);
+//            solarPanelStatus.setText("You have saved: " + number + " tons of CO2");
+//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+//            Date today = Calendar.getInstance().getTime();
+//            EmissionsClient emissionsClient = new EmissionsClient("4", carbonEmission, today);
+//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+//                    jwtUser.getId(), emissionsClient, token);
+//            System.out.println(response);
+        }
     }
 
     /**
@@ -745,6 +791,16 @@ public class MainController {
     private boolean emptyVegetarianMealBoxes() {
         if (checkEmptyOrNullBox(
                 dairyText, cerealText, fruitsAndVegetablesText, otherVegetarianMealText)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptyTemperatureBoxes() {
+        if (checkEmptyOrNullBox(
+                whatTempText, whatTempAfterText)) {
             emptyTextBoxPopup();
             return true;
         } else {

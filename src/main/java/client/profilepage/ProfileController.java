@@ -10,6 +10,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
@@ -33,13 +35,11 @@ public class ProfileController implements Initializable {
     @FXML
     private ListView<Label> friendslistView;
 
-    @FXML
-    private JFXTextField searchFriends;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //Label lbl = new Label("Item 2");
         //friendslistView.getItems().add(lbl);
+
         try {
             //FXMLLoader loader = new FXMLLoader(
             // getClass().getResource("src/main/java/client/
