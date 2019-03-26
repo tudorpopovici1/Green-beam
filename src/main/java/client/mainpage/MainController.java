@@ -253,6 +253,12 @@ public class MainController {
     private TextField naturalGasText;
 
     @FXML
+    private TextField emissionFactorNaturalGas;
+
+    @FXML
+    private Label naturalGasStatus;
+
+    @FXML
     private TextField fuelOilText;
 
     @FXML
@@ -290,6 +296,9 @@ public class MainController {
 
     @FXML
     private Label electricityStatus;
+
+    @FXML
+    private TextField emissionFactorElectricity;
 
 
     private RestTemplate restTemplate = new RestTemplate();
@@ -421,6 +430,11 @@ public class MainController {
         backToHouseHoldPageButton.setVisible(false);
         backToEmissionPageButtonHousehold.setVisible(false);
         electricityStatus.setVisible(false);
+        emissionFactorElectricity.setVisible(false);
+        naturalGasStatus.setVisible(false);
+        naturalGasText.setVisible(false);
+        emissionFactorNaturalGas.setVisible(false);
+        addNaturalGasButton.setVisible(false);
     }
 
     /**
@@ -602,6 +616,12 @@ public class MainController {
         backToHouseHoldPageButton.setVisible(false);
         backToEmissionPageButtonHousehold.setVisible(true);
         electricityStatus.setVisible(false);
+        emissionFactorElectricity.setVisible(false);
+        addNaturalGasButton.setVisible(false);
+        naturalGasStatus.setVisible(false);
+        naturalGasText.setVisible(false);
+        naturalGasStatus.setVisible(false);
+        emissionFactorNaturalGas.setVisible(false);
     }
 
     public void electricityButtonOnClick(ActionEvent event) {
@@ -616,6 +636,22 @@ public class MainController {
         backToHouseHoldPageButton.setVisible(true);
         backToEmissionPageButtonHousehold.setVisible(false);
         electricityStatus.setVisible(true);
+        emissionFactorElectricity.setVisible(true);
+    }
+
+    public void naturalGasOnClick(ActionEvent event) {
+        electricityButton.setVisible(false);
+        naturalGasButton.setVisible(false);
+        fuelOilButton.setVisible(false);
+        lpgButton.setVisible(false);
+        wasteButton.setVisible(false);
+        waterButton.setVisible(false);
+        naturalGasText.setVisible(true);
+        naturalGasStatus.setVisible(true);
+        emissionFactorNaturalGas.setVisible(true);
+        addNaturalGasButton.setVisible(true);
+        backToEmissionPageButtonHousehold.setVisible(false);
+        backToHouseHoldPageButton.setVisible(true);
     }
 
 
