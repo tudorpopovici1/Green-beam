@@ -930,7 +930,6 @@ public class MainController {
         if (!emptyElectricityBoxes()) {
             Double electricityUsage = Double.valueOf(electricityText.getText());
             Double emissionFactor = Double.valueOf(emissionFactorElectricity.getText());
-
             ElectricityEmission electricityEmission = new ElectricityEmission(
                     electricityUsage);
             JwtUser jwtUser = jwtValidator.validate(token);
@@ -948,6 +947,31 @@ public class MainController {
         }
     }
 
+    /**
+     * This methods adds natural gas used in household in to the user's database.
+     */
+    public void addNaturalGasInHouseHold() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptyNaturalGasBoxes()) {
+            Double naturalGasUsage = Double.valueOf(naturalGasText.getText());
+            Double emissionFactor = Double.valueOf(emissionFactorNaturalGas.getText());
+           NaturalGasEmission naturalGasEmission = new NaturalGasEmission(
+                   naturalGasUsage);
+            JwtUser jwtUser = jwtValidator.validate(token);
+            // use(therms/yr) * EF(kgC02/therms) = emissions(kg CO2)
+            //divided by 1000 to convert it into tonnes
+            float carbonEmission = (naturalGasUsage.floatValue() * emissionFactor.floatValue()) / 1000;
+            String number = String.format("%.5f", carbonEmission);
+            naturalGasStatus.setText("You have saved: " + number + " tons of CO2");
+            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+            Date today = Calendar.getInstance().getTime();
+            EmissionsClient emissionsClient = new EmissionsClient("6", carbonEmission, today);
+            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                    jwtUser.getId(), emissionsClient, token);
+            System.out.println(response);
+        }
+    }
 
     /**
      * This method handles the functionality of giving an error when

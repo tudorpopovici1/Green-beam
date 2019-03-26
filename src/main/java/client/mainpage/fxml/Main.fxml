@@ -419,7 +419,7 @@
                    prefWidth="184.0" promptText="Emission Factor" visible="false"/>
         <Button fx:id="addNaturalGasButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
                 prefHeight="75.0"
-                prefWidth="184.0" text="Add" visible="false" />
+                prefWidth="184.0" text="Add" visible="false" onAction="#addNaturalGasInHouseHold" />
         <Label fx:id="naturalGasStatus" layoutX="230" layoutY="140" text="Input the parameters required" styleClass="whitelabels" visible="false">
             <font>
                 <Font size="20.0"/>
