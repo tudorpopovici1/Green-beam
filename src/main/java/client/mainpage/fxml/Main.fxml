@@ -374,6 +374,67 @@
                 prefHeight="75.0"
                 prefWidth="184.0" text="Add" visible="false" onAction="#addEmissionsForHouseTemperature"/>
 
+        <!--GUI for household addition-->
+        <Button fx:id="householdButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false" prefHeight="75.0"
+                prefWidth="184.0" text="Household" onAction="#householdButtonOnClick" />
+        <ImageView fx:id="householdIcon" fitHeight="60" fitWidth="60" layoutX="170.0" layoutY="560.0">
+            <image>
+                <Image url="@../images/householdIcon.png"/>
+            </image>
+        </ImageView>
+        <Button fx:id="electricityButton" layoutX="260.0" layoutY="130.0" prefHeight="75.0"
+                prefWidth="184.0" text="Add electricity" visible="false" onAction="#electricityButtonOnClick"/>
+        <Button fx:id="naturalGasButton" layoutX="260.0" layoutY="210.0" prefHeight="75.0"
+                prefWidth="184.0" text="Add natural gas" visible="false" />
+        <Button fx:id="fuelOilButton" layoutX="260.0" layoutY="290.0" prefHeight="75.0"
+                prefWidth="184.0" text="Add fuel oil" visible="false" />
+        <Button fx:id="lpgButton" layoutX="260.0" layoutY="370.0" prefHeight="75.0"
+                prefWidth="184.0" text="Add lpg" visible="false" />
+        <Button fx:id="wasteButton" layoutX="260.0" layoutY="450.0" prefHeight="75.0"
+                prefWidth="184.0" text="Add waste" visible="false" />
+        <Button fx:id="waterButton" layoutX="260.0" layoutY="530.0" prefHeight="75.0"
+                prefWidth="184.0" text="Add water" visible="false" />
+        <TextField fx:id="electricityText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Electricty  Usage(kWh/yr)" visible="false"/>
+        <Label fx:id="electricityStatus" layoutX="230" layoutY="140" text="Input the parameters required" styleClass="whitelabels" visible="false">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
+        <Button fx:id="addElectricityButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
+                prefHeight="75.0"
+                prefWidth="184.0" text="Add" visible="false" />
+        <Button fx:id="backToHouseHoldPageButton" layoutX="20.0" layoutY="600.0" mnemonicParsing="false"
+                prefHeight="50.0"
+                prefWidth="50" text="Back" visible="false" onAction="#backToHouseHoldPage"/>
+        <Button fx:id="backToEmissionPageButtonHousehold" layoutX="20.0" layoutY="600.0" mnemonicParsing="false"
+                prefHeight="50.0"
+                prefWidth="50" text="Back" visible="false" onAction="#backToEmissionPageButtonOnClick"/>
+        <TextField fx:id="naturalGasText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Natural Gas(therms/yr)" visible="false"/>
+        <Button fx:id="addNaturalGasButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
+                prefHeight="75.0"
+                prefWidth="184.0" text="Add" visible="false" />
+        <TextField fx:id="fuelOilText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Fuel Oil(litres/yr)" visible="false"/>
+        <Button fx:id="addFuelOilButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
+                prefHeight="75.0"
+                prefWidth="184.0" text="Add" visible="false" />
+        <TextField fx:id="lpgText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="LPG(litres/yr)" visible="false"/>
+        <Button fx:id="addLPGButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
+                prefHeight="75.0"
+                prefWidth="184.0" text="Add" visible="false" />
+        <TextField fx:id="wasteText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Waste(kg/week)" visible="false"/>
+        <Button fx:id="addWasteButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
+                prefHeight="75.0"
+                prefWidth="184.0" text="Add" visible="false" />
+        <TextField fx:id="waterText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Water(litres/day)" visible="false"/>
+        <Button fx:id="addWaterButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
+                prefHeight="75.0"
+                prefWidth="184.0" text="Add" visible="false" />
     </Pane>
     <Pane fx:id="progressWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
     <Pane fx:id="profileWindow" layoutX="222.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"

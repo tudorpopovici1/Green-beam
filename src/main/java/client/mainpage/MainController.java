@@ -220,6 +220,77 @@ public class MainController {
     @FXML
     private ImageView tempIcon;
 
+    /** ID activation for the household button */
+
+    @FXML
+    private ImageView householdIcon;
+
+    @FXML
+    private Button householdButton;
+
+    @FXML
+    private Button electricityButton;
+
+    @FXML
+    private Button naturalGasButton;
+
+    @FXML
+    private Button fuelOilButton;
+
+    @FXML
+    private Button lpgButton;
+
+    @FXML
+    private Button wasteButton;
+
+    @FXML
+    private Button waterButton;
+
+    @FXML
+    private TextField electricityText;
+
+    @FXML
+    private TextField naturalGasText;
+
+    @FXML
+    private TextField fuelOilText;
+
+    @FXML
+    private TextField lpgText;
+
+    @FXML
+    private TextField wasteText;
+
+    @FXML
+    private TextField waterText;
+
+    @FXML
+    private Button addElectricityButton;
+
+    @FXML
+    private Button addNaturalGasButton;
+
+    @FXML
+    private Button addFuelOilButton;
+
+    @FXML
+    private Button addLPGButton;
+
+    @FXML
+    private Button addWasteButton;
+
+    @FXML
+    private Button addWaterButton;
+
+    @FXML
+    private Button backToHouseHoldPageButton;
+
+    @FXML
+    private Button backToEmissionPageButtonHousehold;
+
+    @FXML
+    private Label electricityStatus;
+
 
     private RestTemplate restTemplate = new RestTemplate();
     private ApiService apiService = new ApiService();
@@ -330,6 +401,26 @@ public class MainController {
         solarPanelStatus.setVisible(false);
         backToEmissionPageButtonSolar.setVisible(false);
         numberSolarPanels.setVisible(false);
+
+        /** Emissionspage initial visibility - household button view **/
+        whatTempAfterText.setVisible(false);
+        whatTempText.setVisible(false);
+        temperatureStatus.setVisible(false);
+
+        /** Emissionspage initial visibility - household button view **/
+        householdButton.setVisible(true);
+        householdIcon.setVisible(true);
+        electricityButton.setVisible(false);
+        naturalGasButton.setVisible(false);
+        fuelOilButton.setVisible(false);
+        lpgButton.setVisible(false);
+        wasteButton.setVisible(false);
+        waterButton.setVisible(false);
+        addElectricityButton.setVisible(false);
+        electricityText.setVisible(false);
+        backToHouseHoldPageButton.setVisible(false);
+        backToEmissionPageButtonHousehold.setVisible(false);
+        electricityStatus.setVisible(false);
     }
 
     /**
@@ -344,7 +435,10 @@ public class MainController {
         temperatureButton.setVisible(false);
         renewableEnergyButton.setVisible(false);
         energyIcon.setVisible(false);
+        householdButton.setVisible(false);
+        householdIcon.setVisible(false);
     }
+
 
     /**
      * Functionality when the user click the meal button.
@@ -479,6 +573,51 @@ public class MainController {
         backToEmissionPageButtonTemperature.setVisible(true);
         addTemperatureButton.setVisible(true);
     }
+
+    /**
+     * Functionality when the user clicks the household button.
+     * @param event mouse click.
+     */
+    public void householdButtonOnClick(ActionEvent event) {
+        emissionsPageHide();
+
+       electricityButton.setVisible(true);
+       naturalGasButton.setVisible(true);
+       fuelOilButton.setVisible(true);
+       lpgButton.setVisible(true);
+       wasteButton.setVisible(true);
+       waterButton.setVisible(true);
+       backToEmissionPageButtonHousehold.setVisible(true);
+    }
+
+    public void backToHouseHoldPage(ActionEvent event) {
+        electricityButton.setVisible(true);
+        naturalGasButton.setVisible(true);
+        fuelOilButton.setVisible(true);
+        lpgButton.setVisible(true);
+        wasteButton.setVisible(true);
+        waterButton.setVisible(true);
+        electricityText.setVisible(false);
+        addElectricityButton.setVisible(false);
+        backToHouseHoldPageButton.setVisible(false);
+        backToEmissionPageButtonHousehold.setVisible(true);
+        electricityStatus.setVisible(false);
+    }
+
+    public void electricityButtonOnClick(ActionEvent event) {
+        electricityButton.setVisible(false);
+        naturalGasButton.setVisible(false);
+        fuelOilButton.setVisible(false);
+        lpgButton.setVisible(false);
+        wasteButton.setVisible(false);
+        waterButton.setVisible(false);
+        electricityText.setVisible(true);
+        addElectricityButton.setVisible(true);
+        backToHouseHoldPageButton.setVisible(true);
+        backToEmissionPageButtonHousehold.setVisible(false);
+        electricityStatus.setVisible(true);
+    }
+
 
     /**
      * Functionality when the user clicks the vegetarian meal button.
