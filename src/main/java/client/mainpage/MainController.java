@@ -921,6 +921,32 @@ public class MainController {
         }
     }
 
+    /**
+     * This methods adds electricity used in household in to the user's database.
+     */
+    public void addElectricityInHouseHold() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptyElectricityBoxes()) {
+            Double electricityUsage = Double.valueOf(electricityText.getText());
+            Double emissionFactor = Double.valueOf(emissionFactorElectricity.getText());
+
+            ElectricityEmission electricityEmission = new ElectricityEmission(
+                    electricityUsage);
+            JwtUser jwtUser = jwtValidator.validate(token);
+            // use(kWh/yr) * EF(kgC02/kWh) = emissions(kg CO2)
+            //divided by 1000 to convert it into tonnes
+            float carbonEmission = (electricityUsage.floatValue() * emissionFactor.floatValue()) / 1000;
+            String number = String.format("%.5f", carbonEmission);
+            electricityStatus.setText("You have saved: " + number + " tons of CO2");
+            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+            Date today = Calendar.getInstance().getTime();
+            EmissionsClient emissionsClient = new EmissionsClient("6", carbonEmission, today);
+            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                    jwtUser.getId(), emissionsClient, token);
+            System.out.println(response);
+        }
+    }
 
 
     /**
@@ -971,6 +997,26 @@ public class MainController {
     private boolean emptyTemperatureBoxes() {
         if (checkEmptyOrNullBox(
                 whatTempText, whatTempAfterText)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptyElectricityBoxes() {
+        if (checkEmptyOrNullBox(
+               electricityText, emissionFactorElectricity)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptyNaturalGasBoxes() {
+        if (checkEmptyOrNullBox(
+                naturalGasText, emissionFactorNaturalGas)) {
             emptyTextBoxPopup();
             return true;
         } else {
