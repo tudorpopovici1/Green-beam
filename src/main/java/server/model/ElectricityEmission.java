@@ -1,24 +1,24 @@
 package server.model;
 
 public class ElectricityEmission {
-    private double electrictyUsage;
+    private double electricityUsage;
 
-    public double getElectrictyUsage() {
-        return electrictyUsage;
+    public double getElectricityUsage() {
+        return electricityUsage;
     }
 
-    public void setElectrictyUsage(double electrictyUsage) {
-        this.electrictyUsage = electrictyUsage;
+    public void setElectricityUsage(double electricityUsage) {
+        this.electricityUsage = electricityUsage;
     }
 
-    public ElectricityEmission(double electrictyUsage) {
-        this.electrictyUsage = electrictyUsage;
+    public ElectricityEmission(double electricityUsage) {
+        this.electricityUsage = electricityUsage;
     }
 
     @Override
     public String toString() {
         return "ElectricityEmission{"
-                + "electrictyUsage=" + electrictyUsage
+                + "electricityUsage=" + electricityUsage
                 + '}';
     }
 
@@ -27,6 +27,6 @@ public class ElectricityEmission {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         ElectricityEmission that = (ElectricityEmission) object;
-        return Double.compare(that.electrictyUsage, electrictyUsage) == 0;
+        return Double.compare(that.electricityUsage, electricityUsage) == 0;
     }
 }
