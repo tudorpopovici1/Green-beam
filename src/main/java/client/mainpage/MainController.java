@@ -75,9 +75,6 @@ public class MainController {
     private ImageView bikeIcon;
 
     @FXML
-    private ImageView tempIcon;
-
-    @FXML
     private ImageView energyIcon;
 
     @FXML
@@ -115,9 +112,6 @@ public class MainController {
 
     @FXML
     private Button transportationButton;
-
-    @FXML
-    private Button temperatureButton;
 
     @FXML
     private Button renewableEnergyButton;
@@ -202,6 +196,110 @@ public class MainController {
 
     @FXML
     private TextField numberSolarPanels;
+
+    /** ID activation for the temperature button. **/
+
+    @FXML
+    private TextField whatTempText;
+
+    @FXML
+    private TextField whatTempAfterText;
+
+    @FXML
+    private Label temperatureStatus;
+
+    @FXML
+    private Button backToEmissionPageButtonTemperature;
+
+    @FXML
+    private Button addTemperatureButton;
+
+    @FXML
+    private Button temperatureButton;
+
+    @FXML
+    private ImageView tempIcon;
+
+    /** ID activation for the household button */
+
+    @FXML
+    private ImageView householdIcon;
+
+    @FXML
+    private Button householdButton;
+
+    @FXML
+    private Button electricityButton;
+
+    @FXML
+    private Button naturalGasButton;
+
+    @FXML
+    private Button fuelOilButton;
+
+    @FXML
+    private Button lpgButton;
+
+    @FXML
+    private Button wasteButton;
+
+    @FXML
+    private Button waterButton;
+
+    @FXML
+    private TextField electricityText;
+
+    @FXML
+    private TextField naturalGasText;
+
+    @FXML
+    private TextField emissionFactorNaturalGas;
+
+    @FXML
+    private Label naturalGasStatus;
+
+    @FXML
+    private TextField fuelOilText;
+
+    @FXML
+    private TextField lpgText;
+
+    @FXML
+    private TextField wasteText;
+
+    @FXML
+    private TextField waterText;
+
+    @FXML
+    private Button addElectricityButton;
+
+    @FXML
+    private Button addNaturalGasButton;
+
+    @FXML
+    private Button addFuelOilButton;
+
+    @FXML
+    private Button addLPGButton;
+
+    @FXML
+    private Button addWasteButton;
+
+    @FXML
+    private Button addWaterButton;
+
+    @FXML
+    private Button backToHouseHoldPageButton;
+
+    @FXML
+    private Button backToEmissionPageButtonHousehold;
+
+    @FXML
+    private Label electricityStatus;
+
+    @FXML
+    private TextField emissionFactorElectricity;
+
 
     private RestTemplate restTemplate = new RestTemplate();
     private ApiService apiService = new ApiService();
@@ -312,6 +410,31 @@ public class MainController {
         solarPanelStatus.setVisible(false);
         backToEmissionPageButtonSolar.setVisible(false);
         numberSolarPanels.setVisible(false);
+
+        /** Emissionspage initial visibility - household button view **/
+        whatTempAfterText.setVisible(false);
+        whatTempText.setVisible(false);
+        temperatureStatus.setVisible(false);
+
+        /** Emissionspage initial visibility - household button view **/
+        householdButton.setVisible(true);
+        householdIcon.setVisible(true);
+        electricityButton.setVisible(false);
+        naturalGasButton.setVisible(false);
+        fuelOilButton.setVisible(false);
+        lpgButton.setVisible(false);
+        wasteButton.setVisible(false);
+        waterButton.setVisible(false);
+        addElectricityButton.setVisible(false);
+        electricityText.setVisible(false);
+        backToHouseHoldPageButton.setVisible(false);
+        backToEmissionPageButtonHousehold.setVisible(false);
+        electricityStatus.setVisible(false);
+        emissionFactorElectricity.setVisible(false);
+        naturalGasStatus.setVisible(false);
+        naturalGasText.setVisible(false);
+        emissionFactorNaturalGas.setVisible(false);
+        addNaturalGasButton.setVisible(false);
     }
 
     /**
@@ -326,7 +449,10 @@ public class MainController {
         temperatureButton.setVisible(false);
         renewableEnergyButton.setVisible(false);
         energyIcon.setVisible(false);
+        householdButton.setVisible(false);
+        householdIcon.setVisible(false);
     }
+
 
     /**
      * Functionality when the user click the meal button.
@@ -447,6 +573,87 @@ public class MainController {
         backToEmissionPageButtonSolar.setVisible(true);
         numberSolarPanels.setVisible(true);
     }
+
+    /**
+     * Functionality when the user clicks the temperature button.
+     * @param event mouse click.
+     */
+    public void temperatureButtonOnClick(ActionEvent event) {
+        emissionsPageHide();
+
+        whatTempText.setVisible(true);
+        whatTempAfterText.setVisible(true);
+        temperatureStatus.setVisible(true);
+        backToEmissionPageButtonTemperature.setVisible(true);
+        addTemperatureButton.setVisible(true);
+    }
+
+    /**
+     * Functionality when the user clicks the household button.
+     * @param event mouse click.
+     */
+    public void householdButtonOnClick(ActionEvent event) {
+        emissionsPageHide();
+
+       electricityButton.setVisible(true);
+       naturalGasButton.setVisible(true);
+       fuelOilButton.setVisible(true);
+       lpgButton.setVisible(true);
+       wasteButton.setVisible(true);
+       waterButton.setVisible(true);
+       backToEmissionPageButtonHousehold.setVisible(true);
+    }
+
+    public void backToHouseHoldPage(ActionEvent event) {
+        electricityButton.setVisible(true);
+        naturalGasButton.setVisible(true);
+        fuelOilButton.setVisible(true);
+        lpgButton.setVisible(true);
+        wasteButton.setVisible(true);
+        waterButton.setVisible(true);
+        electricityText.setVisible(false);
+        addElectricityButton.setVisible(false);
+        backToHouseHoldPageButton.setVisible(false);
+        backToEmissionPageButtonHousehold.setVisible(true);
+        electricityStatus.setVisible(false);
+        emissionFactorElectricity.setVisible(false);
+        addNaturalGasButton.setVisible(false);
+        naturalGasStatus.setVisible(false);
+        naturalGasText.setVisible(false);
+        naturalGasStatus.setVisible(false);
+        emissionFactorNaturalGas.setVisible(false);
+    }
+
+    public void electricityButtonOnClick(ActionEvent event) {
+        electricityButton.setVisible(false);
+        naturalGasButton.setVisible(false);
+        fuelOilButton.setVisible(false);
+        lpgButton.setVisible(false);
+        wasteButton.setVisible(false);
+        waterButton.setVisible(false);
+        electricityText.setVisible(true);
+        addElectricityButton.setVisible(true);
+        backToHouseHoldPageButton.setVisible(true);
+        backToEmissionPageButtonHousehold.setVisible(false);
+        electricityStatus.setVisible(true);
+        emissionFactorElectricity.setVisible(true);
+    }
+
+    public void naturalGasOnClick(ActionEvent event) {
+        electricityButton.setVisible(false);
+        naturalGasButton.setVisible(false);
+        fuelOilButton.setVisible(false);
+        lpgButton.setVisible(false);
+        wasteButton.setVisible(false);
+        waterButton.setVisible(false);
+        naturalGasText.setVisible(true);
+        naturalGasStatus.setVisible(true);
+        emissionFactorNaturalGas.setVisible(true);
+        addNaturalGasButton.setVisible(true);
+        backToEmissionPageButtonHousehold.setVisible(false);
+        backToHouseHoldPageButton.setVisible(true);
+    }
+
 
     /**
      * Functionality when the user clicks the vegetarian meal button.
@@ -685,6 +892,87 @@ public class MainController {
         }
     }
 
+
+    /**
+     * This methods adds house temperature in to the user's database.
+     */
+    public void addEmissionsForHouseTemperature() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptyTemperatureBoxes()) {
+            Double userHouseTemperatureBefore = Double.valueOf(whatTempText.getText());
+            Double userHouseTemperatureAfter = Double.valueOf(whatTempAfterText.getText());
+            HouseTemperature houseTemperature = new HouseTemperature(
+                    userHouseTemperatureBefore, userHouseTemperatureAfter);
+
+            JwtUser jwtUser = jwtValidator.validate(token);
+            float carbonEmissionPPM = userHouseTemperatureBefore.floatValue()
+                    - userHouseTemperatureAfter.floatValue();
+            //1 degree C = 225ppm = 1.784 tons of C02
+            float carbonEmission = carbonEmissionPPM * 1.784f;
+            String number = String.format("%.5f", carbonEmission);
+            temperatureStatus.setText("You have saved: " + number + " tons of CO2");
+            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+            Date today = Calendar.getInstance().getTime();
+            EmissionsClient emissionsClient = new EmissionsClient("6", carbonEmission, today);
+            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                    jwtUser.getId(), emissionsClient, token);
+            System.out.println(response);
+        }
+    }
+
+    /**
+     * This methods adds electricity used in household in to the user's database.
+     */
+    public void addElectricityInHouseHold() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptyElectricityBoxes()) {
+            Double electricityUsage = Double.valueOf(electricityText.getText());
+            Double emissionFactor = Double.valueOf(emissionFactorElectricity.getText());
+            ElectricityEmission electricityEmission = new ElectricityEmission(
+                    electricityUsage);
+            JwtUser jwtUser = jwtValidator.validate(token);
+            // use(kWh/yr) * EF(kgC02/kWh) = emissions(kg CO2)
+            //divided by 1000 to convert it into tonnes
+            float carbonEmission = (electricityUsage.floatValue() * emissionFactor.floatValue()) / 1000;
+            String number = String.format("%.5f", carbonEmission);
+            electricityStatus.setText("You have saved: " + number + " tons of CO2");
+            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+            Date today = Calendar.getInstance().getTime();
+            EmissionsClient emissionsClient = new EmissionsClient("6", carbonEmission, today);
+            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                    jwtUser.getId(), emissionsClient, token);
+            System.out.println(response);
+        }
+    }
+
+    /**
+     * This methods adds natural gas used in household in to the user's database.
+     */
+    public void addNaturalGasInHouseHold() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptyNaturalGasBoxes()) {
+            Double naturalGasUsage = Double.valueOf(naturalGasText.getText());
+            Double emissionFactor = Double.valueOf(emissionFactorNaturalGas.getText());
+           NaturalGasEmission naturalGasEmission = new NaturalGasEmission(
+                   naturalGasUsage);
+            JwtUser jwtUser = jwtValidator.validate(token);
+            // use(therms/yr) * EF(kgC02/therms) = emissions(kg CO2)
+            //divided by 1000 to convert it into tonnes
+            float carbonEmission = (naturalGasUsage.floatValue() * emissionFactor.floatValue()) / 1000;
+            String number = String.format("%.5f", carbonEmission);
+            naturalGasStatus.setText("You have saved: " + number + " tons of CO2");
+            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+            Date today = Calendar.getInstance().getTime();
+            EmissionsClient emissionsClient = new EmissionsClient("6", carbonEmission, today);
+            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                    jwtUser.getId(), emissionsClient, token);
+            System.out.println(response);
+        }
+    }
+
     /**
      * This method handles the functionality of giving an error when
      * any of the fields in the adding a vegetarian meal is empty.
@@ -729,6 +1017,37 @@ public class MainController {
             return false;
         }
     }
+
+    private boolean emptyTemperatureBoxes() {
+        if (checkEmptyOrNullBox(
+                whatTempText, whatTempAfterText)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptyElectricityBoxes() {
+        if (checkEmptyOrNullBox(
+               electricityText, emissionFactorElectricity)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptyNaturalGasBoxes() {
+        if (checkEmptyOrNullBox(
+                naturalGasText, emissionFactorNaturalGas)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     /**
      * This method handles the functionality of checking whether a
