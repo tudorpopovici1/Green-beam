@@ -2,6 +2,7 @@ package client.loginpage;
 
 import client.Url;
 import client.UserToken;
+import client.mainpage.MainController;
 import client.services.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +24,7 @@ import javafx.stage.Stage;
 import org.springframework.web.client.RestTemplate;
 import server.model.AuthenticateUser;
 import server.model.Users;
+import server.security.JwtValidator;
 
 import java.io.File;
 import java.net.URL;
@@ -42,12 +44,6 @@ public class LoginController {
 
     public static final Pattern VALIDEMAIL =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-
-    /**
-     * Creating a newUser from the Users class.
-     */
-    Users newUser;
-
 
     /**
      * This is getting the attribute window attribute from the
@@ -145,6 +141,10 @@ public class LoginController {
         restTemplate = new RestTemplate();
     }
 
+    /**
+     * Creating a newUser from the Users class.
+     */
+    Users newUser;
 
     /**
      * This method handles the functionality of a user login.
@@ -436,7 +436,6 @@ public class LoginController {
      * @param textFields - any box in the login page.
      * @return boolean - returns true if the field is null or empty and false if not.
      */
-
     private boolean checkEmptyOrNullBox(TextField... textFields) {
         for (TextField textField : textFields) {
             if (textField.getText() == null || textField.getText().equals("")) {

@@ -1,4 +1,4 @@
-package client.profilepage;
+package client.profile_page;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
@@ -38,27 +38,24 @@ public class ProfileController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //Label lbl = new Label("Item 2");
-        //friendslistView.getItems().add(lbl);
+//        Label lbl = new Label("Item 2");
+//        friendslistView.getItems().add(lbl);
+
         try {
-            //FXMLLoader loader = new FXMLLoader(
-            // getClass().getResource("src/main/java/client/
-            // profilepage/side_panel.fxml"));
+            //FXMLLoader loader = new FXMLLoader(getClass().getResource("src/main/java/client/profile_page/side_panel.fxml"));
             URL url = new File(
-                    "src/main/java/client/profilepage/sidepanel.fxml").toURI().toURL();
+                    "src/main/java/client/profile_page/sidepanel.fxml").toURI().toURL();
             VBox box = FXMLLoader.load(url);
-            //VBox box = FXMLLoader.load(getClass().getResource(
-            // "client.profilepage.sidepanel.fxml"));
+            //VBox box = FXMLLoader.load(getClass().getResource("client.profile_page.sidepanel.fxml"));
             drawer.setSidePane(box);
         } catch (IOException ex) {
             Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         System.out.println("View is now loaded!");
-        HamburgerNextArrowBasicTransition transition
-                = new HamburgerNextArrowBasicTransition(hamburger);
+        HamburgerNextArrowBasicTransition transition = new HamburgerNextArrowBasicTransition(hamburger);
         transition.setRate(-1);
-        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
+        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
             transition.setRate(transition.getRate() * -1);
             transition.play();
 

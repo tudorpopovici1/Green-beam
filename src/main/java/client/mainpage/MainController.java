@@ -9,23 +9,12 @@ import javafx.animation.FadeTransition;
 import javafx.animation.SequentialTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import org.springframework.web.client.RestTemplate;
-import server.model.BikeRide;
-import server.model.EmissionFriend;
-import server.model.EmissionsClient;
-import server.model.JwtUser;
-import server.model.LocalProduce;
-import server.model.Meal;
-import server.model.PublicTransportation;
-import server.model.SolarPanels;
+import server.model.*;
 import server.security.JwtValidator;
 
 import java.text.DateFormat;
@@ -145,7 +134,7 @@ public class MainController {
     @FXML
     private Pane settingsWindow;
 
-    /** ID activation for the public transport ride button. **/
+    /** ID activation for the public transport ride button **/
 
     @FXML
     private Button rideABusButton;
@@ -165,7 +154,7 @@ public class MainController {
     @FXML
     private TextField fuelTypeTextPublic;
 
-    /** ID activation for the local produce button. **/
+    /** ID activation for the local produce button **/
 
     @FXML
     private Button localProduceButton;
@@ -194,7 +183,7 @@ public class MainController {
     @FXML
     private Button backToMealTypePageButtonProduce;
 
-    /** ID activation for the solar panel button. **/
+    /** ID activation for the solar panel button **/
 
     @FXML
     private TextField systemSizeText;
@@ -231,13 +220,13 @@ public class MainController {
      */
     public void mainPage(ActionEvent event) {
         this.userTokenString = UserToken.getUserToken();
-        mainWindow.setVisible(true);
-        mainWindow.toFront();
         JwtUser jwtUser = jwtValidator.validate(userTokenString);
-        animatePane(mainWindow);
-        displayUsernameOnMain("username: " + jwtUser.getUserName());
         EmissionFriend emissionFriend = userService.getEmissionsOfUser(
                 restTemplate, Url.GET_EMISSION_USER.getUrl(), jwtUser.getId(), userTokenString);
+        mainWindow.setVisible(true);
+        mainWindow.toFront();
+        animatePane(mainWindow);
+        displayUsernameOnMain("username: " + jwtUser.getUserName());
         String number = String.format("%.5f", emissionFriend.getCarbonEmission());
         totalCO2SavedLabel.setText(number + " tons");
         totalCO2SavedLabel.setStyle("-fx-font: 16 arial;");
@@ -578,8 +567,7 @@ public class MainController {
         LocalProduce localProduce = localProduceEmission(sliderFoodProduction, sliderPackage);
 
         JwtUser jwtUser = jwtValidator.validate(token);
-        Double carbonEmissionDouble = localProduce.getFoodProducedLocally()
-                + localProduce.getPackagedFood();
+        Double carbonEmissionDouble = localProduce.getFoodProducedLocally() + localProduce.getPackagedFood();
         float carbonEmission = carbonEmissionDouble.floatValue();
         String number = String.format("%.5f", carbonEmission);
         localProduceStatus.setText("You have saved: " + number + " tons of CO2");
@@ -591,12 +579,6 @@ public class MainController {
         System.out.println(response);
     }
 
-    /**
-     * Determines the total C02 emission depending on the sliders value.
-     * @param sliderFoodProduction slider for food production
-     * @param sliderPackage slider for food packaging
-     * @return
-     */
     public LocalProduce localProduceEmission(Double sliderFoodProduction, Double sliderPackage) {
         double foodProductionEmission;
 
@@ -662,8 +644,7 @@ public class MainController {
             Float numberOfKilometers = Float.parseFloat(numberOfMilesTextPublic.getText());
             Float numberOfMiles = numberOfKilometers * 1.6f;
             int fuelType = Integer.parseInt(fuelTypeTextPublic.getText());
-            PublicTransportation bus = new PublicTransportation(
-                    Float.parseFloat(carMileageTextPublic.getText()),
+            PublicTransportation bus = new PublicTransportation(Float.parseFloat(carMileageTextPublic.getText()),
                     numberOfMiles, fuelType);
             JwtUser jwtUser = jwtValidator.validate(token);
             float carbonEmission = apiService.getPublicTransportationEmissions(bus);
@@ -689,13 +670,10 @@ public class MainController {
             float annualSolarEnergyProduction = Float.parseFloat(annualSolarEnergyText.getText());
             int numberOfSolarPanels = Integer.parseInt(numberSolarPanels.getText());
 
-            SolarPanels solarPanel = new SolarPanels(factorOfCO2Avoidance,
-                    annualSolarEnergyProduction, numberOfSolarPanels);
+            SolarPanels solarPanel = new SolarPanels(factorOfCO2Avoidance, annualSolarEnergyProduction, numberOfSolarPanels);
             JwtUser jwtUser = jwtValidator.validate(token);
             //Turning kg into tonnes by dividing it by a 1000
-            float carbonEmission = (annualSolarEnergyProduction
-                    * factorOfCO2Avoidance
-                    * numberOfSolarPanels) / 1000f ;
+            float carbonEmission = (annualSolarEnergyProduction * factorOfCO2Avoidance * numberOfSolarPanels) / 1000f ;
             String number = String.format("%.5f", carbonEmission);
             solarPanelStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
@@ -713,8 +691,8 @@ public class MainController {
      * @return boolean - returns true if the field is null or empty and false if not.
      * */
     private boolean emptyVegetarianMealBoxes() {
-        if (checkEmptyOrNullBox(
-                dairyText, cerealText, fruitsAndVegetablesText, otherVegetarianMealText)) {
+        if (checkEmptyOrNullBox
+                (dairyText, cerealText, fruitsAndVegetablesText, otherVegetarianMealText)) {
             emptyTextBoxPopup();
             return true;
         } else {
@@ -723,8 +701,8 @@ public class MainController {
     }
 
     private boolean emptyRideABikeBoxes() {
-        if (checkEmptyOrNullBox(
-                carMileageText, fuelTypeText, numberOfMilesText)) {
+        if (checkEmptyOrNullBox
+                (carMileageText, fuelTypeText, numberOfMilesText)) {
             emptyTextBoxPopup();
             return true;
         } else {
@@ -733,8 +711,8 @@ public class MainController {
     }
 
     private boolean emptyRideABusBoxes() {
-        if (checkEmptyOrNullBox(
-                carMileageTextPublic, fuelTypeTextPublic, numberOfMilesTextPublic)) {
+        if (checkEmptyOrNullBox
+                (carMileageTextPublic, fuelTypeTextPublic, numberOfMilesTextPublic)) {
             emptyTextBoxPopup();
             return true;
         } else {
@@ -743,8 +721,8 @@ public class MainController {
     }
 
     private boolean emptySolarPanelBoxes() {
-        if (checkEmptyOrNullBox(
-                systemSizeText, annualSolarEnergyText, numberSolarPanels)) {
+        if (checkEmptyOrNullBox
+                (systemSizeText, annualSolarEnergyText, numberSolarPanels)) {
             emptyTextBoxPopup();
             return true;
         } else {
