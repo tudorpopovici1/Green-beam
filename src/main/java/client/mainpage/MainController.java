@@ -75,9 +75,6 @@ public class MainController {
     private ImageView bikeIcon;
 
     @FXML
-    private ImageView tempIcon;
-
-    @FXML
     private ImageView energyIcon;
 
     @FXML
@@ -115,9 +112,6 @@ public class MainController {
 
     @FXML
     private Button transportationButton;
-
-    @FXML
-    private Button temperatureButton;
 
     @FXML
     private Button renewableEnergyButton;
@@ -202,6 +196,30 @@ public class MainController {
 
     @FXML
     private TextField numberSolarPanels;
+
+    /** ID activation for the temperature button. **/
+
+    @FXML
+    private TextField whatTempText;
+
+    @FXML
+    private TextField whatTempAfterText;
+
+    @FXML
+    private Label temperatureStatus;
+
+    @FXML
+    private Button backToEmissionPageButtonTemperature;
+
+    @FXML
+    private Button addTemperatureButton;
+
+    @FXML
+    private Button temperatureButton;
+
+    @FXML
+    private ImageView tempIcon;
+
 
     private RestTemplate restTemplate = new RestTemplate();
     private ApiService apiService = new ApiService();
@@ -449,6 +467,20 @@ public class MainController {
     }
 
     /**
+     * Functionality when the user clicks the temperature button.
+     * @param event mouse click.
+     */
+    public void temperatureButtonOnClick(ActionEvent event) {
+        emissionsPageHide();
+
+        whatTempText.setVisible(true);
+        whatTempAfterText.setVisible(true);
+        temperatureStatus.setVisible(true);
+        backToEmissionPageButtonTemperature.setVisible(true);
+        addTemperatureButton.setVisible(true);
+    }
+
+    /**
      * Functionality when the user clicks the vegetarian meal button.
      * @param event mouse click.
      */
@@ -685,6 +717,37 @@ public class MainController {
         }
     }
 
+
+    /**
+     * This methods adds house temperature in to the user's database.
+     */
+    public void addEmissionsForHouseTemperature() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptyTemperatureBoxes()) {
+            Double userHouseTemperatureBefore = Double.valueOf(whatTempText.getText());
+            Double userHouseTemperatureAfter = Double.valueOf(whatTempAfterText.getText());
+            HouseTemperature houseTemperature = new HouseTemperature(
+                    userHouseTemperatureBefore, userHouseTemperatureAfter);
+
+            JwtUser jwtUser = jwtValidator.validate(token);
+            float carbonEmissionPPM = userHouseTemperatureBefore.floatValue()
+                    - userHouseTemperatureAfter.floatValue();
+            //1 degree C = 225ppm = 1.784 tons of C02
+            float carbonEmission = carbonEmissionPPM * 1.784f;
+            String number = String.format("%.5f", carbonEmission);
+            temperatureStatus.setText("You have saved: " + number + " tons of CO2");
+            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+            Date today = Calendar.getInstance().getTime();
+            EmissionsClient emissionsClient = new EmissionsClient("6", carbonEmission, today);
+            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                    jwtUser.getId(), emissionsClient, token);
+            System.out.println(response);
+        }
+    }
+
+
+
     /**
      * This method handles the functionality of giving an error when
      * any of the fields in the adding a vegetarian meal is empty.
@@ -729,6 +792,17 @@ public class MainController {
             return false;
         }
     }
+
+    private boolean emptyTemperatureBoxes() {
+        if (checkEmptyOrNullBox(
+                whatTempText, whatTempAfterText)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     /**
      * This method handles the functionality of checking whether a
