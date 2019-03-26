@@ -118,7 +118,53 @@ public class UserService {
         return friendsList;
     }
 
-    public String changes (
+    public String accepting(
+            final RestTemplate restTemplate, final String url, final Long relatingUserId, final Long id, final String token) {
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.set("Authorisation", "Token " + token);
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity entity = new HttpEntity(relatingUserId, httpHeaders);
+
+        String responseString = "";
+        try {
+            ResponseEntity<String> response = restTemplate.exchange(url + "/" + id, HttpMethod.POST, entity, String.class);
+
+            if(response.getBody() != null) {
+                responseString = "Accepted";
+            }
+        } catch (HttpStatusCodeException e) {
+            if(e.getStatusCode() == HttpStatus.FORBIDDEN) {
+                responseString = outputErrorMessage(objectMapper, e.getResponseBodyAsString());
+            }
+        }
+        return responseString;
+    }
+
+    public String rejecting(
+            final RestTemplate restTemplate, final String url, final Long relatingUserId, final Long id, final String token) {
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.set("Authorisation", "Token " + token);
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity entity = new HttpEntity(relatingUserId, httpHeaders);
+
+        String responseString = "";
+        try {
+            ResponseEntity<String> response = restTemplate.exchange(url + "/" + id, HttpMethod.POST, entity, String.class);
+
+            if(response.getBody() != null) {
+                responseString = "Rejected";
+            }
+        } catch (HttpStatusCodeException e) {
+            if(e.getStatusCode() == HttpStatus.FORBIDDEN) {
+                responseString = outputErrorMessage(objectMapper, e.getResponseBodyAsString());
+            }
+        }
+        return responseString;
+    }
+
+    public String updates(
             final RestTemplate restTemplate, final String argument, final String url, final Long id, final String token) {
 
         HttpHeaders httpHeaders = new HttpHeaders();
