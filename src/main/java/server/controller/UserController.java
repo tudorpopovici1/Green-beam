@@ -137,7 +137,7 @@ public class UserController {
         return userRepository.findAllFriendsUser(id);
     }
 
-    @PostMapping("/user/add/emission/{id}")
+    @PostMapping("/user/add/emission/vegMeal/{id}")
     public String addEmissions(HttpServletRequest httpServletRequest,
                                 @PathVariable("id") Long id,
                                 @RequestBody EmissionsClient emissionsClient)
@@ -168,18 +168,38 @@ public class UserController {
             achievementRepository.save(achievements);
         }
 
+        response = "Saved";
+        return "Saved";
+    }
+
+    @PostMapping("/user/add/emission/Transportation/{id}")
+    public String addEmissionsBike(HttpServletRequest httpServletRequest,
+                               @PathVariable("id") Long id,
+                               @RequestBody EmissionsClient emissionsClient)
+            throws BadCredentialsException {
+
+        String response = "";
+        if (isIncorrectUser(httpServletRequest, id)) {
+            throw new BadCredentialsException("Bad credentials");
+        }
+
+        Users user = userRepository.findUserById(id);
+        Emissions emissions = new Emissions(id, emissionsClient.getEmissionType(),
+                emissionsClient.getCarbonEmission(), emissionsClient.getDate());
+        emissionRepository.save(emissions);
+
         int numberBike = emissionRepository.getNumberTransportationInsteadCar(id);
-            if(achievementRepository.getNumberOfSpecificAchievement(4L, id) == 0
-                    && numberBike >= 10) {
-                Achievements achievements = new Achievements(id, 4L);
-                achievementRepository.save(achievements);
+        if(achievementRepository.getNumberOfSpecificAchievement(4L, id) == 0
+                && numberBike >= 10) {
+            Achievements achievements = new Achievements(id, 4L);
+            achievementRepository.save(achievements);
         }
 
         int numberTransportation = emissionRepository.getNumberTransportationInsteadCar(id);
         if(achievementRepository.getNumberOfSpecificAchievement(5L, id) == 0
                 && numberTransportation >= 30) {
-                Achievements achievements = new Achievements(id, 5L);
-                achievementRepository.save(achievements);
+            Achievements achievements = new Achievements(id, 5L);
+            achievementRepository.save(achievements);
         }
 
         response = "Saved";
