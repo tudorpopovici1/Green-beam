@@ -238,15 +238,6 @@ public class MainController {
     private Button fuelOilButton;
 
     @FXML
-    private Button lpgButton;
-
-    @FXML
-    private Button wasteButton;
-
-    @FXML
-    private Button waterButton;
-
-    @FXML
     private TextField electricityText;
 
     @FXML
@@ -259,16 +250,13 @@ public class MainController {
     private Label naturalGasStatus;
 
     @FXML
+    private Label fuelOilStatus;
+
+    @FXML
     private TextField fuelOilText;
 
     @FXML
-    private TextField lpgText;
-
-    @FXML
-    private TextField wasteText;
-
-    @FXML
-    private TextField waterText;
+    private TextField emissionFactorFuelOil;
 
     @FXML
     private Button addElectricityButton;
@@ -278,15 +266,6 @@ public class MainController {
 
     @FXML
     private Button addFuelOilButton;
-
-    @FXML
-    private Button addLPGButton;
-
-    @FXML
-    private Button addWasteButton;
-
-    @FXML
-    private Button addWaterButton;
 
     @FXML
     private Button backToHouseHoldPageButton;
@@ -299,6 +278,137 @@ public class MainController {
 
     @FXML
     private TextField emissionFactorElectricity;
+
+            /** ID activation for LPG */
+    @FXML
+    private Button addLPGButton;
+
+    @FXML
+    private TextField lpgText;
+
+    @FXML
+    private Button lpgButton;
+
+    @FXML
+    private Label LPGStatus;
+
+    @FXML
+    private TextField emissionFactorLPG;
+
+            /** ID activation for waste */
+
+    @FXML
+    private Button wasteButton;
+
+    @FXML
+    private TextField wasteText;
+
+    @FXML
+    private TextField emissionFactorWaste;
+
+    @FXML
+    private Label wasteStatus;
+
+    @FXML
+    private Button addWasteButton;
+
+            /** ID activation for water */
+
+    @FXML
+    private Button waterButton;
+
+    @FXML
+    private TextField waterText;
+
+    @FXML
+    private TextField emissionFactorWater;
+
+    @FXML
+    private Label waterStatus;
+
+    @FXML
+    private Button addWaterButton;
+
+            /** ID activation for a metro ride */
+
+    @FXML
+    private Button rideAMetroButton;
+
+    @FXML
+    private ImageView metroIcon;
+
+    @FXML
+    private TextField metroText;
+
+    @FXML
+    private TextField emissionFactorMetro;
+
+    @FXML
+    private Label metroStatus;
+
+    @FXML
+    private Button addMetroButton;
+
+            /** ID activation for a taxi ride */
+
+    @FXML
+    private Button rideATaxiButton;
+
+    @FXML
+    private ImageView taxiIcon;
+
+    @FXML
+    private TextField taxiText;
+
+    @FXML
+    private TextField emissionFactorTaxi;
+
+    @FXML
+    private Label taxiStatus;
+
+    @FXML
+    private Button addTaxiButton;
+
+            /** ID activation for a train ride */
+
+    @FXML
+    private Button rideATrainButton;
+
+    @FXML
+    private ImageView trainIcon;
+
+    @FXML
+    private TextField trainText;
+
+    @FXML
+    private TextField emissionFactorTrain;
+
+    @FXML
+    private Label trainStatus;
+
+    @FXML
+    private Button addTrainButton;
+
+            /** ID activation for a airplane flight */
+
+    @FXML
+    private Button rideAPlaneButton;
+
+    @FXML
+    private ImageView planeIcon;
+
+    @FXML
+    private TextField planeText;
+
+    @FXML
+    private TextField emissionFactorPlane;
+
+    @FXML
+    private Label planeStatus;
+
+    @FXML
+    private Button addPlaneButton;
+
 
 
     private RestTemplate restTemplate = new RestTemplate();
@@ -435,6 +545,61 @@ public class MainController {
         naturalGasText.setVisible(false);
         emissionFactorNaturalGas.setVisible(false);
         addNaturalGasButton.setVisible(false);
+                    /** Fuel oil **/
+        fuelOilText.setVisible(false);
+        emissionFactorFuelOil.setVisible(false);
+        fuelOilStatus.setVisible(false);
+        addFuelOilButton.setVisible(false);
+
+                    /** LPG **/
+        lpgText.setVisible(false);
+        emissionFactorLPG.setVisible(false);
+        LPGStatus.setVisible(false);
+        addLPGButton.setVisible(false);
+
+                    /** Waste **/
+        wasteText.setVisible(false);
+        emissionFactorWaste.setVisible(false);
+        wasteStatus.setVisible(false);
+        addWasteButton.setVisible(false);
+
+                    /** Water **/
+        waterText.setVisible(false);
+        emissionFactorWater.setVisible(false);
+        waterStatus.setVisible(false);
+        addWaterButton.setVisible(false);
+
+                    /** Metro **/
+        rideAMetroButton.setVisible(false);
+        metroIcon.setVisible(false);
+        metroText.setVisible(false);
+        emissionFactorMetro.setVisible(false);
+        metroStatus.setVisible(false);
+        addMetroButton.setVisible(false);
+
+                    /**Taxi **/
+        rideATaxiButton.setVisible(false);
+        taxiIcon.setVisible(false);
+        taxiText.setVisible(false);
+        emissionFactorTaxi.setVisible(false);
+        taxiStatus.setVisible(false);
+        addTaxiButton.setVisible(false);
+
+                    /**Train **/
+        rideATrainButton.setVisible(false);
+        trainIcon.setVisible(false);
+        trainText.setVisible(false);
+        emissionFactorTrain.setVisible(false);
+        trainStatus.setVisible(false);
+        addTrainButton.setVisible(false);
+
+                    /**Plane **/
+        rideAPlaneButton.setVisible(false);
+        planeIcon.setVisible(false);
+        planeText.setVisible(false);
+        emissionFactorPlane.setVisible(false);
+        planeStatus.setVisible(false);
+        addPlaneButton.setVisible(false);
     }
 
     /**
@@ -622,6 +787,26 @@ public class MainController {
         naturalGasText.setVisible(false);
         naturalGasStatus.setVisible(false);
         emissionFactorNaturalGas.setVisible(false);
+        /** Fuel Oil **/
+        fuelOilText.setVisible(false);
+        emissionFactorFuelOil.setVisible(false);
+        fuelOilStatus.setVisible(false);
+        addFuelOilButton.setVisible(false);
+        /** LPG **/
+        lpgText.setVisible(false);
+        emissionFactorLPG.setVisible(false);
+        LPGStatus.setVisible(false);
+        addLPGButton.setVisible(false);
+        /** Waste **/
+        wasteText.setVisible(false);
+        emissionFactorWaste.setVisible(false);
+        wasteStatus.setVisible(false);
+        addWasteButton.setVisible(false);
+        /** Water **/
+        waterText.setVisible(false);
+        emissionFactorWater.setVisible(false);
+        waterStatus.setVisible(false);
+        addWaterButton.setVisible(false);
     }
 
     public void electricityButtonOnClick(ActionEvent event) {
@@ -654,6 +839,70 @@ public class MainController {
         backToHouseHoldPageButton.setVisible(true);
     }
 
+    public void fuelOilOnClick(ActionEvent event) {
+        electricityButton.setVisible(false);
+        naturalGasButton.setVisible(false);
+        fuelOilButton.setVisible(false);
+        lpgButton.setVisible(false);
+        wasteButton.setVisible(false);
+        waterButton.setVisible(false);
+        backToEmissionPageButtonHousehold.setVisible(false);
+
+        fuelOilText.setVisible(true);
+        emissionFactorFuelOil.setVisible(true);
+        fuelOilStatus.setVisible(true);
+        addFuelOilButton.setVisible(true);
+        backToHouseHoldPageButton.setVisible(true);
+    }
+
+    public void LPGOnClick(ActionEvent event) {
+        electricityButton.setVisible(false);
+        naturalGasButton.setVisible(false);
+        fuelOilButton.setVisible(false);
+        lpgButton.setVisible(false);
+        wasteButton.setVisible(false);
+        waterButton.setVisible(false);
+        backToEmissionPageButtonHousehold.setVisible(false);
+
+        lpgText.setVisible(true);
+        emissionFactorLPG.setVisible(true);
+        LPGStatus.setVisible(true);
+        addLPGButton.setVisible(true);
+        backToHouseHoldPageButton.setVisible(true);
+    }
+
+    public void wasteOnClick(ActionEvent event) {
+        electricityButton.setVisible(false);
+        naturalGasButton.setVisible(false);
+        fuelOilButton.setVisible(false);
+        lpgButton.setVisible(false);
+        wasteButton.setVisible(false);
+        waterButton.setVisible(false);
+        backToEmissionPageButtonHousehold.setVisible(false);
+
+        wasteText.setVisible(true);
+        emissionFactorWaste.setVisible(true);
+        wasteStatus.setVisible(true);
+        addWasteButton.setVisible(true);
+        backToHouseHoldPageButton.setVisible(true);
+    }
+
+    public void waterOnClick(ActionEvent event) {
+        electricityButton.setVisible(false);
+        naturalGasButton.setVisible(false);
+        fuelOilButton.setVisible(false);
+        lpgButton.setVisible(false);
+        wasteButton.setVisible(false);
+        waterButton.setVisible(false);
+        backToEmissionPageButtonHousehold.setVisible(false);
+
+        waterText.setVisible(true);
+        emissionFactorWater.setVisible(true);
+        waterStatus.setVisible(true);
+        addWaterButton.setVisible(true);
+        backToHouseHoldPageButton.setVisible(true);
+    }
+
 
     /**
      * Functionality when the user clicks the vegetarian meal button.
@@ -661,12 +910,30 @@ public class MainController {
      */
     public void transportationButtonOnClick(ActionEvent event) {
         emissionsPageHide();
+
+        //bike
         rideABikeButton.setVisible(true);
         bikeIcon.setVisible(true);
 
         //ride bus button visible
         rideABusButton.setVisible(true);
         busIcon.setVisible(true);
+
+        //metro
+        rideAMetroButton.setVisible(true);
+        metroIcon.setVisible(true);
+
+        //taxi
+        rideATaxiButton.setVisible(true);
+        taxiIcon.setVisible(true);
+
+        //train
+        rideATrainButton.setVisible(true);
+        trainIcon.setVisible(true);
+
+        //plane
+        rideAPlaneButton.setVisible(true);
+        planeIcon.setVisible(true);
 
         backToEmissionPageButton.setVisible(true);
     }
@@ -690,10 +957,26 @@ public class MainController {
         //ride bus button visible off
         rideABusButton.setVisible(false);
         busIcon.setVisible(false);
+
+        //metro
+        rideAMetroButton.setVisible(false);
+        metroIcon.setVisible(false);
+
+        //taxi
+        rideATaxiButton.setVisible(false);
+        taxiIcon.setVisible(false);
+
+        //train
+        rideATrainButton.setVisible(false);
+        trainIcon.setVisible(false);
+
+        //plane
+        rideAPlaneButton.setVisible(false);
+        planeIcon.setVisible(false);
     }
 
     /**
-     * Functionality when the user clicks the ride a car button.
+     * Functionality when the user clicks the ride public transportation button.
      * @param event mouse click.
      */
     public void rideABusButtonOnClick(ActionEvent event) {
@@ -711,8 +994,179 @@ public class MainController {
         numberOfMilesTextPublic.setVisible(true);
         carMileageTextPublic.setVisible(true);
         fuelTypeTextPublic.setVisible(true);
+
+        //metro
+        rideAMetroButton.setVisible(false);
+        metroIcon.setVisible(false);
+
+        //taxi
+        rideATaxiButton.setVisible(false);
+        taxiIcon.setVisible(false);
+
+        //train
+        rideATrainButton.setVisible(false);
+        trainIcon.setVisible(false);
+
+        //plane
+        rideAPlaneButton.setVisible(false);
+        planeIcon.setVisible(false);
     }
 
+    /**
+     * Functionality when the user clicks the ride the metro button.
+     * @param event mouse click.
+     */
+    public void rideMetroButtonOnClick(ActionEvent event) {
+        //features
+        metroText.setVisible(true);
+        emissionFactorMetro.setVisible(true);
+        metroStatus.setVisible(true);
+        addMetroButton.setVisible(true);
+
+        backToEmissionPageButton.setVisible(false);
+        backToTransportationTypePageButton.setVisible(true);
+
+        //bike
+        rideABikeButton.setVisible(false);
+        bikeIcon.setVisible(false);
+
+        //ride bus button visible off
+        rideABusButton.setVisible(false);
+        busIcon.setVisible(false);
+
+        //metro
+        rideAMetroButton.setVisible(false);
+        metroIcon.setVisible(false);
+
+        //taxi
+        rideATaxiButton.setVisible(false);
+        taxiIcon.setVisible(false);
+
+        //train
+        rideATrainButton.setVisible(false);
+        trainIcon.setVisible(false);
+
+        //plane
+        rideAPlaneButton.setVisible(false);
+        planeIcon.setVisible(false);
+    }
+
+    /**
+     * Functionality when the user clicks the ride the taxi button.
+     * @param event mouse click.
+     */
+    public void rideTaxiButtonOnClick(ActionEvent event) {
+        //features
+        taxiText.setVisible(true);
+        emissionFactorTaxi.setVisible(true);
+        taxiStatus.setVisible(true);
+        addTaxiButton.setVisible(true);
+
+        backToEmissionPageButton.setVisible(false);
+        backToTransportationTypePageButton.setVisible(true);
+
+        //bike
+        rideABikeButton.setVisible(false);
+        bikeIcon.setVisible(false);
+
+        //ride bus button visible off
+        rideABusButton.setVisible(false);
+        busIcon.setVisible(false);
+
+        //metro
+        rideAMetroButton.setVisible(false);
+        metroIcon.setVisible(false);
+
+        //taxi
+        rideATaxiButton.setVisible(false);
+        taxiIcon.setVisible(false);
+
+        //train
+        rideATrainButton.setVisible(false);
+        trainIcon.setVisible(false);
+
+        //plane
+        rideAPlaneButton.setVisible(false);
+        planeIcon.setVisible(false);
+    }
+
+    /**
+     * Functionality when the user clicks the ride the train button.
+     * @param event mouse click.
+     */
+    public void rideTrainButtonOnClick(ActionEvent event) {
+        //features
+        trainText.setVisible(true);
+        emissionFactorTrain.setVisible(true);
+        trainStatus.setVisible(true);
+        addTrainButton.setVisible(true);
+
+        backToEmissionPageButton.setVisible(false);
+        backToTransportationTypePageButton.setVisible(true);
+
+        //bike
+        rideABikeButton.setVisible(false);
+        bikeIcon.setVisible(false);
+
+        //ride bus button visible off
+        rideABusButton.setVisible(false);
+        busIcon.setVisible(false);
+
+        //metro
+        rideAMetroButton.setVisible(false);
+        metroIcon.setVisible(false);
+
+        //taxi
+        rideATaxiButton.setVisible(false);
+        taxiIcon.setVisible(false);
+
+        //train
+        rideATrainButton.setVisible(false);
+        trainIcon.setVisible(false);
+
+        //plane
+        rideAPlaneButton.setVisible(false);
+        planeIcon.setVisible(false);
+    }
+
+    /**
+     * Functionality when the user clicks the ride the plane button.
+     * @param event mouse click.
+     */
+    public void ridePlaneButtonOnClick(ActionEvent event) {
+        //features
+        planeText.setVisible(true);
+        emissionFactorPlane.setVisible(true);
+        planeStatus.setVisible(true);
+        addPlaneButton.setVisible(true);
+
+        backToEmissionPageButton.setVisible(false);
+        backToTransportationTypePageButton.setVisible(true);
+
+        //bike
+        rideABikeButton.setVisible(false);
+        bikeIcon.setVisible(false);
+
+        //ride bus button visible off
+        rideABusButton.setVisible(false);
+        busIcon.setVisible(false);
+
+        //metro
+        rideAMetroButton.setVisible(false);
+        metroIcon.setVisible(false);
+
+        //taxi
+        rideATaxiButton.setVisible(false);
+        taxiIcon.setVisible(false);
+
+        //train
+        rideATrainButton.setVisible(false);
+        trainIcon.setVisible(false);
+
+        //plane
+        rideAPlaneButton.setVisible(false);
+        planeIcon.setVisible(false);
+    }
     /**
      * Functionality of the back button to the transportation page.
      * @param event mouse click
@@ -737,6 +1191,38 @@ public class MainController {
         numberOfMilesTextPublic.setVisible(false);
         carMileageTextPublic.setVisible(false);
         fuelTypeTextPublic.setVisible(false);
+
+        //metro
+        rideAMetroButton.setVisible(true);
+        metroIcon.setVisible(true);
+        metroText.setVisible(false);
+        emissionFactorMetro.setVisible(false);
+        metroStatus.setVisible(false);
+        addMetroButton.setVisible(false);
+
+        //taxi
+        rideATaxiButton.setVisible(true);
+        taxiIcon.setVisible(true);
+        taxiText.setVisible(false);
+        emissionFactorTaxi.setVisible(false);
+        taxiStatus.setVisible(false);
+        addTaxiButton.setVisible(false);
+
+        //train
+        rideATrainButton.setVisible(true);
+        trainIcon.setVisible(true);
+        trainText.setVisible(false);
+        emissionFactorTrain.setVisible(false);
+        trainStatus.setVisible(false);
+        addTrainButton.setVisible(false);
+
+        //plane
+        rideAPlaneButton.setVisible(true);
+        planeIcon.setVisible(true);
+        planeText.setVisible(false);
+        emissionFactorPlane.setVisible(false);
+        planeStatus.setVisible(false);
+        addPlaneButton.setVisible(false);
     }
 
     /**
@@ -867,6 +1353,110 @@ public class MainController {
     }
 
     /**
+     * This methods adds riding the metro in to the user's database.
+     */
+    public void addMetroRide() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptyMetroRideBoxes()) {
+//            Float numberOfKilometers = Float.parseFloat(numberOfMilesText.getText());
+//            Float numberOfMiles = numberOfKilometers * 1.6f;
+//            int fuelType = Integer.parseInt(fuelTypeText.getText());
+//            BikeRide ride = new BikeRide(numberOfMiles,
+//                    Float.parseFloat(carMileageText.getText()),
+//                    fuelType);
+//            JwtUser jwtUser = jwtValidator.validate(token);
+//            float carbonEmission = apiService.getRideBikeEmissions(ride);
+//            String number = String.format("%.5f", carbonEmission);
+//            transportationStatus.setText("You have saved: " + number + " tons of CO2");
+//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+//            Date today = Calendar.getInstance().getTime();
+//            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
+//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+//                    jwtUser.getId(), emissionsClient, token);
+//            System.out.println(response);
+        }
+    }
+
+    /**
+     * This methods adds riding the taxi in to the user's database.
+     */
+    public void addTaxiRide() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptyTaxiRideBoxes()) {
+//            Float numberOfKilometers = Float.parseFloat(numberOfMilesText.getText());
+//            Float numberOfMiles = numberOfKilometers * 1.6f;
+//            int fuelType = Integer.parseInt(fuelTypeText.getText());
+//            BikeRide ride = new BikeRide(numberOfMiles,
+//                    Float.parseFloat(carMileageText.getText()),
+//                    fuelType);
+//            JwtUser jwtUser = jwtValidator.validate(token);
+//            float carbonEmission = apiService.getRideBikeEmissions(ride);
+//            String number = String.format("%.5f", carbonEmission);
+//            transportationStatus.setText("You have saved: " + number + " tons of CO2");
+//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+//            Date today = Calendar.getInstance().getTime();
+//            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
+//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+//                    jwtUser.getId(), emissionsClient, token);
+//            System.out.println(response);
+        }
+    }
+
+    /**
+     * This methods adds riding the train in to the user's database.
+     */
+    public void addTrainRide() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptyTrainRideBoxes()) {
+//            Float numberOfKilometers = Float.parseFloat(numberOfMilesText.getText());
+//            Float numberOfMiles = numberOfKilometers * 1.6f;
+//            int fuelType = Integer.parseInt(fuelTypeText.getText());
+//            BikeRide ride = new BikeRide(numberOfMiles,
+//                    Float.parseFloat(carMileageText.getText()),
+//                    fuelType);
+//            JwtUser jwtUser = jwtValidator.validate(token);
+//            float carbonEmission = apiService.getRideBikeEmissions(ride);
+//            String number = String.format("%.5f", carbonEmission);
+//            transportationStatus.setText("You have saved: " + number + " tons of CO2");
+//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+//            Date today = Calendar.getInstance().getTime();
+//            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
+//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+//                    jwtUser.getId(), emissionsClient, token);
+//            System.out.println(response);
+        }
+    }
+
+    /**
+     * This methods adds riding the plane in to the user's database.
+     */
+    public void addPlaneRide() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptyPlaneRideBoxes()) {
+//            Float numberOfKilometers = Float.parseFloat(numberOfMilesText.getText());
+//            Float numberOfMiles = numberOfKilometers * 1.6f;
+//            int fuelType = Integer.parseInt(fuelTypeText.getText());
+//            BikeRide ride = new BikeRide(numberOfMiles,
+//                    Float.parseFloat(carMileageText.getText()),
+//                    fuelType);
+//            JwtUser jwtUser = jwtValidator.validate(token);
+//            float carbonEmission = apiService.getRideBikeEmissions(ride);
+//            String number = String.format("%.5f", carbonEmission);
+//            transportationStatus.setText("You have saved: " + number + " tons of CO2");
+//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+//            Date today = Calendar.getInstance().getTime();
+//            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
+//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+//                    jwtUser.getId(), emissionsClient, token);
+//            System.out.println(response);
+        }
+    }
+
+    /**
      * This methods adds solar panels in to the user's database.
      */
     public void addEmissionsForSolarPanel() {
@@ -974,6 +1564,110 @@ public class MainController {
     }
 
     /**
+     * This methods adds fuel oil used in household in to the user's database.
+     */
+    public void addFuelInHouseHold() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptyFuelOilBoxes()) {
+//            Double naturalGasUsage = Double.valueOf(naturalGasText.getText());
+//            Double emissionFactor = Double.valueOf(emissionFactorNaturalGas.getText());
+//            NaturalGasEmission naturalGasEmission = new NaturalGasEmission(
+//                    naturalGasUsage);
+//            JwtUser jwtUser = jwtValidator.validate(token);
+//            // use(therms/yr) * EF(kgC02/therms) = emissions(kg CO2)
+//            //divided by 1000 to convert it into tonnes
+//            float carbonEmission = (naturalGasUsage.floatValue() * emissionFactor.floatValue()) / 1000;
+//            String number = String.format("%.5f", carbonEmission);
+//            naturalGasStatus.setText("You have saved: " + number + " tons of CO2");
+//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+//            Date today = Calendar.getInstance().getTime();
+//            EmissionsClient emissionsClient = new EmissionsClient("6", carbonEmission, today);
+//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+//                    jwtUser.getId(), emissionsClient, token);
+//            System.out.println(response);
+        }
+    }
+
+    /**
+     * This methods adds LPG used in household in to the user's database.
+     */
+    public void addLPGInHouseHold() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptyLPGBoxes()) {
+//            Double naturalGasUsage = Double.valueOf(naturalGasText.getText());
+//            Double emissionFactor = Double.valueOf(emissionFactorNaturalGas.getText());
+//            NaturalGasEmission naturalGasEmission = new NaturalGasEmission(
+//                    naturalGasUsage);
+//            JwtUser jwtUser = jwtValidator.validate(token);
+//            // use(therms/yr) * EF(kgC02/therms) = emissions(kg CO2)
+//            //divided by 1000 to convert it into tonnes
+//            float carbonEmission = (naturalGasUsage.floatValue() * emissionFactor.floatValue()) / 1000;
+//            String number = String.format("%.5f", carbonEmission);
+//            naturalGasStatus.setText("You have saved: " + number + " tons of CO2");
+//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+//            Date today = Calendar.getInstance().getTime();
+//            EmissionsClient emissionsClient = new EmissionsClient("6", carbonEmission, today);
+//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+//                    jwtUser.getId(), emissionsClient, token);
+//            System.out.println(response);
+        }
+    }
+
+    /**
+     * This methods adds waste used in household in to the user's database.
+     */
+    public void addWasteInHouseHold() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptyWasteBoxes()) {
+//            Double naturalGasUsage = Double.valueOf(naturalGasText.getText());
+//            Double emissionFactor = Double.valueOf(emissionFactorNaturalGas.getText());
+//            NaturalGasEmission naturalGasEmission = new NaturalGasEmission(
+//                    naturalGasUsage);
+//            JwtUser jwtUser = jwtValidator.validate(token);
+//            // use(therms/yr) * EF(kgC02/therms) = emissions(kg CO2)
+//            //divided by 1000 to convert it into tonnes
+//            float carbonEmission = (naturalGasUsage.floatValue() * emissionFactor.floatValue()) / 1000;
+//            String number = String.format("%.5f", carbonEmission);
+//            naturalGasStatus.setText("You have saved: " + number + " tons of CO2");
+//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+//            Date today = Calendar.getInstance().getTime();
+//            EmissionsClient emissionsClient = new EmissionsClient("6", carbonEmission, today);
+//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+//                    jwtUser.getId(), emissionsClient, token);
+//            System.out.println(response);
+        }
+    }
+
+    /**
+     * This methods adds water used in household in to the user's database.
+     */
+    public void addWaterInHouseHold() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptyWaterBoxes()) {
+//            Double naturalGasUsage = Double.valueOf(naturalGasText.getText());
+//            Double emissionFactor = Double.valueOf(emissionFactorNaturalGas.getText());
+//            NaturalGasEmission naturalGasEmission = new NaturalGasEmission(
+//                    naturalGasUsage);
+//            JwtUser jwtUser = jwtValidator.validate(token);
+//            // use(therms/yr) * EF(kgC02/therms) = emissions(kg CO2)
+//            //divided by 1000 to convert it into tonnes
+//            float carbonEmission = (naturalGasUsage.floatValue() * emissionFactor.floatValue()) / 1000;
+//            String number = String.format("%.5f", carbonEmission);
+//            naturalGasStatus.setText("You have saved: " + number + " tons of CO2");
+//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+//            Date today = Calendar.getInstance().getTime();
+//            EmissionsClient emissionsClient = new EmissionsClient("6", carbonEmission, today);
+//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+//                    jwtUser.getId(), emissionsClient, token);
+//            System.out.println(response);
+        }
+    }
+
+    /**
      * This method handles the functionality of giving an error when
      * any of the fields in the adding a vegetarian meal is empty.
      * @return boolean - returns true if the field is null or empty and false if not.
@@ -1041,6 +1735,86 @@ public class MainController {
     private boolean emptyNaturalGasBoxes() {
         if (checkEmptyOrNullBox(
                 naturalGasText, emissionFactorNaturalGas)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptyFuelOilBoxes() {
+        if (checkEmptyOrNullBox
+                (fuelOilText, emissionFactorFuelOil)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptyLPGBoxes() {
+        if (checkEmptyOrNullBox
+                (lpgText, emissionFactorLPG)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptyWasteBoxes() {
+        if (checkEmptyOrNullBox
+                (wasteText, emissionFactorWaste)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptyWaterBoxes() {
+        if (checkEmptyOrNullBox
+                (waterText, emissionFactorWater)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptyMetroRideBoxes() {
+        if (checkEmptyOrNullBox
+                (metroText, emissionFactorMetro)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptyTaxiRideBoxes() {
+        if (checkEmptyOrNullBox
+                (taxiText, emissionFactorTaxi)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptyTrainRideBoxes() {
+        if (checkEmptyOrNullBox
+                (trainText, emissionFactorTrain)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptyPlaneRideBoxes() {
+        if (checkEmptyOrNullBox
+                (planeText, emissionFactorPlane)) {
             emptyTextBoxPopup();
             return true;
         } else {
