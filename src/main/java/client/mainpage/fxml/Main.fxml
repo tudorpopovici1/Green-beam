@@ -227,7 +227,7 @@
         <Button fx:id="transportationButton" layoutX="260.0" layoutY="280.0" mnemonicParsing="false" prefHeight="75.0"
                 prefWidth="184.0" text="Transportation" onAction="#transportationButtonOnClick"/>
         <Button fx:id="rideABikeButton" layoutX="260.0" layoutY="193" mnemonicParsing="false" prefHeight="75.0"
-                prefWidth="184.0" text="Ride A Bike" visible="false" onAction="#rideABikeButtonOnClick"/>
+                prefWidth="184.0" text="Ride Bike" visible="false" onAction="#rideABikeButtonOnClick"/>
         <TextField fx:id="numberOfMilesText" layoutX="260.0" layoutY="193.0" prefHeight="75.0"
                    prefWidth="184.0" promptText="Number of kilometers" visible="false"/>
         <TextField fx:id="carMileageText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
@@ -273,7 +273,7 @@
 
         <!--GUI for the public transport ride-->
         <Button fx:id="rideABusButton" layoutX="260.0" layoutY="280" mnemonicParsing="false" prefHeight="75.0"
-                prefWidth="184.0" text="Ride Public Transport" visible="false" onAction="#rideABusButtonOnClick"/>
+                prefWidth="184.0" text="Ride Bus" visible="false" onAction="#rideABusButtonOnClick"/>
         <ImageView fx:id="busIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="280.0"
                    visible="false">
             <image>
@@ -525,6 +525,50 @@
         <Button fx:id="addTaxiButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
                 prefHeight="75.0"
                 prefWidth="184.0" text="Add" visible="false" onAction="#addTaxiRide"/>
+
+        <!--GUI for a Train ride-->
+        <Button fx:id="rideATrainButton" layoutX="260.0" layoutY="550" mnemonicParsing="false" prefHeight="75.0"
+                prefWidth="184.0" text="Ride Train" visible="false" onAction="#rideTrainButtonOnClick"/>
+        <ImageView fx:id="trainIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="560"
+                   visible="false">
+            <image>
+                <Image url="@../images/trainIcon.png"/>
+            </image>
+        </ImageView>
+        <TextField fx:id="trainText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Distance (km/yr)" visible="false"/>
+        <TextField fx:id="emissionFactorTrain" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Emission Factor" visible="false"/>
+        <Label fx:id="trainStatus" layoutX="230" layoutY="140" text="Input the parameters required" styleClass="whitelabels" visible="false">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
+        <Button fx:id="addTrainButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
+                prefHeight="75.0"
+                prefWidth="184.0" text="Add" visible="false" onAction="#addTrainRide"/>
+
+        <!--GUI for a Airplane flight-->
+        <Button fx:id="rideAPlaneButton" layoutX="260.0" layoutY="102" mnemonicParsing="false" prefHeight="75.0"
+                prefWidth="184.0" text="Ride Train" visible="false" onAction="#ridePlaneButtonOnClick"/>
+        <ImageView fx:id="planeIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="107"
+                   visible="false">
+            <image>
+                <Image url="@../images/planeIcon.png"/>
+            </image>
+        </ImageView>
+        <TextField fx:id="planeText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Distance (km/yr)" visible="false"/>
+        <TextField fx:id="emissionFactorPlane" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Emission Factor" visible="false"/>
+        <Label fx:id="planeStatus" layoutX="230" layoutY="140" text="Input the parameters required" styleClass="whitelabels" visible="false">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
+        <Button fx:id="addPlaneButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
+                prefHeight="75.0"
+                prefWidth="184.0" text="Add" visible="false" onAction="#addPlaneRide"/>
 
     </Pane>
     <Pane fx:id="progressWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>

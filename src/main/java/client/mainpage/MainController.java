@@ -369,6 +369,46 @@ public class MainController {
     @FXML
     private Button addTaxiButton;
 
+            /** ID activation for a train ride */
+
+    @FXML
+    private Button rideATrainButton;
+
+    @FXML
+    private ImageView trainIcon;
+
+    @FXML
+    private TextField trainText;
+
+    @FXML
+    private TextField emissionFactorTrain;
+
+    @FXML
+    private Label trainStatus;
+
+    @FXML
+    private Button addTrainButton;
+
+            /** ID activation for a airplane flight */
+
+    @FXML
+    private Button rideAPlaneButton;
+
+    @FXML
+    private ImageView planeIcon;
+
+    @FXML
+    private TextField planeText;
+
+    @FXML
+    private TextField emissionFactorPlane;
+
+    @FXML
+    private Label planeStatus;
+
+    @FXML
+    private Button addPlaneButton;
+
 
 
     private RestTemplate restTemplate = new RestTemplate();
@@ -544,6 +584,22 @@ public class MainController {
         emissionFactorTaxi.setVisible(false);
         taxiStatus.setVisible(false);
         addTaxiButton.setVisible(false);
+
+                    /**Train **/
+        rideATrainButton.setVisible(false);
+        trainIcon.setVisible(false);
+        trainText.setVisible(false);
+        emissionFactorTrain.setVisible(false);
+        trainStatus.setVisible(false);
+        addTrainButton.setVisible(false);
+
+                    /**Plane **/
+        rideAPlaneButton.setVisible(false);
+        planeIcon.setVisible(false);
+        planeText.setVisible(false);
+        emissionFactorPlane.setVisible(false);
+        planeStatus.setVisible(false);
+        addPlaneButton.setVisible(false);
     }
 
     /**
@@ -871,6 +927,14 @@ public class MainController {
         rideATaxiButton.setVisible(true);
         taxiIcon.setVisible(true);
 
+        //train
+        rideATrainButton.setVisible(true);
+        trainIcon.setVisible(true);
+
+        //plane
+        rideAPlaneButton.setVisible(true);
+        planeIcon.setVisible(true);
+
         backToEmissionPageButton.setVisible(true);
     }
 
@@ -901,6 +965,14 @@ public class MainController {
         //taxi
         rideATaxiButton.setVisible(false);
         taxiIcon.setVisible(false);
+
+        //train
+        rideATrainButton.setVisible(false);
+        trainIcon.setVisible(false);
+
+        //plane
+        rideAPlaneButton.setVisible(false);
+        planeIcon.setVisible(false);
     }
 
     /**
@@ -930,6 +1002,14 @@ public class MainController {
         //taxi
         rideATaxiButton.setVisible(false);
         taxiIcon.setVisible(false);
+
+        //train
+        rideATrainButton.setVisible(false);
+        trainIcon.setVisible(false);
+
+        //plane
+        rideAPlaneButton.setVisible(false);
+        planeIcon.setVisible(false);
     }
 
     /**
@@ -961,10 +1041,18 @@ public class MainController {
         //taxi
         rideATaxiButton.setVisible(false);
         taxiIcon.setVisible(false);
+
+        //train
+        rideATrainButton.setVisible(false);
+        trainIcon.setVisible(false);
+
+        //plane
+        rideAPlaneButton.setVisible(false);
+        planeIcon.setVisible(false);
     }
 
     /**
-     * Functionality when the user clicks the ride the metro button.
+     * Functionality when the user clicks the ride the taxi button.
      * @param event mouse click.
      */
     public void rideTaxiButtonOnClick(ActionEvent event) {
@@ -992,8 +1080,93 @@ public class MainController {
         //taxi
         rideATaxiButton.setVisible(false);
         taxiIcon.setVisible(false);
+
+        //train
+        rideATrainButton.setVisible(false);
+        trainIcon.setVisible(false);
+
+        //plane
+        rideAPlaneButton.setVisible(false);
+        planeIcon.setVisible(false);
     }
 
+    /**
+     * Functionality when the user clicks the ride the train button.
+     * @param event mouse click.
+     */
+    public void rideTrainButtonOnClick(ActionEvent event) {
+        //features
+        trainText.setVisible(true);
+        emissionFactorTrain.setVisible(true);
+        trainStatus.setVisible(true);
+        addTrainButton.setVisible(true);
+
+        backToEmissionPageButton.setVisible(false);
+        backToTransportationTypePageButton.setVisible(true);
+
+        //bike
+        rideABikeButton.setVisible(false);
+        bikeIcon.setVisible(false);
+
+        //ride bus button visible off
+        rideABusButton.setVisible(false);
+        busIcon.setVisible(false);
+
+        //metro
+        rideAMetroButton.setVisible(false);
+        metroIcon.setVisible(false);
+
+        //taxi
+        rideATaxiButton.setVisible(false);
+        taxiIcon.setVisible(false);
+
+        //train
+        rideATrainButton.setVisible(false);
+        trainIcon.setVisible(false);
+
+        //plane
+        rideAPlaneButton.setVisible(false);
+        planeIcon.setVisible(false);
+    }
+
+    /**
+     * Functionality when the user clicks the ride the plane button.
+     * @param event mouse click.
+     */
+    public void ridePlaneButtonOnClick(ActionEvent event) {
+        //features
+        planeText.setVisible(true);
+        emissionFactorPlane.setVisible(true);
+        planeStatus.setVisible(true);
+        addPlaneButton.setVisible(true);
+
+        backToEmissionPageButton.setVisible(false);
+        backToTransportationTypePageButton.setVisible(true);
+
+        //bike
+        rideABikeButton.setVisible(false);
+        bikeIcon.setVisible(false);
+
+        //ride bus button visible off
+        rideABusButton.setVisible(false);
+        busIcon.setVisible(false);
+
+        //metro
+        rideAMetroButton.setVisible(false);
+        metroIcon.setVisible(false);
+
+        //taxi
+        rideATaxiButton.setVisible(false);
+        taxiIcon.setVisible(false);
+
+        //train
+        rideATrainButton.setVisible(false);
+        trainIcon.setVisible(false);
+
+        //plane
+        rideAPlaneButton.setVisible(false);
+        planeIcon.setVisible(false);
+    }
     /**
      * Functionality of the back button to the transportation page.
      * @param event mouse click
@@ -1034,6 +1207,22 @@ public class MainController {
         emissionFactorTaxi.setVisible(false);
         taxiStatus.setVisible(false);
         addTaxiButton.setVisible(false);
+
+        //train
+        rideATrainButton.setVisible(true);
+        trainIcon.setVisible(true);
+        trainText.setVisible(false);
+        emissionFactorTrain.setVisible(false);
+        trainStatus.setVisible(false);
+        addTrainButton.setVisible(false);
+
+        //plane
+        rideAPlaneButton.setVisible(true);
+        planeIcon.setVisible(true);
+        planeText.setVisible(false);
+        emissionFactorPlane.setVisible(false);
+        planeStatus.setVisible(false);
+        addPlaneButton.setVisible(false);
     }
 
     /**
@@ -1196,6 +1385,58 @@ public class MainController {
         final String token = UserToken.getUserToken();
 
         if (!emptyTaxiRideBoxes()) {
+//            Float numberOfKilometers = Float.parseFloat(numberOfMilesText.getText());
+//            Float numberOfMiles = numberOfKilometers * 1.6f;
+//            int fuelType = Integer.parseInt(fuelTypeText.getText());
+//            BikeRide ride = new BikeRide(numberOfMiles,
+//                    Float.parseFloat(carMileageText.getText()),
+//                    fuelType);
+//            JwtUser jwtUser = jwtValidator.validate(token);
+//            float carbonEmission = apiService.getRideBikeEmissions(ride);
+//            String number = String.format("%.5f", carbonEmission);
+//            transportationStatus.setText("You have saved: " + number + " tons of CO2");
+//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+//            Date today = Calendar.getInstance().getTime();
+//            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
+//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+//                    jwtUser.getId(), emissionsClient, token);
+//            System.out.println(response);
+        }
+    }
+
+    /**
+     * This methods adds riding the train in to the user's database.
+     */
+    public void addTrainRide() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptyTrainRideBoxes()) {
+//            Float numberOfKilometers = Float.parseFloat(numberOfMilesText.getText());
+//            Float numberOfMiles = numberOfKilometers * 1.6f;
+//            int fuelType = Integer.parseInt(fuelTypeText.getText());
+//            BikeRide ride = new BikeRide(numberOfMiles,
+//                    Float.parseFloat(carMileageText.getText()),
+//                    fuelType);
+//            JwtUser jwtUser = jwtValidator.validate(token);
+//            float carbonEmission = apiService.getRideBikeEmissions(ride);
+//            String number = String.format("%.5f", carbonEmission);
+//            transportationStatus.setText("You have saved: " + number + " tons of CO2");
+//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+//            Date today = Calendar.getInstance().getTime();
+//            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
+//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+//                    jwtUser.getId(), emissionsClient, token);
+//            System.out.println(response);
+        }
+    }
+
+    /**
+     * This methods adds riding the plane in to the user's database.
+     */
+    public void addPlaneRide() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptyPlaneRideBoxes()) {
 //            Float numberOfKilometers = Float.parseFloat(numberOfMilesText.getText());
 //            Float numberOfMiles = numberOfKilometers * 1.6f;
 //            int fuelType = Integer.parseInt(fuelTypeText.getText());
@@ -1554,6 +1795,26 @@ public class MainController {
     private boolean emptyTaxiRideBoxes() {
         if (checkEmptyOrNullBox
                 (taxiText, emissionFactorTaxi)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptyTrainRideBoxes() {
+        if (checkEmptyOrNullBox
+                (trainText, emissionFactorTrain)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptyPlaneRideBoxes() {
+        if (checkEmptyOrNullBox
+                (planeText, emissionFactorPlane)) {
             emptyTextBoxPopup();
             return true;
         } else {
