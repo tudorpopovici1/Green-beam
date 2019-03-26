@@ -265,7 +265,7 @@
                    prefWidth="184.0" promptText="Other Calories (kcal)" visible="false"/>
         <TextField fx:id="caloriesTextBox" layoutX="381.0" layoutY="184.0" prefHeight="40.0" prefWidth="181.0"
                    promptText="Calories (kcal)" visible="false"/>
-        <Button fx:id="addMealButton" layoutX="260.0" layoutY="600.0" mnemonicParsing="false" prefHeight="75.0"
+        <Button fx:id="addMealButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false" prefHeight="75.0"
                 prefWidth="184.0" text="Add" visible="false" onAction="#addEmissionsForAVegetarianMeal"/>
         <Button fx:id="backToMealTypePageButton" layoutX="20.0" layoutY="600.0" mnemonicParsing="false"
                 prefHeight="50.0"
@@ -318,7 +318,7 @@
                    minHeight="-Infinity" minWidth="-Infinity" prefWidth="350.0" indicatorPosition="RIGHT" visible="false"/>
         <JFXSlider fx:id="percentPackagedSlider" layoutX="165" layoutY="337" maxHeight="-Infinity" maxWidth="-Infinity"
                    minHeight="-Infinity" minWidth="-Infinity" prefWidth="350.0" indicatorPosition="RIGHT" visible="false"/>
-        <Button fx:id="addProduceButton" layoutX="260.0" layoutY="600.0" mnemonicParsing="false" prefHeight="75.0"
+        <Button fx:id="addProduceButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false" prefHeight="75.0"
                 prefWidth="184.0" text="Add" visible="false" onAction="#addEmissionsForLocalProduce"/>
         <Button fx:id="backToMealTypePageButtonProduce" layoutX="20.0" layoutY="600.0" mnemonicParsing="false"
                 prefHeight="50.0"
@@ -481,6 +481,50 @@
         <Button fx:id="addWasteButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
                 prefHeight="75.0"
                 prefWidth="184.0" text="Add" visible="false" onAction="#addWasteInHouseHold"/>
+
+        <!--GUI for a metro ride-->
+        <Button fx:id="rideAMetroButton" layoutX="260.0" layoutY="369.0" mnemonicParsing="false" prefHeight="75.0"
+                prefWidth="184.0" text="Ride Metro" visible="false" onAction="#rideMetroButtonOnClick"/>
+        <ImageView fx:id="metroIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="375"
+                   visible="false">
+            <image>
+                <Image url="@../images/metroIcon.png"/>
+            </image>
+        </ImageView>
+        <TextField fx:id="metroText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Distance (km/yr)" visible="false"/>
+        <TextField fx:id="emissionFactorMetro" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Emission Factor" visible="false"/>
+        <Label fx:id="metroStatus" layoutX="230" layoutY="140" text="Input the parameters required" styleClass="whitelabels" visible="false">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
+        <Button fx:id="addMetroButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
+                prefHeight="75.0"
+                prefWidth="184.0" text="Add" visible="false" onAction="#addMetroRide"/>
+
+        <!--GUI for a Taxi ride-->
+        <Button fx:id="rideATaxiButton" layoutX="260.0" layoutY="459.0" mnemonicParsing="false" prefHeight="75.0"
+                prefWidth="184.0" text="Ride Metro" visible="false" onAction="#rideTaxiButtonOnClick"/>
+        <ImageView fx:id="taxiIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="470"
+                   visible="false">
+            <image>
+                <Image url="@../images/taxiIcon.png"/>
+            </image>
+        </ImageView>
+        <TextField fx:id="taxiText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Distance (km/yr)" visible="false"/>
+        <TextField fx:id="emissionFactorTaxi" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Emission Factor" visible="false"/>
+        <Label fx:id="taxiStatus" layoutX="230" layoutY="140" text="Input the parameters required" styleClass="whitelabels" visible="false">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
+        <Button fx:id="addTaxiButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
+                prefHeight="75.0"
+                prefWidth="184.0" text="Add" visible="false" onAction="#addTaxiRide"/>
 
     </Pane>
     <Pane fx:id="progressWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>

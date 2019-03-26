@@ -329,6 +329,46 @@ public class MainController {
     @FXML
     private Button addWaterButton;
 
+            /** ID activation for a metro ride */
+
+    @FXML
+    private Button rideAMetroButton;
+
+    @FXML
+    private ImageView metroIcon;
+
+    @FXML
+    private TextField metroText;
+
+    @FXML
+    private TextField emissionFactorMetro;
+
+    @FXML
+    private Label metroStatus;
+
+    @FXML
+    private Button addMetroButton;
+
+            /** ID activation for a taxi ride */
+
+    @FXML
+    private Button rideATaxiButton;
+
+    @FXML
+    private ImageView taxiIcon;
+
+    @FXML
+    private TextField taxiText;
+
+    @FXML
+    private TextField emissionFactorTaxi;
+
+    @FXML
+    private Label taxiStatus;
+
+    @FXML
+    private Button addTaxiButton;
+
 
 
     private RestTemplate restTemplate = new RestTemplate();
@@ -488,6 +528,22 @@ public class MainController {
         emissionFactorWater.setVisible(false);
         waterStatus.setVisible(false);
         addWaterButton.setVisible(false);
+
+                    /** Metro **/
+        rideAMetroButton.setVisible(false);
+        metroIcon.setVisible(false);
+        metroText.setVisible(false);
+        emissionFactorMetro.setVisible(false);
+        metroStatus.setVisible(false);
+        addMetroButton.setVisible(false);
+
+                    /**Taxi **/
+        rideATaxiButton.setVisible(false);
+        taxiIcon.setVisible(false);
+        taxiText.setVisible(false);
+        emissionFactorTaxi.setVisible(false);
+        taxiStatus.setVisible(false);
+        addTaxiButton.setVisible(false);
     }
 
     /**
@@ -798,12 +854,22 @@ public class MainController {
      */
     public void transportationButtonOnClick(ActionEvent event) {
         emissionsPageHide();
+
+        //bike
         rideABikeButton.setVisible(true);
         bikeIcon.setVisible(true);
 
         //ride bus button visible
         rideABusButton.setVisible(true);
         busIcon.setVisible(true);
+
+        //metro
+        rideAMetroButton.setVisible(true);
+        metroIcon.setVisible(true);
+
+        //taxi
+        rideATaxiButton.setVisible(true);
+        taxiIcon.setVisible(true);
 
         backToEmissionPageButton.setVisible(true);
     }
@@ -827,10 +893,18 @@ public class MainController {
         //ride bus button visible off
         rideABusButton.setVisible(false);
         busIcon.setVisible(false);
+
+        //metro
+        rideAMetroButton.setVisible(false);
+        metroIcon.setVisible(false);
+
+        //taxi
+        rideATaxiButton.setVisible(false);
+        taxiIcon.setVisible(false);
     }
 
     /**
-     * Functionality when the user clicks the ride a car button.
+     * Functionality when the user clicks the ride public transportation button.
      * @param event mouse click.
      */
     public void rideABusButtonOnClick(ActionEvent event) {
@@ -848,6 +922,76 @@ public class MainController {
         numberOfMilesTextPublic.setVisible(true);
         carMileageTextPublic.setVisible(true);
         fuelTypeTextPublic.setVisible(true);
+
+        //metro
+        rideAMetroButton.setVisible(false);
+        metroIcon.setVisible(false);
+
+        //taxi
+        rideATaxiButton.setVisible(false);
+        taxiIcon.setVisible(false);
+    }
+
+    /**
+     * Functionality when the user clicks the ride the metro button.
+     * @param event mouse click.
+     */
+    public void rideMetroButtonOnClick(ActionEvent event) {
+        //features
+        metroText.setVisible(true);
+        emissionFactorMetro.setVisible(true);
+        metroStatus.setVisible(true);
+        addMetroButton.setVisible(true);
+
+        backToEmissionPageButton.setVisible(false);
+        backToTransportationTypePageButton.setVisible(true);
+
+        //bike
+        rideABikeButton.setVisible(false);
+        bikeIcon.setVisible(false);
+
+        //ride bus button visible off
+        rideABusButton.setVisible(false);
+        busIcon.setVisible(false);
+
+        //metro
+        rideAMetroButton.setVisible(false);
+        metroIcon.setVisible(false);
+
+        //taxi
+        rideATaxiButton.setVisible(false);
+        taxiIcon.setVisible(false);
+    }
+
+    /**
+     * Functionality when the user clicks the ride the metro button.
+     * @param event mouse click.
+     */
+    public void rideTaxiButtonOnClick(ActionEvent event) {
+        //features
+        taxiText.setVisible(true);
+        emissionFactorTaxi.setVisible(true);
+        taxiStatus.setVisible(true);
+        addTaxiButton.setVisible(true);
+
+        backToEmissionPageButton.setVisible(false);
+        backToTransportationTypePageButton.setVisible(true);
+
+        //bike
+        rideABikeButton.setVisible(false);
+        bikeIcon.setVisible(false);
+
+        //ride bus button visible off
+        rideABusButton.setVisible(false);
+        busIcon.setVisible(false);
+
+        //metro
+        rideAMetroButton.setVisible(false);
+        metroIcon.setVisible(false);
+
+        //taxi
+        rideATaxiButton.setVisible(false);
+        taxiIcon.setVisible(false);
     }
 
     /**
@@ -874,6 +1018,22 @@ public class MainController {
         numberOfMilesTextPublic.setVisible(false);
         carMileageTextPublic.setVisible(false);
         fuelTypeTextPublic.setVisible(false);
+
+        //metro
+        rideAMetroButton.setVisible(true);
+        metroIcon.setVisible(true);
+        metroText.setVisible(false);
+        emissionFactorMetro.setVisible(false);
+        metroStatus.setVisible(false);
+        addMetroButton.setVisible(false);
+
+        //taxi
+        rideATaxiButton.setVisible(true);
+        taxiIcon.setVisible(true);
+        taxiText.setVisible(false);
+        emissionFactorTaxi.setVisible(false);
+        taxiStatus.setVisible(false);
+        addTaxiButton.setVisible(false);
     }
 
     /**
@@ -1000,6 +1160,58 @@ public class MainController {
             String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
+        }
+    }
+
+    /**
+     * This methods adds riding the metro in to the user's database.
+     */
+    public void addMetroRide() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptyMetroRideBoxes()) {
+//            Float numberOfKilometers = Float.parseFloat(numberOfMilesText.getText());
+//            Float numberOfMiles = numberOfKilometers * 1.6f;
+//            int fuelType = Integer.parseInt(fuelTypeText.getText());
+//            BikeRide ride = new BikeRide(numberOfMiles,
+//                    Float.parseFloat(carMileageText.getText()),
+//                    fuelType);
+//            JwtUser jwtUser = jwtValidator.validate(token);
+//            float carbonEmission = apiService.getRideBikeEmissions(ride);
+//            String number = String.format("%.5f", carbonEmission);
+//            transportationStatus.setText("You have saved: " + number + " tons of CO2");
+//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+//            Date today = Calendar.getInstance().getTime();
+//            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
+//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+//                    jwtUser.getId(), emissionsClient, token);
+//            System.out.println(response);
+        }
+    }
+
+    /**
+     * This methods adds riding the taxi in to the user's database.
+     */
+    public void addTaxiRide() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptyTaxiRideBoxes()) {
+//            Float numberOfKilometers = Float.parseFloat(numberOfMilesText.getText());
+//            Float numberOfMiles = numberOfKilometers * 1.6f;
+//            int fuelType = Integer.parseInt(fuelTypeText.getText());
+//            BikeRide ride = new BikeRide(numberOfMiles,
+//                    Float.parseFloat(carMileageText.getText()),
+//                    fuelType);
+//            JwtUser jwtUser = jwtValidator.validate(token);
+//            float carbonEmission = apiService.getRideBikeEmissions(ride);
+//            String number = String.format("%.5f", carbonEmission);
+//            transportationStatus.setText("You have saved: " + number + " tons of CO2");
+//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+//            Date today = Calendar.getInstance().getTime();
+//            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
+//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+//                    jwtUser.getId(), emissionsClient, token);
+//            System.out.println(response);
         }
     }
 
@@ -1322,6 +1534,26 @@ public class MainController {
     private boolean emptyWaterBoxes() {
         if (checkEmptyOrNullBox
                 (waterText, emissionFactorWater)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptyMetroRideBoxes() {
+        if (checkEmptyOrNullBox
+                (metroText, emissionFactorMetro)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptyTaxiRideBoxes() {
+        if (checkEmptyOrNullBox
+                (taxiText, emissionFactorTaxi)) {
             emptyTextBoxPopup();
             return true;
         } else {
