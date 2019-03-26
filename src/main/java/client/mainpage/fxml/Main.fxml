@@ -386,16 +386,8 @@
                 prefWidth="184.0" text="Add electricity" visible="false" onAction="#electricityButtonOnClick"/>
         <Button fx:id="naturalGasButton" layoutX="260.0" layoutY="210.0" prefHeight="75.0"
                 prefWidth="184.0" text="Add natural gas" visible="false" onAction="#naturalGasOnClick" />
-        <Button fx:id="fuelOilButton" layoutX="260.0" layoutY="290.0" prefHeight="75.0"
-                prefWidth="184.0" text="Add fuel oil" visible="false" />
-        <Button fx:id="lpgButton" layoutX="260.0" layoutY="370.0" prefHeight="75.0"
-                prefWidth="184.0" text="Add lpg" visible="false" />
-        <Button fx:id="wasteButton" layoutX="260.0" layoutY="450.0" prefHeight="75.0"
-                prefWidth="184.0" text="Add waste" visible="false" />
-        <Button fx:id="waterButton" layoutX="260.0" layoutY="530.0" prefHeight="75.0"
-                prefWidth="184.0" text="Add water" visible="false" />
         <TextField fx:id="electricityText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
-                   prefWidth="184.0" promptText="Electricty  Usage(kWh/yr)" visible="false"/>
+                   prefWidth="184.0" promptText="Electricty  Usage (kWh/yr)" visible="false"/>
         <TextField fx:id="emissionFactorElectricity" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
                    prefWidth="184.0" promptText="Emission Factor" visible="false"/>
         <Label fx:id="electricityStatus" layoutX="230" layoutY="140" text="Input the parameters required" styleClass="whitelabels" visible="false">
@@ -414,7 +406,7 @@
                 prefWidth="50" text="Back" visible="false" onAction="#backToEmissionPageButtonOnClick"/>
 
         <TextField fx:id="naturalGasText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
-                   prefWidth="184.0" promptText="Natural Gas(therms/yr)" visible="false"/>
+                   prefWidth="184.0" promptText="Natural Gas (therms/yr)" visible="false"/>
         <TextField fx:id="emissionFactorNaturalGas" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
                    prefWidth="184.0" promptText="Emission Factor" visible="false"/>
         <Button fx:id="addNaturalGasButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
@@ -426,27 +418,70 @@
             </font>
         </Label>
 
-
+        <!--Fuel oil-->
+        <Button fx:id="fuelOilButton" layoutX="260.0" layoutY="290.0" prefHeight="75.0"
+                prefWidth="184.0" text="Add fuel oil" visible="false" onAction="#fuelOilOnClick"/>
         <TextField fx:id="fuelOilText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
-                   prefWidth="184.0" promptText="Fuel Oil(litres/yr)" visible="false"/>
+                   prefWidth="184.0" promptText="Fuel Oil (litres/yr)" visible="false"/>
+        <TextField fx:id="emissionFactorFuelOil" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Emission Factor" visible="false"/>
+        <Label fx:id="fuelOilStatus" layoutX="230" layoutY="140" text="Input the parameters required" styleClass="whitelabels" visible="false">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
         <Button fx:id="addFuelOilButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
                 prefHeight="75.0"
-                prefWidth="184.0" text="Add" visible="false" />
+                prefWidth="184.0" text="Add" visible="false" onAction="#addFuelInHouseHold"/>
+
+        <!--LPG-->
+        <Button fx:id="lpgButton" layoutX="260.0" layoutY="370.0" prefHeight="75.0"
+                prefWidth="184.0" text="Add LPG" visible="false" onAction="#LPGOnClick"/>
         <TextField fx:id="lpgText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
-                   prefWidth="184.0" promptText="LPG(litres/yr)" visible="false"/>
+                   prefWidth="184.0" promptText="LPG (litres/yr)" visible="false"/>
+        <TextField fx:id="emissionFactorLPG" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Emission Factor" visible="false"/>
+        <Label fx:id="LPGStatus" layoutX="230" layoutY="140" text="Input the parameters required" styleClass="whitelabels" visible="false">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
         <Button fx:id="addLPGButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
                 prefHeight="75.0"
-                prefWidth="184.0" text="Add" visible="false" />
-        <TextField fx:id="wasteText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
-                   prefWidth="184.0" promptText="Waste(kg/week)" visible="false"/>
-        <Button fx:id="addWasteButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
-                prefHeight="75.0"
-                prefWidth="184.0" text="Add" visible="false" />
+                prefWidth="184.0" text="Add" visible="false" onAction="#addLPGInHouseHold"/>
+
+        <!--Water-->
+        <Button fx:id="waterButton" layoutX="260.0" layoutY="530.0" prefHeight="75.0"
+                prefWidth="184.0" text="Add water" visible="false" onAction="#waterOnClick"/>
         <TextField fx:id="waterText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
-                   prefWidth="184.0" promptText="Water(litres/day)" visible="false"/>
+                   prefWidth="184.0" promptText="Water (litres/day)" visible="false"/>
+        <TextField fx:id="emissionFactorWater" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Emission Factor" visible="false"/>
+        <Label fx:id="waterStatus" layoutX="230" layoutY="140" text="Input the parameters required" styleClass="whitelabels" visible="false">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
         <Button fx:id="addWaterButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
                 prefHeight="75.0"
-                prefWidth="184.0" text="Add" visible="false" />
+                prefWidth="184.0" text="Add" visible="false" onAction="#addWaterInHouseHold"/>
+
+        <!--Waste-->
+        <Button fx:id="wasteButton" layoutX="260.0" layoutY="450.0" prefHeight="75.0"
+                prefWidth="184.0" text="Add waste" visible="false" onAction="#wasteOnClick"/>
+        <TextField fx:id="wasteText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Waste (kg/week)" visible="false"/>
+        <TextField fx:id="emissionFactorWaste" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Emission Factor" visible="false"/>
+        <Label fx:id="wasteStatus" layoutX="230" layoutY="140" text="Input the parameters required" styleClass="whitelabels" visible="false">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
+        <Button fx:id="addWasteButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
+                prefHeight="75.0"
+                prefWidth="184.0" text="Add" visible="false" onAction="#addWasteInHouseHold"/>
+
     </Pane>
     <Pane fx:id="progressWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
     <Pane fx:id="profileWindow" layoutX="222.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"

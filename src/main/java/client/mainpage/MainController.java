@@ -238,15 +238,6 @@ public class MainController {
     private Button fuelOilButton;
 
     @FXML
-    private Button lpgButton;
-
-    @FXML
-    private Button wasteButton;
-
-    @FXML
-    private Button waterButton;
-
-    @FXML
     private TextField electricityText;
 
     @FXML
@@ -259,16 +250,13 @@ public class MainController {
     private Label naturalGasStatus;
 
     @FXML
+    private Label fuelOilStatus;
+
+    @FXML
     private TextField fuelOilText;
 
     @FXML
-    private TextField lpgText;
-
-    @FXML
-    private TextField wasteText;
-
-    @FXML
-    private TextField waterText;
+    private TextField emissionFactorFuelOil;
 
     @FXML
     private Button addElectricityButton;
@@ -278,15 +266,6 @@ public class MainController {
 
     @FXML
     private Button addFuelOilButton;
-
-    @FXML
-    private Button addLPGButton;
-
-    @FXML
-    private Button addWasteButton;
-
-    @FXML
-    private Button addWaterButton;
 
     @FXML
     private Button backToHouseHoldPageButton;
@@ -299,6 +278,57 @@ public class MainController {
 
     @FXML
     private TextField emissionFactorElectricity;
+
+            /** ID activation for LPG */
+    @FXML
+    private Button addLPGButton;
+
+    @FXML
+    private TextField lpgText;
+
+    @FXML
+    private Button lpgButton;
+
+    @FXML
+    private Label LPGStatus;
+
+    @FXML
+    private TextField emissionFactorLPG;
+
+            /** ID activation for waste */
+
+    @FXML
+    private Button wasteButton;
+
+    @FXML
+    private TextField wasteText;
+
+    @FXML
+    private TextField emissionFactorWaste;
+
+    @FXML
+    private Label wasteStatus;
+
+    @FXML
+    private Button addWasteButton;
+
+            /** ID activation for water */
+
+    @FXML
+    private Button waterButton;
+
+    @FXML
+    private TextField waterText;
+
+    @FXML
+    private TextField emissionFactorWater;
+
+    @FXML
+    private Label waterStatus;
+
+    @FXML
+    private Button addWaterButton;
+
 
 
     private RestTemplate restTemplate = new RestTemplate();
@@ -435,6 +465,29 @@ public class MainController {
         naturalGasText.setVisible(false);
         emissionFactorNaturalGas.setVisible(false);
         addNaturalGasButton.setVisible(false);
+                    /** Fuel oil **/
+        fuelOilText.setVisible(false);
+        emissionFactorFuelOil.setVisible(false);
+        fuelOilStatus.setVisible(false);
+        addFuelOilButton.setVisible(false);
+
+                    /** LPG **/
+        lpgText.setVisible(false);
+        emissionFactorLPG.setVisible(false);
+        LPGStatus.setVisible(false);
+        addLPGButton.setVisible(false);
+
+                    /** Waste **/
+        wasteText.setVisible(false);
+        emissionFactorWaste.setVisible(false);
+        wasteStatus.setVisible(false);
+        addWasteButton.setVisible(false);
+
+                    /** Water **/
+        waterText.setVisible(false);
+        emissionFactorWater.setVisible(false);
+        waterStatus.setVisible(false);
+        addWaterButton.setVisible(false);
     }
 
     /**
@@ -622,6 +675,26 @@ public class MainController {
         naturalGasText.setVisible(false);
         naturalGasStatus.setVisible(false);
         emissionFactorNaturalGas.setVisible(false);
+        /** Fuel Oil **/
+        fuelOilText.setVisible(false);
+        emissionFactorFuelOil.setVisible(false);
+        fuelOilStatus.setVisible(false);
+        addFuelOilButton.setVisible(false);
+        /** LPG **/
+        lpgText.setVisible(false);
+        emissionFactorLPG.setVisible(false);
+        LPGStatus.setVisible(false);
+        addLPGButton.setVisible(false);
+        /** Waste **/
+        wasteText.setVisible(false);
+        emissionFactorWaste.setVisible(false);
+        wasteStatus.setVisible(false);
+        addWasteButton.setVisible(false);
+        /** Water **/
+        waterText.setVisible(false);
+        emissionFactorWater.setVisible(false);
+        waterStatus.setVisible(false);
+        addWaterButton.setVisible(false);
     }
 
     public void electricityButtonOnClick(ActionEvent event) {
@@ -651,6 +724,70 @@ public class MainController {
         emissionFactorNaturalGas.setVisible(true);
         addNaturalGasButton.setVisible(true);
         backToEmissionPageButtonHousehold.setVisible(false);
+        backToHouseHoldPageButton.setVisible(true);
+    }
+
+    public void fuelOilOnClick(ActionEvent event) {
+        electricityButton.setVisible(false);
+        naturalGasButton.setVisible(false);
+        fuelOilButton.setVisible(false);
+        lpgButton.setVisible(false);
+        wasteButton.setVisible(false);
+        waterButton.setVisible(false);
+        backToEmissionPageButtonHousehold.setVisible(false);
+
+        fuelOilText.setVisible(true);
+        emissionFactorFuelOil.setVisible(true);
+        fuelOilStatus.setVisible(true);
+        addFuelOilButton.setVisible(true);
+        backToHouseHoldPageButton.setVisible(true);
+    }
+
+    public void LPGOnClick(ActionEvent event) {
+        electricityButton.setVisible(false);
+        naturalGasButton.setVisible(false);
+        fuelOilButton.setVisible(false);
+        lpgButton.setVisible(false);
+        wasteButton.setVisible(false);
+        waterButton.setVisible(false);
+        backToEmissionPageButtonHousehold.setVisible(false);
+
+        lpgText.setVisible(true);
+        emissionFactorLPG.setVisible(true);
+        LPGStatus.setVisible(true);
+        addLPGButton.setVisible(true);
+        backToHouseHoldPageButton.setVisible(true);
+    }
+
+    public void wasteOnClick(ActionEvent event) {
+        electricityButton.setVisible(false);
+        naturalGasButton.setVisible(false);
+        fuelOilButton.setVisible(false);
+        lpgButton.setVisible(false);
+        wasteButton.setVisible(false);
+        waterButton.setVisible(false);
+        backToEmissionPageButtonHousehold.setVisible(false);
+
+        wasteText.setVisible(true);
+        emissionFactorWaste.setVisible(true);
+        wasteStatus.setVisible(true);
+        addWasteButton.setVisible(true);
+        backToHouseHoldPageButton.setVisible(true);
+    }
+
+    public void waterOnClick(ActionEvent event) {
+        electricityButton.setVisible(false);
+        naturalGasButton.setVisible(false);
+        fuelOilButton.setVisible(false);
+        lpgButton.setVisible(false);
+        wasteButton.setVisible(false);
+        waterButton.setVisible(false);
+        backToEmissionPageButtonHousehold.setVisible(false);
+
+        waterText.setVisible(true);
+        emissionFactorWater.setVisible(true);
+        waterStatus.setVisible(true);
+        addWaterButton.setVisible(true);
         backToHouseHoldPageButton.setVisible(true);
     }
 
@@ -974,6 +1111,110 @@ public class MainController {
     }
 
     /**
+     * This methods adds fuel oil used in household in to the user's database.
+     */
+    public void addFuelInHouseHold() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptyFuelOilBoxes()) {
+//            Double naturalGasUsage = Double.valueOf(naturalGasText.getText());
+//            Double emissionFactor = Double.valueOf(emissionFactorNaturalGas.getText());
+//            NaturalGasEmission naturalGasEmission = new NaturalGasEmission(
+//                    naturalGasUsage);
+//            JwtUser jwtUser = jwtValidator.validate(token);
+//            // use(therms/yr) * EF(kgC02/therms) = emissions(kg CO2)
+//            //divided by 1000 to convert it into tonnes
+//            float carbonEmission = (naturalGasUsage.floatValue() * emissionFactor.floatValue()) / 1000;
+//            String number = String.format("%.5f", carbonEmission);
+//            naturalGasStatus.setText("You have saved: " + number + " tons of CO2");
+//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+//            Date today = Calendar.getInstance().getTime();
+//            EmissionsClient emissionsClient = new EmissionsClient("6", carbonEmission, today);
+//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+//                    jwtUser.getId(), emissionsClient, token);
+//            System.out.println(response);
+        }
+    }
+
+    /**
+     * This methods adds LPG used in household in to the user's database.
+     */
+    public void addLPGInHouseHold() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptyLPGBoxes()) {
+//            Double naturalGasUsage = Double.valueOf(naturalGasText.getText());
+//            Double emissionFactor = Double.valueOf(emissionFactorNaturalGas.getText());
+//            NaturalGasEmission naturalGasEmission = new NaturalGasEmission(
+//                    naturalGasUsage);
+//            JwtUser jwtUser = jwtValidator.validate(token);
+//            // use(therms/yr) * EF(kgC02/therms) = emissions(kg CO2)
+//            //divided by 1000 to convert it into tonnes
+//            float carbonEmission = (naturalGasUsage.floatValue() * emissionFactor.floatValue()) / 1000;
+//            String number = String.format("%.5f", carbonEmission);
+//            naturalGasStatus.setText("You have saved: " + number + " tons of CO2");
+//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+//            Date today = Calendar.getInstance().getTime();
+//            EmissionsClient emissionsClient = new EmissionsClient("6", carbonEmission, today);
+//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+//                    jwtUser.getId(), emissionsClient, token);
+//            System.out.println(response);
+        }
+    }
+
+    /**
+     * This methods adds waste used in household in to the user's database.
+     */
+    public void addWasteInHouseHold() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptyWasteBoxes()) {
+//            Double naturalGasUsage = Double.valueOf(naturalGasText.getText());
+//            Double emissionFactor = Double.valueOf(emissionFactorNaturalGas.getText());
+//            NaturalGasEmission naturalGasEmission = new NaturalGasEmission(
+//                    naturalGasUsage);
+//            JwtUser jwtUser = jwtValidator.validate(token);
+//            // use(therms/yr) * EF(kgC02/therms) = emissions(kg CO2)
+//            //divided by 1000 to convert it into tonnes
+//            float carbonEmission = (naturalGasUsage.floatValue() * emissionFactor.floatValue()) / 1000;
+//            String number = String.format("%.5f", carbonEmission);
+//            naturalGasStatus.setText("You have saved: " + number + " tons of CO2");
+//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+//            Date today = Calendar.getInstance().getTime();
+//            EmissionsClient emissionsClient = new EmissionsClient("6", carbonEmission, today);
+//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+//                    jwtUser.getId(), emissionsClient, token);
+//            System.out.println(response);
+        }
+    }
+
+    /**
+     * This methods adds water used in household in to the user's database.
+     */
+    public void addWaterInHouseHold() {
+        final String token = UserToken.getUserToken();
+
+        if (!emptyWaterBoxes()) {
+//            Double naturalGasUsage = Double.valueOf(naturalGasText.getText());
+//            Double emissionFactor = Double.valueOf(emissionFactorNaturalGas.getText());
+//            NaturalGasEmission naturalGasEmission = new NaturalGasEmission(
+//                    naturalGasUsage);
+//            JwtUser jwtUser = jwtValidator.validate(token);
+//            // use(therms/yr) * EF(kgC02/therms) = emissions(kg CO2)
+//            //divided by 1000 to convert it into tonnes
+//            float carbonEmission = (naturalGasUsage.floatValue() * emissionFactor.floatValue()) / 1000;
+//            String number = String.format("%.5f", carbonEmission);
+//            naturalGasStatus.setText("You have saved: " + number + " tons of CO2");
+//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+//            Date today = Calendar.getInstance().getTime();
+//            EmissionsClient emissionsClient = new EmissionsClient("6", carbonEmission, today);
+//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+//                    jwtUser.getId(), emissionsClient, token);
+//            System.out.println(response);
+        }
+    }
+
+    /**
      * This method handles the functionality of giving an error when
      * any of the fields in the adding a vegetarian meal is empty.
      * @return boolean - returns true if the field is null or empty and false if not.
@@ -1041,6 +1282,46 @@ public class MainController {
     private boolean emptyNaturalGasBoxes() {
         if (checkEmptyOrNullBox(
                 naturalGasText, emissionFactorNaturalGas)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptyFuelOilBoxes() {
+        if (checkEmptyOrNullBox
+                (fuelOilText, emissionFactorFuelOil)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptyLPGBoxes() {
+        if (checkEmptyOrNullBox
+                (lpgText, emissionFactorLPG)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptyWasteBoxes() {
+        if (checkEmptyOrNullBox
+                (wasteText, emissionFactorWaste)) {
+            emptyTextBoxPopup();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean emptyWaterBoxes() {
+        if (checkEmptyOrNullBox
+                (waterText, emissionFactorWater)) {
             emptyTextBoxPopup();
             return true;
         } else {
