@@ -383,9 +383,9 @@
             </image>
         </ImageView>
         <Button fx:id="electricityButton" layoutX="260.0" layoutY="130.0" prefHeight="75.0"
-                prefWidth="184.0" text="Add electricity" visible="false" onAction="#electricityButtonOnClick"/>
+                prefWidth="184.0" text="Add Electricity" visible="false" onAction="#electricityButtonOnClick"/>
         <Button fx:id="naturalGasButton" layoutX="260.0" layoutY="210.0" prefHeight="75.0"
-                prefWidth="184.0" text="Add natural gas" visible="false" onAction="#naturalGasOnClick" />
+                prefWidth="184.0" text="Add Natural Gas" visible="false" onAction="#naturalGasOnClick" />
         <TextField fx:id="electricityText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
                    prefWidth="184.0" promptText="Electricty  Usage (kWh/yr)" visible="false"/>
         <TextField fx:id="emissionFactorElectricity" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
@@ -420,7 +420,7 @@
 
         <!--Fuel oil-->
         <Button fx:id="fuelOilButton" layoutX="260.0" layoutY="290.0" prefHeight="75.0"
-                prefWidth="184.0" text="Add fuel oil" visible="false" onAction="#fuelOilOnClick"/>
+                prefWidth="184.0" text="Add Fuel Oil" visible="false" onAction="#fuelOilOnClick"/>
         <TextField fx:id="fuelOilText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
                    prefWidth="184.0" promptText="Fuel Oil (litres/yr)" visible="false"/>
         <TextField fx:id="emissionFactorFuelOil" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
@@ -452,7 +452,7 @@
 
         <!--Water-->
         <Button fx:id="waterButton" layoutX="260.0" layoutY="530.0" prefHeight="75.0"
-                prefWidth="184.0" text="Add water" visible="false" onAction="#waterOnClick"/>
+                prefWidth="184.0" text="Add Water" visible="false" onAction="#waterOnClick"/>
         <TextField fx:id="waterText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
                    prefWidth="184.0" promptText="Water (litres/day)" visible="false"/>
         <TextField fx:id="emissionFactorWater" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
@@ -468,7 +468,7 @@
 
         <!--Waste-->
         <Button fx:id="wasteButton" layoutX="260.0" layoutY="450.0" prefHeight="75.0"
-                prefWidth="184.0" text="Add waste" visible="false" onAction="#wasteOnClick"/>
+                prefWidth="184.0" text="Add Waste" visible="false" onAction="#wasteOnClick"/>
         <TextField fx:id="wasteText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
                    prefWidth="184.0" promptText="Waste (kg/week)" visible="false"/>
         <TextField fx:id="emissionFactorWaste" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
