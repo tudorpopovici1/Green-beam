@@ -515,8 +515,9 @@ public class MainController {
         backToTransportationTypePageButton.setVisible(false);
         vegetarianMealStatus.setVisible(false);
         transportationStatus.setVisible(false);
+        addTemperatureButton.setVisible(false);
 
-        /** Emissionspage initial visibility - ride bus button view **/
+        /** Emissionspage initial visi˚bility - ride bus button view **/
         rideABusButton.setVisible(false);
         busIcon.setVisible(false);
         addPublicTransportationButton.setVisible(false);
