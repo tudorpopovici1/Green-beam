@@ -14,11 +14,13 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import server.model.FriendsUserResp;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.TextEvent;
 import java.awt.event.TextListener;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -47,7 +49,12 @@ public class SidePanelController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        friendslistView.getItems().addAll("Iron Man", "Titanic");
+        List<FriendsUserResp> friendsUserRespList = MainController.friendsListProfile;
+        for(FriendsUserResp a : friendsUserRespList) {
+            System.out.println(a.getUsername());
+            friendslistView.getItems().add(a.getUsername());
+        }
+//        friendslistView.getItems().addAll("Iron Man", "Titanic");
 
         searchBarBox.setVisible(false);
     }

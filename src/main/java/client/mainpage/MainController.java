@@ -14,6 +14,7 @@ import javafx.animation.SequentialTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -31,6 +32,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,7 +42,7 @@ import java.util.logging.Logger;
  * once the user logs into the application.
  */
 @SuppressWarnings("Duplicates")
-public class MainController {
+public class MainController implements Initializable {
 
     /** ID activation for the profile page **/
 
@@ -284,6 +287,9 @@ public class MainController {
     private Button addElectricityButton;
 
     @FXML
+    private ImageView electricityIcon;
+
+    @FXML
     private Button addNaturalGasButton;
 
     @FXML
@@ -299,9 +305,15 @@ public class MainController {
     private Label electricityStatus;
 
     @FXML
+    private ImageView fuelOilIcon;
+
+    @FXML
+    private ImageView naturalGasIcon;
+
+    @FXML
     private TextField emissionFactorElectricity;
 
-            /** ID activation for LPG */
+    /** ID activation for LPG */
     @FXML
     private Button addLPGButton;
 
@@ -315,15 +327,21 @@ public class MainController {
     private Label LPGStatus;
 
     @FXML
+    private ImageView LPGIcon;
+
+    @FXML
     private TextField emissionFactorLPG;
 
-            /** ID activation for waste */
+    /** ID activation for waste */
 
     @FXML
     private Button wasteButton;
 
     @FXML
     private TextField wasteText;
+
+    @FXML
+    private ImageView wasteIcon;
 
     @FXML
     private TextField emissionFactorWaste;
@@ -334,10 +352,13 @@ public class MainController {
     @FXML
     private Button addWasteButton;
 
-            /** ID activation for water */
+    /** ID activation for water */
 
     @FXML
     private Button waterButton;
+
+    @FXML
+    private ImageView waterIcon;
 
     @FXML
     private TextField waterText;
@@ -351,7 +372,7 @@ public class MainController {
     @FXML
     private Button addWaterButton;
 
-            /** ID activation for a metro ride */
+    /** ID activation for a metro ride */
 
     @FXML
     private Button rideAMetroButton;
@@ -371,7 +392,7 @@ public class MainController {
     @FXML
     private Button addMetroButton;
 
-            /** ID activation for a taxi ride */
+    /** ID activation for a taxi ride */
 
     @FXML
     private Button rideATaxiButton;
@@ -391,7 +412,7 @@ public class MainController {
     @FXML
     private Button addTaxiButton;
 
-            /** ID activation for a train ride */
+    /** ID activation for a train ride */
 
     @FXML
     private Button rideATrainButton;
@@ -411,7 +432,7 @@ public class MainController {
     @FXML
     private Button addTrainButton;
 
-            /** ID activation for a airplane flight */
+    /** ID activation for a airplane flight **/
 
     @FXML
     private Button rideAPlaneButton;
@@ -431,8 +452,6 @@ public class MainController {
     @FXML
     private Button addPlaneButton;
 
-
-
     private RestTemplate restTemplate = new RestTemplate();
     private ApiService apiService = new ApiService();
     private UserService userService = new UserService();
@@ -440,6 +459,16 @@ public class MainController {
 
     private String userTokenString;
 
+    public static List<FriendsUserResp> friendsListProfile;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("View is now loaded!");
+        JwtUser jwtUser = jwtValidator.validate(UserToken.getUserToken());
+        friendsListProfile = userService.getUserFriends(restTemplate, Url.GET_USER_FRIENDS.getUrl(),
+                jwtUser.getId(), UserToken.getUserToken());
+
+    }
     /**---------------------------- MAIN PAGE -----------------------------------------**/
 
     /**
@@ -515,8 +544,9 @@ public class MainController {
         backToTransportationTypePageButton.setVisible(false);
         vegetarianMealStatus.setVisible(false);
         transportationStatus.setVisible(false);
+        addTemperatureButton.setVisible(false);
 
-        /** Emissionspage initial visibility - ride bus button view **/
+        /** Emissionspage initial visi˚bility - ride bus button view **/
         rideABusButton.setVisible(false);
         busIcon.setVisible(false);
         addPublicTransportationButton.setVisible(false);
@@ -567,29 +597,35 @@ public class MainController {
         naturalGasText.setVisible(false);
         emissionFactorNaturalGas.setVisible(false);
         addNaturalGasButton.setVisible(false);
+        electricityIcon.setVisible(false);
+        naturalGasIcon.setVisible(false);
                     /** Fuel oil **/
         fuelOilText.setVisible(false);
         emissionFactorFuelOil.setVisible(false);
         fuelOilStatus.setVisible(false);
         addFuelOilButton.setVisible(false);
+        fuelOilIcon.setVisible(false);
 
                     /** LPG **/
         lpgText.setVisible(false);
         emissionFactorLPG.setVisible(false);
         LPGStatus.setVisible(false);
         addLPGButton.setVisible(false);
+        LPGIcon.setVisible(false);
 
                     /** Waste **/
         wasteText.setVisible(false);
         emissionFactorWaste.setVisible(false);
         wasteStatus.setVisible(false);
         addWasteButton.setVisible(false);
+        wasteIcon.setVisible(false);
 
                     /** Water **/
         waterText.setVisible(false);
         emissionFactorWater.setVisible(false);
         waterStatus.setVisible(false);
         addWaterButton.setVisible(false);
+        waterIcon.setVisible(false);
 
                     /** Metro **/
         rideAMetroButton.setVisible(false);
@@ -789,6 +825,12 @@ public class MainController {
        wasteButton.setVisible(true);
        waterButton.setVisible(true);
        backToEmissionPageButtonHousehold.setVisible(true);
+       electricityIcon.setVisible(true);
+       naturalGasIcon.setVisible(true);
+        LPGIcon.setVisible(true);
+        fuelOilIcon.setVisible(true);
+        waterIcon.setVisible(true);
+        wasteIcon.setVisible(true);
     }
 
     public void backToHouseHoldPage(ActionEvent event) {
@@ -809,6 +851,12 @@ public class MainController {
         naturalGasText.setVisible(false);
         naturalGasStatus.setVisible(false);
         emissionFactorNaturalGas.setVisible(false);
+        electricityIcon.setVisible(true);
+        naturalGasIcon.setVisible(true);
+        LPGIcon.setVisible(true);
+        fuelOilIcon.setVisible(true);
+        wasteIcon.setVisible(true);
+        waterIcon.setVisible(true);
         /** Fuel Oil **/
         fuelOilText.setVisible(false);
         emissionFactorFuelOil.setVisible(false);
@@ -844,6 +892,12 @@ public class MainController {
         backToEmissionPageButtonHousehold.setVisible(false);
         electricityStatus.setVisible(true);
         emissionFactorElectricity.setVisible(true);
+        electricityIcon.setVisible(false);
+        naturalGasIcon.setVisible(false);
+        LPGIcon.setVisible(false);
+        fuelOilIcon.setVisible(false);
+        waterIcon.setVisible(false);
+        wasteIcon.setVisible(false);
     }
 
     public void naturalGasOnClick(ActionEvent event) {
@@ -859,6 +913,12 @@ public class MainController {
         addNaturalGasButton.setVisible(true);
         backToEmissionPageButtonHousehold.setVisible(false);
         backToHouseHoldPageButton.setVisible(true);
+        electricityIcon.setVisible(false);
+        naturalGasIcon.setVisible(false);
+        LPGIcon.setVisible(false);
+        fuelOilIcon.setVisible(false);
+        waterIcon.setVisible(false);
+        wasteIcon.setVisible(false);
     }
 
     public void fuelOilOnClick(ActionEvent event) {
@@ -875,6 +935,12 @@ public class MainController {
         fuelOilStatus.setVisible(true);
         addFuelOilButton.setVisible(true);
         backToHouseHoldPageButton.setVisible(true);
+        electricityIcon.setVisible(false);
+        naturalGasIcon.setVisible(false);
+        LPGIcon.setVisible(false);
+        fuelOilIcon.setVisible(false);
+        waterIcon.setVisible(false);
+        wasteIcon.setVisible(false);
     }
 
     public void LPGOnClick(ActionEvent event) {
@@ -891,6 +957,12 @@ public class MainController {
         LPGStatus.setVisible(true);
         addLPGButton.setVisible(true);
         backToHouseHoldPageButton.setVisible(true);
+        electricityIcon.setVisible(false);
+        naturalGasIcon.setVisible(false);
+        LPGIcon.setVisible(false);
+        fuelOilIcon.setVisible(false);
+        waterIcon.setVisible(false);
+        wasteIcon.setVisible(false);
     }
 
     public void wasteOnClick(ActionEvent event) {
@@ -907,6 +979,12 @@ public class MainController {
         wasteStatus.setVisible(true);
         addWasteButton.setVisible(true);
         backToHouseHoldPageButton.setVisible(true);
+        electricityIcon.setVisible(false);
+        naturalGasIcon.setVisible(false);
+        LPGIcon.setVisible(false);
+        fuelOilIcon.setVisible(false);
+        waterIcon.setVisible(false);
+        wasteIcon.setVisible(false);
     }
 
     public void waterOnClick(ActionEvent event) {
@@ -923,6 +1001,12 @@ public class MainController {
         waterStatus.setVisible(true);
         addWaterButton.setVisible(true);
         backToHouseHoldPageButton.setVisible(true);
+        electricityIcon.setVisible(false);
+        naturalGasIcon.setVisible(false);
+        LPGIcon.setVisible(false);
+        fuelOilIcon.setVisible(false);
+        waterIcon.setVisible(false);
+        wasteIcon.setVisible(false);
     }
 
 
@@ -1884,6 +1968,16 @@ public class MainController {
         profileWindow.toFront();
         animatePane(profileWindow);
         profileWindow.setStyle("-fx-background-color: white");
+
+        final String token = UserToken.getUserToken();
+        JwtUser jwtUser = jwtValidator.validate(token);
+        List<AchievementsType> achievementsOfUser = userService.getAchievementsOfUser(restTemplate, Url.GET_ACHIEVEMENTS_USER.getUrl(),
+                jwtUser.getId(), token);
+
+//        for(AchievementsType a : achievementsOfUser) {
+//
+//        }
+
 
         try {
             //FXMLLoader loader = new FXMLLoader(getClass().getResource("src/main/java/client/profile_page/side_panel.fxml"));
