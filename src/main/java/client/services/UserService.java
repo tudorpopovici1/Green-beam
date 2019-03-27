@@ -92,19 +92,19 @@ public class UserService {
         return list;
     }
 
-    public String getUsername(final RestTemplate restTemplate, final String url,
-                              final Long userId) {
-        String responseString = "";
+    public Long getUsername(final RestTemplate restTemplate, final String url,
+                              final String username) {
+        Long userId = -1L;
         try {
-            ResponseEntity<String> responseEntity = restTemplate.exchange(url + "/" + userId, HttpMethod.GET, new HttpEntity<>(new HttpHeaders()),
-                    String.class);
+            ResponseEntity<Long> responseEntity = restTemplate.exchange(url + "/" + username, HttpMethod.GET, new HttpEntity<>(new HttpHeaders()),
+                    Long.class);
             if(responseEntity.getBody() != null) {
-                responseString = responseEntity.getBody();
+                userId = responseEntity.getBody();
             }
         } catch (HttpStatusCodeException e) {
 
         }
-        return responseString;
+        return userId;
     }
 
     public String addFriend(final RestTemplate restTemplate, final String url,
