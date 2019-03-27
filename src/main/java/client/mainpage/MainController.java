@@ -1608,15 +1608,15 @@ public class MainController {
         final String token = UserToken.getUserToken();
 
         if (!emptyWasteBoxes()) {
-            Double waterUsage = Double.valueOf(waterText.getText());
-            Double emissionFactor = Double.valueOf(emissionFactorWater.getText());
-            WasteEmission wasteEmission = new WasteEmission(waterUsage);
+            Double wasteUsage = Double.valueOf(wasteText.getText());
+            Double emissionFactor = Double.valueOf(emissionFactorWaste.getText());
+            WasteEmission wasteEmission = new WasteEmission(wasteUsage);
             JwtUser jwtUser = jwtValidator.validate(token);
-            // use(litres/yr) * EF(kgC02/litres) = emissions(kg CO2)
+            // use(kg/week) * EF(kgC02/kg) = emissions(kg CO2)
             //divided by 1000 to convert it into tonnes
-            float carbonEmission = (waterUsage.floatValue() * emissionFactor.floatValue()) / 1000;
+            float carbonEmission = (wasteUsage.floatValue() * emissionFactor.floatValue()) / 1000;
             String number = String.format("%.5f", carbonEmission);
-            waterStatus.setText("You have saved: " + number + " tons of CO2");
+            wasteStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
             EmissionsClient emissionsClient = new EmissionsClient("6", carbonEmission, today);
@@ -1635,7 +1635,7 @@ public class MainController {
         if (!emptyWaterBoxes()) {
             Double waterUsage = Double.valueOf(waterText.getText());
             Double emissionFactor = Double.valueOf(emissionFactorWater.getText());
-            WasteEmission wasteEmission = new WasteEmission(waterUsage);
+            WaterEmission waterEmission = new WaterEmission(waterUsage);
             JwtUser jwtUser = jwtValidator.validate(token);
             // use(litres/yr) * EF(kgC02/litres) = emissions(kg CO2)
             //divided by 1000 to convert it into tonnes
