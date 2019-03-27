@@ -1405,22 +1405,19 @@ public class MainController {
         final String token = UserToken.getUserToken();
 
         if (!emptyTrainRideBoxes()) {
-//            Float numberOfKilometers = Float.parseFloat(numberOfMilesText.getText());
-//            Float numberOfMiles = numberOfKilometers * 1.6f;
-//            int fuelType = Integer.parseInt(fuelTypeText.getText());
-//            BikeRide ride = new BikeRide(numberOfMiles,
-//                    Float.parseFloat(carMileageText.getText()),
-//                    fuelType);
-//            JwtUser jwtUser = jwtValidator.validate(token);
-//            float carbonEmission = apiService.getRideBikeEmissions(ride);
-//            String number = String.format("%.5f", carbonEmission);
-//            transportationStatus.setText("You have saved: " + number + " tons of CO2");
-//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
-//            Date today = Calendar.getInstance().getTime();
-//            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
-//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
-//                    jwtUser.getId(), emissionsClient, token);
-//            System.out.println(response);
+            Float numberOfKilometers = Float.parseFloat(trainText.getText());
+            Float emissionFactor = Float.parseFloat(emissionFactorTrain.getText());
+            TrainRide trainRide = new TrainRide(numberOfKilometers, emissionFactor);
+            JwtUser jwtUser = jwtValidator.validate(token);
+            float carbonEmission = numberOfKilometers * emissionFactor;
+            String number = String.format("%.5f", carbonEmission);
+            trainStatus.setText("You have saved: " + number + " tons of CO2");
+            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+            Date today = Calendar.getInstance().getTime();
+            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
+            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                    jwtUser.getId(), emissionsClient, token);
+            System.out.println(response);
         }
     }
 
