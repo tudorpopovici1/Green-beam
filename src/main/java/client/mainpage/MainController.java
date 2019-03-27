@@ -1359,22 +1359,19 @@ public class MainController {
         final String token = UserToken.getUserToken();
 
         if (!emptyMetroRideBoxes()) {
-//            Float numberOfKilometers = Float.parseFloat(numberOfMilesText.getText());
-//            Float numberOfMiles = numberOfKilometers * 1.6f;
-//            int fuelType = Integer.parseInt(fuelTypeText.getText());
-//            BikeRide ride = new BikeRide(numberOfMiles,
-//                    Float.parseFloat(carMileageText.getText()),
-//                    fuelType);
-//            JwtUser jwtUser = jwtValidator.validate(token);
-//            float carbonEmission = apiService.getRideBikeEmissions(ride);
-//            String number = String.format("%.5f", carbonEmission);
-//            transportationStatus.setText("You have saved: " + number + " tons of CO2");
-//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
-//            Date today = Calendar.getInstance().getTime();
-//            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
-//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
-//                    jwtUser.getId(), emissionsClient, token);
-//            System.out.println(response);
+            Float numberOfKilometers = Float.parseFloat(metroText.getText());
+            Float emissionFactor = Float.parseFloat(emissionFactorMetro.getText());
+            MetroRide metroRide = new MetroRide(numberOfKilometers, emissionFactor);
+            JwtUser jwtUser = jwtValidator.validate(token);
+            float carbonEmission = numberOfKilometers * emissionFactor;
+            String number = String.format("%.5f", carbonEmission);
+            metroStatus.setText("You have saved: " + number + " tons of CO2");
+            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+            Date today = Calendar.getInstance().getTime();
+            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
+            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                    jwtUser.getId(), emissionsClient, token);
+            System.out.println(response);
         }
     }
 
@@ -1385,22 +1382,19 @@ public class MainController {
         final String token = UserToken.getUserToken();
 
         if (!emptyTaxiRideBoxes()) {
-//            Float numberOfKilometers = Float.parseFloat(numberOfMilesText.getText());
-//            Float numberOfMiles = numberOfKilometers * 1.6f;
-//            int fuelType = Integer.parseInt(fuelTypeText.getText());
-//            BikeRide ride = new BikeRide(numberOfMiles,
-//                    Float.parseFloat(carMileageText.getText()),
-//                    fuelType);
-//            JwtUser jwtUser = jwtValidator.validate(token);
-//            float carbonEmission = apiService.getRideBikeEmissions(ride);
-//            String number = String.format("%.5f", carbonEmission);
-//            transportationStatus.setText("You have saved: " + number + " tons of CO2");
-//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
-//            Date today = Calendar.getInstance().getTime();
-//            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
-//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
-//                    jwtUser.getId(), emissionsClient, token);
-//            System.out.println(response);
+           Float numberOfKilometers = Float.parseFloat(taxiText.getText());
+            Float emissionFactor = Float.parseFloat(emissionFactorTaxi.getText());
+            TaxiRide taxiRide = new TaxiRide(numberOfKilometers, emissionFactor);
+            JwtUser jwtUser = jwtValidator.validate(token);
+            float carbonEmission = numberOfKilometers * emissionFactor;
+            String number = String.format("%.5f", carbonEmission);
+            taxiStatus.setText("You have saved: " + number + " tons of CO2");
+            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+            Date today = Calendar.getInstance().getTime();
+            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
+            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                    jwtUser.getId(), emissionsClient, token);
+            System.out.println(response);
         }
     }
 
@@ -1411,22 +1405,19 @@ public class MainController {
         final String token = UserToken.getUserToken();
 
         if (!emptyTrainRideBoxes()) {
-//            Float numberOfKilometers = Float.parseFloat(numberOfMilesText.getText());
-//            Float numberOfMiles = numberOfKilometers * 1.6f;
-//            int fuelType = Integer.parseInt(fuelTypeText.getText());
-//            BikeRide ride = new BikeRide(numberOfMiles,
-//                    Float.parseFloat(carMileageText.getText()),
-//                    fuelType);
-//            JwtUser jwtUser = jwtValidator.validate(token);
-//            float carbonEmission = apiService.getRideBikeEmissions(ride);
-//            String number = String.format("%.5f", carbonEmission);
-//            transportationStatus.setText("You have saved: " + number + " tons of CO2");
-//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
-//            Date today = Calendar.getInstance().getTime();
-//            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
-//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
-//                    jwtUser.getId(), emissionsClient, token);
-//            System.out.println(response);
+            Float numberOfKilometers = Float.parseFloat(trainText.getText());
+            Float emissionFactor = Float.parseFloat(emissionFactorTrain.getText());
+            TrainRide trainRide = new TrainRide(numberOfKilometers, emissionFactor);
+            JwtUser jwtUser = jwtValidator.validate(token);
+            float carbonEmission = numberOfKilometers * emissionFactor;
+            String number = String.format("%.5f", carbonEmission);
+            trainStatus.setText("You have saved: " + number + " tons of CO2");
+            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+            Date today = Calendar.getInstance().getTime();
+            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
+            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                    jwtUser.getId(), emissionsClient, token);
+            System.out.println(response);
         }
     }
 
@@ -1437,22 +1428,19 @@ public class MainController {
         final String token = UserToken.getUserToken();
 
         if (!emptyPlaneRideBoxes()) {
-//            Float numberOfKilometers = Float.parseFloat(numberOfMilesText.getText());
-//            Float numberOfMiles = numberOfKilometers * 1.6f;
-//            int fuelType = Integer.parseInt(fuelTypeText.getText());
-//            BikeRide ride = new BikeRide(numberOfMiles,
-//                    Float.parseFloat(carMileageText.getText()),
-//                    fuelType);
-//            JwtUser jwtUser = jwtValidator.validate(token);
-//            float carbonEmission = apiService.getRideBikeEmissions(ride);
-//            String number = String.format("%.5f", carbonEmission);
-//            transportationStatus.setText("You have saved: " + number + " tons of CO2");
-//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
-//            Date today = Calendar.getInstance().getTime();
-//            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
-//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
-//                    jwtUser.getId(), emissionsClient, token);
-//            System.out.println(response);
+            Float numberOfKilometers = Float.parseFloat(planeText.getText());
+            Float emissionFactor = Float.parseFloat(emissionFactorPlane.getText());
+            PlaneRide planeRide = new PlaneRide(numberOfKilometers, emissionFactor);
+            JwtUser jwtUser = jwtValidator.validate(token);
+            float carbonEmission = numberOfKilometers * emissionFactor;
+            String number = String.format("%.5f", carbonEmission);
+            planeStatus.setText("You have saved: " + number + " tons of CO2");
+            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+            Date today = Calendar.getInstance().getTime();
+            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
+            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                    jwtUser.getId(), emissionsClient, token);
+            System.out.println(response);
         }
     }
 
