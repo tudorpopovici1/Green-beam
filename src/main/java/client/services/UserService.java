@@ -74,6 +74,24 @@ public class UserService {
         return returnString;
     }
 
+    public List<FriendsUserResp> searchFriends(final RestTemplate restTemplate, final String url,
+                                               final String username) {
+
+        List<FriendsUserResp> list = new ArrayList<>();
+        try {
+            ResponseEntity<FriendsUserResp[]> responseEntity = restTemplate.exchange(url + "/" + username,
+                    HttpMethod.GET, new HttpEntity<>(new HttpHeaders()), FriendsUserResp[].class);
+            if(responseEntity.getBody() != null) {
+                for (FriendsUserResp f : responseEntity.getBody()) {
+                    list.add(f);
+                }
+            }
+        } catch (HttpStatusCodeException e) {
+
+        }
+        return list;
+    }
+
     public String addFriend(final RestTemplate restTemplate, final String url,
                             final Long relatedUserId, final Long relatingUserId, final String token) {
         String returnString = "";
