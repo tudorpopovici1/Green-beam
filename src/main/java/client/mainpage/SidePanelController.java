@@ -1,5 +1,9 @@
 package client.mainpage;
 
+import client.Url;
+import client.UserToken;
+import client.services.ApiService;
+import client.services.UserService;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXPopup;
@@ -14,7 +18,11 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import org.springframework.web.client.RestTemplate;
+import server.model.AchievementsType;
 import server.model.FriendsUserResp;
+import server.model.JwtUser;
+import server.security.JwtValidator;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.TextEvent;
@@ -47,6 +55,11 @@ public class SidePanelController implements Initializable {
     @FXML
     private ImageView imageSidePanel;
 
+    private RestTemplate restTemplate = new RestTemplate();
+    private ApiService apiService = new ApiService();
+    private UserService userService = new UserService();
+    private JwtValidator jwtValidator = new JwtValidator();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         List<FriendsUserResp> friendsUserRespList = MainController.friendsListProfile;
@@ -67,8 +80,17 @@ public class SidePanelController implements Initializable {
     public void searchClicked(ActionEvent event) {
         searchBarBox.setVisible(false);
         foundFriends.getItems().clear();
+
+        final String token = UserToken.getUserToken();
+        JwtUser jwtUser = jwtValidator.validate(token);
+
+
         if (!(searchFriends.getText() == null) && !(searchFriends.getText().equals(""))) {
-            foundFriends.getItems().add(searchFriends.getText());
+            List<FriendsUserResp> searchedFriends = userService.searchFriends(restTemplate, Url.SEARCH_FRIENDS.getUrl(), searchFriends.getText());
+            for(FriendsUserResp a : searchedFriends) {
+                foundFriends.getItems().add(a.getUsername());
+            }
+//            foundFriends.getItems().add(searchFriends.getText());
             searchBarBox.setVisible(true);
         }
 
@@ -95,7 +117,17 @@ public class SidePanelController implements Initializable {
      */
     public void addFriendsClicked(ActionEvent event) {
         String friend = foundFriends.getSelectionModel().getSelectedItem();
+        final String token = UserToken.getUserToken();
+        JwtUser jwtUser = jwtValidator.validate(token);
+
         if (!(foundFriends.getSelectionModel().getSelectedItem() == null)){
+            Long userid = userService.getUsername(restTemplate, Url.GET_USERNAME.getUrl(), friend);
+            String response = userService.addFriend(restTemplate, Url.ADD_FRIEND.getUrl(), jwtUser.getId(), userid, token);
+            if (response.equals("saved")){
+                System.out.println("succesful");
+            } else {
+                System.out.println("error");
+            }
             friendslistView.getItems().add(friend);
         }
 
