@@ -1558,22 +1558,21 @@ public class MainController {
         final String token = UserToken.getUserToken();
 
         if (!emptyFuelOilBoxes()) {
-//            Double naturalGasUsage = Double.valueOf(naturalGasText.getText());
-//            Double emissionFactor = Double.valueOf(emissionFactorNaturalGas.getText());
-//            NaturalGasEmission naturalGasEmission = new NaturalGasEmission(
-//                    naturalGasUsage);
-//            JwtUser jwtUser = jwtValidator.validate(token);
-//            // use(therms/yr) * EF(kgC02/therms) = emissions(kg CO2)
-//            //divided by 1000 to convert it into tonnes
-//            float carbonEmission = (naturalGasUsage.floatValue() * emissionFactor.floatValue()) / 1000;
-//            String number = String.format("%.5f", carbonEmission);
-//            naturalGasStatus.setText("You have saved: " + number + " tons of CO2");
-//            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
-//            Date today = Calendar.getInstance().getTime();
-//            EmissionsClient emissionsClient = new EmissionsClient("6", carbonEmission, today);
-//            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
-//                    jwtUser.getId(), emissionsClient, token);
-//            System.out.println(response);
+            Double fuelOilUsage = Double.valueOf(fuelOilText.getText());
+            Double emissionFactor = Double.valueOf(emissionFactorFuelOil.getText());
+            FuelOilEmission fuelOilEmission = new FuelOilEmission(fuelOilUsage);
+            JwtUser jwtUser = jwtValidator.validate(token);
+            // use(litres/yr) * EF(kgC02/litres) = emissions(kg CO2)
+            //divided by 1000 to convert it into tonnes
+            float carbonEmission = (fuelOilUsage.floatValue() * emissionFactor.floatValue()) / 1000;
+            String number = String.format("%.5f", carbonEmission);
+            fuelOilStatus.setText("You have saved: " + number + " tons of CO2");
+            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+            Date today = Calendar.getInstance().getTime();
+            EmissionsClient emissionsClient = new EmissionsClient("6", carbonEmission, today);
+            String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
+                    jwtUser.getId(), emissionsClient, token);
+            System.out.println(response);
         }
     }
 
