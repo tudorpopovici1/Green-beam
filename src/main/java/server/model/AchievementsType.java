@@ -21,6 +21,14 @@ public class AchievementsType {
     @Column(name = "achievement_name")
     private String achievementName;
 
+    public AchievementsType(Long achievementId, String achievementName) {
+        this.achievementId = achievementId;
+        this.achievementName = achievementName;
+    }
+
+    public AchievementsType() {
+    }
+
     /**
      * Sets new achievementId.
      *
