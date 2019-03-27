@@ -2,25 +2,37 @@ package client.mainpage;
 
 import client.Url;
 import client.UserToken;
+import client.profile_page.ProfileController;
 import client.services.ApiService;
 import client.services.UserService;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.controls.JFXSlider;
+import com.jfoenix.transitions.hamburger.HamburgerNextArrowBasicTransition;
 import javafx.animation.FadeTransition;
 import javafx.animation.SequentialTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import org.springframework.web.client.RestTemplate;
 import server.model.*;
 import server.security.JwtValidator;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This is the main controller for the application
@@ -28,6 +40,16 @@ import java.util.Date;
  */
 @SuppressWarnings("Duplicates")
 public class MainController {
+
+    /** ID activation for the profile page **/
+
+    @FXML
+    private JFXHamburger hamburger;
+
+    @FXML
+    private JFXDrawer drawer;
+
+    /** ID activation for the main page **/
 
     @FXML
     private Pane mainWindow;
@@ -1878,6 +1900,30 @@ public class MainController {
         profileWindow.toFront();
         animatePane(profileWindow);
         profileWindow.setStyle("-fx-background-color: white");
+
+        try {
+            //FXMLLoader loader = new FXMLLoader(getClass().getResource("src/main/java/client/profile_page/side_panel.fxml"));
+            URL url = new File(
+                    "src/main/java/client/mainpage/fxml/sidepanel.fxml").toURI().toURL();
+            VBox box = FXMLLoader.load(url);
+            //VBox box = FXMLLoader.load(getClass().getResource("client.profile_page.sidepanel.fxml"));
+            drawer.setSidePane(box);
+        } catch (IOException ex) {
+            Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        HamburgerNextArrowBasicTransition transition = new HamburgerNextArrowBasicTransition(hamburger);
+        transition.setRate(-1);
+        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+            transition.setRate(transition.getRate() * -1);
+            transition.play();
+
+            if (drawer.isOpened()) {
+                drawer.close();
+            } else {
+                drawer.open();
+            }
+        });
     }
 
     /**---------------------------- ABOUT US PAGE -----------------------------------------**/
