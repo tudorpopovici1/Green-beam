@@ -16,7 +16,9 @@ import server.exception.BadCredentialsException;
 import server.exception.ResourceNotFoundException;
 import server.exception.UserAlreadyRegistered;
 import server.model.*;
+import server.repository.AchievementRepository;
 import server.repository.EmissionRepository;
+import server.repository.FriendsRepository;
 import server.repository.UserRepository;
 import server.security.JwtGenerator;
 
@@ -41,6 +43,12 @@ public class UnitUserControllerTest {
     private UserRepository userRepository;
 
     @Mock
+    private FriendsRepository friendsRepository;
+
+    @Mock
+    private AchievementRepository achievementRepository;
+
+    @Mock
     private EmissionRepository emissionRepository;
 
     private static Users user1;
@@ -50,6 +58,9 @@ public class UnitUserControllerTest {
 
     private static FriendsUserResp userResp1;
     private static FriendsUserResp userResp2;
+
+    private static Friends friends1;
+    private static Friends friends2;
 
     @Before
     public void setUp() {
@@ -73,6 +84,9 @@ public class UnitUserControllerTest {
                     "country", "userno1@email.com");
             userResp2 = new FriendsUserResp("userno5", dob, "firstName", "lastName",
                     "country", "userno5@email.com");
+
+            friends1 = new Friends(1L, 2L, null);
+            friends2 = new Friends(1L, 3L, null);
 
         } catch(ParseException e) {
             e.printStackTrace();
@@ -405,6 +419,40 @@ public class UnitUserControllerTest {
         Assert.assertTrue(expected.get(4).getCarbonEmission() ==
                 result.get(4).getCarbonEmission());*//*
     }*/
+
+    @Test
+    public void sucessfulAddEmission10times2() throws BadCredentialsException {
+        Date date = Mockito.mock(Date.class);
+        EmissionsClient emissionsClient = new EmissionsClient("1", 1F,
+                date);
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        when(emissionRepository.getNumberTransportationInsteadCar(user1.getId()))
+                .thenReturn(30);
+        when(achievementRepository.getNumberOfSpecificAchievement(5L,
+                user1.getId())).thenReturn(0);
+        String response = userController.addEmissionsBike(httpServletRequest,
+                user1.getId(), emissionsClient);
+    }
+
+    @Test
+    public void sucessfulAddEmission10Fail3() throws BadCredentialsException {
+        Date date = Mockito.mock(Date.class);
+        EmissionsClient emissionsClient = new EmissionsClient("1", 1F,
+                date);
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        when(emissionRepository.getNumberTransportationInsteadCar(user1.getId()))
+                .thenReturn(30);
+        when(achievementRepository.getNumberOfSpecificAchievement(5L,
+                user1.getId())).thenReturn(1);
+        String response = userController.addEmissionsBike(httpServletRequest,
+                user1.getId(), emissionsClient);
+    }
 
     //Helper method of this testing class.
     private String getTokenOfUser(String username, String role, Long id) {
