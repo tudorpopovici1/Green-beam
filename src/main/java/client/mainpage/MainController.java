@@ -284,6 +284,9 @@ public class MainController {
     private Button addElectricityButton;
 
     @FXML
+    private ImageView electricityIcon;
+
+    @FXML
     private Button addNaturalGasButton;
 
     @FXML
@@ -297,6 +300,12 @@ public class MainController {
 
     @FXML
     private Label electricityStatus;
+
+    @FXML
+    private ImageView fuelOilIcon;
+
+    @FXML
+    private ImageView naturalGasIcon;
 
     @FXML
     private TextField emissionFactorElectricity;
@@ -315,6 +324,9 @@ public class MainController {
     private Label LPGStatus;
 
     @FXML
+    private ImageView LPGIcon;
+
+    @FXML
     private TextField emissionFactorLPG;
 
             /** ID activation for waste */
@@ -324,6 +336,9 @@ public class MainController {
 
     @FXML
     private TextField wasteText;
+
+    @FXML
+    private ImageView wasteIcon;
 
     @FXML
     private TextField emissionFactorWaste;
@@ -338,6 +353,9 @@ public class MainController {
 
     @FXML
     private Button waterButton;
+
+    @FXML
+    private ImageView waterIcon;
 
     @FXML
     private TextField waterText;
@@ -568,29 +586,35 @@ public class MainController {
         naturalGasText.setVisible(false);
         emissionFactorNaturalGas.setVisible(false);
         addNaturalGasButton.setVisible(false);
+        electricityIcon.setVisible(false);
+        naturalGasIcon.setVisible(false);
                     /** Fuel oil **/
         fuelOilText.setVisible(false);
         emissionFactorFuelOil.setVisible(false);
         fuelOilStatus.setVisible(false);
         addFuelOilButton.setVisible(false);
+        fuelOilIcon.setVisible(false);
 
                     /** LPG **/
         lpgText.setVisible(false);
         emissionFactorLPG.setVisible(false);
         LPGStatus.setVisible(false);
         addLPGButton.setVisible(false);
+        LPGIcon.setVisible(false);
 
                     /** Waste **/
         wasteText.setVisible(false);
         emissionFactorWaste.setVisible(false);
         wasteStatus.setVisible(false);
         addWasteButton.setVisible(false);
+        wasteIcon.setVisible(false);
 
                     /** Water **/
         waterText.setVisible(false);
         emissionFactorWater.setVisible(false);
         waterStatus.setVisible(false);
         addWaterButton.setVisible(false);
+        waterIcon.setVisible(false);
 
                     /** Metro **/
         rideAMetroButton.setVisible(false);
@@ -790,6 +814,12 @@ public class MainController {
        wasteButton.setVisible(true);
        waterButton.setVisible(true);
        backToEmissionPageButtonHousehold.setVisible(true);
+       electricityIcon.setVisible(true);
+       naturalGasIcon.setVisible(true);
+        LPGIcon.setVisible(true);
+        fuelOilIcon.setVisible(true);
+        waterIcon.setVisible(true);
+        wasteIcon.setVisible(true);
     }
 
     public void backToHouseHoldPage(ActionEvent event) {
@@ -810,6 +840,12 @@ public class MainController {
         naturalGasText.setVisible(false);
         naturalGasStatus.setVisible(false);
         emissionFactorNaturalGas.setVisible(false);
+        electricityIcon.setVisible(true);
+        naturalGasIcon.setVisible(true);
+        LPGIcon.setVisible(true);
+        fuelOilIcon.setVisible(true);
+        wasteIcon.setVisible(true);
+        waterIcon.setVisible(true);
         /** Fuel Oil **/
         fuelOilText.setVisible(false);
         emissionFactorFuelOil.setVisible(false);
@@ -845,6 +881,12 @@ public class MainController {
         backToEmissionPageButtonHousehold.setVisible(false);
         electricityStatus.setVisible(true);
         emissionFactorElectricity.setVisible(true);
+        electricityIcon.setVisible(false);
+        naturalGasIcon.setVisible(false);
+        LPGIcon.setVisible(false);
+        fuelOilIcon.setVisible(false);
+        waterIcon.setVisible(false);
+        wasteIcon.setVisible(false);
     }
 
     public void naturalGasOnClick(ActionEvent event) {
@@ -860,6 +902,12 @@ public class MainController {
         addNaturalGasButton.setVisible(true);
         backToEmissionPageButtonHousehold.setVisible(false);
         backToHouseHoldPageButton.setVisible(true);
+        electricityIcon.setVisible(false);
+        naturalGasIcon.setVisible(false);
+        LPGIcon.setVisible(false);
+        fuelOilIcon.setVisible(false);
+        waterIcon.setVisible(false);
+        wasteIcon.setVisible(false);
     }
 
     public void fuelOilOnClick(ActionEvent event) {
@@ -876,6 +924,12 @@ public class MainController {
         fuelOilStatus.setVisible(true);
         addFuelOilButton.setVisible(true);
         backToHouseHoldPageButton.setVisible(true);
+        electricityIcon.setVisible(false);
+        naturalGasIcon.setVisible(false);
+        LPGIcon.setVisible(false);
+        fuelOilIcon.setVisible(false);
+        waterIcon.setVisible(false);
+        wasteIcon.setVisible(false);
     }
 
     public void LPGOnClick(ActionEvent event) {
@@ -892,6 +946,12 @@ public class MainController {
         LPGStatus.setVisible(true);
         addLPGButton.setVisible(true);
         backToHouseHoldPageButton.setVisible(true);
+        electricityIcon.setVisible(false);
+        naturalGasIcon.setVisible(false);
+        LPGIcon.setVisible(false);
+        fuelOilIcon.setVisible(false);
+        waterIcon.setVisible(false);
+        wasteIcon.setVisible(false);
     }
 
     public void wasteOnClick(ActionEvent event) {
@@ -908,6 +968,12 @@ public class MainController {
         wasteStatus.setVisible(true);
         addWasteButton.setVisible(true);
         backToHouseHoldPageButton.setVisible(true);
+        electricityIcon.setVisible(false);
+        naturalGasIcon.setVisible(false);
+        LPGIcon.setVisible(false);
+        fuelOilIcon.setVisible(false);
+        waterIcon.setVisible(false);
+        wasteIcon.setVisible(false);
     }
 
     public void waterOnClick(ActionEvent event) {
@@ -924,6 +990,12 @@ public class MainController {
         waterStatus.setVisible(true);
         addWaterButton.setVisible(true);
         backToHouseHoldPageButton.setVisible(true);
+        electricityIcon.setVisible(false);
+        naturalGasIcon.setVisible(false);
+        LPGIcon.setVisible(false);
+        fuelOilIcon.setVisible(false);
+        waterIcon.setVisible(false);
+        wasteIcon.setVisible(false);
     }
 
 
