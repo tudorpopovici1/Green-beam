@@ -217,8 +217,7 @@ public class UserController {
 
     @GetMapping("/user/get/friend/request/sent/{id}")
     public List<Friends> friendRequestSend(HttpServletRequest httpServletRequest,
-                               @PathVariable("id") Long id,
-                               @RequestBody List<Friends> getFriendRequestSend)
+                               @PathVariable("id") Long id)
             throws BadCredentialsException {
         String response = "";
         if (isIncorrectUser(httpServletRequest, id)) {

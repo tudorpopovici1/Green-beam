@@ -42,7 +42,9 @@ public class JwtUserDetails implements UserDetails {
     }
 
     @Override
-    public String getUsername() { return null; }
+    public String getUsername() {
+        return null;
+    }
 
     @Override
     public boolean isAccountNonExpired() {
@@ -93,14 +95,13 @@ public class JwtUserDetails implements UserDetails {
     }
 
     @Override
-    public String
-    toString() {
-        return "JwtUserDetails{" +
-                "userName='" + userName + '\'' +
-                ", token='" + token + '\'' +
-                ", id=" + id +
-                ", authorities=" + authorities +
-                '}';
+    public String toString() {
+        return "JwtUserDetails{"
+                + "userName='" + userName + '\''
+                + ", token='" + token + '\''
+                + ", id=" + id
+                + ", authorities=" + authorities
+                + '}';
     }
 
     @Override
