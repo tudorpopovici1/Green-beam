@@ -14,6 +14,7 @@ import javafx.animation.SequentialTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -31,6 +32,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,7 +42,7 @@ import java.util.logging.Logger;
  * once the user logs into the application.
  */
 @SuppressWarnings("Duplicates")
-public class MainController {
+public class MainController implements Initializable {
 
     /** ID activation for the profile page **/
 
@@ -301,7 +304,7 @@ public class MainController {
     @FXML
     private TextField emissionFactorElectricity;
 
-            /** ID activation for LPG */
+    /** ID activation for LPG */
     @FXML
     private Button addLPGButton;
 
@@ -317,7 +320,7 @@ public class MainController {
     @FXML
     private TextField emissionFactorLPG;
 
-            /** ID activation for waste */
+    /** ID activation for waste */
 
     @FXML
     private Button wasteButton;
@@ -334,7 +337,7 @@ public class MainController {
     @FXML
     private Button addWasteButton;
 
-            /** ID activation for water */
+    /** ID activation for water */
 
     @FXML
     private Button waterButton;
@@ -351,7 +354,7 @@ public class MainController {
     @FXML
     private Button addWaterButton;
 
-            /** ID activation for a metro ride */
+    /** ID activation for a metro ride */
 
     @FXML
     private Button rideAMetroButton;
@@ -371,7 +374,7 @@ public class MainController {
     @FXML
     private Button addMetroButton;
 
-            /** ID activation for a taxi ride */
+    /** ID activation for a taxi ride */
 
     @FXML
     private Button rideATaxiButton;
@@ -391,7 +394,7 @@ public class MainController {
     @FXML
     private Button addTaxiButton;
 
-            /** ID activation for a train ride */
+    /** ID activation for a train ride */
 
     @FXML
     private Button rideATrainButton;
@@ -411,7 +414,7 @@ public class MainController {
     @FXML
     private Button addTrainButton;
 
-            /** ID activation for a airplane flight */
+    /** ID activation for a airplane flight **/
 
     @FXML
     private Button rideAPlaneButton;
@@ -431,8 +434,6 @@ public class MainController {
     @FXML
     private Button addPlaneButton;
 
-
-
     private RestTemplate restTemplate = new RestTemplate();
     private ApiService apiService = new ApiService();
     private UserService userService = new UserService();
@@ -440,6 +441,16 @@ public class MainController {
 
     private String userTokenString;
 
+    public static List<FriendsUserResp> friendsListProfile;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("View is now loaded!");
+        JwtUser jwtUser = jwtValidator.validate(UserToken.getUserToken());
+        friendsListProfile = userService.getUserFriends(restTemplate, Url.GET_USER_FRIENDS.getUrl(),
+                jwtUser.getId(), UserToken.getUserToken());
+
+    }
     /**---------------------------- MAIN PAGE -----------------------------------------**/
 
     /**
@@ -1884,6 +1895,16 @@ public class MainController {
         profileWindow.toFront();
         animatePane(profileWindow);
         profileWindow.setStyle("-fx-background-color: white");
+
+        final String token = UserToken.getUserToken();
+        JwtUser jwtUser = jwtValidator.validate(token);
+        List<AchievementsType> achievementsOfUser = userService.getAchievementsOfUser(restTemplate, Url.GET_ACHIEVEMENTS_USER.getUrl(),
+                jwtUser.getId(), token);
+
+//        for(AchievementsType a : achievementsOfUser) {
+//
+//        }
+
 
         try {
             //FXMLLoader loader = new FXMLLoader(getClass().getResource("src/main/java/client/profile_page/side_panel.fxml"));

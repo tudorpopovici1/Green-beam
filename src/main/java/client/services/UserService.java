@@ -221,12 +221,17 @@ public class UserService {
      */
 
     public List<FriendsUserResp> getUserFriends(
-            final RestTemplate restTemplate, final String url, final Long userId) {
+            final RestTemplate restTemplate, final String url, final Long userId, final String token) {
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.set("Authorisation", "Token " + token);
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<EmissionsClient> entity = new HttpEntity<>(httpHeaders);
 
         List<FriendsUserResp> friendsList = new ArrayList<>();
         try {
             ResponseEntity<FriendsUserResp[]> responseEntity =
-                    restTemplate.getForEntity(url + "/" + userId, FriendsUserResp[].class);
+                    restTemplate.exchange(url + "/" + userId, HttpMethod.GET, entity, FriendsUserResp[].class);
 
             if (responseEntity.getBody() != null) {
                 FriendsUserResp[] list = responseEntity.getBody();
