@@ -18,7 +18,7 @@ public interface UserRepository extends JpaRepository<Users, Long> {
             + "(u.username, u.dateOfBirth, u.firstName, "
             + "u.lastName, u.country, u.email) FROM user_data u "
             + "JOIN friends_relationship f ON(u.id = f.relatedUserId) "
-            + "WHERE f.relatingUserId = ?1")
+            + "WHERE f.relatingUserId = ?1 AND f.relationshipType = '1'")
     List<FriendsUserResp> findAllFriendsUser(Long userId);
 
     Users findByUsername(String username);

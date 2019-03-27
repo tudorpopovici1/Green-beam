@@ -97,15 +97,19 @@ public class FriendsUserResp {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof FriendsUserResp)) return false;
-        FriendsUserResp that = (FriendsUserResp) o;
-        return Objects.equals(getUsername(), that.getUsername()) &&
-                Objects.equals(getDateOfBirth(), that.getDateOfBirth()) &&
-                Objects.equals(getFirstName(), that.getFirstName()) &&
-                Objects.equals(getLastName(), that.getLastName()) &&
-                Objects.equals(getCountry(), that.getCountry()) &&
-                Objects.equals(getEmail(), that.getEmail());
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof FriendsUserResp)) {
+            return false;
+        }
+        FriendsUserResp that = (FriendsUserResp) object;
+        return Objects.equals(getUsername(), that.getUsername())
+                && Objects.equals(getDateOfBirth(), that.getDateOfBirth())
+                && Objects.equals(getFirstName(), that.getFirstName())
+                && Objects.equals(getLastName(), that.getLastName())
+                && Objects.equals(getCountry(), that.getCountry())
+                && Objects.equals(getEmail(), that.getEmail());
     }
 }

@@ -287,6 +287,9 @@ public class MainController implements Initializable {
     private Button addElectricityButton;
 
     @FXML
+    private ImageView electricityIcon;
+
+    @FXML
     private Button addNaturalGasButton;
 
     @FXML
@@ -300,6 +303,12 @@ public class MainController implements Initializable {
 
     @FXML
     private Label electricityStatus;
+
+    @FXML
+    private ImageView fuelOilIcon;
+
+    @FXML
+    private ImageView naturalGasIcon;
 
     @FXML
     private TextField emissionFactorElectricity;
@@ -318,6 +327,9 @@ public class MainController implements Initializable {
     private Label LPGStatus;
 
     @FXML
+    private ImageView LPGIcon;
+
+    @FXML
     private TextField emissionFactorLPG;
 
     /** ID activation for waste */
@@ -327,6 +339,9 @@ public class MainController implements Initializable {
 
     @FXML
     private TextField wasteText;
+
+    @FXML
+    private ImageView wasteIcon;
 
     @FXML
     private TextField emissionFactorWaste;
@@ -341,6 +356,9 @@ public class MainController implements Initializable {
 
     @FXML
     private Button waterButton;
+
+    @FXML
+    private ImageView waterIcon;
 
     @FXML
     private TextField waterText;
@@ -526,8 +544,9 @@ public class MainController implements Initializable {
         backToTransportationTypePageButton.setVisible(false);
         vegetarianMealStatus.setVisible(false);
         transportationStatus.setVisible(false);
+        addTemperatureButton.setVisible(false);
 
-        /** Emissionspage initial visibility - ride bus button view **/
+        /** Emissionspage initial visi˚bility - ride bus button view **/
         rideABusButton.setVisible(false);
         busIcon.setVisible(false);
         addPublicTransportationButton.setVisible(false);
@@ -578,29 +597,35 @@ public class MainController implements Initializable {
         naturalGasText.setVisible(false);
         emissionFactorNaturalGas.setVisible(false);
         addNaturalGasButton.setVisible(false);
+        electricityIcon.setVisible(false);
+        naturalGasIcon.setVisible(false);
                     /** Fuel oil **/
         fuelOilText.setVisible(false);
         emissionFactorFuelOil.setVisible(false);
         fuelOilStatus.setVisible(false);
         addFuelOilButton.setVisible(false);
+        fuelOilIcon.setVisible(false);
 
                     /** LPG **/
         lpgText.setVisible(false);
         emissionFactorLPG.setVisible(false);
         LPGStatus.setVisible(false);
         addLPGButton.setVisible(false);
+        LPGIcon.setVisible(false);
 
                     /** Waste **/
         wasteText.setVisible(false);
         emissionFactorWaste.setVisible(false);
         wasteStatus.setVisible(false);
         addWasteButton.setVisible(false);
+        wasteIcon.setVisible(false);
 
                     /** Water **/
         waterText.setVisible(false);
         emissionFactorWater.setVisible(false);
         waterStatus.setVisible(false);
         addWaterButton.setVisible(false);
+        waterIcon.setVisible(false);
 
                     /** Metro **/
         rideAMetroButton.setVisible(false);
@@ -800,6 +825,12 @@ public class MainController implements Initializable {
        wasteButton.setVisible(true);
        waterButton.setVisible(true);
        backToEmissionPageButtonHousehold.setVisible(true);
+       electricityIcon.setVisible(true);
+       naturalGasIcon.setVisible(true);
+        LPGIcon.setVisible(true);
+        fuelOilIcon.setVisible(true);
+        waterIcon.setVisible(true);
+        wasteIcon.setVisible(true);
     }
 
     public void backToHouseHoldPage(ActionEvent event) {
@@ -820,6 +851,12 @@ public class MainController implements Initializable {
         naturalGasText.setVisible(false);
         naturalGasStatus.setVisible(false);
         emissionFactorNaturalGas.setVisible(false);
+        electricityIcon.setVisible(true);
+        naturalGasIcon.setVisible(true);
+        LPGIcon.setVisible(true);
+        fuelOilIcon.setVisible(true);
+        wasteIcon.setVisible(true);
+        waterIcon.setVisible(true);
         /** Fuel Oil **/
         fuelOilText.setVisible(false);
         emissionFactorFuelOil.setVisible(false);
@@ -855,6 +892,12 @@ public class MainController implements Initializable {
         backToEmissionPageButtonHousehold.setVisible(false);
         electricityStatus.setVisible(true);
         emissionFactorElectricity.setVisible(true);
+        electricityIcon.setVisible(false);
+        naturalGasIcon.setVisible(false);
+        LPGIcon.setVisible(false);
+        fuelOilIcon.setVisible(false);
+        waterIcon.setVisible(false);
+        wasteIcon.setVisible(false);
     }
 
     public void naturalGasOnClick(ActionEvent event) {
@@ -870,6 +913,12 @@ public class MainController implements Initializable {
         addNaturalGasButton.setVisible(true);
         backToEmissionPageButtonHousehold.setVisible(false);
         backToHouseHoldPageButton.setVisible(true);
+        electricityIcon.setVisible(false);
+        naturalGasIcon.setVisible(false);
+        LPGIcon.setVisible(false);
+        fuelOilIcon.setVisible(false);
+        waterIcon.setVisible(false);
+        wasteIcon.setVisible(false);
     }
 
     public void fuelOilOnClick(ActionEvent event) {
@@ -886,6 +935,12 @@ public class MainController implements Initializable {
         fuelOilStatus.setVisible(true);
         addFuelOilButton.setVisible(true);
         backToHouseHoldPageButton.setVisible(true);
+        electricityIcon.setVisible(false);
+        naturalGasIcon.setVisible(false);
+        LPGIcon.setVisible(false);
+        fuelOilIcon.setVisible(false);
+        waterIcon.setVisible(false);
+        wasteIcon.setVisible(false);
     }
 
     public void LPGOnClick(ActionEvent event) {
@@ -902,6 +957,12 @@ public class MainController implements Initializable {
         LPGStatus.setVisible(true);
         addLPGButton.setVisible(true);
         backToHouseHoldPageButton.setVisible(true);
+        electricityIcon.setVisible(false);
+        naturalGasIcon.setVisible(false);
+        LPGIcon.setVisible(false);
+        fuelOilIcon.setVisible(false);
+        waterIcon.setVisible(false);
+        wasteIcon.setVisible(false);
     }
 
     public void wasteOnClick(ActionEvent event) {
@@ -918,6 +979,12 @@ public class MainController implements Initializable {
         wasteStatus.setVisible(true);
         addWasteButton.setVisible(true);
         backToHouseHoldPageButton.setVisible(true);
+        electricityIcon.setVisible(false);
+        naturalGasIcon.setVisible(false);
+        LPGIcon.setVisible(false);
+        fuelOilIcon.setVisible(false);
+        waterIcon.setVisible(false);
+        wasteIcon.setVisible(false);
     }
 
     public void waterOnClick(ActionEvent event) {
@@ -934,6 +1001,12 @@ public class MainController implements Initializable {
         waterStatus.setVisible(true);
         addWaterButton.setVisible(true);
         backToHouseHoldPageButton.setVisible(true);
+        electricityIcon.setVisible(false);
+        naturalGasIcon.setVisible(false);
+        LPGIcon.setVisible(false);
+        fuelOilIcon.setVisible(false);
+        waterIcon.setVisible(false);
+        wasteIcon.setVisible(false);
     }
 
 
@@ -1401,7 +1474,7 @@ public class MainController implements Initializable {
             metroStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
-            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
+            EmissionsClient emissionsClient = new EmissionsClient("7", carbonEmission, today);
             String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
@@ -1424,7 +1497,7 @@ public class MainController implements Initializable {
             taxiStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
-            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
+            EmissionsClient emissionsClient = new EmissionsClient("8", carbonEmission, today);
             String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
@@ -1447,7 +1520,7 @@ public class MainController implements Initializable {
             trainStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
-            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
+            EmissionsClient emissionsClient = new EmissionsClient("9", carbonEmission, today);
             String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
@@ -1470,7 +1543,7 @@ public class MainController implements Initializable {
             planeStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
-            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
+            EmissionsClient emissionsClient = new EmissionsClient("10", carbonEmission, today);
             String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
@@ -1551,7 +1624,7 @@ public class MainController implements Initializable {
             electricityStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
-            EmissionsClient emissionsClient = new EmissionsClient("6", carbonEmission, today);
+            EmissionsClient emissionsClient = new EmissionsClient("11", carbonEmission, today);
             String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
@@ -1577,7 +1650,7 @@ public class MainController implements Initializable {
             naturalGasStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
-            EmissionsClient emissionsClient = new EmissionsClient("6", carbonEmission, today);
+            EmissionsClient emissionsClient = new EmissionsClient("12", carbonEmission, today);
             String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
@@ -1602,7 +1675,7 @@ public class MainController implements Initializable {
             fuelOilStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
-            EmissionsClient emissionsClient = new EmissionsClient("6", carbonEmission, today);
+            EmissionsClient emissionsClient = new EmissionsClient("13", carbonEmission, today);
             String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
@@ -1627,7 +1700,7 @@ public class MainController implements Initializable {
             LPGStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
-            EmissionsClient emissionsClient = new EmissionsClient("6", carbonEmission, today);
+            EmissionsClient emissionsClient = new EmissionsClient("14", carbonEmission, today);
             String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
@@ -1652,7 +1725,7 @@ public class MainController implements Initializable {
             wasteStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
-            EmissionsClient emissionsClient = new EmissionsClient("6", carbonEmission, today);
+            EmissionsClient emissionsClient = new EmissionsClient("15", carbonEmission, today);
             String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
@@ -1677,7 +1750,7 @@ public class MainController implements Initializable {
             waterStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
-            EmissionsClient emissionsClient = new EmissionsClient("6", carbonEmission, today);
+            EmissionsClient emissionsClient = new EmissionsClient("16", carbonEmission, today);
             String response = userService.addEmissionOfUser(restTemplate, Url.ADD_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);

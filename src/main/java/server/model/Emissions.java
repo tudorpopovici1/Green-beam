@@ -48,7 +48,7 @@ public class Emissions {
         this.date = date;
     }
 
-    public Emissions() {};
+    public Emissions() {}
 
 
     /**
@@ -154,15 +154,19 @@ public class Emissions {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Emissions)) return false;
-        Emissions emissions = (Emissions) o;
-        return Float.compare(emissions.getCarbonFootprint(), getCarbonFootprint()) == 0 &&
-                Objects.equals(getId(), emissions.getId()) &&
-                Objects.equals(getUserId(), emissions.getUserId()) &&
-                Objects.equals(getEmissionType(), emissions.getEmissionType()) &&
-                Objects.equals(getDate(), emissions.getDate());
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof Emissions)) {
+            return false;
+        }
+        Emissions emissions = (Emissions) object;
+        return Float.compare(emissions.getCarbonFootprint(), getCarbonFootprint()) == 0
+                && Objects.equals(getId(), emissions.getId())
+                && Objects.equals(getUserId(), emissions.getUserId())
+                && Objects.equals(getEmissionType(), emissions.getEmissionType())
+                && Objects.equals(getDate(), emissions.getDate());
     }
 
 }
