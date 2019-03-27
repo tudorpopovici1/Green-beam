@@ -92,6 +92,21 @@ public class UserService {
         return list;
     }
 
+    public String getUsername(final RestTemplate restTemplate, final String url,
+                              final Long userId) {
+        String responseString = "";
+        try {
+            ResponseEntity<String> responseEntity = restTemplate.exchange(url + "/" + userId, HttpMethod.GET, new HttpEntity<>(new HttpHeaders()),
+                    String.class);
+            if(responseEntity.getBody() != null) {
+                responseString = responseEntity.getBody();
+            }
+        } catch (HttpStatusCodeException e) {
+
+        }
+        return responseString;
+    }
+
     public String addFriend(final RestTemplate restTemplate, final String url,
                             final Long relatedUserId, final Long relatingUserId, final String token) {
         String returnString = "";

@@ -86,6 +86,12 @@ public class UserController {
         return searchedFriends;
     }
 
+    @GetMapping("/user/get/{id}")
+    public String getUsername(@PathVariable("id") Long userId) {
+        Users user = userRepository.findUserById(userId);
+        return user.getUsername();
+    }
+
     /**
      * Returns the info of a specific user.
      * @param request request object instance
