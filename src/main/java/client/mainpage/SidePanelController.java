@@ -121,13 +121,19 @@ public class SidePanelController implements Initializable {
         JwtUser jwtUser = jwtValidator.validate(token);
 
         if (!(foundFriends.getSelectionModel().getSelectedItem() == null)){
-            Long userid = userService.getUsername(restTemplate, Url.GET_USERNAME.getUrl(), friend);
+            Long userid = userService.getUsername(restTemplate, Url.GET_USERNAME.getUrl(), friend, UserToken.getUserToken());
             String response = userService.addFriend(restTemplate, Url.ADD_FRIEND.getUrl(), jwtUser.getId(), userid, token);
-            if (response.equals("saved")){
-                System.out.println("succesful");
+
+            if(userid != -1) {
+                if (response.equals("saved")){
+                    System.out.println("succesful");
+                } else {
+                    System.out.println("error");
+                }
             } else {
                 System.out.println("error");
             }
+
             friendslistView.getItems().add(friend);
         }
 
