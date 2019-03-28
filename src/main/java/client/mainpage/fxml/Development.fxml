@@ -32,7 +32,7 @@
                    <Image url="@../images/logo2.png" />
                </image>
            </ImageView>
-       <ImageView fitHeight="33.0" fitWidth="28.0" layoutX="7.0" layoutY="28.0">
+       <ImageView fitHeight="33.0" fitWidth="28.0" layoutX="14.0" layoutY="28.0">
            <image>
                <Image url="@../images/usernameIcon.png" />
            </image>
@@ -48,14 +48,14 @@
                   </Label>
                </children>
             </Pane>
-            <JFXListView styleClass="jfx-list-view" />
+            <JFXListView fx:id="pendingFriendsListview" styleClass="jfx-list-view" />
             <HBox prefHeight="77.0" prefWidth="200.0">
                <children>
-                  <JFXButton prefHeight="77.0" prefWidth="100.0" text="ACCEPT" textFill="#ffffa6">
+                  <JFXButton fx:id="acceptFriend" prefHeight="77.0" prefWidth="100.0" text="ACCEPT" textFill="#ffffa6">
                      <font>
                         <Font name="BebasNeue" size="25.0" />
                      </font></JFXButton>
-                  <JFXButton prefHeight="77.0" prefWidth="100.0" text="DECLINE" textFill="#ffffa6">
+                  <JFXButton fx:id="declineFriend" prefHeight="77.0" prefWidth="100.0" text="DECLINE" textFill="#ffffa6">
                      <font>
                         <Font name="BebasNeue" size="25.0" />
                      </font></JFXButton>
@@ -64,7 +64,7 @@
          </children></VBox>
       <Pane layoutY="150.0" prefHeight="200.0" prefWidth="479.0" style="-fx-background-color: #FFFFA6;">
          <children>
-                 <Label fx:id="travelText" layoutX="14.0" layoutY="49.0" text="Total Green Travel:" textFill="#2f2933">
+                 <Label fx:id="greenTravelText" layoutX="14.0" layoutY="49.0" text="Total Green Travel:" textFill="#2f2933">
                <font>
                   <Font name="BebasNeue" size="27.0" />
                </font>
@@ -74,12 +74,12 @@
                   <Font name="BebasNeue" size="27.0" />
                </font>
             </Label>
-             <Label fx:id="totalCO2SavedLabel" alignment="CENTER_RIGHT" layoutX="206.0" layoutY="49.0" prefHeight="36.0" prefWidth="211.0" text="134" textFill="#2f2933">
+             <Label fx:id="totalGreenTravelLabel" alignment="CENTER_RIGHT" layoutX="206.0" layoutY="49.0" prefHeight="36.0" prefWidth="211.0" text="134" textFill="#2f2933">
                  <font>
                      <Font size="25.0" />
                  </font>
              </Label>
-             <Label fx:id="travelLabel" alignment="CENTER_RIGHT" layoutX="206.0" layoutY="115.0" prefHeight="36.0" prefWidth="211.0" text="134" textFill="#2f2933">
+             <Label fx:id="totalCO2SavedLabel" alignment="CENTER_RIGHT" layoutX="206.0" layoutY="115.0" prefHeight="36.0" prefWidth="211.0" text="134" textFill="#2f2933">
                  <font>
                      <Font size="25.0" />
                  </font>
@@ -89,13 +89,13 @@
                   <Font name="BebasNeue" size="27.0" />
                </font>
             </Label>
-            <Label fx:id="travelText11" layoutX="423.0" layoutY="115.0" text="TONS" textFill="#2f2933">
+            <Label fx:id="travelText2" layoutX="423.0" layoutY="115.0" text="TONS" textFill="#2f2933">
                <font>
                   <Font name="BebasNeue" size="27.0" />
                </font>
             </Label>
          </children></Pane>
-      <Label layoutX="37.0" layoutY="28.0" prefHeight="33.0" prefWidth="162.0" text="User:" textFill="WHITE">
+      <Label layoutX="44.0" layoutY="28.0" prefHeight="33.0" text="User:" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
@@ -109,12 +109,12 @@
             </Label>
             <Pane layoutY="40.0" prefHeight="52.0" prefWidth="479.0" style="-fx-background-color: #2F2933;">
                <children>
-                  <Label layoutX="14.0" layoutY="9.0" prefHeight="35.0" prefWidth="218.0" text="FIRST FRIEND" textFill="WHITE">
+                  <Label fx:id="firstFriend" layoutX="14.0" layoutY="9.0" prefHeight="35.0" prefWidth="218.0" text="FIRST FRIEND" textFill="WHITE">
                      <font>
                         <Font name="Gotham-Book" size="20.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="236.0" layoutY="9.0" prefHeight="35.0" prefWidth="169.0" text="AMOUNT" textAlignment="RIGHT" textFill="WHITE">
+                  <Label fx:id="amountFirstFriend" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="236.0" layoutY="9.0" prefHeight="35.0" prefWidth="169.0" text="AMOUNT" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="Gotham-Book" size="20.0" />
                      </font>
@@ -128,12 +128,12 @@
             </Pane>
             <Pane layoutY="92.0" prefHeight="52.0" prefWidth="479.0" style="-fx-background-color: #3B3340;">
                <children>
-                  <Label layoutX="14.0" layoutY="9.0" prefHeight="35.0" prefWidth="218.0" text="FIRST FRIEND" textFill="WHITE">
+                  <Label fx:id="secondFriend" layoutX="14.0" layoutY="9.0" prefHeight="35.0" prefWidth="218.0" text="SECOND FRIEND" textFill="WHITE">
                      <font>
                         <Font name="Gotham-Book" size="20.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="236.0" layoutY="9.0" prefHeight="35.0" prefWidth="169.0" text="AMOUNT" textAlignment="RIGHT" textFill="WHITE">
+                  <Label fx:id="amountSecondFriend" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="236.0" layoutY="9.0" prefHeight="35.0" prefWidth="169.0" text="AMOUNT" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="Gotham-Book" size="20.0" />
                      </font>
@@ -147,12 +147,12 @@
             </Pane>
             <Pane layoutY="144.0" prefHeight="52.0" prefWidth="479.0" style="-fx-background-color: #2F2933;">
                <children>
-                  <Label layoutX="14.0" layoutY="9.0" prefHeight="35.0" prefWidth="218.0" text="FIRST FRIEND" textFill="WHITE">
+                  <Label fx:id="thirdFriend" layoutX="14.0" layoutY="9.0" prefHeight="35.0" prefWidth="218.0" text="THIRD FRIEND" textFill="WHITE">
                      <font>
                         <Font name="Gotham-Book" size="20.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="236.0" layoutY="9.0" prefHeight="35.0" prefWidth="169.0" text="AMOUNT" textAlignment="RIGHT" textFill="WHITE">
+                  <Label fx:id="amountThirdFriend" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="236.0" layoutY="9.0" prefHeight="35.0" prefWidth="169.0" text="AMOUNT" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="Gotham-Book" size="20.0" />
                      </font>
@@ -166,12 +166,12 @@
             </Pane>
             <Pane layoutY="196.0" prefHeight="52.0" prefWidth="479.0" style="-fx-background-color: #3B3340;">
                <children>
-                  <Label layoutX="14.0" layoutY="9.0" prefHeight="35.0" prefWidth="218.0" text="FIRST FRIEND" textFill="WHITE">
+                  <Label fx:id="fourthFriend" layoutX="14.0" layoutY="9.0" prefHeight="35.0" prefWidth="218.0" text="FOURTH FRIEND" textFill="WHITE">
                      <font>
                         <Font name="Gotham-Book" size="20.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="236.0" layoutY="9.0" prefHeight="35.0" prefWidth="169.0" text="AMOUNT" textAlignment="RIGHT" textFill="WHITE">
+                  <Label fx:id="amountFourthFriend" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="236.0" layoutY="9.0" prefHeight="35.0" prefWidth="169.0" text="AMOUNT" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="Gotham-Book" size="20.0" />
                      </font>
@@ -185,12 +185,12 @@
             </Pane>
             <Pane layoutY="248.0" prefHeight="52.0" prefWidth="479.0" style="-fx-background-color: #2F2933;">
                <children>
-                  <Label layoutX="14.0" layoutY="9.0" prefHeight="35.0" prefWidth="218.0" text="FIRST FRIEND" textFill="WHITE">
+                  <Label fx:id="fifthFriend" layoutX="14.0" layoutY="9.0" prefHeight="35.0" prefWidth="218.0" text="FIFTH FRIEND" textFill="WHITE">
                      <font>
                         <Font name="Gotham-Book" size="20.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="236.0" layoutY="9.0" prefHeight="35.0" prefWidth="169.0" text="AMOUNT" textAlignment="RIGHT" textFill="WHITE">
+                  <Label fx:id="amountFifthFriend" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="236.0" layoutY="9.0" prefHeight="35.0" prefWidth="169.0" text="AMOUNT" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="Gotham-Book" size="20.0" />
                      </font>
@@ -209,6 +209,11 @@
             </Label>
             <Separator layoutY="40.0" prefWidth="479.0" />
          </children></Pane>
+      <Label fx:id="usernameMainPage" layoutX="82.0" layoutY="34.0" prefHeight="22.0" prefWidth="108.0" text="Username" textFill="WHITE">
+         <font>
+            <Font name="BebasNeue" size="17.0" />
+         </font>
+      </Label>
    </children>
     <stylesheets>
         <URL value="@../css/MainPage.css" />
