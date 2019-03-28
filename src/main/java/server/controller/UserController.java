@@ -87,7 +87,7 @@ public class UserController {
     }
 
     @GetMapping("/user/get/{username}")
-    public Long getUsername(@PathVariable("id") String username) {
+    public Long getUsername(@PathVariable("username") String username) {
         Users user = userRepository.findByUsername(username);
         return user.getId();
     }
