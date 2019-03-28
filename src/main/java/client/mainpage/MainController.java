@@ -580,7 +580,7 @@ public class MainController implements Initializable {
         mainWindow.setVisible(true);
         mainWindow.toFront();
         animatePane(mainWindow);
-        displayUsernameOnMain(jwtUser.getUserName());
+        displayUsernameOnMain(" " + jwtUser.getUserName());
         String number = String.format("%.5f", emissionFriend.getCarbonEmission());
         totalCO2SavedLabel.setText(number);
     }
@@ -2133,7 +2133,7 @@ public class MainController implements Initializable {
      * @param event - once a user clicks the button linked to
      *              this method, it starts to execute.
      */
-    public void logoutWindow(ActionEvent event) {
+    public void logoutWindow(ActionEvent event) throws IOException {
         LogoutController logoutController = new LogoutController();
         logoutController.logout();
     }
