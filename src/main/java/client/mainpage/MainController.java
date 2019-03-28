@@ -463,7 +463,7 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("View is now loaded!");
+//        System.out.println("View is now loaded!");
         JwtUser jwtUser = jwtValidator.validate(UserToken.getUserToken());
         friendsListProfile = userService.getUserFriends(restTemplate, Url.GET_USER_FRIENDS.getUrl(),
                 jwtUser.getId(), UserToken.getUserToken());

@@ -52,7 +52,7 @@ public class ProfileController implements Initializable {
             Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        System.out.println("View is now loaded!");
+//        System.out.println("View is now loaded!");
         HamburgerNextArrowBasicTransition transition = new HamburgerNextArrowBasicTransition(hamburger);
         transition.setRate(-1);
         hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
