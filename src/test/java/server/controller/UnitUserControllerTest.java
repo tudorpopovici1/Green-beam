@@ -420,6 +420,34 @@ public class UnitUserControllerTest {
                 result.get(4).getCarbonEmission());*//*
     }*/
 
+    @Test (expected = BadCredentialsException.class)
+    public void BadCredentialsEmissionBike() throws BadCredentialsException {
+        Date date = Mockito.mock(Date.class);
+        EmissionsClient emissionsClient = new EmissionsClient("1", 1F,
+                date);
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token ");
+        userController.addEmissionsBike(httpServletRequest, user1.getId(),
+                emissionsClient);
+    }
+
+    @Test
+    public void successfulAddEmission10times() throws BadCredentialsException {
+        Date date = Mockito.mock(Date.class);
+        EmissionsClient emissionsClient = new EmissionsClient("1", 1F,
+                date);
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        when(emissionRepository.getNumberTransportationInsteadCar(user1.getId()))
+                .thenReturn(10);
+        when(achievementRepository.getNumberOfSpecificAchievement(4L,
+                user1.getId())).thenReturn(0);
+        String response = userController.addEmissionsBike(httpServletRequest,
+                user1.getId(), emissionsClient);
+    }
+
     @Test
     public void sucessfulAddEmission10times2() throws BadCredentialsException {
         Date date = Mockito.mock(Date.class);
@@ -432,6 +460,40 @@ public class UnitUserControllerTest {
         when(emissionRepository.getNumberTransportationInsteadCar(user1.getId()))
                 .thenReturn(30);
         when(achievementRepository.getNumberOfSpecificAchievement(5L,
+                user1.getId())).thenReturn(0);
+        String response = userController.addEmissionsBike(httpServletRequest,
+                user1.getId(), emissionsClient);
+    }
+
+    @Test
+    public void successfulAddEmission10timesFail1() throws BadCredentialsException {
+        Date date = Mockito.mock(Date.class);
+        EmissionsClient emissionsClient = new EmissionsClient("1", 1F,
+                date);
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        when(emissionRepository.getNumberTransportationInsteadCar(user1.getId()))
+                .thenReturn(10);
+        when(achievementRepository.getNumberOfSpecificAchievement(4L,
+                user1.getId())).thenReturn(1);
+        String response = userController.addEmissionsBike(httpServletRequest,
+                user1.getId(), emissionsClient);
+    }
+
+    @Test
+    public void successfulAddEmission10timesFail2() throws BadCredentialsException {
+        Date date = Mockito.mock(Date.class);
+        EmissionsClient emissionsClient = new EmissionsClient("1", 1F,
+                date);
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        when(emissionRepository.getNumberTransportationInsteadCar(user1.getId()))
+                .thenReturn(8);
+        when(achievementRepository.getNumberOfSpecificAchievement(4L,
                 user1.getId())).thenReturn(0);
         String response = userController.addEmissionsBike(httpServletRequest,
                 user1.getId(), emissionsClient);
