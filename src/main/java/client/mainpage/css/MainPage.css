@@ -206,6 +206,30 @@
     -fx-text-fill: white;
 }
 
+.buttonspending{
+    -fx-border-color: #018E91;
+    -fx-border-radius:2;
+}
+
+.buttonspending:hover{
+    -fx-background-color: #018E91;
+}
+
+.panetopfriendsone{
+    -fx-background-color: #2F2933;
+}
+
+.panetopfriendsone:hover{
+    -fx-background-color: #3F3745;
+}
+
+.panetopfriendstwo{
+    -fx-background-color: #3B3340;
+}
+
+.panetopfriendstwo:hover{
+    -fx-background-color: #3F3745;
+}
 
 
 

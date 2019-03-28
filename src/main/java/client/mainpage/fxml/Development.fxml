@@ -15,13 +15,14 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="679" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.mainpage.MainController">
+<AnchorPane prefHeight="700.0" prefWidth="679" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.mainpage.TestController">
    <children>
            <ImageView fx:id="userText" fitHeight="700.0" fitWidth="709.0">
                <image>
                    <Image url="@../images/backgrounBush.jpeg" />
                </image>
            </ImageView>
+      <Pane layoutY="650.0" opacity="0.5" prefHeight="50.0" prefWidth="709.0" style="-fx-background-color: black;" />
            <ImageView fx:id="logo1" fitHeight="162.0" fitWidth="149.0" layoutX="180.0" layoutY="-24.0">
                <image>
                    <Image url="@../images/logo1.png" />
@@ -51,11 +52,11 @@
             <JFXListView fx:id="pendingFriendsListview" styleClass="jfx-list-view" />
             <HBox prefHeight="77.0" prefWidth="200.0">
                <children>
-                  <JFXButton fx:id="acceptFriend" prefHeight="77.0" prefWidth="100.0" text="ACCEPT" textFill="#ffffa6">
+                  <JFXButton fx:id="acceptFriend" prefHeight="77.0" prefWidth="100.0" styleClass="buttonspending" text="ACCEPT" textFill="#ffffa6">
                      <font>
                         <Font name="BebasNeue" size="25.0" />
                      </font></JFXButton>
-                  <JFXButton fx:id="declineFriend" prefHeight="77.0" prefWidth="100.0" text="DECLINE" textFill="#ffffa6">
+                  <JFXButton fx:id="declineFriend" prefHeight="77.0" prefWidth="100.0" styleClass="buttonspending" text="DECLINE" textFill="#ffffa6">
                      <font>
                         <Font name="BebasNeue" size="25.0" />
                      </font></JFXButton>
@@ -107,7 +108,7 @@
                   <Font name="BebasNeue" size="27.0" />
                </font>
             </Label>
-            <Pane layoutY="40.0" prefHeight="52.0" prefWidth="479.0" style="-fx-background-color: #2F2933;">
+            <Pane fx:id="paneFirstFriend" layoutY="40.0" prefHeight="52.0" prefWidth="479.0" styleClass="panetopfriendsone">
                <children>
                   <Label fx:id="firstFriend" layoutX="14.0" layoutY="9.0" prefHeight="35.0" prefWidth="218.0" text="FIRST FRIEND" textFill="WHITE">
                      <font>
@@ -119,14 +120,14 @@
                         <Font name="Gotham-Book" size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="410.0" layoutY="9.0" prefHeight="35.0" prefWidth="69.0" text="TONS" textFill="WHITE">
+                  <Label fx:id="tonsFirstFriend" layoutX="410.0" layoutY="9.0" prefHeight="35.0" prefWidth="69.0" text="TONS" textFill="WHITE">
                      <font>
                         <Font name="Gotham-Book" size="20.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane layoutY="92.0" prefHeight="52.0" prefWidth="479.0" style="-fx-background-color: #3B3340;">
+            <Pane fx:id="paneSecondFriend" layoutY="92.0" prefHeight="52.0" prefWidth="479.0" styleClass="panetopfriendstwo">
                <children>
                   <Label fx:id="secondFriend" layoutX="14.0" layoutY="9.0" prefHeight="35.0" prefWidth="218.0" text="SECOND FRIEND" textFill="WHITE">
                      <font>
@@ -138,14 +139,14 @@
                         <Font name="Gotham-Book" size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="410.0" layoutY="9.0" prefHeight="35.0" prefWidth="69.0" text="TONS" textFill="WHITE">
+                  <Label fx:id="tonsSecondFriend" layoutX="410.0" layoutY="9.0" prefHeight="35.0" prefWidth="69.0" text="TONS" textFill="WHITE">
                      <font>
                         <Font name="Gotham-Book" size="20.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane layoutY="144.0" prefHeight="52.0" prefWidth="479.0" style="-fx-background-color: #2F2933;">
+            <Pane fx:id="paneThirdFriend" layoutY="144.0" prefHeight="52.0" prefWidth="479.0" styleClass="panetopfriendsone">
                <children>
                   <Label fx:id="thirdFriend" layoutX="14.0" layoutY="9.0" prefHeight="35.0" prefWidth="218.0" text="THIRD FRIEND" textFill="WHITE">
                      <font>
@@ -157,14 +158,14 @@
                         <Font name="Gotham-Book" size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="410.0" layoutY="9.0" prefHeight="35.0" prefWidth="69.0" text="TONS" textFill="WHITE">
+                  <Label fx:id="tonsThirdFriend" layoutX="410.0" layoutY="9.0" prefHeight="35.0" prefWidth="69.0" text="TONS" textFill="WHITE">
                      <font>
                         <Font name="Gotham-Book" size="20.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane layoutY="196.0" prefHeight="52.0" prefWidth="479.0" style="-fx-background-color: #3B3340;">
+            <Pane fx:id="paneFourthFriend" layoutY="196.0" prefHeight="52.0" prefWidth="479.0" styleClass="panetopfriendstwo">
                <children>
                   <Label fx:id="fourthFriend" layoutX="14.0" layoutY="9.0" prefHeight="35.0" prefWidth="218.0" text="FOURTH FRIEND" textFill="WHITE">
                      <font>
@@ -176,14 +177,14 @@
                         <Font name="Gotham-Book" size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="410.0" layoutY="9.0" prefHeight="35.0" prefWidth="69.0" text="TONS" textFill="WHITE">
+                  <Label fx:id="tonsFourthFriend" layoutX="410.0" layoutY="9.0" prefHeight="35.0" prefWidth="69.0" text="TONS" textFill="WHITE">
                      <font>
                         <Font name="Gotham-Book" size="20.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane layoutY="248.0" prefHeight="52.0" prefWidth="479.0" style="-fx-background-color: #2F2933;">
+            <Pane fx:id="paneFifthFriend" layoutY="248.0" prefHeight="52.0" prefWidth="479.0" styleClass="panetopfriendsone">
                <children>
                   <Label fx:id="fifthFriend" layoutX="14.0" layoutY="9.0" prefHeight="35.0" prefWidth="218.0" text="FIFTH FRIEND" textFill="WHITE">
                      <font>
@@ -195,7 +196,7 @@
                         <Font name="Gotham-Book" size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="410.0" layoutY="9.0" prefHeight="35.0" prefWidth="69.0" text="TONS" textFill="WHITE">
+                  <Label fx:id="tonsFifthFriend" layoutX="410.0" layoutY="9.0" prefHeight="35.0" prefWidth="69.0" text="TONS" textFill="WHITE">
                      <font>
                         <Font name="Gotham-Book" size="20.0" />
                      </font>

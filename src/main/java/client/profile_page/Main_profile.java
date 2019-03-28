@@ -19,9 +19,13 @@ public class Main_profile extends Application {
         try {
             URL url = new File(
                     "src/main/java/client/profile_page/profile.fxml").toURI().toURL();
-            Parent root = FXMLLoader.load(url);
+            URL url1 = new File(
+                    "src/main/java/client/mainpage/fxml/Development.fxml").toURI().toURL();
+
+            Parent root = FXMLLoader.load(url1);
+
             primaryStage.setTitle("Hello World");
-            primaryStage.setScene(new Scene(root, 709, 700));
+            primaryStage.setScene(new Scene(root, 679, 700));
             primaryStage.setResizable(false);
             primaryStage.show();
 
