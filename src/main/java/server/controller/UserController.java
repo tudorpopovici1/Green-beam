@@ -1,5 +1,6 @@
 package server.controller;
 
+import org.apache.tomcat.jni.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.core.parameters.P;
@@ -70,6 +71,9 @@ public class UserController {
         BCryptPasswordEncoder encryptPasswordEncoder = new BCryptPasswordEncoder();
 
         user.setPassword(encryptPasswordEncoder.encode(user.getPassword()));
+
+        Achievements achievements = new Achievements(user.getId(), 6L);
+        achievementRepository.save(achievements);
 
         return userRepository.save(user);
     }
@@ -174,6 +178,20 @@ public class UserController {
             achievementRepository.save(achievements);
         }
 
+        int numberLocalProducts = emissionRepository.getNumberLocalProducts(id);
+        if(achievementRepository.getNumberOfSpecificAchievement(8L, id) == 0
+                && numberLocalProducts >= 10) {
+            Achievements achievements = new Achievements(id, 8L);
+            achievementRepository.save(achievements);
+        }
+
+        int numberSolarPanels = emissionRepository.getSolarPanelsInstalled(id);
+        if(achievementRepository.getNumberOfSpecificAchievement(9L, id) == 0
+                && numberSolarPanels >= 1) {
+            Achievements achievements = new Achievements(id, 9L);
+            achievementRepository.save(achievements);
+        }
+
         response = "Saved";
         return "Saved";
     }
@@ -247,6 +265,7 @@ public class UserController {
 
         friendsRepository.save(friendsFrom);
         friendsRepository.save(friendTo);
+
         return "Saved";
     }
 
