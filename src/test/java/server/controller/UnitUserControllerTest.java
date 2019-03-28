@@ -553,4 +553,94 @@ public class UnitUserControllerTest {
         userController.changePassword("123", 1L, httpServletRequest);
     }
 
+    @Test
+    public void friendReqReceivedSuccessful() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        List<Friends> expected = new ArrayList<>();
+        expected.add(friends1);
+        when(friendsRepository.getFriendRequestRecieved(
+                user1.getId()))
+                .thenReturn(expected);
+        List<Friends> response = userController.friendRequestRecieved(
+                httpServletRequest, user1.getId());
+        Assert.assertEquals(expected.get(0), response.get(0));
+    }
+
+    @Test
+    public void friendReqSentSuccessful() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        List<Friends> expected = new ArrayList<>();
+        expected.add(friends1);
+        when(friendsRepository.getFriendRequestSend(
+                user1.getId()))
+                .thenReturn(expected);
+        List<Friends> response = userController.friendRequestSend(
+                httpServletRequest, user1.getId());
+        Assert.assertEquals(expected.get(0), response.get(0));
+    }
+
+    @Test
+    public void rejectFriendSuccessful() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        String response = userController.rejectFriend(1L, 2L, httpServletRequest);
+        Assert.assertEquals("Deleted", response);
+    }
+
+    @Test
+    public void acceptFriendSuccessful() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        String response = userController.acceptFriend(1L, 2L, httpServletRequest);
+        Assert.assertEquals("Saved", response);
+    }
+
+    @Test
+    public void successfulAddFriends() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        String response = userController.addFriend(1L, 2L, httpServletRequest);
+        Assert.assertEquals("Saved", response);
+    }
+
+    @Test
+    public void searchFriendsSuccessful() {
+        List<FriendsUserResp> expected = new ArrayList<>();
+        expected.add(userResp1);
+        when(userRepository.queryFriends(user1.getUsername()))
+                .thenReturn(expected);
+        List<FriendsUserResp> response = userController
+                .searchFriends(user1.getUsername());
+        Assert.assertEquals(expected.get(0), response.get(0));
+    }
+
+    @Test
+    public void getAchievementsSuccessful() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        List<AchievementsType> expected = new ArrayList<>();
+        AchievementsType achievementsType = new AchievementsType(1L, "123");
+        expected.add(achievementsType);
+        when(achievementRepository.getAllAchievementsTypeOfUser(
+                user1.getId()))
+                .thenReturn(expected);
+        List<AchievementsType> response = userController.getAchievementsUser(httpServletRequest,
+                user1.getId());
+        Assert.assertEquals(expected.get(0), response.get(0));
+    }
+
 }
