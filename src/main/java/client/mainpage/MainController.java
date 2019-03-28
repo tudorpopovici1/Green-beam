@@ -467,7 +467,6 @@ public class MainController implements Initializable {
         JwtUser jwtUser = jwtValidator.validate(UserToken.getUserToken());
         friendsListProfile = userService.getUserFriends(restTemplate, Url.GET_USER_FRIENDS.getUrl(),
                 jwtUser.getId(), UserToken.getUserToken());
-
     }
     /**---------------------------- MAIN PAGE -----------------------------------------**/
 
