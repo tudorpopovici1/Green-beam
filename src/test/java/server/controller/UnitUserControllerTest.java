@@ -569,6 +569,13 @@ public class UnitUserControllerTest {
         Assert.assertEquals(expected.get(0), response.get(0));
     }
 
+    @Test (expected = BadCredentialsException.class)
+    public void BadCredentialsFriendRequestReceived() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token ");
+        userController.friendRequestRecieved(httpServletRequest, 1L);
+    }
+
     @Test
     public void friendReqSentSuccessful() throws BadCredentialsException {
         MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
@@ -585,6 +592,13 @@ public class UnitUserControllerTest {
         Assert.assertEquals(expected.get(0), response.get(0));
     }
 
+    @Test (expected = BadCredentialsException.class)
+    public void BadCredentialsFriendRequestSent() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token ");
+        userController.friendRequestSend(httpServletRequest, 1L);
+    }
+
     @Test
     public void rejectFriendSuccessful() throws BadCredentialsException {
         MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
@@ -593,6 +607,13 @@ public class UnitUserControllerTest {
                 user1.getId()));
         String response = userController.rejectFriend(1L, 2L, httpServletRequest);
         Assert.assertEquals("Deleted", response);
+    }
+
+    @Test(expected = BadCredentialsException.class)
+    public void rejectFriendBadCredentials() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token ");
+        userController.rejectFriend(1L, 2L, httpServletRequest);
     }
 
     @Test
@@ -605,6 +626,13 @@ public class UnitUserControllerTest {
         Assert.assertEquals("Saved", response);
     }
 
+    @Test(expected = BadCredentialsException.class)
+    public void acceptFriendBadCredentials() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token ");
+        userController.acceptFriend(1L, 2L, httpServletRequest);
+    }
+
     @Test
     public void successfulAddFriends() throws BadCredentialsException {
         MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
@@ -613,6 +641,13 @@ public class UnitUserControllerTest {
                 user1.getId()));
         String response = userController.addFriend(1L, 2L, httpServletRequest);
         Assert.assertEquals("Saved", response);
+    }
+
+    @Test (expected = BadCredentialsException.class)
+    public void BadCredentialsAddFriend() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token ");
+        userController.addFriend(1L, 2L, httpServletRequest);
     }
 
     @Test
@@ -641,6 +676,14 @@ public class UnitUserControllerTest {
         List<AchievementsType> response = userController.getAchievementsUser(httpServletRequest,
                 user1.getId());
         Assert.assertEquals(expected.get(0), response.get(0));
+    }
+
+    @Test (expected = BadCredentialsException.class)
+    public void getAchievementsBadCredentials() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token ");
+        userController.getAchievementsUser(httpServletRequest,
+                user1.getId());
     }
 
 }
