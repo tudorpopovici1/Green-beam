@@ -462,4 +462,59 @@ public class UnitUserControllerTest {
         return jwtGenerator.generate(jwtUser);
     }
 
+    @Test
+    public void changeSuccessfulCountry() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+
+        String response = userController.changeCountry("123", 1L, httpServletRequest);
+        Assert.assertEquals("Changed", response);
+    }
+
+    @Test
+    public void changeSuccessfulName() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+
+        String response = userController.changeName("123", 1L, httpServletRequest);
+        Assert.assertEquals("Changed", response);
+    }
+
+    @Test
+    public void changeSuccessfulDob() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        Date date = Mockito.mock(Date.class);
+        String response = userController.changeDateOfBirth(date, 1L, httpServletRequest);
+        Assert.assertEquals("Changed", response);
+    }
+
+    @Test
+    public void changeSuccessfulEmail() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+
+        String response = userController.changeEmail("123", 1L, httpServletRequest);
+        Assert.assertEquals("Changed", response);
+    }
+
+    @Test
+    public void changeSuccessfulPassword() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+
+        String response = userController.changePassword("123", 1L, httpServletRequest);
+        Assert.assertEquals("Changed", response);
+    }
+
 }
