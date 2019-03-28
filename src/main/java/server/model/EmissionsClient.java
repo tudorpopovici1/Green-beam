@@ -87,13 +87,17 @@ public class EmissionsClient {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof EmissionsClient)) return false;
-        EmissionsClient that = (EmissionsClient) o;
-        return Float.compare(that.getCarbonEmission(), getCarbonEmission()) == 0 &&
-                getEmissionType().equals(that.getEmissionType()) &&
-                getDate().equals(that.getDate());
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof EmissionsClient)) {
+            return false;
+        }
+        EmissionsClient that = (EmissionsClient) object;
+        return Float.compare(that.getCarbonEmission(), getCarbonEmission()) == 0
+                && getEmissionType().equals(that.getEmissionType())
+                && getDate().equals(that.getDate());
     }
 
 }

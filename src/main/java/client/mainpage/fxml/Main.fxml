@@ -396,6 +396,36 @@
                 <Font size="20.0"/>
             </font>
         </Label>
+        <ImageView fx:id="electricityIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="130.0">
+            <image>
+                <Image url="@../images/electricityIcon.png"/>
+            </image>
+        </ImageView>
+        <ImageView fx:id="naturalGasIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="210.0">
+            <image>
+                <Image url="@../images/naturalGasIcon.png"/>
+            </image>
+        </ImageView>
+        <ImageView fx:id="fuelOilIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="290.0">
+            <image>
+                <Image url="@../images/fuelIcon.png"/>
+            </image>
+        </ImageView>
+        <ImageView fx:id="LPGIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="370.0">
+            <image>
+                <Image url="@../images/lpgIcon.png"/>
+            </image>
+        </ImageView>
+        <ImageView fx:id="wasteIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="450.0">
+            <image>
+                <Image url="@../images/wasteIcon.png"/>
+            </image>
+        </ImageView>
+        <ImageView fx:id="waterIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="530.0">
+            <image>
+                <Image url="@../images/waterIcon.png"/>
+            </image>
+        </ImageView>
         <Button fx:id="addElectricityButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
                 prefHeight="75.0"
                 prefWidth="184.0" text="Add" visible="false" onAction="#addElectricityInHouseHold" />
@@ -507,7 +537,7 @@
 
         <!--GUI for a Taxi ride-->
         <Button fx:id="rideATaxiButton" layoutX="260.0" layoutY="459.0" mnemonicParsing="false" prefHeight="75.0"
-                prefWidth="184.0" text="Ride Metro" visible="false" onAction="#rideTaxiButtonOnClick"/>
+                prefWidth="184.0" text="Taxi Ride" visible="false" onAction="#rideTaxiButtonOnClick"/>
         <ImageView fx:id="taxiIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="470"
                    visible="false">
             <image>
@@ -529,7 +559,7 @@
 
         <!--GUI for a Train ride-->
         <Button fx:id="rideATrainButton" layoutX="260.0" layoutY="550" mnemonicParsing="false" prefHeight="75.0"
-                prefWidth="184.0" text="Ride Train" visible="false" onAction="#rideTrainButtonOnClick"/>
+                prefWidth="184.0" text="Train Ride" visible="false" onAction="#rideTrainButtonOnClick"/>
         <ImageView fx:id="trainIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="560"
                    visible="false">
             <image>
@@ -551,7 +581,7 @@
 
         <!--GUI for a Airplane flight-->
         <Button fx:id="rideAPlaneButton" layoutX="260.0" layoutY="102" mnemonicParsing="false" prefHeight="75.0"
-                prefWidth="184.0" text="Ride Train" visible="false" onAction="#ridePlaneButtonOnClick"/>
+                prefWidth="184.0" text="Airplane Flight" visible="false" onAction="#ridePlaneButtonOnClick"/>
         <ImageView fx:id="planeIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="107"
                    visible="false">
             <image>

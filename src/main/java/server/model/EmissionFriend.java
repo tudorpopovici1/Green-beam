@@ -61,11 +61,15 @@ public class EmissionFriend {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof EmissionFriend)) return false;
-        EmissionFriend that = (EmissionFriend) o;
-        return Double.compare(that.getCarbonEmission(), getCarbonEmission()) == 0 &&
-                Objects.equals(userName, that.userName);
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof EmissionFriend)) {
+            return false;
+        }
+        EmissionFriend that = (EmissionFriend) object;
+        return Double.compare(that.getCarbonEmission(), getCarbonEmission()) == 0
+                && Objects.equals(userName, that.userName);
     }
 }

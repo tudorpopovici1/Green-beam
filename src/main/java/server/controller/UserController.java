@@ -86,6 +86,12 @@ public class UserController {
         return searchedFriends;
     }
 
+    @GetMapping("/user/get/{username}")
+    public Long getUsername(@PathVariable("id") String username) {
+        Users user = userRepository.findByUsername(username);
+        return user.getId();
+    }
+
     /**
      * Returns the info of a specific user.
      * @param request request object instance
@@ -217,8 +223,7 @@ public class UserController {
 
     @GetMapping("/user/get/friend/request/sent/{id}")
     public List<Friends> friendRequestSend(HttpServletRequest httpServletRequest,
-                               @PathVariable("id") Long id,
-                               @RequestBody List<Friends> getFriendRequestSend)
+                               @PathVariable("id") Long id)
             throws BadCredentialsException {
         String response = "";
         if (isIncorrectUser(httpServletRequest, id)) {

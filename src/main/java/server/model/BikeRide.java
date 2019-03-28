@@ -1,12 +1,25 @@
 package server.model;
 
-import java.util.Objects;
-
 public class BikeRide {
 
     private float numberOfMiles;
     private float carMileage;
     private int fuelType;
+
+    /**
+     * Creates a new BikeRide object.
+     * @param numberOfMiles number of miles of car
+     * @param carMileage car mileage
+     * @param fuelType fuel type of car
+     */
+
+    public BikeRide(float numberOfMiles, float carMileage, int fuelType) {
+        this.numberOfMiles = numberOfMiles;
+        this.carMileage = carMileage;
+        this.fuelType = fuelType;
+    }
+
+    public BikeRide() {}
 
     public float getNumberOfMiles() {
         return numberOfMiles;
@@ -32,30 +45,26 @@ public class BikeRide {
         this.fuelType = fuelType;
     }
 
-    public BikeRide(float numberOfMiles, float carMileage, int fuelType) {
-        this.numberOfMiles = numberOfMiles;
-        this.carMileage = carMileage;
-        this.fuelType = fuelType;
-    }
-
-    public BikeRide() {}
-
     @Override
     public String toString() {
-        return "bikeRide{" +
-                "numberOfMiles=" + numberOfMiles +
-                ", carMileage=" + carMileage +
-                ", fuelType='" + fuelType + '\'' +
-                '}';
+        return "bikeRide{"
+                + "numberOfMiles=" + numberOfMiles
+                + ", carMileage=" + carMileage
+                + ", fuelType='" + fuelType + '\''
+                + '}';
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BikeRide bikeRide = (BikeRide) o;
-        return Float.compare(bikeRide.numberOfMiles, numberOfMiles) == 0 &&
-                Float.compare(bikeRide.carMileage, carMileage) == 0 &&
-                fuelType == bikeRide.fuelType;
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        BikeRide bikeRide = (BikeRide) object;
+        return Float.compare(bikeRide.numberOfMiles, numberOfMiles) == 0
+                && Float.compare(bikeRide.carMileage, carMileage) == 0
+                && fuelType == bikeRide.fuelType;
     }
 }

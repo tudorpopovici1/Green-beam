@@ -1,11 +1,11 @@
 package server.model;
 
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Objects;
 
 @Entity
 @Table(
@@ -81,12 +81,16 @@ class EmissionType {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof EmissionType)) return false;
-        EmissionType that = (EmissionType) o;
-        return Objects.equals(getEmissionId(), that.getEmissionId()) &&
-                Objects.equals(getEmissionName(), that.getEmissionName()) &&
-                Objects.equals(getEmissionType(), that.getEmissionType());
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof EmissionType)) {
+            return false;
+        }
+        EmissionType that = (EmissionType) object;
+        return Objects.equals(getEmissionId(), that.getEmissionId())
+                && Objects.equals(getEmissionName(), that.getEmissionName())
+                && Objects.equals(getEmissionType(), that.getEmissionType());
     }
 }

@@ -74,6 +74,39 @@ public class UserService {
         return returnString;
     }
 
+    public List<FriendsUserResp> searchFriends(final RestTemplate restTemplate, final String url,
+                                               final String username) {
+
+        List<FriendsUserResp> list = new ArrayList<>();
+        try {
+            ResponseEntity<FriendsUserResp[]> responseEntity = restTemplate.exchange(url + "/" + username,
+                    HttpMethod.GET, new HttpEntity<>(new HttpHeaders()), FriendsUserResp[].class);
+            if(responseEntity.getBody() != null) {
+                for (FriendsUserResp f : responseEntity.getBody()) {
+                    list.add(f);
+                }
+            }
+        } catch (HttpStatusCodeException e) {
+
+        }
+        return list;
+    }
+
+    public Long getUsername(final RestTemplate restTemplate, final String url,
+                              final String username) {
+        Long userId = -1L;
+        try {
+            ResponseEntity<Long> responseEntity = restTemplate.exchange(url + "/" + username, HttpMethod.GET, new HttpEntity<>(new HttpHeaders()),
+                    Long.class);
+            if(responseEntity.getBody() != null) {
+                userId = responseEntity.getBody();
+            }
+        } catch (HttpStatusCodeException e) {
+
+        }
+        return userId;
+    }
+
     public String addFriend(final RestTemplate restTemplate, final String url,
                             final Long relatedUserId, final Long relatingUserId, final String token) {
         String returnString = "";
@@ -221,12 +254,17 @@ public class UserService {
      */
 
     public List<FriendsUserResp> getUserFriends(
-            final RestTemplate restTemplate, final String url, final Long userId) {
+            final RestTemplate restTemplate, final String url, final Long userId, final String token) {
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.set("Authorisation", "Token " + token);
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<EmissionsClient> entity = new HttpEntity<>(httpHeaders);
 
         List<FriendsUserResp> friendsList = new ArrayList<>();
         try {
             ResponseEntity<FriendsUserResp[]> responseEntity =
-                    restTemplate.getForEntity(url + "/" + userId, FriendsUserResp[].class);
+                    restTemplate.exchange(url + "/" + userId, HttpMethod.GET, entity, FriendsUserResp[].class);
 
             if (responseEntity.getBody() != null) {
                 FriendsUserResp[] list = responseEntity.getBody();

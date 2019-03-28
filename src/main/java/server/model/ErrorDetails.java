@@ -103,24 +103,28 @@ public class ErrorDetails {
 
     @Override
     public String toString() {
-        return "ErrorDetails{" +
-                "timestamp='" + timestamp + '\'' +
-                ", status=" + status +
-                ", error='" + error + '\'' +
-                ", message='" + message + '\'' +
-                ", path='" + path + '\'' +
-                '}';
+        return "ErrorDetails{"
+                + "timestamp='" + timestamp + '\''
+                + ", status=" + status
+                + ", error='" + error + '\''
+                + ", message='" + message + '\''
+                + ", path='" + path + '\''
+                + '}';
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ErrorDetails)) return false;
-        ErrorDetails that = (ErrorDetails) o;
-        return getStatus() == that.getStatus() &&
-                Objects.equals(getTimestamp(), that.getTimestamp()) &&
-                Objects.equals(getError(), that.getError()) &&
-                Objects.equals(getMessage(), that.getMessage()) &&
-                Objects.equals(getPath(), that.getPath());
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof ErrorDetails)) {
+            return false;
+        }
+        ErrorDetails that = (ErrorDetails) object;
+        return getStatus() == that.getStatus()
+                && Objects.equals(getTimestamp(), that.getTimestamp())
+                && Objects.equals(getError(), that.getError())
+                && Objects.equals(getMessage(), that.getMessage())
+                && Objects.equals(getPath(), that.getPath());
     }
 }
