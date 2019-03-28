@@ -5,9 +5,7 @@ import client.UserToken;
 import client.profile_page.ProfileController;
 import client.services.ApiService;
 import client.services.UserService;
-import com.jfoenix.controls.JFXDrawer;
-import com.jfoenix.controls.JFXHamburger;
-import com.jfoenix.controls.JFXSlider;
+import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerNextArrowBasicTransition;
 import javafx.animation.FadeTransition;
 import javafx.animation.SequentialTransition;
@@ -58,10 +56,108 @@ public class MainController implements Initializable {
     private Pane mainWindow;
 
     @FXML
+    private ImageView logo2;
+
+    @FXML
+    private ImageView logo1;
+
+    @FXML
+    private Label secondFriend;
+
+    @FXML
+    private ImageView userText;
+
+    @FXML
+    private Label greenTravelText;
+
+    @FXML
+    private Label tonsThirdFriend;
+
+    @FXML
+    private Pane paneSecondFriend;
+
+    @FXML
+    private Label fifthFriend;
+
+    @FXML
+    private Label thirdFriend;
+
+    @FXML
+    private Label tonsFifthFriend;
+
+    @FXML
+    private Label amountFifthFriend;
+
+    @FXML
+    private Label travelText1;
+
+    @FXML
+    private Pane paneFourthFriend;
+
+    @FXML
+    private Label travelText2;
+
+    @FXML
+    private Pane paneFirstFriend;
+
+    @FXML
+    private Label totalGreenTravelLabel;
+
+    @FXML
+    private Label amountFourthFriend;
+
+    @FXML
+    private Label tonsFourthFriend;
+
+    @FXML
+    private Pane paneThirdFriend;
+
+    @FXML
+    private Label amountSecondFriend;
+
+    @FXML
     private Label usernameDisplayMainText;
 
     @FXML
+    private JFXButton acceptFriend;
+
+    @FXML
+    private Label fourthFriend;
+
+    @FXML
+    private JFXButton declineFriend;
+
+    @FXML
+    private Label usernameMainPage;
+
+    @FXML
+    private Label totalCO2SavedText;
+
+    @FXML
+    private Label firstFriend;
+
+    @FXML
+    private Label tonsSecondFriend;
+
+    @FXML
+    private Label tonsFirstFriend;
+
+    @FXML
     private Label totalCO2SavedLabel;
+
+    @FXML
+    private Label amountThirdFriend;
+
+    @FXML
+    private Label amountFirstFriend;
+
+    @FXML
+    private JFXListView<String> pendingFriendsListview;
+
+    @FXML
+    private Pane paneFifthFriend;
+
+    /** ID activation for the rest **/
 
     @FXML
     private Pane emissionsWindow;
@@ -484,10 +580,9 @@ public class MainController implements Initializable {
         mainWindow.setVisible(true);
         mainWindow.toFront();
         animatePane(mainWindow);
-        displayUsernameOnMain("username: " + jwtUser.getUserName());
+        displayUsernameOnMain(jwtUser.getUserName());
         String number = String.format("%.5f", emissionFriend.getCarbonEmission());
-        totalCO2SavedLabel.setText(number + " tons");
-        totalCO2SavedLabel.setStyle("-fx-font: 16 arial;");
+        totalCO2SavedLabel.setText(number);
     }
 
     /**
@@ -495,7 +590,7 @@ public class MainController implements Initializable {
      * @param username the username of the user
      */
     public void displayUsernameOnMain(String username) {
-        usernameDisplayMainText.setText(username);
+        usernameMainPage.setText(username);
     }
 
     /**---------------------------- EMISSION PAGE -----------------------------------------**/
@@ -598,35 +693,35 @@ public class MainController implements Initializable {
         addNaturalGasButton.setVisible(false);
         electricityIcon.setVisible(false);
         naturalGasIcon.setVisible(false);
-                    /** Fuel oil **/
+        /** Fuel oil **/
         fuelOilText.setVisible(false);
         emissionFactorFuelOil.setVisible(false);
         fuelOilStatus.setVisible(false);
         addFuelOilButton.setVisible(false);
         fuelOilIcon.setVisible(false);
 
-                    /** LPG **/
+        /** LPG **/
         lpgText.setVisible(false);
         emissionFactorLPG.setVisible(false);
         LPGStatus.setVisible(false);
         addLPGButton.setVisible(false);
         LPGIcon.setVisible(false);
 
-                    /** Waste **/
+        /** Waste **/
         wasteText.setVisible(false);
         emissionFactorWaste.setVisible(false);
         wasteStatus.setVisible(false);
         addWasteButton.setVisible(false);
         wasteIcon.setVisible(false);
 
-                    /** Water **/
+        /** Water **/
         waterText.setVisible(false);
         emissionFactorWater.setVisible(false);
         waterStatus.setVisible(false);
         addWaterButton.setVisible(false);
         waterIcon.setVisible(false);
 
-                    /** Metro **/
+        /** Metro **/
         rideAMetroButton.setVisible(false);
         metroIcon.setVisible(false);
         metroText.setVisible(false);
@@ -634,7 +729,7 @@ public class MainController implements Initializable {
         metroStatus.setVisible(false);
         addMetroButton.setVisible(false);
 
-                    /**Taxi **/
+        /**Taxi **/
         rideATaxiButton.setVisible(false);
         taxiIcon.setVisible(false);
         taxiText.setVisible(false);
@@ -642,7 +737,7 @@ public class MainController implements Initializable {
         taxiStatus.setVisible(false);
         addTaxiButton.setVisible(false);
 
-                    /**Train **/
+        /**Train **/
         rideATrainButton.setVisible(false);
         trainIcon.setVisible(false);
         trainText.setVisible(false);
@@ -650,7 +745,7 @@ public class MainController implements Initializable {
         trainStatus.setVisible(false);
         addTrainButton.setVisible(false);
 
-                    /**Plane **/
+        /**Plane **/
         rideAPlaneButton.setVisible(false);
         planeIcon.setVisible(false);
         planeText.setVisible(false);
