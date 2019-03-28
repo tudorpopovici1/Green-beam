@@ -44,8 +44,4 @@ public class TrainRide {
                 Double.compare(trainRide.emissionFactor, emissionFactor) == 0;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(distanceTraveled, emissionFactor);
-    }
 }
