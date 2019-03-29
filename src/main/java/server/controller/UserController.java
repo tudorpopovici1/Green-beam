@@ -273,8 +273,9 @@ public class UserController {
         if(isIncorrectUser(httpServletRequest, id)) {
             throw new BadCredentialsException("Bad credentials");
         }
-        Friends friendsFrom = new Friends(id, relatingUserId, "2");
-        Friends friendTo = new Friends(relatingUserId, id, "3");
+
+        Friends friendTo = new Friends(id, relatingUserId, "2");
+        Friends friendsFrom = new Friends(relatingUserId, id, "3");
 
         friendsRepository.save(friendsFrom);
         friendsRepository.save(friendTo);
