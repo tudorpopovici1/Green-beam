@@ -274,8 +274,8 @@ public class UserController {
             throw new BadCredentialsException("Bad credentials");
         }
 
-        Friends friendTo = new Friends(id, relatingUserId, "2");
-        Friends friendsFrom = new Friends(relatingUserId, id, "3");
+        Friends friendTo = new Friends(id, relatingUserId, "3");
+        Friends friendsFrom = new Friends(relatingUserId, id, "2");
 
         friendsRepository.save(friendsFrom);
         friendsRepository.save(friendTo);
