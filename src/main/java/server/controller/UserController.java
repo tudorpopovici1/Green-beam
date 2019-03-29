@@ -82,7 +82,7 @@ public class UserController {
         friendsRepository.save(friends);
 
         Emissions emissions = new Emissions(user.getId(), "1", 0, null);
-
+        emissionRepository.save(emissions);
         return users;
     }
 
