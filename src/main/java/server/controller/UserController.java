@@ -102,6 +102,11 @@ public class UserController {
         return user.getId();
     }
 
+    @GetMapping("/user/get/id/{id}")
+    public String getUserUsername(@PathVariable("id") Long id) {
+        return userRepository.findUserById(id).getUsername();
+    }
+
     /**
      * Returns the info of a specific user.
      * @param request request object instance
