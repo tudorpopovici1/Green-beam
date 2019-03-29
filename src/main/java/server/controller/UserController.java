@@ -72,10 +72,16 @@ public class UserController {
 
         user.setPassword(encryptPasswordEncoder.encode(user.getPassword()));
 
+        Users users = userRepository.save(user);
+
         Achievements achievements = new Achievements(user.getId(), 6L);
         achievementRepository.save(achievements);
 
-        return userRepository.save(user);
+        Friends friends = new Friends(user.getId(),
+                user.getId(), "1");
+        friendsRepository.save(friends);
+
+        return users;
     }
 
     /**
