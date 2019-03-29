@@ -368,6 +368,30 @@ public class UserService {
         return null;
     }
 
+    public List<EmissionFriend> getEmissionsOfFriends(final RestTemplate restTemplate, final String url, final String token,
+                                                      Long userId) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.set("Authorisation", "Token " + token);
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<EmissionsClient> entity = new HttpEntity<>(httpHeaders);
+
+        List<EmissionFriend> toReturn = new ArrayList<>();
+
+        try {
+            ResponseEntity<EmissionFriend[]> responseEntity = restTemplate
+                    .exchange(url + "/" + userId, HttpMethod.GET, entity, EmissionFriend[].class);
+            if (responseEntity.getBody() != null) {
+                for (EmissionFriend e : responseEntity.getBody()) {
+                    toReturn.add(e);
+                }
+            }
+        } catch(HttpStatusCodeException e) {
+            System.out.println(e);
+        }
+
+        return toReturn;
+    }
+
     private String outputErrorMessage(ObjectMapper objectMapper, String responseString) {
         String returnString = "";
         try {
