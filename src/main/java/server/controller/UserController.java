@@ -104,9 +104,9 @@ public class UserController {
         return user.getId();
     }
 
-    @GetMapping("/user/get/id/{id}")
+    @GetMapping("/user/get/username/{id}")
     public String getUserUsername(@PathVariable("id") Long id) {
-        return userRepository.findUserById(id).getUsername();
+        return userRepository.findUserUsername(id);
     }
 
     /**

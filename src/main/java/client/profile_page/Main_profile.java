@@ -22,7 +22,7 @@ public class Main_profile extends Application {
             URL url1 = new File(
                     "src/main/java/client/mainpage/fxml/Development.fxml").toURI().toURL();
 
-            Parent root = FXMLLoader.load(url1);
+            Parent root = FXMLLoader.load(url);
 
             primaryStage.setTitle("Hello World");
             primaryStage.setScene(new Scene(root, 679, 700));
