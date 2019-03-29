@@ -615,16 +615,21 @@ public class MainController implements Initializable {
         mainWindow.toFront();
         animatePane(mainWindow);
         displayUsernameOnMain(" " + jwtUser.getUserName());
-        String number = String.format("%.5f", emissionFriend.getCarbonEmission());
-        totalCO2SavedLabel.setText(number);
+        if (emissionFriend != null) {
+            String number = String.format("%.5f", emissionFriend.getCarbonEmission());
+            totalCO2SavedLabel.setText(number);
+        } else {
+            totalCO2SavedLabel.setText("0");
+        }
+
 
         final String token = UserToken.getUserToken();
         JwtUser jwtUser01 = jwtValidator.validate(token);
 
-        List<Friends> receivedFriends = userService.getFriendRequest(restTemplate, Url.GET_FRIEND_REQ_REC.getUrl(), jwtUser01.getId(), token);
+        List<Friends> receivedFriends = userService.getFriendRequest(restTemplate, Url.GET_FRIEND_REQ_SENT.getUrl(), jwtUser01.getId(), token);
 
         for(Friends a : receivedFriends) {
-            if (!(a == null)){
+            if (a != null){
                 String username = userService.getUserUsername(restTemplate, Url.GET_USER_USERNAME.getUrl(), a.getRelatingUserId(), token);
                 receivedFriendsListview.getItems().add(username);
                 System.out.println("Username" + username);
@@ -632,12 +637,21 @@ public class MainController implements Initializable {
             }
         }
 
-        List<Friends> pendingFriends = userService.getFriendRequest(restTemplate, Url.GET_FRIEND_REQ_SENT.getUrl(), jwtUser01.getId(), token);
+        List<Friends> pendingFriends = userService.getFriendRequest(restTemplate, Url.GET_FRIEND_REQ_REC.getUrl(), jwtUser01.getId(), token);
 
         for(Friends a : pendingFriends) {
             if (!(a == null)){
                 String username = userService.getUserUsername(restTemplate, Url.GET_USER_USERNAME.getUrl(), a.getRelatingUserId(), token);
                 pendingList.getItems().add(username);
+            }
+        }
+
+        List<EmissionFriend> topFriendsList = userService.getEmissionsOfFriends(restTemplate, Url.GET_EMISSION_FRIENDS.getUrl(), token, jwtUser01.getId());
+
+        System.out.println(topFriendsList.size());
+        for(EmissionFriend a : topFriendsList) {
+            if (!(a == null)){
+                System.out.println(a.getUsername());
             }
         }
 
