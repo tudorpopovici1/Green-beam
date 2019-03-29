@@ -125,7 +125,7 @@ public class SidePanelController implements Initializable {
             String response = userService.addFriend(restTemplate, Url.ADD_FRIEND.getUrl(), jwtUser.getId(), userid, token);
 
             if(userid != -1) {
-                if (response.equals("saved")){
+                if (response.equals("Saved")){
                     System.out.println("succesful");
                 } else {
                     System.out.println("error");
@@ -134,7 +134,7 @@ public class SidePanelController implements Initializable {
                 System.out.println("error");
             }
 
-            friendslistView.getItems().add(friend);
+//            friendslistView.getItems().add(friend);
         }
 
         searchBarBox.setVisible(false);

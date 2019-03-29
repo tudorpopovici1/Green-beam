@@ -114,7 +114,7 @@ public class UserService {
     }
 
     public String getUserUsername(final RestTemplate restTemplate, final String url,
-                            final String username, final String token) {
+                            final Long id, final String token) {
         String usernameRet = "";
 
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -123,7 +123,7 @@ public class UserService {
         HttpEntity<Long> entity = new HttpEntity<>(httpHeaders);
 
         try {
-            ResponseEntity<String> responseEntity = restTemplate.exchange(url + "/" + username, HttpMethod.GET, entity,
+            ResponseEntity<String> responseEntity = restTemplate.exchange(url + "/" + id, HttpMethod.GET, entity,
                     String.class);
             if(responseEntity.getBody() != null) {
                 usernameRet = responseEntity.getBody();

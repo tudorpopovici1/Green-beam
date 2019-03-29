@@ -50,10 +50,42 @@ public class MainController implements Initializable {
     @FXML
     private JFXDrawer drawer;
 
+    @FXML
+    private ImageView busBadge01;
+
+    @FXML
+    private ImageView busBadge02;
+
+    @FXML
+    private ImageView busBadge03;
+
+    @FXML
+    private ImageView bikeBadge01;
+
+    @FXML
+    private ImageView bikeBadge02;
+
+    @FXML
+    private ImageView bikeBadge03;
+
+    @FXML
+    private ImageView vegBadge01;
+
+    @FXML
+    private ImageView vegBadge02;
+
+    @FXML
+    private ImageView vegBadge03;
+
+
+
     /** ID activation for the main page **/
 
     @FXML
     private Pane mainWindow;
+
+    @FXML
+    private JFXListView<String> pendingList;
 
     @FXML
     private ImageView logo2;
@@ -152,7 +184,7 @@ public class MainController implements Initializable {
     private Label amountFirstFriend;
 
     @FXML
-    private JFXListView<String> pendingFriendsListview;
+    private JFXListView<String> receivedFriendsListview;
 
     @FXML
     private Pane paneFifthFriend;
@@ -560,9 +592,9 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 //        System.out.println("View is now loaded!");
-        JwtUser jwtUser = jwtValidator.validate(UserToken.getUserToken());
-        friendsListProfile = userService.getUserFriends(restTemplate, Url.GET_USER_FRIENDS.getUrl(),
-                jwtUser.getId(), UserToken.getUserToken());
+//        JwtUser jwtUser = jwtValidator.validate(UserToken.getUserToken());
+//        friendsListProfile = userService.getUserFriends(restTemplate, Url.GET_USER_FRIENDS.getUrl(),
+//                jwtUser.getId(), UserToken.getUserToken());
     }
     /**---------------------------- MAIN PAGE -----------------------------------------**/
 
@@ -573,6 +605,8 @@ public class MainController implements Initializable {
      *
      */
     public void mainPage(ActionEvent event) {
+        receivedFriendsListview.getItems().clear();
+        pendingList.getItems().clear();
         this.userTokenString = UserToken.getUserToken();
         JwtUser jwtUser = jwtValidator.validate(userTokenString);
         EmissionFriend emissionFriend = userService.getEmissionsOfUser(
@@ -583,6 +617,89 @@ public class MainController implements Initializable {
         displayUsernameOnMain(" " + jwtUser.getUserName());
         String number = String.format("%.5f", emissionFriend.getCarbonEmission());
         totalCO2SavedLabel.setText(number);
+
+        final String token = UserToken.getUserToken();
+        JwtUser jwtUser01 = jwtValidator.validate(token);
+
+        List<Friends> receivedFriends = userService.getFriendRequest(restTemplate, Url.GET_FRIEND_REQ_REC.getUrl(), jwtUser01.getId(), token);
+
+        for(Friends a : receivedFriends) {
+            if (!(a == null)){
+                String username = userService.getUserUsername(restTemplate, Url.GET_USER_USERNAME.getUrl(), a.getRelatingUserId(), token);
+                receivedFriendsListview.getItems().add(username);
+                System.out.println("Username" + username);
+
+            }
+        }
+
+        List<Friends> pendingFriends = userService.getFriendRequest(restTemplate, Url.GET_FRIEND_REQ_SENT.getUrl(), jwtUser01.getId(), token);
+
+        for(Friends a : pendingFriends) {
+            if (!(a == null)){
+                String username = userService.getUserUsername(restTemplate, Url.GET_USER_USERNAME.getUrl(), a.getRelatingUserId(), token);
+                pendingList.getItems().add(username);
+            }
+        }
+
+//        String acceptedResponse = userService.getFriendRequest(restTemplate, Url.GET_FRIEND_REQ_REC.getUrl(), jwtUser01.getId(), token);
+    }
+
+    /**
+     * Accepts a friend request and deletes the name from the list
+     * @param event the username of the user
+     */
+    public void acceptFriendOnClick(ActionEvent event) {
+        final String token = UserToken.getUserToken();
+        JwtUser jwtUser01 = jwtValidator.validate(token);
+        String friend = receivedFriendsListview.getSelectionModel().getSelectedItem();
+
+//        List<Friends> receivedFriends = userService.getFriendRequest(restTemplate, Url.GET_FRIEND_REQ_REC.getUrl(), jwtUser01.getId(), token);
+
+        if (!(receivedFriendsListview.getSelectionModel().getSelectedItem() == null)){
+            Long userid = userService.getUsername(restTemplate, Url.GET_USERNAME.getUrl(), friend, token);
+            String response = userService.accepting(restTemplate, Url.ACCEPT_FRIENDS.getUrl(), userid, jwtUser01.getId(), token);
+
+            if(userid != -1) {
+                if (response.equals("Accepted")){
+                    System.out.println("succesful");
+                    final int selectedIdx = receivedFriendsListview.getSelectionModel().getSelectedIndex();
+                    receivedFriendsListview.getItems().remove(selectedIdx);
+                } else {
+                    System.out.println("error");
+                }
+            } else {
+                System.out.println("error");
+            }
+        }
+    }
+
+    /**
+     * Declines a friend request and deletes the name from the list
+     * @param event the username of the user
+     */
+    public void declineFriendOnClick(ActionEvent event) {
+        final String token = UserToken.getUserToken();
+        JwtUser jwtUser01 = jwtValidator.validate(token);
+        String friend = receivedFriendsListview.getSelectionModel().getSelectedItem();
+
+//        List<Friends> receivedFriends = userService.getFriendRequest(restTemplate, Url.GET_FRIEND_REQ_REC.getUrl(), jwtUser01.getId(), token);
+
+        if (!(receivedFriendsListview.getSelectionModel().getSelectedItem() == null)){
+            Long userid = userService.getUsername(restTemplate, Url.GET_USERNAME.getUrl(), friend, token);
+            String response = userService.rejecting(restTemplate, Url.REJECT_FRIENDS.getUrl(), userid, jwtUser01.getId(), token);
+
+            if(userid != -1) {
+                if (response.equals("Rejected")){
+                    System.out.println("succesful");
+                    final int selectedIdx = receivedFriendsListview.getSelectionModel().getSelectedIndex();
+                    receivedFriendsListview.getItems().remove(selectedIdx);
+                } else {
+                    System.out.println("error");
+                }
+            } else {
+                System.out.println("error");
+            }
+        }
     }
 
     /**
@@ -2065,10 +2182,48 @@ public class MainController implements Initializable {
 
         final String token = UserToken.getUserToken();
         JwtUser jwtUser = jwtValidator.validate(token);
+        friendsListProfile = userService.getUserFriends(restTemplate, Url.GET_USER_FRIENDS.getUrl(),
+                jwtUser.getId(), token);
+
+
         List<AchievementsType> achievementsOfUser = userService.getAchievementsOfUser(restTemplate, Url.GET_ACHIEVEMENTS_USER.getUrl(),
                 jwtUser.getId(), token);
 
+//        boolean vegmeal03 = false;
+//        boolean vegmeal07 = false;
+//        boolean vegmeal30 = false;
+//        boolean bikebadge03 = false;
+//        boolean bikebadge0 = false;
+//        boolean bikebadge30 = false;
+//        boolean publicbadge03 = false;
+//        boolean publicbadge07 = false;
+//        boolean publicbadge030 = false;
+//
 //        for(AchievementsType a : achievementsOfUser) {
+//            if (a.getAchievementName().equals("Vegmeal_3_times")){
+//                vegBadge01.setVisible(true);
+//            }
+//            if (a.getAchievementName().equals("Vegmeal_7_times")){
+//                vegBadge01.setVisible(false);
+//                vegBadge02.setVisible(true);
+//            }
+//            if (a.getAchievementName().equals("Vegmeal_30_times")){
+//                vegBadge01.setVisible(false);
+//                vegBadge02.setVisible(false);
+//                vegBadge03.setVisible(true);
+//            }
+//            if (a.getAchievementName().equals("Vegmeal_3_times")){
+//                vegBadge01.setVisible(true);
+//            }
+//            if (a.getAchievementName().equals("Vegmeal_7_times")){
+//                vegBadge01.setVisible(false);
+//                vegBadge02.setVisible(true);
+//            }
+//            if (a.getAchievementName().equals("Vegmeal_30_times")){
+//                vegBadge01.setVisible(false);
+//                vegBadge02.setVisible(false);
+//                vegBadge03.setVisible(true);
+//            }
 //
 //        }
 

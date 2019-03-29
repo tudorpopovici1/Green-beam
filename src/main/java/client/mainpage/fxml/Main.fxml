@@ -156,28 +156,38 @@
             </ImageView>
             <VBox layoutX="479.0" layoutY="150.0" prefHeight="500.0" prefWidth="200.0" style="-fx-background-color: #01A2A6;">
                 <children>
-                    <Pane prefHeight="100.0" prefWidth="200.0">
+                    <Pane prefHeight="50.0" prefWidth="200.0">
                         <children>
-                            <Label layoutX="28.0" layoutY="16.0" text="FRIEND REQUESTS" textFill="#ffffa6">
+                            <Label layoutX="28.0" layoutY="6.0" text="FRIEND REQUESTS" textFill="#ffffa6">
                                 <font>
                                     <Font name="BebasNeue" size="27.0" />
                                 </font>
                             </Label>
                         </children>
                     </Pane>
-                    <JFXListView fx:id="pendingFriendsListview" styleClass="jfx-list-view" />
-                    <HBox prefHeight="77.0" prefWidth="200.0">
+                    <JFXListView fx:id="receivedFriendsListview" prefHeight="200.0" styleClass="jfx-list-view" />
+                    <HBox prefHeight="40.0" prefWidth="200.0">
                         <children>
-                            <JFXButton fx:id="acceptFriend" prefHeight="77.0" prefWidth="100.0" styleClass="buttonspending" text="ACCEPT" textFill="#ffffa6">
+                            <JFXButton fx:id="acceptFriend" prefHeight="40.0" prefWidth="100.0" styleClass="buttonspending" text="ACCEPT" textFill="#ffffa6" onAction="#acceptFriendOnClick">
                                 <font>
                                     <Font name="BebasNeue" size="25.0" />
                                 </font></JFXButton>
-                            <JFXButton fx:id="declineFriend" prefHeight="77.0" prefWidth="100.0" styleClass="buttonspending" text="DECLINE" textFill="#ffffa6">
+                            <JFXButton fx:id="declineFriend" prefHeight="40.0" prefWidth="100.0" styleClass="buttonspending" text="DECLINE" textFill="#ffffa6" onAction="#declineFriendOnClick">
                                 <font>
                                     <Font name="BebasNeue" size="25.0" />
                                 </font></JFXButton>
                         </children>
                     </HBox>
+                    <Pane prefHeight="50.0" prefWidth="200.0">
+                        <children>
+                            <Label layoutX="28.0" layoutY="6.0" text="FRIENDs pending" textFill="#ffffa6">
+                                <font>
+                                    <Font name="BebasNeue" size="27.0" />
+                                </font>
+                            </Label>
+                        </children>
+                    </Pane>
+                    <JFXListView fx:id="pendingList" prefHeight="160.0" styleClass="jfx-list-view" />
                 </children></VBox>
             <Pane layoutY="150.0" prefHeight="200.0" prefWidth="479.0" style="-fx-background-color: #FFFFA6;">
                 <children>
@@ -804,47 +814,47 @@
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 </rowConstraints>
                 <children>
-                    <ImageView fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true">
+                    <ImageView fx:id="busBadge01" fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" visible="false">
                         <image>
                             <Image url="@../images/busBadge01.png" />
                         </image>
                     </ImageView>
-                    <ImageView fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true">
+                    <ImageView fx:id="busBadge02" fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" visible="false">
                         <image>
                             <Image url="@../images/busBadge02.png" />
                         </image>
                     </ImageView>
-                    <ImageView fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true">
+                    <ImageView fx:id="busBadge03" fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" visible="false">
                         <image>
                             <Image url="@../images/busBadge03.png" />
                         </image>
                     </ImageView>
-                    <ImageView fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                    <ImageView fx:id="bikeBadge01" fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" visible="false">
                         <image>
                             <Image url="@../images/bikeBadge01.png" />
                         </image>
                     </ImageView>
-                    <ImageView fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                    <ImageView fx:id="bikeBadge02" fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" visible="false">
                         <image>
                             <Image url="@../images/bikeBadge02.png" />
                         </image>
                     </ImageView>
-                    <ImageView fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                    <ImageView fx:id="bikeBadge03" fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" visible="false">
                         <image>
                             <Image url="@../images/bikeBadge03.png" />
                         </image>
                     </ImageView>
-                    <ImageView fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                    <ImageView fx:id="vegBadge01" fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" visible="false">
                         <image>
                             <Image url="@../images/vegBadge01.png" />
                         </image>
                     </ImageView>
-                    <ImageView fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                    <ImageView fx:id="vegBadge02" fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" visible="false">
                         <image>
                             <Image url="@../images/vegBadge02.png" />
                         </image>
                     </ImageView>
-                    <ImageView fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                    <ImageView fx:id="vegBadge03" fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" visible="false">
                         <image>
                             <Image url="@../images/vegBadge03.png" />
                         </image>
