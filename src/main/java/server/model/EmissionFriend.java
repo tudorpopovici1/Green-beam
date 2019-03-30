@@ -48,7 +48,7 @@ public class EmissionFriend {
      *
      * @return Value of carbonEmission.
      */
-    public double getCarbonEmission() {
+    public Double getCarbonEmission() {
         return carbonEmission;
     }
 
