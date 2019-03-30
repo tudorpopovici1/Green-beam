@@ -51,31 +51,31 @@ public class MainController implements Initializable {
     private JFXDrawer drawer;
 
     @FXML
-    private ImageView busBadge01;
+    private ImageView addFriendsBadge;
 
     @FXML
-    private ImageView busBadge02;
+    private ImageView bestOfFriends;
 
     @FXML
-    private ImageView busBadge03;
-
-    @FXML
-    private ImageView bikeBadge01;
-
-    @FXML
-    private ImageView bikeBadge02;
-
-    @FXML
-    private ImageView bikeBadge03;
-
-    @FXML
-    private ImageView vegBadge01;
+    private ImageView solarPanelsBadge;
 
     @FXML
     private ImageView vegBadge02;
 
     @FXML
+    private ImageView busBadge03;
+
+    @FXML
+    private ImageView localProductBadge;
+
+    @FXML
+    private ImageView vegBadge01;
+
+    @FXML
     private ImageView vegBadge03;
+
+    @FXML
+    private ImageView busBadge02;
 
 
 
@@ -580,6 +580,16 @@ public class MainController implements Initializable {
     @FXML
     private Button addPlaneButton;
 
+    boolean vegmeal03 = false;
+    boolean vegmeal07 = false;
+    boolean vegmeal30 = false;
+    boolean publicbadge10 = false;
+    boolean publicbadge30 = false;
+    boolean bestoffriends = false;
+    boolean solarpanelsinstalled = false;
+    boolean localproducts10 = false;
+    boolean addthreefriends = false;
+
     private RestTemplate restTemplate = new RestTemplate();
     private ApiService apiService = new ApiService();
     private UserService userService = new UserService();
@@ -616,8 +626,12 @@ public class MainController implements Initializable {
         animatePane(mainWindow);
         displayUsernameOnMain(" " + jwtUser.getUserName());
         if (emissionFriend != null) {
-            String number = String.format("%.5f", emissionFriend.getCarbonEmission());
-            totalCO2SavedLabel.setText(number);
+            if (emissionFriend.getCarbonEmission() == 0){
+                totalCO2SavedLabel.setText("0");
+            } else{
+                String number = String.format("%.5f", emissionFriend.getCarbonEmission());
+                totalCO2SavedLabel.setText(number);
+            }
         } else {
             totalCO2SavedLabel.setText("0");
         }
@@ -652,6 +666,7 @@ public class MainController implements Initializable {
         for(EmissionFriend a : topFriendsList) {
             if (!(a == null)){
                 System.out.println(a.getUsername());
+                System.out.println(a.getCarbonEmission());
             }
         }
 
@@ -2189,6 +2204,16 @@ public class MainController implements Initializable {
      *              this method, it starts to execute.
      */
     public void profileWindow(ActionEvent event) {
+        vegmeal03 = false;
+        vegmeal07 = false;
+        vegmeal30 = false;
+        publicbadge10 = false;
+        publicbadge30 = false;
+        bestoffriends = false;
+        solarpanelsinstalled = false;
+        localproducts10 = false;
+        addthreefriends = false;
+
         profileWindow.setVisible(true);
         profileWindow.toFront();
         animatePane(profileWindow);
@@ -2203,43 +2228,81 @@ public class MainController implements Initializable {
         List<AchievementsType> achievementsOfUser = userService.getAchievementsOfUser(restTemplate, Url.GET_ACHIEVEMENTS_USER.getUrl(),
                 jwtUser.getId(), token);
 
-//        boolean vegmeal03 = false;
-//        boolean vegmeal07 = false;
-//        boolean vegmeal30 = false;
-//        boolean bikebadge03 = false;
-//        boolean bikebadge0 = false;
-//        boolean bikebadge30 = false;
-//        boolean publicbadge03 = false;
-//        boolean publicbadge07 = false;
-//        boolean publicbadge030 = false;
-//
-//        for(AchievementsType a : achievementsOfUser) {
-//            if (a.getAchievementName().equals("Vegmeal_3_times")){
-//                vegBadge01.setVisible(true);
-//            }
-//            if (a.getAchievementName().equals("Vegmeal_7_times")){
-//                vegBadge01.setVisible(false);
-//                vegBadge02.setVisible(true);
-//            }
-//            if (a.getAchievementName().equals("Vegmeal_30_times")){
-//                vegBadge01.setVisible(false);
-//                vegBadge02.setVisible(false);
-//                vegBadge03.setVisible(true);
-//            }
-//            if (a.getAchievementName().equals("Vegmeal_3_times")){
-//                vegBadge01.setVisible(true);
-//            }
-//            if (a.getAchievementName().equals("Vegmeal_7_times")){
-//                vegBadge01.setVisible(false);
-//                vegBadge02.setVisible(true);
-//            }
-//            if (a.getAchievementName().equals("Vegmeal_30_times")){
-//                vegBadge01.setVisible(false);
-//                vegBadge02.setVisible(false);
-//                vegBadge03.setVisible(true);
-//            }
-//
-//        }
+        for(AchievementsType a : achievementsOfUser) {
+            System.out.println(a.getAchievementName());
+            if (a.getAchievementName().equals("Vegmeal_3_times")){
+                vegmeal03 = true;
+            }
+            if (a.getAchievementName().equals("Vegmeal_7_times")) {
+                vegmeal07 = true;
+            }
+            if (a.getAchievementName().equals("Vegmeal_30_times")){
+                vegmeal30 = true;
+            }
+            if (a.getAchievementName().equals("TransportationInsteadOfCar_10_times")){publicbadge10 = true;
+            }
+            if (a.getAchievementName().equals("TransportationInsteadOfCar_30_times")){
+                publicbadge30 = true;
+            }
+            if (a.getAchievementName().equals("BestOfYourFriends")){
+                bestoffriends = true;
+            }
+            if (a.getAchievementName().equals("SolarPanelsInstalled")){
+                solarpanelsinstalled = true;
+            }
+            if (a.getAchievementName().equals("LocalProduct_10_times")){
+                localproducts10 = true;
+            }
+            if (a.getAchievementName().equals("AddFriend_3_times")){
+                addthreefriends = true;
+            }
+        }
+
+        if (vegmeal30 == true){
+            vegBadge03.setVisible(true);
+        } else if (vegmeal07 == true){
+            vegBadge02.setVisible(true);
+        } else if (vegmeal07 == true){
+            vegBadge01.setVisible(true);
+        } else{
+            vegBadge01.setVisible(false);
+            vegBadge02.setVisible(false);
+            vegBadge03.setVisible(false);
+        }
+
+        if (publicbadge10 == true){
+            busBadge02.setVisible(true);
+        } else if (publicbadge30 == true) {
+            busBadge03.setVisible(true);
+        } else{
+            busBadge03.setVisible(false);
+            busBadge02.setVisible(false);
+        }
+
+        if (bestoffriends == true){
+            bestOfFriends.setVisible(true);
+        } else{
+            bestOfFriends.setVisible(false);
+        }
+
+        if (solarpanelsinstalled == true){
+            solarPanelsBadge.setVisible(true);
+        } else{
+            solarPanelsBadge.setVisible(false);
+        }
+
+        if (localproducts10 == true){
+            localProductBadge.setVisible(true);
+        } else{
+            localProductBadge.setVisible(false);
+        }
+
+        if (addthreefriends == true){
+            addFriendsBadge.setVisible(true);
+        } else{
+            addFriendsBadge.setVisible(false);
+        }
+
 
 
         try {
