@@ -28,10 +28,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -660,17 +657,266 @@ public class MainController implements Initializable {
             }
         }
 
-        List<EmissionFriend> topFriendsList = userService.getEmissionsOfFriends(restTemplate, Url.GET_EMISSION_FRIENDS.getUrl(), token, jwtUser01.getId());
-
-        System.out.println(topFriendsList.size());
-        for(EmissionFriend a : topFriendsList) {
-            if (!(a == null)){
-                System.out.println(a.getUsername());
-                System.out.println(a.getCarbonEmission());
-            }
-        }
+        fillTopFriends();
 
 //        String acceptedResponse = userService.getFriendRequest(restTemplate, Url.GET_FRIEND_REQ_REC.getUrl(), jwtUser01.getId(), token);
+    }
+
+    /**
+     * Fills the top 5 friends list
+     */
+    public void fillTopFriends() {
+
+        final String token = UserToken.getUserToken();
+        JwtUser jwtUser01 = jwtValidator.validate(token);
+
+        List<EmissionFriend> topFriendsList = userService.getEmissionsOfFriends(restTemplate, Url.GET_EMISSION_FRIENDS.getUrl(), token, jwtUser01.getId());
+
+//        System.out.println(topFriendsList.size());
+//        for(EmissionFriend a : topFriendsList) {
+//            if (!(a == null)){
+//                System.out.println(a.getUsername());
+//                System.out.println(a.getCarbonEmission());
+//            }
+//        }
+
+        Collections.sort(topFriendsList, new Comparator<EmissionFriend>() {
+            @Override
+            public int compare(EmissionFriend o1, EmissionFriend o2) {
+                return Double.valueOf(o2.getCarbonEmission()).compareTo(o1.getCarbonEmission());
+            }
+        });
+
+//        for(int a = 0; a < topFriendsList.size(); a++){
+//            System.out.println(topFriendsList.get(a).getUsername() + ": " + topFriendsList.get(a).getCarbonEmission());
+//        }
+//        System.out.println("Trimmed list");
+        topFriendsList.subList(5, topFriendsList.size()).clear();
+
+//        for(int a = 0; a < topFriendsList.size(); a++){
+//            System.out.println(topFriendsList.get(a).getUsername() + ": " + topFriendsList.get(a).getCarbonEmission());
+//        }
+
+        if (topFriendsList.size() == 0 || topFriendsList == null){
+            firstFriend.setVisible(false);
+            firstFriend.setText("NO FRIENDS YET");
+            firstFriend.setVisible(true);
+            secondFriend.setVisible(false);
+            thirdFriend.setVisible(false);
+            fourthFriend.setVisible(false);
+            fifthFriend.setVisible(false);
+
+            tonsFirstFriend.setVisible(false);
+            tonsSecondFriend.setVisible(false);
+            tonsThirdFriend.setVisible(false);
+            tonsFourthFriend.setVisible(false);
+            tonsFifthFriend.setVisible(false);
+
+            amountFirstFriend.setVisible(false);
+            amountSecondFriend.setVisible(false);
+            amountThirdFriend.setVisible(false);
+            amountFourthFriend.setVisible(false);
+            amountFifthFriend.setVisible(false);
+        } else if (topFriendsList.size() == 1){
+            firstFriend.setText(topFriendsList.get(0).getUsername());
+            String number01 = String.format("%.5f", topFriendsList.get(0).getCarbonEmission());
+            if(number01.equals("0,00000")){
+                number01 = "0";
+            }
+            amountFirstFriend.setText(number01);
+
+            firstFriend.setVisible(true);
+            secondFriend.setVisible(false);
+            thirdFriend.setVisible(false);
+            fourthFriend.setVisible(false);
+            fifthFriend.setVisible(false);
+
+            tonsFirstFriend.setVisible(true);
+            tonsSecondFriend.setVisible(false);
+            tonsThirdFriend.setVisible(false);
+            tonsFourthFriend.setVisible(false);
+            tonsFifthFriend.setVisible(false);
+
+            amountFirstFriend.setVisible(true);
+            amountSecondFriend.setVisible(false);
+            amountThirdFriend.setVisible(false);
+            amountFourthFriend.setVisible(false);
+            amountFifthFriend.setVisible(false);
+
+        } else if (topFriendsList.size() == 2){
+            firstFriend.setText(topFriendsList.get(0).getUsername());
+            String number01 = String.format("%.5f", topFriendsList.get(0).getCarbonEmission());
+            if(number01.equals("0,00000")){
+                number01 = "0";
+            }
+            amountFirstFriend.setText(number01);
+
+            secondFriend.setText(topFriendsList.get(1).getUsername());
+            String number02 = String.format("%.5f", topFriendsList.get(1).getCarbonEmission());
+            if(number02.equals("0,00000")){
+                number02 = "0";
+            }
+            amountSecondFriend.setText(number02);
+
+            firstFriend.setVisible(true);
+            secondFriend.setVisible(true);
+            thirdFriend.setVisible(false);
+            fourthFriend.setVisible(false);
+            fifthFriend.setVisible(false);
+
+            tonsFirstFriend.setVisible(true);
+            tonsSecondFriend.setVisible(true);
+            tonsThirdFriend.setVisible(false);
+            tonsFourthFriend.setVisible(false);
+            tonsFifthFriend.setVisible(false);
+
+            amountFirstFriend.setVisible(true);
+            amountSecondFriend.setVisible(true);
+            amountThirdFriend.setVisible(false);
+            amountFourthFriend.setVisible(false);
+            amountFifthFriend.setVisible(false);
+        } else if (topFriendsList.size() == 3){
+            firstFriend.setText(topFriendsList.get(0).getUsername());
+            String number01 = String.format("%.5f", topFriendsList.get(0).getCarbonEmission());
+            if(number01.equals("0,00000")){
+                number01 = "0";
+            }
+            amountFirstFriend.setText(number01);
+
+            secondFriend.setText(topFriendsList.get(1).getUsername());
+            String number02 = String.format("%.5f", topFriendsList.get(1).getCarbonEmission());
+            if(number02.equals("0,00000")){
+                number02 = "0";
+            }
+            amountSecondFriend.setText(number02);
+
+            thirdFriend.setText(topFriendsList.get(2).getUsername());
+            String number03 = String.format("%.5f", topFriendsList.get(2).getCarbonEmission());
+            if(number03.equals("0,00000")){
+                number03 = "0";
+            }
+            amountThirdFriend.setText(number03);
+
+            firstFriend.setVisible(true);
+            secondFriend.setVisible(true);
+            thirdFriend.setVisible(true);
+            fourthFriend.setVisible(false);
+            fifthFriend.setVisible(false);
+
+            tonsFirstFriend.setVisible(true);
+            tonsSecondFriend.setVisible(true);
+            tonsThirdFriend.setVisible(true);
+            tonsFourthFriend.setVisible(false);
+            tonsFifthFriend.setVisible(false);
+
+            amountFirstFriend.setVisible(true);
+            amountSecondFriend.setVisible(true);
+            amountThirdFriend.setVisible(true);
+            amountFourthFriend.setVisible(false);
+            amountFifthFriend.setVisible(false);
+
+        } else if (topFriendsList.size() == 4){
+            firstFriend.setText(topFriendsList.get(0).getUsername());
+            String number01 = String.format("%.5f", topFriendsList.get(0).getCarbonEmission());
+            if(number01.equals("0,00000")){
+                number01 = "0";
+            }
+            amountFirstFriend.setText(number01);
+
+            secondFriend.setText(topFriendsList.get(1).getUsername());
+            String number02 = String.format("%.5f", topFriendsList.get(1).getCarbonEmission());
+            if(number02.equals("0,00000")){
+                number02 = "0";
+            }
+            amountSecondFriend.setText(number02);
+
+            thirdFriend.setText(topFriendsList.get(2).getUsername());
+            String number03 = String.format("%.5f", topFriendsList.get(2).getCarbonEmission());
+            if(number03.equals("0,00000")){
+                number03 = "0";
+            }
+            amountThirdFriend.setText(number03);
+
+            fourthFriend.setText(topFriendsList.get(3).getUsername());
+            String number04 = String.format("%.5f", topFriendsList.get(3).getCarbonEmission());
+            if(number04.equals("0,00000")){
+                number04 = "0";
+            }
+            amountFourthFriend.setText(number04);
+
+            firstFriend.setVisible(true);
+            secondFriend.setVisible(true);
+            thirdFriend.setVisible(true);
+            fourthFriend.setVisible(true);
+            fifthFriend.setVisible(false);
+
+            tonsFirstFriend.setVisible(true);
+            tonsSecondFriend.setVisible(true);
+            tonsThirdFriend.setVisible(true);
+            tonsFourthFriend.setVisible(true);
+            tonsFifthFriend.setVisible(false);
+
+            amountFirstFriend.setVisible(true);
+            amountSecondFriend.setVisible(true);
+            amountThirdFriend.setVisible(true);
+            amountFourthFriend.setVisible(true);
+            amountFifthFriend.setVisible(false);
+
+        } else if (topFriendsList.size() >= 5){
+            firstFriend.setText(topFriendsList.get(0).getUsername());
+            String number01 = String.format("%.5f", topFriendsList.get(0).getCarbonEmission());
+            if(number01.equals("0,00000")){
+                number01 = "0";
+            }
+            amountFirstFriend.setText(number01);
+
+            secondFriend.setText(topFriendsList.get(1).getUsername());
+            String number02 = String.format("%.5f", topFriendsList.get(1).getCarbonEmission());
+            if(number02.equals("0,00000")){
+                number02 = "0";
+            }
+            amountSecondFriend.setText(number02);
+
+            thirdFriend.setText(topFriendsList.get(2).getUsername());
+            String number03 = String.format("%.5f", topFriendsList.get(2).getCarbonEmission());
+            if(number03.equals("0,00000")){
+                number03 = "0";
+            }
+            amountThirdFriend.setText(number03);
+
+            fourthFriend.setText(topFriendsList.get(3).getUsername());
+            String number04 = String.format("%.5f", topFriendsList.get(3).getCarbonEmission());
+            if(number04.equals("0,00000")){
+                number04 = "0";
+            }
+            amountFourthFriend.setText(number04);
+
+            fifthFriend.setText(topFriendsList.get(4).getUsername());
+            String number05 = String.format("%.5f", topFriendsList.get(4).getCarbonEmission());
+            if(number05.equals("0,00000")){
+                number05 = "0";
+            }
+            amountFifthFriend.setText(number05);
+
+            firstFriend.setVisible(true);
+            secondFriend.setVisible(true);
+            thirdFriend.setVisible(true);
+            fourthFriend.setVisible(true);
+            fifthFriend.setVisible(true);
+
+            tonsFirstFriend.setVisible(true);
+            tonsSecondFriend.setVisible(true);
+            tonsThirdFriend.setVisible(true);
+            tonsFourthFriend.setVisible(true);
+            tonsFifthFriend.setVisible(true);
+
+            amountFirstFriend.setVisible(true);
+            amountSecondFriend.setVisible(true);
+            amountThirdFriend.setVisible(true);
+            amountFourthFriend.setVisible(true);
+            amountFifthFriend.setVisible(true);
+        }
+
     }
 
     /**
@@ -693,6 +939,7 @@ public class MainController implements Initializable {
                     System.out.println("succesful");
                     final int selectedIdx = receivedFriendsListview.getSelectionModel().getSelectedIndex();
                     receivedFriendsListview.getItems().remove(selectedIdx);
+                    fillTopFriends();
                 } else {
                     System.out.println("error");
                 }
