@@ -74,51 +74,52 @@
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="localProductBadge" fitHeight="220.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <image>
-                  <Image url="@../mainpage/images/busBadge01.png" />
+                  <Image url="@../mainpage/images/localProductBadge.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../mainpage/images/busBadge02.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../mainpage/images/busBadge03.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
-               <image>
-                  <Image url="@../mainpage/images/bikeBadge01.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
-               <image>
-                  <Image url="@../mainpage/images/bikeBadge02.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
-               <image>
-                  <Image url="@../mainpage/images/bikeBadge03.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+            <ImageView fx:id="vegBadge01" fitHeight="200.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <image>
                   <Image url="@../mainpage/images/vegBadge01.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+            <ImageView fx:id="vegBadge02" fitHeight="200.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <image>
                   <Image url="@../mainpage/images/vegBadge02.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+            <ImageView fx:id="vegBadge03" fitHeight="200.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <image>
                   <Image url="@../mainpage/images/vegBadge03.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="addFriendsBadge" fitHeight="200.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@../mainpage/images/addFriendsBadge.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="busBadge02" fitHeight="200.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@../mainpage/images/busBadge02.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="solarPanelsBadge" fitHeight="200.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@../mainpage/images/solarPanelsBadge.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="bestOfFriends" fitHeight="200.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@../mainpage/images/bestOfFriends.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="busBadge03" fitHeight="200.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@../mainpage/images/busBadge03.png" />
                </image>
             </ImageView>
          </children>

@@ -626,7 +626,7 @@ public class MainController implements Initializable {
         final String token = UserToken.getUserToken();
         JwtUser jwtUser01 = jwtValidator.validate(token);
 
-        List<Friends> receivedFriends = userService.getFriendRequest(restTemplate, Url.GET_FRIEND_REQ_SENT.getUrl(), jwtUser01.getId(), token);
+        List<Friends> receivedFriends = userService.getFriendRequest(restTemplate, Url.GET_FRIEND_REQ_REC.getUrl(), jwtUser01.getId(), token);
 
         for(Friends a : receivedFriends) {
             if (a != null){
@@ -637,7 +637,7 @@ public class MainController implements Initializable {
             }
         }
 
-        List<Friends> pendingFriends = userService.getFriendRequest(restTemplate, Url.GET_FRIEND_REQ_REC.getUrl(), jwtUser01.getId(), token);
+        List<Friends> pendingFriends = userService.getFriendRequest(restTemplate, Url.GET_FRIEND_REQ_SENT.getUrl(), jwtUser01.getId(), token);
 
         for(Friends a : pendingFriends) {
             if (!(a == null)){

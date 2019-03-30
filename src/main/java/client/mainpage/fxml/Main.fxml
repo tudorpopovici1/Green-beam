@@ -812,51 +812,52 @@
                 </columnConstraints>
                 <rowConstraints>
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 </rowConstraints>
                 <children>
-                    <ImageView fx:id="busBadge01" fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                    <ImageView fx:id="localProductBadge" fitHeight="220.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" visible="false">
                         <image>
-                            <Image url="@../images/busBadge01.png" />
+                            <Image url="@../images/localProductBadge.png" />
                         </image>
                     </ImageView>
-                    <ImageView fx:id="busBadge02" fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                        <image>
-                            <Image url="@../images/busBadge02.png" />
-                        </image>
-                    </ImageView>
-                    <ImageView fx:id="busBadge03" fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                        <image>
-                            <Image url="@../images/busBadge03.png" />
-                        </image>
-                    </ImageView>
-                    <ImageView fx:id="bikeBadge01" fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" visible="false">
-                        <image>
-                            <Image url="@../images/bikeBadge01.png" />
-                        </image>
-                    </ImageView>
-                    <ImageView fx:id="bikeBadge02" fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" visible="false">
-                        <image>
-                            <Image url="@../images/bikeBadge02.png" />
-                        </image>
-                    </ImageView>
-                    <ImageView fx:id="bikeBadge03" fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" visible="false">
-                        <image>
-                            <Image url="@../images/bikeBadge03.png" />
-                        </image>
-                    </ImageView>
-                    <ImageView fx:id="vegBadge01" fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" visible="false">
+                    <ImageView fx:id="vegBadge01" fitHeight="200.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" visible="false">
                         <image>
                             <Image url="@../images/vegBadge01.png" />
                         </image>
                     </ImageView>
-                    <ImageView fx:id="vegBadge02" fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" visible="false">
+                    <ImageView fx:id="vegBadge02" fitHeight="200.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" visible="false">
                         <image>
                             <Image url="@../images/vegBadge02.png" />
                         </image>
                     </ImageView>
-                    <ImageView fx:id="vegBadge03" fitHeight="227.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" visible="false">
+                    <ImageView fx:id="vegBadge03" fitHeight="200.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" visible="false">
                         <image>
                             <Image url="@../images/vegBadge03.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView fx:id="addFriendsBadge" fitHeight="200.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" visible="false">
+                        <image>
+                            <Image url="@../images/addFriendsBadge.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView fx:id="busBadge02" fitHeight="200.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" visible="false">
+                        <image>
+                            <Image url="@../images/busBadge02.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView fx:id="solarPanelsBadge" fitHeight="200.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" visible="false">
+                        <image>
+                            <Image url="@../images/solarPanelsBadge.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView fx:id="bestOfFriends" fitHeight="200.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" visible="false">
+                        <image>
+                            <Image url="@../images/bestOfFriends.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView fx:id="busBadge03" fitHeight="200.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" visible="false">
+                        <image>
+                            <Image url="@../images/busBadge03.png" />
                         </image>
                     </ImageView>
                 </children>
