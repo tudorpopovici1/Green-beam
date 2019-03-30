@@ -209,7 +209,7 @@ public class UserController {
         return "Saved";
     }
 
-    @PostMapping("/user/add/emission/Transportation/{id}")
+    @PostMapping("/user/add/emission/transportation/{id}")
     public String addEmissionsBike(HttpServletRequest httpServletRequest,
                                @PathVariable("id") Long id,
                                @RequestBody EmissionsClient emissionsClient)
@@ -440,9 +440,7 @@ public class UserController {
             for (int i = 0; i < 5; i++) {
                 toReturn.add(allFriendsEmissions.get(i));
             }
-        }
-        else
-        {
+        } else {
             toReturn = allFriendsEmissions;
         }
         return toReturn;
