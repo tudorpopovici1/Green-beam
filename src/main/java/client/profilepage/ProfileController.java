@@ -44,7 +44,7 @@ public class ProfileController implements Initializable {
             //FXMLLoader loader = new FXMLLoader(getClass().getResource(
             // "src/main/java/client/profilepage/SidePanel1.fxml"));
             URL url = new File(
-                    "src/main/java/client/profilepage/SidePanel2.fxml").toURI().toURL();
+                    "src/main/java/client/profilepage/SidePane2.fxml").toURI().toURL();
             VBox box = FXMLLoader.load(url);
             //VBox box = FXMLLoader.load(getClass().getResource(
             // "client.profilepage.SidePanel2.fxml"));
