@@ -101,14 +101,11 @@ public class SidePanelController implements Initializable {
         b2.setPadding(new Insets(10));
         b3.setPadding(new Insets(10));
 
-        VBox vBox1 = new VBox(b1,b2,b3);
+        VBox vbox = new VBox(b1,b2,b3);
 
     }
 
-    //@Override
-    //public void textValueChanged(TextEvent e){
-        //testarea.setText(searchFriends.getText());
-    //}
+
 
 
 

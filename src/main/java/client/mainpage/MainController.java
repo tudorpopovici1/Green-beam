@@ -17,14 +17,39 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import org.springframework.web.client.RestTemplate;
-import server.model.*;
+import server.model.AchievementsType;
+import server.model.BikeRide;
+import server.model.ElectricityEmission;
+import server.model.EmissionFriend;
+import server.model.EmissionsClient;
+import server.model.Friends;
+import server.model.FriendsUserResp;
+import server.model.FuelOilEmission;
+import server.model.HouseTemperature;
+import server.model.JwtUser;
+import server.model.LPGEmission;
+import server.model.LocalProduce;
+import server.model.Meal;
+import server.model.MetroRide;
+import server.model.NaturalGasEmission;
+import server.model.PlaneRide;
+import server.model.PublicTransportation;
+import server.model.SolarPanels;
+import server.model.TaxiRide;
+import server.model.TrainRide;
+import server.model.WasteEmission;
+import server.model.WaterEmission;
 import server.security.JwtValidator;
 
 import java.io.File;
@@ -32,7 +57,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -43,7 +73,7 @@ import java.util.logging.Logger;
 @SuppressWarnings("Duplicates")
 public class MainController implements Initializable {
 
-    /** ID activation for the profile page **/
+    /** ID activation for the profile page. **/
 
     @FXML
     private JFXHamburger hamburger;
@@ -80,7 +110,7 @@ public class MainController implements Initializable {
 
 
 
-    /** ID activation for the main page **/
+    /** ID activation for the main page. **/
 
     @FXML
     private Pane mainWindow;
@@ -190,7 +220,7 @@ public class MainController implements Initializable {
     @FXML
     private Pane paneFifthFriend;
 
-    /** ID activation for the rest **/
+    /** ID activation for the rest. **/
 
     @FXML
     private Pane emissionsWindow;
@@ -282,7 +312,7 @@ public class MainController implements Initializable {
     @FXML
     private Pane settingsWindow;
 
-    /** ID activation for the public transport ride button **/
+    /** ID activation for the public transport ride button. **/
 
     @FXML
     private Button rideABusButton;
@@ -302,7 +332,7 @@ public class MainController implements Initializable {
     @FXML
     private TextField fuelTypeTextPublic;
 
-    /** ID activation for the local produce button **/
+    /** ID activation for the local produce button. **/
 
     @FXML
     private Button localProduceButton;
@@ -331,7 +361,7 @@ public class MainController implements Initializable {
     @FXML
     private Button backToMealTypePageButtonProduce;
 
-    /** ID activation for the solar panel button **/
+    /** ID activation for the solar panel button. **/
 
     @FXML
     private TextField systemSizeText;
@@ -374,7 +404,7 @@ public class MainController implements Initializable {
     @FXML
     private ImageView tempIcon;
 
-    /** ID activation for the household button */
+    /** ID activation for the household button. */
 
     @FXML
     private ImageView householdIcon;
@@ -442,9 +472,9 @@ public class MainController implements Initializable {
     @FXML
     private TextField emissionFactorElectricity;
 
-    /** ID activation for LPG */
+    /** ID activation for LPG. */
     @FXML
-    private Button addLPGButton;
+    private Button addLpgButton;
 
     @FXML
     private TextField lpgText;
@@ -453,15 +483,15 @@ public class MainController implements Initializable {
     private Button lpgButton;
 
     @FXML
-    private Label LPGStatus;
+    private Label lpgStatus;
 
     @FXML
-    private ImageView LPGIcon;
+    private ImageView lpgIcon;
 
     @FXML
-    private TextField emissionFactorLPG;
+    private TextField emissionFactorLpg;
 
-    /** ID activation for waste */
+    /** ID activation for waste. */
 
     @FXML
     private Button wasteButton;
@@ -481,7 +511,7 @@ public class MainController implements Initializable {
     @FXML
     private Button addWasteButton;
 
-    /** ID activation for water */
+    /** ID activation for water. */
 
     @FXML
     private Button waterButton;
@@ -1131,10 +1161,10 @@ public class MainController implements Initializable {
 
         /** LPG **/
         lpgText.setVisible(false);
-        emissionFactorLPG.setVisible(false);
-        LPGStatus.setVisible(false);
-        addLPGButton.setVisible(false);
-        LPGIcon.setVisible(false);
+        emissionFactorLpg.setVisible(false);
+        lpgStatus.setVisible(false);
+        addLpgButton.setVisible(false);
+        lpgIcon.setVisible(false);
 
         /** Waste **/
         wasteText.setVisible(false);
@@ -1350,7 +1380,7 @@ public class MainController implements Initializable {
        backToEmissionPageButtonHousehold.setVisible(true);
        electricityIcon.setVisible(true);
        naturalGasIcon.setVisible(true);
-        LPGIcon.setVisible(true);
+        lpgIcon.setVisible(true);
         fuelOilIcon.setVisible(true);
         waterIcon.setVisible(true);
         wasteIcon.setVisible(true);
@@ -1376,7 +1406,7 @@ public class MainController implements Initializable {
         emissionFactorNaturalGas.setVisible(false);
         electricityIcon.setVisible(true);
         naturalGasIcon.setVisible(true);
-        LPGIcon.setVisible(true);
+        lpgIcon.setVisible(true);
         fuelOilIcon.setVisible(true);
         wasteIcon.setVisible(true);
         waterIcon.setVisible(true);
@@ -1387,9 +1417,9 @@ public class MainController implements Initializable {
         addFuelOilButton.setVisible(false);
         /** LPG **/
         lpgText.setVisible(false);
-        emissionFactorLPG.setVisible(false);
-        LPGStatus.setVisible(false);
-        addLPGButton.setVisible(false);
+        emissionFactorLpg.setVisible(false);
+        lpgStatus.setVisible(false);
+        addLpgButton.setVisible(false);
         /** Waste **/
         wasteText.setVisible(false);
         emissionFactorWaste.setVisible(false);
@@ -1417,7 +1447,7 @@ public class MainController implements Initializable {
         emissionFactorElectricity.setVisible(true);
         electricityIcon.setVisible(false);
         naturalGasIcon.setVisible(false);
-        LPGIcon.setVisible(false);
+        lpgIcon.setVisible(false);
         fuelOilIcon.setVisible(false);
         waterIcon.setVisible(false);
         wasteIcon.setVisible(false);
@@ -1438,7 +1468,7 @@ public class MainController implements Initializable {
         backToHouseHoldPageButton.setVisible(true);
         electricityIcon.setVisible(false);
         naturalGasIcon.setVisible(false);
-        LPGIcon.setVisible(false);
+        lpgIcon.setVisible(false);
         fuelOilIcon.setVisible(false);
         waterIcon.setVisible(false);
         wasteIcon.setVisible(false);
@@ -1460,7 +1490,7 @@ public class MainController implements Initializable {
         backToHouseHoldPageButton.setVisible(true);
         electricityIcon.setVisible(false);
         naturalGasIcon.setVisible(false);
-        LPGIcon.setVisible(false);
+        lpgIcon.setVisible(false);
         fuelOilIcon.setVisible(false);
         waterIcon.setVisible(false);
         wasteIcon.setVisible(false);
@@ -1476,13 +1506,13 @@ public class MainController implements Initializable {
         backToEmissionPageButtonHousehold.setVisible(false);
 
         lpgText.setVisible(true);
-        emissionFactorLPG.setVisible(true);
-        LPGStatus.setVisible(true);
-        addLPGButton.setVisible(true);
+        emissionFactorLpg.setVisible(true);
+        lpgStatus.setVisible(true);
+        addLpgButton.setVisible(true);
         backToHouseHoldPageButton.setVisible(true);
         electricityIcon.setVisible(false);
         naturalGasIcon.setVisible(false);
-        LPGIcon.setVisible(false);
+        lpgIcon.setVisible(false);
         fuelOilIcon.setVisible(false);
         waterIcon.setVisible(false);
         wasteIcon.setVisible(false);
@@ -1504,7 +1534,7 @@ public class MainController implements Initializable {
         backToHouseHoldPageButton.setVisible(true);
         electricityIcon.setVisible(false);
         naturalGasIcon.setVisible(false);
-        LPGIcon.setVisible(false);
+        lpgIcon.setVisible(false);
         fuelOilIcon.setVisible(false);
         waterIcon.setVisible(false);
         wasteIcon.setVisible(false);
@@ -1526,7 +1556,7 @@ public class MainController implements Initializable {
         backToHouseHoldPageButton.setVisible(true);
         electricityIcon.setVisible(false);
         naturalGasIcon.setVisible(false);
-        LPGIcon.setVisible(false);
+        lpgIcon.setVisible(false);
         fuelOilIcon.setVisible(false);
         waterIcon.setVisible(false);
         wasteIcon.setVisible(false);
@@ -2213,14 +2243,14 @@ public class MainController implements Initializable {
 
         if (!emptyLPGBoxes()) {
             Double LPGUsage = Double.valueOf(lpgText.getText());
-            Double emissionFactor = Double.valueOf(emissionFactorLPG.getText());
+            Double emissionFactor = Double.valueOf(emissionFactorLpg.getText());
             LPGEmission lpgEmission = new LPGEmission(LPGUsage);
             JwtUser jwtUser = jwtValidator.validate(token);
             // use(litres/yr) * EF(kgC02/litres) = emissions(kg CO2)
             //divided by 1000 to convert it into tonnes
             float carbonEmission = (LPGUsage.floatValue() * emissionFactor.floatValue()) / 1000;
             String number = String.format("%.5f", carbonEmission);
-            LPGStatus.setText("You have saved: " + number + " tons of CO2");
+            lpgStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
             EmissionsClient emissionsClient = new EmissionsClient("14", carbonEmission, today);
@@ -2367,7 +2397,7 @@ public class MainController implements Initializable {
 
     private boolean emptyLPGBoxes() {
         if (checkEmptyOrNullBox
-                (lpgText, emissionFactorLPG)) {
+                (lpgText, emissionFactorLpg)) {
             emptyTextBoxPopup();
             return true;
         } else {

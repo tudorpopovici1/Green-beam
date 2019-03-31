@@ -1,14 +1,15 @@
 package client.profilepage;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.io.File;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.Parent;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+
 
 public class MainProfile extends Application {
 
@@ -32,8 +33,8 @@ public class MainProfile extends Application {
             primaryStage.show();
 
             //URL bruh = new File(
-                    //"src/main/java/client/profilepage/SidePanel1.fxml").toURI().toURL();
-           //Parent broot = FXMLLoader.load(bruh);
+            // "src/main/java/client/profilepage/SidePanel1.fxml").toURI().toURL();
+            //Parent broot = FXMLLoader.load(bruh);
             //primaryStage.setTitle("Hello World");
             //primaryStage.setScene(new Scene(broot, 200, 700));
             //primaryStage.setResizable(false);

@@ -216,7 +216,8 @@ public class UserService {
         List<Friends> friendsList = new ArrayList<>();
         try {
             ResponseEntity<Friends[]> response
-                    = restTemplate.exchange(url + "/" + id, HttpMethod.GET, entity, Friends[].class);
+                    = restTemplate.exchange(url + "/" + id,
+                    HttpMethod.GET, entity, Friends[].class);
 
             if (response.getBody() != null) {
                 Friends[] list = response.getBody();
@@ -334,7 +335,7 @@ public class UserService {
     }
 
     /**
-     * Get the achievements of the user
+     * Get the achievements of the user.
      * @param restTemplate restTemplate object
      * @param url server url
      * @param userId user id
