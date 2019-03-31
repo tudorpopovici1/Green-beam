@@ -577,6 +577,11 @@ public class MainController implements Initializable {
     @FXML
     private Button addPlaneButton;
 
+    /** ID activation for a progress page **/
+
+    @FXML
+    private JFXListView<String> leaderboardListview;
+
     boolean vegmeal03 = false;
     boolean vegmeal07 = false;
     boolean vegmeal30 = false;
@@ -2469,10 +2474,46 @@ public class MainController implements Initializable {
      *              this method, it starts to execute.
      */
     public void progressPage(ActionEvent event) {
+        leaderboardListview.getItems().clear();
         progressWindow.setVisible(true);
         progressWindow.toFront();
         animatePane(progressWindow);
         progressWindow.setStyle("-fx-background-color: #000000");
+
+        final String token = UserToken.getUserToken();
+        JwtUser jwtUser01 = jwtValidator.validate(token);
+
+        List<EmissionFriend> leaderboardList = userService.getEmissionsOfFriends(restTemplate, Url.GET_EMISSION_FRIENDS.getUrl(), token, jwtUser01.getId());
+
+
+        Collections.sort(leaderboardList, new Comparator<EmissionFriend>() {
+            @Override
+            public int compare(EmissionFriend o1, EmissionFriend o2) {
+                return Double.valueOf(o2.getCarbonEmission()).compareTo(o1.getCarbonEmission());
+            }
+        });
+
+        if (leaderboardList != null){
+            if (leaderboardList.size() == 0){
+                leaderboardListview.getItems().add("NO FRIENDS YET");
+            } else{
+                for(EmissionFriend a : leaderboardList) {
+                    String usernameLeader = a.getUsername();
+                    String totalcarbonText = String.format("%.5f", a.getCarbonEmission());
+                    if(totalcarbonText.equals("0,00000")){
+                        totalcarbonText = "0";
+                    }
+                    leaderboardListview.getItems().add(usernameLeader + ":  " + totalcarbonText + " tons");
+                }
+            }
+        }
+
+
+//        if (leaderboardList.size()>5){
+//            leaderboardList.subList(5, leaderboardList.size()).clear();
+//        }
+
+
     }
 
     /**---------------------------- PROFILE PAGE -----------------------------------------**/
@@ -2503,9 +2544,18 @@ public class MainController implements Initializable {
         friendsListProfile = userService.getUserFriends(restTemplate, Url.GET_USER_FRIENDS.getUrl(),
                 jwtUser.getId(), token);
 
-
         List<AchievementsType> achievementsOfUser = userService.getAchievementsOfUser(restTemplate, Url.GET_ACHIEVEMENTS_USER.getUrl(),
                 jwtUser.getId(), token);
+
+        List<EmissionFriend> leaderboardList = userService.getEmissionsOfFriends(restTemplate, Url.GET_EMISSION_FRIENDS.getUrl(), token, jwtUser.getId());
+
+
+        Collections.sort(leaderboardList, new Comparator<EmissionFriend>() {
+            @Override
+            public int compare(EmissionFriend o1, EmissionFriend o2) {
+                return Double.valueOf(o2.getCarbonEmission()).compareTo(o1.getCarbonEmission());
+            }
+        });
 
         for(AchievementsType a : achievementsOfUser) {
             System.out.println(a.getAchievementName());
@@ -2524,9 +2574,9 @@ public class MainController implements Initializable {
             if (a.getAchievementName().equals("TransportationInsteadOfCar_30_times")){
                 publicbadge30 = true;
             }
-            if (a.getAchievementName().equals("BestOfYourFriends")){
-                bestoffriends = true;
-            }
+//            if (a.getAchievementName().equals("BestOfYourFriends")){
+//                bestoffriends = true;
+//            }
             if (a.getAchievementName().equals("SolarPanelsInstalled")){
                 solarpanelsinstalled = true;
             }
@@ -2535,6 +2585,14 @@ public class MainController implements Initializable {
             }
             if (a.getAchievementName().equals("AddFriend_3_times")){
                 addthreefriends = true;
+            }
+        }
+
+        if (leaderboardList != null){
+            if (leaderboardList.size() != 1){
+                if (leaderboardList.get(0).getUsername().equals(jwtUser.getUserName())){
+                    bestoffriends = true;
+                }
             }
         }
 
