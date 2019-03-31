@@ -2089,7 +2089,7 @@ public class MainController implements Initializable {
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
             EmissionsClient emissionsClient = new EmissionsClient("3", carbonEmission, today);
-            String response = userService.addEmissionOfUser(restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
+            String response = userService.addEmissionOfUser(restTemplate, Url.VEG_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
         }
