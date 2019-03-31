@@ -435,6 +435,7 @@ public class LoginController {
      * @param textFields - any box in the login page.
      * @return boolean - returns true if the field is null or empty and false if not.
      */
+
     private boolean checkEmptyOrNullBox(TextField... textFields) {
         for (TextField textField : textFields) {
             if (textField.getText() == null || textField.getText().equals("")) {

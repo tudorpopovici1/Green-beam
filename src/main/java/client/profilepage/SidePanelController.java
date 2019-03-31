@@ -44,7 +44,7 @@ public class SidePanelController implements Initializable {
         System.out.println("View is now loaded!");
 
         searchBarBox.setVisible(false);
-//        initPopup();
+        //initPopup();
     }
 
     /**
@@ -77,13 +77,13 @@ public class SidePanelController implements Initializable {
 
 
     /**
-     * Adds a friend to the friendslist
+     * Adds a friend to the friendslist.
      * @param event - once a user clicks the button linked to
      *              this method, it starts to execute.
      */
     public void addFriendsClicked(ActionEvent event) {
         String friend = foundFriends.getSelectionModel().getSelectedItem();
-        if (!(foundFriends.getSelectionModel().getSelectedItem() == null)){
+        if (!(foundFriends.getSelectionModel().getSelectedItem() == null)) {
             friendslistView.getItems().add(friend);
         }
 
@@ -101,14 +101,14 @@ public class SidePanelController implements Initializable {
         b2.setPadding(new Insets(10));
         b3.setPadding(new Insets(10));
 
-        VBox vBox = new VBox(b1,b2,b3);
+        VBox vBox1 = new VBox(b1,b2,b3);
 
     }
 
-//    @Override
-//    public void textValueChanged(TextEvent e){
-//        testarea.setText(searchFriends.getText());
-//    }
+    //@Override
+    //public void textValueChanged(TextEvent e){
+        //testarea.setText(searchFriends.getText());
+    //}
 
 
 
