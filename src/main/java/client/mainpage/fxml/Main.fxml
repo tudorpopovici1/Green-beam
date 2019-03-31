@@ -614,7 +614,7 @@
 
         <!--LPG-->
         <Button fx:id="lpgButton" layoutX="260.0" layoutY="370.0" prefHeight="75.0"
-                prefWidth="184.0" text="Add LPG" visible="false" onAction="#LPGOnClick"/>
+                prefWidth="184.0" text="Add LPG" visible="false" onAction="#lpgOnClick"/>
         <TextField fx:id="lpgText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
                    prefWidth="184.0" promptText="LPG (litres/yr)" visible="false"/>
         <TextField fx:id="emissionFactorLpg" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
@@ -626,7 +626,7 @@
         </Label>
         <Button fx:id="addLpgButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
                 prefHeight="75.0"
-                prefWidth="184.0" text="Add" visible="false" onAction="#addLPGInHouseHold"/>
+                prefWidth="184.0" text="Add" visible="false" onAction="#addLpgInHouseHold"/>
 
         <!--Water-->
         <Button fx:id="waterButton" layoutX="260.0" layoutY="530.0" prefHeight="75.0"
