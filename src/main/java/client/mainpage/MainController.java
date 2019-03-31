@@ -1896,7 +1896,7 @@ public class MainController implements Initializable {
         localProduceStatus.setText("You have saved: " + number + " tons of CO2");
         DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
         Date today = Calendar.getInstance().getTime();
-        EmissionsClient emissionsClient = new EmissionsClient("1", carbonEmission, today);
+        EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
         String response = userService.addEmissionOfUser(restTemplate, Url.VEG_EMISSION.getUrl(),
                 jwtUser.getId(), emissionsClient, token);
         System.out.println(response);
@@ -1950,7 +1950,7 @@ public class MainController implements Initializable {
             transportationStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
-            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
+            EmissionsClient emissionsClient = new EmissionsClient("5", carbonEmission, today);
             String response = userService.addEmissionOfUser(restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
@@ -1975,7 +1975,7 @@ public class MainController implements Initializable {
             transportationStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
-            EmissionsClient emissionsClient = new EmissionsClient("2", carbonEmission, today);
+            EmissionsClient emissionsClient = new EmissionsClient("4", carbonEmission, today);
             String response = userService.addEmissionOfUser(restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
@@ -2093,7 +2093,7 @@ public class MainController implements Initializable {
             solarPanelStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
-            EmissionsClient emissionsClient = new EmissionsClient("4", carbonEmission, today);
+            EmissionsClient emissionsClient = new EmissionsClient("3", carbonEmission, today);
             String response = userService.addEmissionOfUser(restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);

@@ -289,8 +289,7 @@ public class UnitUserControllerTest {
                 1L);
         EmissionFriend emissionFriendExpected = new EmissionFriend(user1.getUsername(),
                 expected);
-        Assert.assertEquals(emissionFriendExpected.getUsername(), result.getUsername());
-        Assert.assertTrue(emissionFriendExpected.getCarbonEmission() == result.getCarbonEmission());
+        Assert.assertEquals(emissionFriendExpected, result);
     }
 
     @Test (expected = BadCredentialsException.class)
@@ -334,9 +333,7 @@ public class UnitUserControllerTest {
                 httpServletRequest, 1L);
         List<EmissionFriend> expected = new ArrayList<>();
         expected.add(new EmissionFriend("userno1", 1D));
-        Assert.assertEquals(expected.get(0).getUsername(), result.get(0).getUsername());
-        Assert.assertTrue(expected.get(0).getCarbonEmission() ==
-                result.get(0).getCarbonEmission());
+        Assert.assertEquals(expected.get(0), result.get(0));
     }
 
     @Test
@@ -360,12 +357,8 @@ public class UnitUserControllerTest {
         List<EmissionFriend> expected = new ArrayList<>();
         expected.add(new EmissionFriend("userno1", 1D));
         expected.add(new EmissionFriend("userno5", 1D));
-        Assert.assertEquals(expected.get(0).getUsername(), result.get(0).getUsername());
-        Assert.assertTrue(expected.get(0).getCarbonEmission() ==
-                result.get(0).getCarbonEmission());
-        Assert.assertEquals(expected.get(1).getUsername(), result.get(1).getUsername());
-        Assert.assertTrue(expected.get(1).getCarbonEmission() ==
-                result.get(1).getCarbonEmission());
+        Assert.assertEquals(expected.get(0), result.get(0));
+        Assert.assertEquals(expected.get(1), result.get(1));
     }
 
     @Test (expected = BadCredentialsException.class)
