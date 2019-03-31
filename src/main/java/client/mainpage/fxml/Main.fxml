@@ -749,7 +749,34 @@
                 prefWidth="184.0" text="Add" visible="false" onAction="#addPlaneRide"/>
 
     </Pane>
-    <Pane fx:id="progressWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
+    <Pane fx:id="progressWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false">
+        <children>
+            <ImageView fitHeight="1200.0" fitWidth="679.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../images/progressBackgroud.jpg" />
+                </image>
+            </ImageView>
+            <Label layoutX="211.0" layoutY="14.0" text="PROGRESS" textFill="WHITE">
+                <font>
+                    <Font name="Gotham-Bold" size="45.0" />
+                </font>
+            </Label>
+            <VBox layoutX="214.0" layoutY="125.0" prefHeight="450.0" prefWidth="250.0" style="-fx-background-color: #01A2A6;">
+                <children>
+                    <Pane prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #01A2A6;">
+                        <children>
+                            <Label layoutX="50.0" layoutY="14.0" text="LEADERBOARD" textFill="#ffffa6">
+                                <font>
+                                    <Font name="BebasNeue" size="35.0" />
+                                </font>
+                            </Label>
+                        </children>
+                    </Pane>
+                    <JFXListView fx:id="leaderboardListview" prefHeight="375.0" prefWidth="200.0" styleClass="jfx-list-view" />
+                </children>
+            </VBox>
+        </children>
+    </Pane>
     <Pane fx:id="profileWindow" layoutX="222.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
           prefHeight="700.0" prefWidth="709.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" visible="false">
         <children>
