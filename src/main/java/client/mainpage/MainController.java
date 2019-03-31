@@ -1967,8 +1967,8 @@ public class MainController implements Initializable {
             Float numberOfKilometers = Float.parseFloat(numberOfMilesTextPublic.getText());
             Float numberOfMiles = numberOfKilometers * 1.6f;
             int fuelType = Integer.parseInt(fuelTypeTextPublic.getText());
-            PublicTransportation bus = new PublicTransportation(Float.parseFloat(carMileageTextPublic.getText()),
-                    numberOfMiles, fuelType);
+            PublicTransportation bus = new PublicTransportation(numberOfMiles, Float.parseFloat(carMileageTextPublic.getText()),
+                    fuelType);
             JwtUser jwtUser = jwtValidator.validate(token);
             float carbonEmission = apiService.getPublicTransportationEmissions(bus);
             String number = String.format("%.5f", carbonEmission);
