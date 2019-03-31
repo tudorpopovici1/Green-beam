@@ -231,6 +231,22 @@
     -fx-background-color: #3F3745;
 }
 
+#acceptFriend, #declineFriend {
+    -fx-font-family: "Apple Chancery";
+    -fx-font-size: 19px;
+    -fx-text-fill: white;
+}
+
+#pendingRequests, #friendRequests {
+    -fx-font-family: "Apple Chancery";
+    -fx-font-size: 22px;
+}
+
+#leaderboard {
+    -fx-font-family: "Apple Chancery";
+    -fx-font-size: 25px;
+}
+
 
 
 

@@ -158,7 +158,7 @@
                 <children>
                     <Pane prefHeight="50.0" prefWidth="200.0">
                         <children>
-                            <Label layoutX="28.0" layoutY="6.0" text="FRIEND REQUESTS" textFill="#ffffa6">
+                            <Label fx:id="friendRequests" layoutX="28.0" layoutY="6.0" text="Friend Requests" textFill="#ffffa6">
                                 <font>
                                     <Font name="BebasNeue" size="27.0" />
                                 </font>
@@ -168,11 +168,11 @@
                     <JFXListView fx:id="receivedFriendsListview" prefHeight="200.0" styleClass="jfx-list-view" />
                     <HBox prefHeight="40.0" prefWidth="200.0">
                         <children>
-                            <JFXButton fx:id="acceptFriend" prefHeight="40.0" prefWidth="100.0" styleClass="buttonspending" text="ACCEPT" textFill="#ffffa6" onAction="#acceptFriendOnClick">
+                            <JFXButton fx:id="acceptFriend" prefHeight="40.0" prefWidth="100.0" styleClass="buttonspending" text="Accept" textFill="#ffffa6" onAction="#acceptFriendOnClick">
                                 <font>
                                     <Font name="BebasNeue" size="25.0" />
                                 </font></JFXButton>
-                            <JFXButton fx:id="declineFriend" prefHeight="40.0" prefWidth="100.0" styleClass="buttonspending" text="DECLINE" textFill="#ffffa6" onAction="#declineFriendOnClick">
+                            <JFXButton fx:id="declineFriend" prefHeight="40.0" prefWidth="100.0" styleClass="buttonspending" text="Decline" textFill="#ffffa6" onAction="#declineFriendOnClick">
                                 <font>
                                     <Font name="BebasNeue" size="25.0" />
                                 </font></JFXButton>
@@ -180,7 +180,7 @@
                     </HBox>
                     <Pane prefHeight="50.0" prefWidth="200.0">
                         <children>
-                            <Label layoutX="28.0" layoutY="6.0" text="FRIENDs pending" textFill="#ffffa6">
+                            <Label fx:id="pendingRequests" layoutX="28.0" layoutY="6.0" text="Requests Pending" textFill="#ffffa6">
                                 <font>
                                     <Font name="BebasNeue" size="27.0" />
                                 </font>
@@ -201,22 +201,22 @@
                             <Font name="BebasNeue" size="27.0" />
                         </font>
                     </Label>
-                    <Label fx:id="totalGreenTravelLabel" alignment="CENTER_RIGHT" layoutX="206.0" layoutY="49.0" prefHeight="36.0" prefWidth="211.0" text="134" textFill="#2f2933">
+                    <Label fx:id="totalGreenTravelLabel" alignment="CENTER_RIGHT" layoutX="150.0" layoutY="49.0" prefHeight="36.0" prefWidth="211.0" text="134" textFill="#2f2933">
                         <font>
                             <Font size="25.0" />
                         </font>
                     </Label>
-                    <Label fx:id="totalCO2SavedLabel" alignment="CENTER_RIGHT" layoutX="206.0" layoutY="115.0" prefHeight="36.0" prefWidth="211.0" text="134" textFill="#2f2933">
+                    <Label fx:id="totalCO2SavedLabel" alignment="CENTER_RIGHT" layoutX="150.0" layoutY="115.0" prefHeight="36.0" prefWidth="211.0" text="134" textFill="#2f2933">
                         <font>
                             <Font size="25.0" />
                         </font>
                     </Label>
-                    <Label fx:id="travelText1" layoutX="423.0" layoutY="49.0" text="TONS" textFill="#2f2933">
+                    <Label fx:id="travelText1" layoutX="400.0" layoutY="49.0" text="TONS" textFill="#2f2933">
                         <font>
                             <Font name="BebasNeue" size="27.0" />
                         </font>
                     </Label>
-                    <Label fx:id="travelText2" layoutX="423.0" layoutY="115.0" text="TONS" textFill="#2f2933">
+                    <Label fx:id="travelText2" layoutX="400.0" layoutY="115.0" text="TONS" textFill="#2f2933">
                         <font>
                             <Font name="BebasNeue" size="27.0" />
                         </font>
@@ -329,7 +329,7 @@
                             </Label>
                         </children>
                     </Pane>
-                    <Label layoutX="435.0" layoutY="6.0" text="CO2" textFill="WHITE">
+                    <Label layoutX="400.0" layoutY="6.0" text="CO2" textFill="WHITE">
                         <font>
                             <Font name="BebasNeue" size="27.0" />
                         </font>
@@ -765,7 +765,7 @@
                 <children>
                     <Pane prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #01A2A6;">
                         <children>
-                            <Label layoutX="50.0" layoutY="14.0" text="LEADERBOARD" textFill="#ffffa6">
+                            <Label fx:id="leaderboard" layoutX="30" layoutY="14.0" text="LEADERBOARD" textFill="#ffffa6">
                                 <font>
                                     <Font name="BebasNeue" size="35.0" />
                                 </font>
