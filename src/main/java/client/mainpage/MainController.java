@@ -672,13 +672,14 @@ public class MainController implements Initializable {
 
         List<EmissionFriend> topFriendsList = userService.getEmissionsOfFriends(restTemplate, Url.GET_EMISSION_FRIENDS.getUrl(), token, jwtUser01.getId());
 
-//        System.out.println(topFriendsList.size());
-//        for(EmissionFriend a : topFriendsList) {
-//            if (!(a == null)){
-//                System.out.println(a.getUsername());
-//                System.out.println(a.getCarbonEmission());
-//            }
-//        }
+        System.out.println(topFriendsList.size());
+        for(EmissionFriend a : topFriendsList) {
+            if (!(a == null)){
+                System.out.println(a.getUsername());
+                System.out.println(a.getCarbonEmission());
+            }
+        }
+
 
         Collections.sort(topFriendsList, new Comparator<EmissionFriend>() {
             @Override
@@ -686,16 +687,20 @@ public class MainController implements Initializable {
                 return Double.valueOf(o2.getCarbonEmission()).compareTo(o1.getCarbonEmission());
             }
         });
+        int arraySize = 0;
+        if (topFriendsList.size() > 5) {
+            arraySize = 5;
+        } else {
+            arraySize = topFriendsList.size();
+        }
 
-//        for(int a = 0; a < topFriendsList.size(); a++){
-//            System.out.println(topFriendsList.get(a).getUsername() + ": " + topFriendsList.get(a).getCarbonEmission());
-//        }
-//        System.out.println("Trimmed list");
-        topFriendsList.subList(5, topFriendsList.size()).clear();
+        EmissionFriend[] trimArr = new EmissionFriend[arraySize];
+        int index = 0;
+        for (EmissionFriend f : topFriendsList) {
+            trimArr[index++] = f;
+        }
 
-//        for(int a = 0; a < topFriendsList.size(); a++){
-//            System.out.println(topFriendsList.get(a).getUsername() + ": " + topFriendsList.get(a).getCarbonEmission());
-//        }
+        topFriendsList = Arrays.asList(trimArr);
 
         if (topFriendsList.size() == 0 || topFriendsList == null){
             firstFriend.setVisible(false);
@@ -720,7 +725,7 @@ public class MainController implements Initializable {
         } else if (topFriendsList.size() == 1){
             firstFriend.setText(topFriendsList.get(0).getUsername());
             String number01 = String.format("%.5f", topFriendsList.get(0).getCarbonEmission());
-            if(number01.equals("0,00000")){
+            if(number01.equals("0.00000")){
                 number01 = "0";
             }
             amountFirstFriend.setText(number01);
@@ -746,14 +751,14 @@ public class MainController implements Initializable {
         } else if (topFriendsList.size() == 2){
             firstFriend.setText(topFriendsList.get(0).getUsername());
             String number01 = String.format("%.5f", topFriendsList.get(0).getCarbonEmission());
-            if(number01.equals("0,00000")){
+            if(number01.equals("0.00000")){
                 number01 = "0";
             }
             amountFirstFriend.setText(number01);
 
             secondFriend.setText(topFriendsList.get(1).getUsername());
             String number02 = String.format("%.5f", topFriendsList.get(1).getCarbonEmission());
-            if(number02.equals("0,00000")){
+            if(number02.equals("0.00000")){
                 number02 = "0";
             }
             amountSecondFriend.setText(number02);
@@ -778,21 +783,21 @@ public class MainController implements Initializable {
         } else if (topFriendsList.size() == 3){
             firstFriend.setText(topFriendsList.get(0).getUsername());
             String number01 = String.format("%.5f", topFriendsList.get(0).getCarbonEmission());
-            if(number01.equals("0,00000")){
+            if(number01.equals("0.00000")){
                 number01 = "0";
             }
             amountFirstFriend.setText(number01);
 
             secondFriend.setText(topFriendsList.get(1).getUsername());
             String number02 = String.format("%.5f", topFriendsList.get(1).getCarbonEmission());
-            if(number02.equals("0,00000")){
+            if(number02.equals("0.00000")){
                 number02 = "0";
             }
             amountSecondFriend.setText(number02);
 
             thirdFriend.setText(topFriendsList.get(2).getUsername());
             String number03 = String.format("%.5f", topFriendsList.get(2).getCarbonEmission());
-            if(number03.equals("0,00000")){
+            if(number03.equals("0.00000")){
                 number03 = "0";
             }
             amountThirdFriend.setText(number03);
@@ -818,28 +823,28 @@ public class MainController implements Initializable {
         } else if (topFriendsList.size() == 4){
             firstFriend.setText(topFriendsList.get(0).getUsername());
             String number01 = String.format("%.5f", topFriendsList.get(0).getCarbonEmission());
-            if(number01.equals("0,00000")){
+            if(number01.equals("0.00000")){
                 number01 = "0";
             }
             amountFirstFriend.setText(number01);
 
             secondFriend.setText(topFriendsList.get(1).getUsername());
             String number02 = String.format("%.5f", topFriendsList.get(1).getCarbonEmission());
-            if(number02.equals("0,00000")){
+            if(number02.equals("0.00000")){
                 number02 = "0";
             }
             amountSecondFriend.setText(number02);
 
             thirdFriend.setText(topFriendsList.get(2).getUsername());
             String number03 = String.format("%.5f", topFriendsList.get(2).getCarbonEmission());
-            if(number03.equals("0,00000")){
+            if(number03.equals("0.00000")){
                 number03 = "0";
             }
             amountThirdFriend.setText(number03);
 
             fourthFriend.setText(topFriendsList.get(3).getUsername());
             String number04 = String.format("%.5f", topFriendsList.get(3).getCarbonEmission());
-            if(number04.equals("0,00000")){
+            if(number04.equals("0.00000")){
                 number04 = "0";
             }
             amountFourthFriend.setText(number04);
@@ -865,35 +870,35 @@ public class MainController implements Initializable {
         } else if (topFriendsList.size() >= 5){
             firstFriend.setText(topFriendsList.get(0).getUsername());
             String number01 = String.format("%.5f", topFriendsList.get(0).getCarbonEmission());
-            if(number01.equals("0,00000")){
+            if(number01.equals("0.00000")){
                 number01 = "0";
             }
             amountFirstFriend.setText(number01);
 
             secondFriend.setText(topFriendsList.get(1).getUsername());
             String number02 = String.format("%.5f", topFriendsList.get(1).getCarbonEmission());
-            if(number02.equals("0,00000")){
+            if(number02.equals("0.00000")){
                 number02 = "0";
             }
             amountSecondFriend.setText(number02);
 
             thirdFriend.setText(topFriendsList.get(2).getUsername());
             String number03 = String.format("%.5f", topFriendsList.get(2).getCarbonEmission());
-            if(number03.equals("0,00000")){
+            if(number03.equals("0.00000")){
                 number03 = "0";
             }
             amountThirdFriend.setText(number03);
 
             fourthFriend.setText(topFriendsList.get(3).getUsername());
             String number04 = String.format("%.5f", topFriendsList.get(3).getCarbonEmission());
-            if(number04.equals("0,00000")){
+            if(number04.equals("0.00000")){
                 number04 = "0";
             }
             amountFourthFriend.setText(number04);
 
             fifthFriend.setText(topFriendsList.get(4).getUsername());
             String number05 = String.format("%.5f", topFriendsList.get(4).getCarbonEmission());
-            if(number05.equals("0,00000")){
+            if(number05.equals("0.00000")){
                 number05 = "0";
             }
             amountFifthFriend.setText(number05);
