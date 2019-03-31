@@ -598,6 +598,18 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        HamburgerNextArrowBasicTransition htransition = new HamburgerNextArrowBasicTransition(hamburger);
+        htransition.setRate(-1);
+        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+            htransition.setRate(htransition.getRate() * -1);
+            htransition.play();
+
+            if (drawer.isOpened()) {
+                drawer.close();
+            } else {
+                drawer.open();
+            }
+        });
 //        System.out.println("View is now loaded!");
 //        JwtUser jwtUser = jwtValidator.validate(UserToken.getUserToken());
 //        friendsListProfile = userService.getUserFriends(restTemplate, Url.GET_USER_FRIENDS.getUrl(),
@@ -2588,18 +2600,18 @@ public class MainController implements Initializable {
 //            drawer.close();
 //        }
 
-        HamburgerNextArrowBasicTransition htransition = new HamburgerNextArrowBasicTransition(hamburger);
-        htransition.setRate(-1);
-        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
-            htransition.setRate(htransition.getRate() * -1);
-            htransition.play();
-
-            if (drawer.isOpened()) {
-                drawer.close();
-            } else {
-                drawer.open();
-            }
-        });
+//        HamburgerNextArrowBasicTransition htransition = new HamburgerNextArrowBasicTransition(hamburger);
+//        htransition.setRate(-1);
+//        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+//            htransition.setRate(htransition.getRate() * -1);
+//            htransition.play();
+//
+//            if (drawer.isOpened()) {
+//                drawer.close();
+//            } else {
+//                drawer.open();
+//            }
+//        });
     }
 
     /**---------------------------- ABOUT US PAGE -----------------------------------------**/
