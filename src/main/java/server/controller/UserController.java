@@ -81,7 +81,7 @@ public class UserController {
                 user.getId(), "1");
         friendsRepository.save(friends);
 
-        Emissions emissions = new Emissions(user.getId(), "1", 0, null);
+        Emissions emissions = new Emissions(users.getId(), "1", 0, null);
         emissionRepository.save(emissions);
         return users;
     }
@@ -206,10 +206,10 @@ public class UserController {
         }
 
         response = "Saved";
-        return "Saved";
+        return response;
     }
 
-    @PostMapping("/user/add/emission/Transportation/{id}")
+    @PostMapping("/user/add/emission/transportation/{id}")
     public String addEmissionsBike(HttpServletRequest httpServletRequest,
                                @PathVariable("id") Long id,
                                @RequestBody EmissionsClient emissionsClient)
@@ -447,9 +447,7 @@ public class UserController {
             for (int i = 0; i < 5; i++) {
                 toReturn.add(allFriendsEmissions.get(i));
             }
-        }
-        else
-        {
+        } else {
             toReturn = allFriendsEmissions;
         }
         return toReturn;

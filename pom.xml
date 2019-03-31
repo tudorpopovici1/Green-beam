@@ -237,6 +237,9 @@
                 <version>${jacoco-maven-plugin.version}</version>
                 <configuration>
                     <excludes>
+                        <exclude>client.profile_page</exclude>
+                        <exclude>client.UserToken</exclude>
+                        <exclude>client.listenertest</exclude>
                         <exclude>client/loginpage/**</exclude>
                         <exclude>client/mainpage/**</exclude>
                         <exclude>client/Application.class</exclude>

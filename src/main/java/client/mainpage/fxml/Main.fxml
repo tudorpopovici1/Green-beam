@@ -158,7 +158,7 @@
                 <children>
                     <Pane prefHeight="50.0" prefWidth="200.0">
                         <children>
-                            <Label layoutX="28.0" layoutY="6.0" text="FRIEND REQUESTS" textFill="#ffffa6">
+                            <Label fx:id="friendRequests" layoutX="28.0" layoutY="6.0" text="Friend Requests" textFill="#ffffa6">
                                 <font>
                                     <Font name="BebasNeue" size="27.0" />
                                 </font>
@@ -168,11 +168,11 @@
                     <JFXListView fx:id="receivedFriendsListview" prefHeight="200.0" styleClass="jfx-list-view" />
                     <HBox prefHeight="40.0" prefWidth="200.0">
                         <children>
-                            <JFXButton fx:id="acceptFriend" prefHeight="40.0" prefWidth="100.0" styleClass="buttonspending" text="ACCEPT" textFill="#ffffa6" onAction="#acceptFriendOnClick">
+                            <JFXButton fx:id="acceptFriend" prefHeight="40.0" prefWidth="100.0" styleClass="buttonspending" text="Accept" textFill="#ffffa6" onAction="#acceptFriendOnClick">
                                 <font>
                                     <Font name="BebasNeue" size="25.0" />
                                 </font></JFXButton>
-                            <JFXButton fx:id="declineFriend" prefHeight="40.0" prefWidth="100.0" styleClass="buttonspending" text="DECLINE" textFill="#ffffa6" onAction="#declineFriendOnClick">
+                            <JFXButton fx:id="declineFriend" prefHeight="40.0" prefWidth="100.0" styleClass="buttonspending" text="Decline" textFill="#ffffa6" onAction="#declineFriendOnClick">
                                 <font>
                                     <Font name="BebasNeue" size="25.0" />
                                 </font></JFXButton>
@@ -180,7 +180,7 @@
                     </HBox>
                     <Pane prefHeight="50.0" prefWidth="200.0">
                         <children>
-                            <Label layoutX="28.0" layoutY="6.0" text="FRIENDs pending" textFill="#ffffa6">
+                            <Label fx:id="pendingRequests" layoutX="28.0" layoutY="6.0" text="Requests Pending" textFill="#ffffa6">
                                 <font>
                                     <Font name="BebasNeue" size="27.0" />
                                 </font>
@@ -201,22 +201,22 @@
                             <Font name="BebasNeue" size="27.0" />
                         </font>
                     </Label>
-                    <Label fx:id="totalGreenTravelLabel" alignment="CENTER_RIGHT" layoutX="206.0" layoutY="49.0" prefHeight="36.0" prefWidth="211.0" text="134" textFill="#2f2933">
+                    <Label fx:id="totalGreenTravelLabel" alignment="CENTER_RIGHT" layoutX="150.0" layoutY="49.0" prefHeight="36.0" prefWidth="211.0" text="134" textFill="#2f2933">
                         <font>
                             <Font size="25.0" />
                         </font>
                     </Label>
-                    <Label fx:id="totalCO2SavedLabel" alignment="CENTER_RIGHT" layoutX="206.0" layoutY="115.0" prefHeight="36.0" prefWidth="211.0" text="134" textFill="#2f2933">
+                    <Label fx:id="totalCO2SavedLabel" alignment="CENTER_RIGHT" layoutX="150.0" layoutY="115.0" prefHeight="36.0" prefWidth="211.0" text="134" textFill="#2f2933">
                         <font>
                             <Font size="25.0" />
                         </font>
                     </Label>
-                    <Label fx:id="travelText1" layoutX="423.0" layoutY="49.0" text="TONS" textFill="#2f2933">
+                    <Label fx:id="travelText1" layoutX="400.0" layoutY="49.0" text="TONS" textFill="#2f2933">
                         <font>
                             <Font name="BebasNeue" size="27.0" />
                         </font>
                     </Label>
-                    <Label fx:id="travelText2" layoutX="423.0" layoutY="115.0" text="TONS" textFill="#2f2933">
+                    <Label fx:id="travelText2" layoutX="400.0" layoutY="115.0" text="TONS" textFill="#2f2933">
                         <font>
                             <Font name="BebasNeue" size="27.0" />
                         </font>
@@ -329,7 +329,7 @@
                             </Label>
                         </children>
                     </Pane>
-                    <Label layoutX="435.0" layoutY="6.0" text="CO2" textFill="WHITE">
+                    <Label layoutX="400.0" layoutY="6.0" text="CO2" textFill="WHITE">
                         <font>
                             <Font name="BebasNeue" size="27.0" />
                         </font>
@@ -558,7 +558,7 @@
                 <Image url="@../images/fuelIcon.png"/>
             </image>
         </ImageView>
-        <ImageView fx:id="LPGIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="370.0">
+        <ImageView fx:id="lpgIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="370.0">
             <image>
                 <Image url="@../images/lpgIcon.png"/>
             </image>
@@ -614,19 +614,19 @@
 
         <!--LPG-->
         <Button fx:id="lpgButton" layoutX="260.0" layoutY="370.0" prefHeight="75.0"
-                prefWidth="184.0" text="Add LPG" visible="false" onAction="#LPGOnClick"/>
+                prefWidth="184.0" text="Add LPG" visible="false" onAction="#lpgOnClick"/>
         <TextField fx:id="lpgText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
                    prefWidth="184.0" promptText="LPG (litres/yr)" visible="false"/>
-        <TextField fx:id="emissionFactorLPG" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
+        <TextField fx:id="emissionFactorLpg" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
                    prefWidth="184.0" promptText="Emission Factor" visible="false"/>
-        <Label fx:id="LPGStatus" layoutX="230" layoutY="140" text="Input the parameters required" styleClass="whitelabels" visible="false">
+        <Label fx:id="lpgStatus" layoutX="230" layoutY="140" text="Input the parameters required" styleClass="whitelabels" visible="false">
             <font>
                 <Font size="20.0"/>
             </font>
         </Label>
-        <Button fx:id="addLPGButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
+        <Button fx:id="addLpgButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
                 prefHeight="75.0"
-                prefWidth="184.0" text="Add" visible="false" onAction="#addLPGInHouseHold"/>
+                prefWidth="184.0" text="Add" visible="false" onAction="#addLpgInHouseHold"/>
 
         <!--Water-->
         <Button fx:id="waterButton" layoutX="260.0" layoutY="530.0" prefHeight="75.0"
@@ -749,7 +749,34 @@
                 prefWidth="184.0" text="Add" visible="false" onAction="#addPlaneRide"/>
 
     </Pane>
-    <Pane fx:id="progressWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
+    <Pane fx:id="progressWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false">
+        <children>
+            <ImageView fitHeight="1200.0" fitWidth="679.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../images/progressBackgroud.jpg" />
+                </image>
+            </ImageView>
+            <Label layoutX="211.0" layoutY="14.0" text="PROGRESS" textFill="WHITE">
+                <font>
+                    <Font name="Gotham-Bold" size="45.0" />
+                </font>
+            </Label>
+            <VBox layoutX="214.0" layoutY="125.0" prefHeight="450.0" prefWidth="250.0" style="-fx-background-color: #01A2A6;">
+                <children>
+                    <Pane prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #01A2A6;">
+                        <children>
+                            <Label fx:id="leaderboard" layoutX="30" layoutY="14.0" text="LEADERBOARD" textFill="#ffffa6">
+                                <font>
+                                    <Font name="BebasNeue" size="35.0" />
+                                </font>
+                            </Label>
+                        </children>
+                    </Pane>
+                    <JFXListView fx:id="leaderboardListview" prefHeight="375.0" prefWidth="200.0" styleClass="jfx-list-view" />
+                </children>
+            </VBox>
+        </children>
+    </Pane>
     <Pane fx:id="profileWindow" layoutX="222.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
           prefHeight="700.0" prefWidth="709.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" visible="false">
         <children>

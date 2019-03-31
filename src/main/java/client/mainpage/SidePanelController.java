@@ -6,27 +6,17 @@ import client.services.ApiService;
 import client.services.UserService;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXPopup;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import org.springframework.web.client.RestTemplate;
-import server.model.AchievementsType;
 import server.model.FriendsUserResp;
 import server.model.JwtUser;
 import server.security.JwtValidator;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.TextEvent;
-import java.awt.event.TextListener;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -63,11 +53,11 @@ public class SidePanelController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         List<FriendsUserResp> friendsUserRespList = MainController.friendsListProfile;
-        for(FriendsUserResp a : friendsUserRespList) {
+        for (FriendsUserResp a : friendsUserRespList) {
             System.out.println(a.getUsername());
             friendslistView.getItems().add(a.getUsername());
         }
-//        friendslistView.getItems().addAll("Iron Man", "Titanic");
+        //friendslistView.getItems().addAll("Iron Man", "Titanic");
 
         searchBarBox.setVisible(false);
     }
@@ -86,11 +76,13 @@ public class SidePanelController implements Initializable {
 
 
         if (!(searchFriends.getText() == null) && !(searchFriends.getText().equals(""))) {
-            List<FriendsUserResp> searchedFriends = userService.searchFriends(restTemplate, Url.SEARCH_FRIENDS.getUrl(), searchFriends.getText());
-            for(FriendsUserResp a : searchedFriends) {
+            List<FriendsUserResp> searchedFriends =
+                    userService.searchFriends(restTemplate, Url.SEARCH_FRIENDS.getUrl(),
+                            searchFriends.getText());
+            for (FriendsUserResp a : searchedFriends) {
                 foundFriends.getItems().add(a.getUsername());
             }
-//            foundFriends.getItems().add(searchFriends.getText());
+            //foundFriends.getItems().add(searchFriends.getText());
             searchBarBox.setVisible(true);
         }
 
@@ -111,7 +103,7 @@ public class SidePanelController implements Initializable {
 
 
     /**
-     * Adds a friend to the friendslist
+     * Adds a friend to the friendslist.
      * @param event - once a user clicks the button linked to
      *              this method, it starts to execute.
      */
@@ -120,12 +112,15 @@ public class SidePanelController implements Initializable {
         final String token = UserToken.getUserToken();
         JwtUser jwtUser = jwtValidator.validate(token);
 
-        if (!(foundFriends.getSelectionModel().getSelectedItem() == null)){
-            Long userid = userService.getUsername(restTemplate, Url.GET_USERNAME.getUrl(), friend, UserToken.getUserToken());
-            String response = userService.addFriend(restTemplate, Url.ADD_FRIEND.getUrl(), jwtUser.getId(), userid, token);
+        if (!(foundFriends.getSelectionModel().getSelectedItem() == null)) {
+            Long userid = userService.getUsername(
+                    restTemplate, Url.GET_USERNAME.getUrl(), friend,
+                    UserToken.getUserToken());
+            String response = userService.addFriend(restTemplate,
+                    Url.ADD_FRIEND.getUrl(), jwtUser.getId(), userid, token);
 
-            if(userid != -1) {
-                if (response.equals("Saved")){
+            if (userid != -1) {
+                if (response.equals("Saved")) {
                     System.out.println("succesful");
                 } else {
                     System.out.println("error");
@@ -134,7 +129,7 @@ public class SidePanelController implements Initializable {
                 System.out.println("error");
             }
 
-//            friendslistView.getItems().add(friend);
+            //friendslistView.getItems().add(friend);
         }
 
         searchBarBox.setVisible(false);

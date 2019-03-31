@@ -20,7 +20,9 @@ public enum Url {
     GET_USERNAME("http://localhost:8080/rest/user/get"),
     GET_USER_USERNAME("http://localhost:8080/rest/user/get/username"),
     ACCEPT_FRIENDS("http://localhost:8080/rest//user/accept/friend"),
-    REJECT_FRIENDS("http://localhost:8080/rest/user/reject/friend");
+    REJECT_FRIENDS("http://localhost:8080/rest/user/reject/friend"),
+    VEG_EMISSION("http://localhost:8080/rest/user/add/emission/vegMeal"),
+    TRANSPORTATION_EMISSION("http://localhost:8080/rest/user/add/emission/transportation");
 
     private final String url;
 
