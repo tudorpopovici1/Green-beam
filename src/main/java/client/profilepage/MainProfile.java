@@ -1,4 +1,4 @@
-package client.profile_page;
+package client.profilepage;
 
 import java.net.URL;
 import java.io.File;
@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 
-public class Main_profile extends Application {
+public class MainProfile extends Application {
 
     public static void main(String[] args) {
         launch(args);
@@ -18,7 +18,7 @@ public class Main_profile extends Application {
     public void start(Stage primaryStage) {
         try {
             URL url = new File(
-                    "src/main/java/client/profile_page/profile.fxml").toURI().toURL();
+                    "src/main/java/client/profilepage/profile.fxml").toURI().toURL();
             URL url1 = new File(
                     "src/main/java/client/mainpage/fxml/Development.fxml").toURI().toURL();
 
@@ -30,7 +30,7 @@ public class Main_profile extends Application {
             primaryStage.show();
 
 //            URL bruh = new File(
-//                    "src/main/java/client/profile_page/side_panel.fxml").toURI().toURL();
+//                    "src/main/java/client/profilepage/SidePanel1.fxml").toURI().toURL();
 //            Parent broot = FXMLLoader.load(bruh);
 //            primaryStage.setTitle("Hello World");
 //            primaryStage.setScene(new Scene(broot, 200, 700));

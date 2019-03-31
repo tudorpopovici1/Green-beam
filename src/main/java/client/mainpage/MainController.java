@@ -2,7 +2,7 @@ package client.mainpage;
 
 import client.Url;
 import client.UserToken;
-import client.profile_page.ProfileController;
+import client.profilepage.ProfileController;
 import client.services.ApiService;
 import client.services.UserService;
 import com.jfoenix.controls.*;
@@ -2586,11 +2586,11 @@ public class MainController implements Initializable {
 
 
         try {
-            //FXMLLoader loader = new FXMLLoader(getClass().getResource("src/main/java/client/profile_page/side_panel.fxml"));
+            //FXMLLoader loader = new FXMLLoader(getClass().getResource("src/main/java/client/profilepage/SidePanel1.fxml"));
             URL url = new File(
-                    "src/main/java/client/mainpage/fxml/sidepanel.fxml").toURI().toURL();
+                    "src/main/java/client/mainpage/fxml/SidePanel2.fxml").toURI().toURL();
             VBox box = FXMLLoader.load(url);
-            //VBox box = FXMLLoader.load(getClass().getResource("client.profile_page.sidepanel.fxml"));
+            //VBox box = FXMLLoader.load(getClass().getResource("client.profilepage.SidePanel2.fxml"));
             drawer.setSidePane(box);
         } catch (IOException ex) {
             Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
