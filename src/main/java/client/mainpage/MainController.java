@@ -2083,7 +2083,7 @@ public class MainController implements Initializable {
             Float emissionFactor = Float.parseFloat(emissionFactorMetro.getText());
             MetroRide metroRide = new MetroRide(numberOfKilometers, emissionFactor);
             JwtUser jwtUser = jwtValidator.validate(token);
-            float carbonEmission = numberOfKilometers * emissionFactor;
+            float carbonEmission = (numberOfKilometers * emissionFactor) / 365;
             String number = String.format("%.5f", carbonEmission);
             metroStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
@@ -2107,7 +2107,7 @@ public class MainController implements Initializable {
             Float emissionFactor = Float.parseFloat(emissionFactorTaxi.getText());
             TaxiRide taxiRide = new TaxiRide(numberOfKilometers, emissionFactor);
             JwtUser jwtUser = jwtValidator.validate(token);
-            float carbonEmission = numberOfKilometers * emissionFactor;
+            float carbonEmission = (numberOfKilometers * emissionFactor) / 365;
             String number = String.format("%.5f", carbonEmission);
             taxiStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
@@ -2131,7 +2131,7 @@ public class MainController implements Initializable {
             Float emissionFactor = Float.parseFloat(emissionFactorTrain.getText());
             TrainRide trainRide = new TrainRide(numberOfKilometers, emissionFactor);
             JwtUser jwtUser = jwtValidator.validate(token);
-            float carbonEmission = numberOfKilometers * emissionFactor;
+            float carbonEmission = (numberOfKilometers * emissionFactor) / 365;
             String number = String.format("%.5f", carbonEmission);
             trainStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
@@ -2213,7 +2213,7 @@ public class MainController implements Initializable {
             float carbonEmissionPpm = userHouseTemperatureBefore.floatValue()
                     - userHouseTemperatureAfter.floatValue();
             //1 degree C = 225ppm = 1.784 tons of C02
-            float carbonEmission = carbonEmissionPpm * 1.784f;
+            float carbonEmission = (carbonEmissionPpm * 1.784f) / 365;
             String number = String.format("%.5f", carbonEmission);
             temperatureStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
@@ -2240,8 +2240,8 @@ public class MainController implements Initializable {
             JwtUser jwtUser = jwtValidator.validate(token);
             // use(kWh/yr) * EF(kgC02/kWh) = emissions(kg CO2)
             //divided by 1000 to convert it into tonnes
-            float carbonEmission = (electricityUsage.floatValue()
-                    * emissionFactor.floatValue()) / 1000;
+            float carbonEmission = ((electricityUsage.floatValue()
+                    * emissionFactor.floatValue()) / 1000) / 365;
             String number = String.format("%.5f", carbonEmission);
             electricityStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
@@ -2268,11 +2268,11 @@ public class MainController implements Initializable {
             JwtUser jwtUser = jwtValidator.validate(token);
             // use(therms/yr) * EF(kgC02/therms) = emissions(kg CO2)
             //divided by 1000 to convert it into tonnes
-            float carbonEmission = (naturalGasUsage.floatValue()
-                    * emissionFactor.floatValue()) / 1000;
+            float carbonEmission = ((naturalGasUsage.floatValue()
+                    * emissionFactor.floatValue()) / 1000) / 365;
             String number = String.format("%.5f", carbonEmission);
             naturalGasStatus.setText("You have saved: " + number + " tons of CO2");
-            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+            DateFormat dateFormat = new SimpleDateFormat( "dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
             EmissionsClient emissionsClient = new EmissionsClient("12", carbonEmission, today);
             String response = userService.addEmissionOfUser(
@@ -2295,7 +2295,8 @@ public class MainController implements Initializable {
             JwtUser jwtUser = jwtValidator.validate(token);
             // use(litres/yr) * EF(kgC02/litres) = emissions(kg CO2)
             //divided by 1000 to convert it into tonnes
-            float carbonEmission = (fuelOilUsage.floatValue() * emissionFactor.floatValue()) / 1000;
+            float carbonEmission = ((fuelOilUsage.floatValue() * emissionFactor.floatValue()) / 1000)
+                    / 365;
             String number = String.format("%.5f", carbonEmission);
             fuelOilStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
@@ -2321,7 +2322,8 @@ public class MainController implements Initializable {
             JwtUser jwtUser = jwtValidator.validate(token);
             // use(litres/yr) * EF(kgC02/litres) = emissions(kg CO2)
             //divided by 1000 to convert it into tonnes
-            float carbonEmission = (lpgUsage.floatValue() * emissionFactor.floatValue()) / 1000;
+            float carbonEmission = ((lpgUsage.floatValue() * emissionFactor.floatValue()) / 1000)
+                    / 365;
             String number = String.format("%.5f", carbonEmission);
             lpgStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
@@ -2347,7 +2349,8 @@ public class MainController implements Initializable {
             JwtUser jwtUser = jwtValidator.validate(token);
             // use(kg/week) * EF(kgC02/kg) = emissions(kg CO2)
             //divided by 1000 to convert it into tonnes
-            float carbonEmission = (wasteUsage.floatValue() * emissionFactor.floatValue()) / 1000;
+            float carbonEmission = ((wasteUsage.floatValue() * emissionFactor.floatValue()) / 1000)
+                    / 7;
             String number = String.format("%.5f", carbonEmission);
             wasteStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
