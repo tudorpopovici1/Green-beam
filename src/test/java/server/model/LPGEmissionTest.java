@@ -1,3 +1,4 @@
+/*
 package server.model;
 
 import org.junit.Assert;
@@ -55,4 +56,4 @@ public class LPGEmissionTest {
         Assert.assertNotEquals(lpgEmission, lpgEmission2);
     }
 
-}
+}*/
