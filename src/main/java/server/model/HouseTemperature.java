@@ -37,10 +37,14 @@ public class HouseTemperature {
 
     @Override
     public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
         HouseTemperature that = (HouseTemperature) object;
-        return Double.compare(that.houseTemperatureBefore, houseTemperatureBefore) == 0 &&
-                Double.compare(that.getHouseTemperatureAfter, getHouseTemperatureAfter) == 0;
+        return Double.compare(that.houseTemperatureBefore, houseTemperatureBefore) == 0
+                && Double.compare(that.getHouseTemperatureAfter, getHouseTemperatureAfter) == 0;
     }
 }

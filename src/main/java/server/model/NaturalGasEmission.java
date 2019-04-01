@@ -3,15 +3,15 @@ package server.model;
 public class NaturalGasEmission {
     private double naturalGasUsage;
 
+    public NaturalGasEmission(double naturalGasUsage) {
+        this.naturalGasUsage = naturalGasUsage;
+    }
+
     public double getNaturalGasUsage() {
         return naturalGasUsage;
     }
 
     public void setNaturalGasUsage(double naturalGasUsage) {
-        this.naturalGasUsage = naturalGasUsage;
-    }
-
-    public NaturalGasEmission(double naturalGasUsage) {
         this.naturalGasUsage = naturalGasUsage;
     }
 
@@ -24,8 +24,12 @@ public class NaturalGasEmission {
 
     @Override
     public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
         NaturalGasEmission that = (NaturalGasEmission) object;
         return Double.compare(that.naturalGasUsage, naturalGasUsage) == 0;
     }

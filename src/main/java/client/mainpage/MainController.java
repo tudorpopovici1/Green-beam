@@ -34,8 +34,8 @@ import server.model.FriendsUserResp;
 import server.model.FuelOilEmission;
 import server.model.HouseTemperature;
 import server.model.JwtUser;
-import server.model.LPGEmission;
 import server.model.LocalProduce;
+import server.model.LpgEmission;
 import server.model.Meal;
 import server.model.MetroRide;
 import server.model.NaturalGasEmission;
@@ -657,7 +657,7 @@ public class MainController implements Initializable {
         //restTemplate, Url.GET_USER_FRIENDS.getUrl(),
         //jwtUser.getId(), UserToken.getUserToken());
     }
-    /**---------------------------- MAIN PAGE -----------------------------------------**/
+    //---------------------------- MAIN PAGE -----------------------------------------
 
     /**
      * Renders the main page.
@@ -732,15 +732,6 @@ public class MainController implements Initializable {
         List<EmissionFriend> topFriendsList = userService.getEmissionsOfFriends(restTemplate,
                 Url.GET_EMISSION_FRIENDS.getUrl(), token, jwtUser01.getId());
 
-        /* System.out.println(topFriendsList.size());
-            for(EmissionFriend a : topFriendsList) {
-                if (!(a == null)){
-                    System.out.println(a.getUsername());
-                    System.out.println(a.getCarbonEmission());
-                 }
-              } */
-
-
         Collections.sort(topFriendsList, new Comparator<EmissionFriend>() {
             @Override
             public int compare(EmissionFriend o1, EmissionFriend o2) {
@@ -751,30 +742,6 @@ public class MainController implements Initializable {
         if (topFriendsList.size() > 5) {
             topFriendsList.subList(5, topFriendsList.size()).clear();
         }
-        /*if (topFriendsList.size() > 5) {
-            topFriendsList.subList(5, topFriendsList.size()).clear();
-            for(EmissionFriend a : topFriendsList) {
-                if (!(a == null)){
-                    System.out.println(a.getUsername() + ": " + a.getCarbonEmission());
-                }
-            }
-        }
-        System.out.println(topFriendsList.size());
-
-
-        int arraySize = 0;
-        if (topFriendsList.size() > 5) {
-            arraySize = 5;
-        } else {
-            arraySize = topFriendsList.size();
-        }
-
-        EmissionFriend[] trimArr = new EmissionFriend[arraySize];
-        int index = 0;
-        for (EmissionFriend f : topFriendsList) {
-            trimArr[index++] = f;
-
-        topFriendsList = Arrays.asList(trimArr);*/
 
         if (topFriendsList.size() == 0 || topFriendsList == null) {
             firstFriend.setVisible(false);
@@ -1073,7 +1040,7 @@ public class MainController implements Initializable {
         usernameMainPage.setText(username);
     }
 
-    /**---------------------------- EMISSION PAGE -----------------------------------------**/
+    //---------------------------- EMISSION PAGE -----------------------------------------
 
     /**
      * Renders the emissions page.
@@ -2085,7 +2052,7 @@ public class MainController implements Initializable {
             Float emissionFactor = Float.parseFloat(emissionFactorMetro.getText());
             MetroRide metroRide = new MetroRide(numberOfKilometers, emissionFactor);
             JwtUser jwtUser = jwtValidator.validate(token);
-            float carbonEmission = (numberOfKilometers * emissionFactor) / 365;
+            float carbonEmission = numberOfKilometers * emissionFactor;
             String number = String.format("%.5f", carbonEmission);
             metroStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
@@ -2109,7 +2076,7 @@ public class MainController implements Initializable {
             Float emissionFactor = Float.parseFloat(emissionFactorTaxi.getText());
             TaxiRide taxiRide = new TaxiRide(numberOfKilometers, emissionFactor);
             JwtUser jwtUser = jwtValidator.validate(token);
-            float carbonEmission = (numberOfKilometers * emissionFactor) / 365;
+            float carbonEmission = numberOfKilometers * emissionFactor;
             String number = String.format("%.5f", carbonEmission);
             taxiStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
@@ -2133,7 +2100,7 @@ public class MainController implements Initializable {
             Float emissionFactor = Float.parseFloat(emissionFactorTrain.getText());
             TrainRide trainRide = new TrainRide(numberOfKilometers, emissionFactor);
             JwtUser jwtUser = jwtValidator.validate(token);
-            float carbonEmission = (numberOfKilometers * emissionFactor) / 365;
+            float carbonEmission = numberOfKilometers * emissionFactor;
             String number = String.format("%.5f", carbonEmission);
             trainStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
@@ -2215,7 +2182,7 @@ public class MainController implements Initializable {
             float carbonEmissionPpm = userHouseTemperatureBefore.floatValue()
                     - userHouseTemperatureAfter.floatValue();
             //1 degree C = 225ppm = 1.784 tons of C02
-            float carbonEmission = (carbonEmissionPpm * 1.784f) / 365;
+            float carbonEmission = carbonEmissionPpm * 1.784f;
             String number = String.format("%.5f", carbonEmission);
             temperatureStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
@@ -2242,8 +2209,8 @@ public class MainController implements Initializable {
             JwtUser jwtUser = jwtValidator.validate(token);
             // use(kWh/yr) * EF(kgC02/kWh) = emissions(kg CO2)
             //divided by 1000 to convert it into tonnes
-            float carbonEmission = ((electricityUsage.floatValue()
-                    * emissionFactor.floatValue()) / 1000) / 365;
+            float carbonEmission = (electricityUsage.floatValue()
+                    * emissionFactor.floatValue()) / 1000;
             String number = String.format("%.5f", carbonEmission);
             electricityStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
@@ -2270,11 +2237,11 @@ public class MainController implements Initializable {
             JwtUser jwtUser = jwtValidator.validate(token);
             // use(therms/yr) * EF(kgC02/therms) = emissions(kg CO2)
             //divided by 1000 to convert it into tonnes
-            float carbonEmission = ((naturalGasUsage.floatValue()
-                    * emissionFactor.floatValue()) / 1000) / 365;
+            float carbonEmission = (naturalGasUsage.floatValue()
+                    * emissionFactor.floatValue()) / 1000;
             String number = String.format("%.5f", carbonEmission);
             naturalGasStatus.setText("You have saved: " + number + " tons of CO2");
-            DateFormat dateFormat = new SimpleDateFormat( "dd-mm-yyyy");
+            DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
             EmissionsClient emissionsClient = new EmissionsClient("12", carbonEmission, today);
             String response = userService.addEmissionOfUser(
@@ -2297,8 +2264,7 @@ public class MainController implements Initializable {
             JwtUser jwtUser = jwtValidator.validate(token);
             // use(litres/yr) * EF(kgC02/litres) = emissions(kg CO2)
             //divided by 1000 to convert it into tonnes
-            float carbonEmission = ((fuelOilUsage.floatValue() * emissionFactor.floatValue()) / 1000)
-                    / 365;
+            float carbonEmission = (fuelOilUsage.floatValue() * emissionFactor.floatValue()) / 1000;
             String number = String.format("%.5f", carbonEmission);
             fuelOilStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
@@ -2320,12 +2286,11 @@ public class MainController implements Initializable {
         if (!emptyLpgBoxes()) {
             Double lpgUsage = Double.valueOf(lpgText.getText());
             Double emissionFactor = Double.valueOf(emissionFactorLpg.getText());
-            LPGEmission lpgEmission = new LPGEmission(lpgUsage);
+            LpgEmission lpgEmission = new LpgEmission(lpgUsage);
             JwtUser jwtUser = jwtValidator.validate(token);
             // use(litres/yr) * EF(kgC02/litres) = emissions(kg CO2)
             //divided by 1000 to convert it into tonnes
-            float carbonEmission = ((lpgUsage.floatValue() * emissionFactor.floatValue()) / 1000)
-                    / 365;
+            float carbonEmission = (lpgUsage.floatValue() * emissionFactor.floatValue()) / 1000;
             String number = String.format("%.5f", carbonEmission);
             lpgStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
@@ -2351,8 +2316,7 @@ public class MainController implements Initializable {
             JwtUser jwtUser = jwtValidator.validate(token);
             // use(kg/week) * EF(kgC02/kg) = emissions(kg CO2)
             //divided by 1000 to convert it into tonnes
-            float carbonEmission = ((wasteUsage.floatValue() * emissionFactor.floatValue()) / 1000)
-                    / 7;
+            float carbonEmission = (wasteUsage.floatValue() * emissionFactor.floatValue()) / 1000;
             String number = String.format("%.5f", carbonEmission);
             wasteStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
@@ -2576,7 +2540,7 @@ public class MainController implements Initializable {
         alert.showAndWait();
     }
 
-    /**---------------------------- PROGRESS PAGE -----------------------------------------**/
+    //---------------------------- PROGRESS PAGE -----------------------------------------
 
     /**
      * Renders the progress page.
@@ -2626,7 +2590,7 @@ public class MainController implements Initializable {
 
     }
 
-    /**---------------------------- PROFILE PAGE -----------------------------------------**/
+    //---------------------------- PROFILE PAGE -----------------------------------------
 
     /**
      * Renders the profile page.
@@ -2756,7 +2720,7 @@ public class MainController implements Initializable {
             //FXMLLoader loader = new FXMLLoader(
             // getClass().getResource("src/main/java/client/profilepage/SidePanel1.fxml"));
             URL url = new File(
-                    "src/main/java/client/mainpage/fxml/SidePanel.fxml").toURI().toURL();
+                    "src/main/java/client/mainpage/fxml/sidepanel.fxml").toURI().toURL();
             VBox box = FXMLLoader.load(url);
             //VBox box = FXMLLoader.load(getClass().getResource(
             // "client.profilepage.SidePanel2.fxml"));
@@ -2784,7 +2748,7 @@ public class MainController implements Initializable {
         });*/
     }
 
-    /**---------------------------- ABOUT US PAGE -----------------------------------------**/
+    //---------------------------- ABOUT US PAGE -----------------------------------------
 
     /**
      * Renders the about us page.
@@ -2798,7 +2762,7 @@ public class MainController implements Initializable {
         aboutUsWindow.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
     }
 
-    /**---------------------------- SETTINGS PAGE -----------------------------------------**/
+    //---------------------------- SETTINGS PAGE -----------------------------------------
 
     /**
      * Renders the settings page.
@@ -2812,7 +2776,7 @@ public class MainController implements Initializable {
         settingsWindow.setStyle("-fx-background-color: orange");
     }
 
-    /**---------------------------- LOGOUT -----------------------------------------**/
+    //---------------------------- LOGOUT -----------------------------------------
 
     /**
      * Renders the login page once user logs out.
@@ -2824,7 +2788,7 @@ public class MainController implements Initializable {
         logoutController.logout();
     }
 
-    /**---------------------------- ANIMATIONS -----------------------------------------**/
+    //---------------------------- ANIMATIONS -----------------------------------------
 
     /**
      * Animates a pane.

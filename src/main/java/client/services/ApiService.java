@@ -155,8 +155,9 @@ public class ApiService {
     /**
      * Gets the ride a bike emission from the API.
      * @param ride BikeRide Object
-     * @return
+     * @return carbon emission
      */
+
     public float getRideBikeEmissions(BikeRide ride) {
 
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -277,7 +278,7 @@ public class ApiService {
     /**
      * Gets the public transportation emission from the API.
      * @param transportation PublicTransportation Object
-     * @return
+     * @return new carbon emission
      */
     public float getPublicTransportationEmissions(PublicTransportation transportation) {
 

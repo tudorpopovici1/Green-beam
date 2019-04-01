@@ -86,7 +86,7 @@ public class UserService {
      * @param restTemplate restTemplate object
      * @param url server url
      * @param username user's username
-     * @return
+     * @return new list of friendsuserresp.
      */
     public List<FriendsUserResp> searchFriends(final RestTemplate restTemplate, final String url,
                                                final String username) {
@@ -113,7 +113,7 @@ public class UserService {
      * @param url server url
      * @param username user's username
      * @param token userToken
-     * @return
+     * @return new user id
      */
     public Long getUsername(final RestTemplate restTemplate, final String url,
                               final String username, final String token) {
@@ -143,7 +143,7 @@ public class UserService {
      * @param url server url
      * @param id user's id
      * @param token userToken
-     * @return
+     * @return new username
      */
     public String getUserUsername(final RestTemplate restTemplate, final String url,
                             final Long id, final String token) {
@@ -174,7 +174,7 @@ public class UserService {
      * @param relatedUserId user id
      * @param relatingUserId friend's user id
      * @param token user token
-     * @return
+     * @return new string
      */
     public String addFriend(final RestTemplate restTemplate, final String url,
                             final Long relatedUserId, final Long relatingUserId,
@@ -202,7 +202,7 @@ public class UserService {
      * @param url server url
      * @param id user id
      * @param token user token
-     * @return
+     * @return new list of friends
      */
     public List<Friends> getFriendRequest(
             final RestTemplate restTemplate, final String url, final Long id, final String token) {
@@ -238,7 +238,7 @@ public class UserService {
      * @param relatingUserId friend user id
      * @param id user id
      * @param token user token
-     * @return
+     * @return new string
      */
     public String accepting(
             final RestTemplate restTemplate, final String url,
@@ -273,7 +273,7 @@ public class UserService {
      * @param relatingUserId friends user id
      * @param id user id
      * @param token user token
-     * @return
+     * @return new string
      */
     public String rejecting(
             final RestTemplate restTemplate, final String url,
@@ -307,7 +307,7 @@ public class UserService {
      * @param url server url
      * @param id user id
      * @param token user token
-     * @return
+     * @return new string
      */
     public String updates(
             final RestTemplate restTemplate, final String argument,
@@ -340,7 +340,7 @@ public class UserService {
      * @param url server url
      * @param userId user id
      * @param token user token
-     * @return
+     * @return new list of achievement types
      */
     public List<AchievementsType> getAchievementsOfUser(
             final RestTemplate restTemplate, final String url,
@@ -469,7 +469,7 @@ public class UserService {
      * @param url server url
      * @param userId user id
      * @param token user token
-     * @return
+     * @return new emissionfriend object
      */
     public EmissionFriend getEmissionsOfUser(final RestTemplate restTemplate, final String url,
                                              final Long userId, final String token) {
@@ -502,7 +502,7 @@ public class UserService {
      * @param url server url
      * @param token user token
      * @param userId user id
-     * @return
+     * @return new list of emissionfriend objects
      */
     public List<EmissionFriend> getEmissionsOfFriends(final RestTemplate restTemplate,
                                                       final String url, final String token,
