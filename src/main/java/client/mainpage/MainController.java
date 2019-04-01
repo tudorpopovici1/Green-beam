@@ -2,6 +2,7 @@ package client.mainpage;
 
 import client.Url;
 import client.UserToken;
+import client.loginpage.GreenBeamApplication;
 import client.profilepage.ProfileController;
 import client.services.ApiService;
 import client.services.UserService;
@@ -143,6 +144,9 @@ public class MainController implements Initializable {
 
     @FXML
     private Label tonsThirdFriend;
+
+    @FXML
+    private Button emissionsButton;
 
     @FXML
     private Pane paneSecondFriend;
@@ -2784,8 +2788,9 @@ public class MainController implements Initializable {
      *              this method, it starts to execute.
      */
     public void logoutWindow(ActionEvent event) throws IOException {
-        LogoutController logoutController = new LogoutController();
-        logoutController.logout();
+        GreenBeamApplication application = new GreenBeamApplication();
+        application.closeApplication();
+        emissionsButton.getScene().getWindow().hide();
     }
 
     //---------------------------- ANIMATIONS -----------------------------------------
