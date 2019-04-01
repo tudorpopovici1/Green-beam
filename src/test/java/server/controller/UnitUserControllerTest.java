@@ -11,7 +11,6 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import server.controller.UserController;
 import server.exception.BadCredentialsException;
 import server.exception.ResourceNotFoundException;
 import server.exception.UserAlreadyRegistered;
