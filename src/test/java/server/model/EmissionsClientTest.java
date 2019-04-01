@@ -67,17 +67,17 @@ public class EmissionsClientTest {
         Assert.assertEquals(expected, emissionsClient.getDate());
     }
 
-//    @Test
-//    public void toStringTest() throws ParseException {
-//        emissionsClient.setEmissionType("bike");
-//        emissionsClient.setCarbonEmission(12);
-//        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//        String dateString = "2014-02-11";
-//        Date dateObject = sdf.parse(dateString);
-//        emissionsClient.setDate(dateObject);
-//        String expected = "EmissionsClient{emissionType='bike', carbonEmission=12.0, date=Tue Feb 11 00:00:00 CET 2014}";
-//        Assert.assertEquals(expected, emissionsClient.toString());
-//    }
+    @Test
+    public void toStringTest() throws ParseException {
+        emissionsClient.setEmissionType("bike");
+        emissionsClient.setCarbonEmission(12);
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        emissionsClient.setDate(dateObject);
+        String expected = "EmissionsClient{emissionType='bike', carbonEmission=12.0, date=" + dateObject + "}";
+        Assert.assertEquals(expected, emissionsClient.toString());
+    }
 
     @Test
     public void equalsMethodSameObjectTest() throws ParseException {
