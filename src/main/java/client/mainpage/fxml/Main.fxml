@@ -206,9 +206,9 @@
                             <Font size="25.0" />
                         </font>
                     </Label>
-                    <Label fx:id="totalCO2SavedLabel" alignment="CENTER_RIGHT" layoutX="150.0" layoutY="115.0" prefHeight="36.0" prefWidth="211.0" text="134" textFill="#2f2933">
+                    <Label fx:id="totalCO2SavedLabel" alignment="CENTER_RIGHT" layoutX="170.0" layoutY="115.0" prefHeight="36.0" prefWidth="211.0" text="134" textFill="#2f2933">
                         <font>
-                            <Font size="25.0" />
+                            <Font size="20.0" />
                         </font>
                     </Label>
                     <Label fx:id="travelText1" layoutX="400.0" layoutY="49.0" text="TONS" textFill="#2f2933">
