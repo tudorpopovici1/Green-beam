@@ -1,23 +1,16 @@
-package client.profile_page;
+package client.profilepage;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXPopup;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.TextEvent;
-import java.awt.event.TextListener;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -51,7 +44,7 @@ public class SidePanelController implements Initializable {
         System.out.println("View is now loaded!");
 
         searchBarBox.setVisible(false);
-//        initPopup();
+        //initPopup();
     }
 
     /**
@@ -84,13 +77,13 @@ public class SidePanelController implements Initializable {
 
 
     /**
-     * Adds a friend to the friendslist
+     * Adds a friend to the friendslist.
      * @param event - once a user clicks the button linked to
      *              this method, it starts to execute.
      */
     public void addFriendsClicked(ActionEvent event) {
         String friend = foundFriends.getSelectionModel().getSelectedItem();
-        if (!(foundFriends.getSelectionModel().getSelectedItem() == null)){
+        if (!(foundFriends.getSelectionModel().getSelectedItem() == null)) {
             friendslistView.getItems().add(friend);
         }
 
@@ -108,14 +101,11 @@ public class SidePanelController implements Initializable {
         b2.setPadding(new Insets(10));
         b3.setPadding(new Insets(10));
 
-        VBox vBox = new VBox(b1,b2,b3);
+        VBox vbox = new VBox(b1,b2,b3);
 
     }
 
-//    @Override
-//    public void textValueChanged(TextEvent e){
-//        testarea.setText(searchFriends.getText());
-//    }
+
 
 
 

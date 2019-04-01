@@ -1,19 +1,17 @@
 package server.model;
 
-import java.util.Objects;
-
-public class LPGEmission {
+public class LpgEmission {
     private double lpgEmission;
+
+    public LpgEmission(double lpgEmission) {
+        this.lpgEmission = lpgEmission;
+    }
 
     public double getLpgEmission() {
         return lpgEmission;
     }
 
     public void setLpgEmission(double lpgEmission) {
-        this.lpgEmission = lpgEmission;
-    }
-
-    public LPGEmission(double lpgEmission) {
         this.lpgEmission = lpgEmission;
     }
 
@@ -26,9 +24,13 @@ public class LPGEmission {
 
     @Override
     public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
-        LPGEmission that = (LPGEmission) object;
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        LpgEmission that = (LpgEmission) object;
         return Double.compare(that.lpgEmission, lpgEmission) == 0;
     }
 

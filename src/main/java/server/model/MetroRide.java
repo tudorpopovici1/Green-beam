@@ -1,10 +1,14 @@
 package server.model;
 
-import java.util.Objects;
-
 public class MetroRide {
     private double distanceTraveled;
     private double emissionFactor;
+
+    public MetroRide(double distanceTraveled, double emissionFactor) {
+        this.distanceTraveled = distanceTraveled;
+        this.emissionFactor = emissionFactor;
+    }
+
 
     public double getDistanceTraveled() {
         return distanceTraveled;
@@ -22,12 +26,6 @@ public class MetroRide {
         this.emissionFactor = emissionFactor;
     }
 
-
-    public MetroRide(double distanceTraveled, double emissionFactor) {
-        this.distanceTraveled = distanceTraveled;
-        this.emissionFactor = emissionFactor;
-    }
-
     @Override
     public String toString() {
         return "MetroRide{"
@@ -38,10 +36,14 @@ public class MetroRide {
 
     @Override
     public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
         MetroRide metroRide = (MetroRide) object;
-        return Double.compare(metroRide.distanceTraveled, distanceTraveled) == 0 &&
-                Double.compare(metroRide.emissionFactor, emissionFactor) == 0;
+        return Double.compare(metroRide.distanceTraveled, distanceTraveled) == 0
+                && Double.compare(metroRide.emissionFactor, emissionFactor) == 0;
     }
 }

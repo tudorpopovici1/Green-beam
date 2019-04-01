@@ -2,10 +2,14 @@ package client.mainpage;
 
 import client.Url;
 import client.UserToken;
-import client.profile_page.ProfileController;
+import client.profilepage.ProfileController;
 import client.services.ApiService;
 import client.services.UserService;
-import com.jfoenix.controls.*;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXSlider;
 import com.jfoenix.transitions.hamburger.HamburgerNextArrowBasicTransition;
 import javafx.animation.FadeTransition;
 import javafx.animation.SequentialTransition;
@@ -13,14 +17,39 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import org.springframework.web.client.RestTemplate;
-import server.model.*;
+import server.model.AchievementsType;
+import server.model.BikeRide;
+import server.model.ElectricityEmission;
+import server.model.EmissionFriend;
+import server.model.EmissionsClient;
+import server.model.Friends;
+import server.model.FriendsUserResp;
+import server.model.FuelOilEmission;
+import server.model.HouseTemperature;
+import server.model.JwtUser;
+import server.model.LocalProduce;
+import server.model.LpgEmission;
+import server.model.Meal;
+import server.model.MetroRide;
+import server.model.NaturalGasEmission;
+import server.model.PlaneRide;
+import server.model.PublicTransportation;
+import server.model.SolarPanels;
+import server.model.TaxiRide;
+import server.model.TrainRide;
+import server.model.WasteEmission;
+import server.model.WaterEmission;
 import server.security.JwtValidator;
 
 import java.io.File;
@@ -28,7 +57,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,7 +73,19 @@ import java.util.logging.Logger;
 @SuppressWarnings("Duplicates")
 public class MainController implements Initializable {
 
-    /** ID activation for the profile page **/
+    public static List<FriendsUserResp> friendsListProfile;
+
+    boolean vegmeal03 = false;
+    boolean vegmeal07 = false;
+    boolean vegmeal30 = false;
+    boolean publicbadge10 = false;
+    boolean publicbadge30 = false;
+    boolean bestoffriends = false;
+    boolean solarpanelsinstalled = false;
+    boolean localproducts10 = false;
+    boolean addthreefriends = false;
+
+    /** ID activation for the profile page. **/
 
     @FXML
     private JFXHamburger hamburger;
@@ -76,7 +122,7 @@ public class MainController implements Initializable {
 
 
 
-    /** ID activation for the main page **/
+    /** ID activation for the main page. **/
 
     @FXML
     private Pane mainWindow;
@@ -186,7 +232,7 @@ public class MainController implements Initializable {
     @FXML
     private Pane paneFifthFriend;
 
-    /** ID activation for the rest **/
+    /** ID activation for the rest. **/
 
     @FXML
     private Pane emissionsWindow;
@@ -278,7 +324,7 @@ public class MainController implements Initializable {
     @FXML
     private Pane settingsWindow;
 
-    /** ID activation for the public transport ride button **/
+    /** ID activation for the public transport ride button. **/
 
     @FXML
     private Button rideABusButton;
@@ -298,7 +344,7 @@ public class MainController implements Initializable {
     @FXML
     private TextField fuelTypeTextPublic;
 
-    /** ID activation for the local produce button **/
+    /** ID activation for the local produce button. **/
 
     @FXML
     private Button localProduceButton;
@@ -327,7 +373,7 @@ public class MainController implements Initializable {
     @FXML
     private Button backToMealTypePageButtonProduce;
 
-    /** ID activation for the solar panel button **/
+    /** ID activation for the solar panel button. **/
 
     @FXML
     private TextField systemSizeText;
@@ -370,7 +416,7 @@ public class MainController implements Initializable {
     @FXML
     private ImageView tempIcon;
 
-    /** ID activation for the household button */
+    /** ID activation for the household button. */
 
     @FXML
     private ImageView householdIcon;
@@ -438,9 +484,9 @@ public class MainController implements Initializable {
     @FXML
     private TextField emissionFactorElectricity;
 
-    /** ID activation for LPG */
+    /** ID activation for LPG. */
     @FXML
-    private Button addLPGButton;
+    private Button addLpgButton;
 
     @FXML
     private TextField lpgText;
@@ -449,15 +495,15 @@ public class MainController implements Initializable {
     private Button lpgButton;
 
     @FXML
-    private Label LPGStatus;
+    private Label lpgStatus;
 
     @FXML
-    private ImageView LPGIcon;
+    private ImageView lpgIcon;
 
     @FXML
-    private TextField emissionFactorLPG;
+    private TextField emissionFactorLpg;
 
-    /** ID activation for waste */
+    /** ID activation for waste. */
 
     @FXML
     private Button wasteButton;
@@ -477,7 +523,7 @@ public class MainController implements Initializable {
     @FXML
     private Button addWasteButton;
 
-    /** ID activation for water */
+    /** ID activation for water. */
 
     @FXML
     private Button waterButton;
@@ -497,7 +543,7 @@ public class MainController implements Initializable {
     @FXML
     private Button addWaterButton;
 
-    /** ID activation for a metro ride */
+    /** ID activation for a metro ride. */
 
     @FXML
     private Button rideAMetroButton;
@@ -517,7 +563,7 @@ public class MainController implements Initializable {
     @FXML
     private Button addMetroButton;
 
-    /** ID activation for a taxi ride */
+    /** ID activation for a taxi ride. */
 
     @FXML
     private Button rideATaxiButton;
@@ -537,7 +583,7 @@ public class MainController implements Initializable {
     @FXML
     private Button addTaxiButton;
 
-    /** ID activation for a train ride */
+    /** ID activation for a train ride. */
 
     @FXML
     private Button rideATrainButton;
@@ -557,7 +603,7 @@ public class MainController implements Initializable {
     @FXML
     private Button addTrainButton;
 
-    /** ID activation for a airplane flight **/
+    /** ID activation for a airplane flight. **/
 
     @FXML
     private Button rideAPlaneButton;
@@ -577,20 +623,11 @@ public class MainController implements Initializable {
     @FXML
     private Button addPlaneButton;
 
-    /** ID activation for a progress page **/
+    /** ID activation for a progress page. **/
 
     @FXML
     private JFXListView<String> leaderboardListview;
 
-    boolean vegmeal03 = false;
-    boolean vegmeal07 = false;
-    boolean vegmeal30 = false;
-    boolean publicbadge10 = false;
-    boolean publicbadge30 = false;
-    boolean bestoffriends = false;
-    boolean solarpanelsinstalled = false;
-    boolean localproducts10 = false;
-    boolean addthreefriends = false;
 
     private RestTemplate restTemplate = new RestTemplate();
     private ApiService apiService = new ApiService();
@@ -599,13 +636,13 @@ public class MainController implements Initializable {
 
     private String userTokenString;
 
-    public static List<FriendsUserResp> friendsListProfile;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        HamburgerNextArrowBasicTransition htransition = new HamburgerNextArrowBasicTransition(hamburger);
+        HamburgerNextArrowBasicTransition htransition
+                = new HamburgerNextArrowBasicTransition(hamburger);
         htransition.setRate(-1);
-        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
             htransition.setRate(htransition.getRate() * -1);
             htransition.play();
 
@@ -615,12 +652,13 @@ public class MainController implements Initializable {
                 drawer.open();
             }
         });
-//        System.out.println("View is now loaded!");
-//        JwtUser jwtUser = jwtValidator.validate(UserToken.getUserToken());
-//        friendsListProfile = userService.getUserFriends(restTemplate, Url.GET_USER_FRIENDS.getUrl(),
-//                jwtUser.getId(), UserToken.getUserToken());
+        //System.out.println("View is now loaded!");
+        //JwtUser jwtUser = jwtValidator.validate(UserToken.getUserToken());
+        //friendsListProfile = userService.getUserFriends(
+        //restTemplate, Url.GET_USER_FRIENDS.getUrl(),
+        //jwtUser.getId(), UserToken.getUserToken());
     }
-    /**---------------------------- MAIN PAGE -----------------------------------------**/
+    //---------------------------- MAIN PAGE -----------------------------------------
 
     /**
      * Renders the main page.
@@ -632,17 +670,17 @@ public class MainController implements Initializable {
         receivedFriendsListview.getItems().clear();
         pendingList.getItems().clear();
         this.userTokenString = UserToken.getUserToken();
-        JwtUser jwtUser = jwtValidator.validate(userTokenString);
-        EmissionFriend emissionFriend = userService.getEmissionsOfUser(
-                restTemplate, Url.GET_EMISSION_USER.getUrl(), jwtUser.getId(), userTokenString);
         mainWindow.setVisible(true);
         mainWindow.toFront();
         animatePane(mainWindow);
+        JwtUser jwtUser = jwtValidator.validate(userTokenString);
+        EmissionFriend emissionFriend = userService.getEmissionsOfUser(
+                restTemplate, Url.GET_EMISSION_USER.getUrl(), jwtUser.getId(), userTokenString);
         displayUsernameOnMain(" " + jwtUser.getUserName());
         if (emissionFriend != null) {
-            if (emissionFriend.getCarbonEmission() == 0){
+            if (emissionFriend.getCarbonEmission() == 0) {
                 totalCO2SavedLabel.setText("0");
-            } else{
+            } else {
                 String number = String.format("%.5f", emissionFriend.getCarbonEmission());
                 totalCO2SavedLabel.setText(number);
             }
@@ -654,49 +692,46 @@ public class MainController implements Initializable {
         final String token = UserToken.getUserToken();
         JwtUser jwtUser01 = jwtValidator.validate(token);
 
-        List<Friends> receivedFriends = userService.getFriendRequest(restTemplate, Url.GET_FRIEND_REQ_REC.getUrl(), jwtUser01.getId(), token);
+        List<Friends> receivedFriends = userService.getFriendRequest(
+                restTemplate, Url.GET_FRIEND_REQ_REC.getUrl(), jwtUser01.getId(), token);
 
-        for(Friends a : receivedFriends) {
-            if (a != null){
-                String username = userService.getUserUsername(restTemplate, Url.GET_USER_USERNAME.getUrl(), a.getRelatingUserId(), token);
+        for (Friends a : receivedFriends) {
+            if (a != null) {
+                String username = userService.getUserUsername(
+                        restTemplate, Url.GET_USER_USERNAME.getUrl(), a.getRelatingUserId(), token);
                 receivedFriendsListview.getItems().add(username);
                 System.out.println("Username" + username);
 
             }
         }
 
-        List<Friends> pendingFriends = userService.getFriendRequest(restTemplate, Url.GET_FRIEND_REQ_SENT.getUrl(), jwtUser01.getId(), token);
+        List<Friends> pendingFriends = userService.getFriendRequest(
+                restTemplate, Url.GET_FRIEND_REQ_SENT.getUrl(), jwtUser01.getId(), token);
 
-        for(Friends a : pendingFriends) {
-            if (!(a == null)){
-                String username = userService.getUserUsername(restTemplate, Url.GET_USER_USERNAME.getUrl(), a.getRelatingUserId(), token);
+        for (Friends a : pendingFriends) {
+            if (!(a == null)) {
+                String username = userService.getUserUsername(
+                        restTemplate, Url.GET_USER_USERNAME.getUrl(), a.getRelatingUserId(), token);
                 pendingList.getItems().add(username);
             }
         }
 
         fillTopFriends();
 
-//        String acceptedResponse = userService.getFriendRequest(restTemplate, Url.GET_FRIEND_REQ_REC.getUrl(), jwtUser01.getId(), token);
+        //String acceptedResponse = userService.getFriendRequest(
+        // restTemplate, Url.GET_FRIEND_REQ_REC.getUrl(), jwtUser01.getId(), token);
     }
 
     /**
-     * Fills the top 5 friends list
+     * Fills the top 5 friends list.
      */
     public void fillTopFriends() {
 
         final String token = UserToken.getUserToken();
         JwtUser jwtUser01 = jwtValidator.validate(token);
 
-        List<EmissionFriend> topFriendsList = userService.getEmissionsOfFriends(restTemplate, Url.GET_EMISSION_FRIENDS.getUrl(), token, jwtUser01.getId());
-
-//        System.out.println(topFriendsList.size());
-//        for(EmissionFriend a : topFriendsList) {
-//            if (!(a == null)){
-//                System.out.println(a.getUsername());
-//                System.out.println(a.getCarbonEmission());
-//            }
-//        }
-
+        List<EmissionFriend> topFriendsList = userService.getEmissionsOfFriends(restTemplate,
+                Url.GET_EMISSION_FRIENDS.getUrl(), token, jwtUser01.getId());
 
         Collections.sort(topFriendsList, new Comparator<EmissionFriend>() {
             @Override
@@ -705,36 +740,11 @@ public class MainController implements Initializable {
             }
         });
 
-        if (topFriendsList.size()>5){
+        if (topFriendsList.size() > 5) {
             topFriendsList.subList(5, topFriendsList.size()).clear();
         }
-//        if (topFriendsList.size() > 5) {
-//            topFriendsList.subList(5, topFriendsList.size()).clear();
-//            for(EmissionFriend a : topFriendsList) {
-//                if (!(a == null)){
-//                    System.out.println(a.getUsername() + ": " + a.getCarbonEmission());
-//                }
-//            }
-//        }
-//        System.out.println(topFriendsList.size());
 
-
-//        int arraySize = 0;
-//        if (topFriendsList.size() > 5) {
-//            arraySize = 5;
-//        } else {
-//            arraySize = topFriendsList.size();
-//        }
-//
-//        EmissionFriend[] trimArr = new EmissionFriend[arraySize];
-//        int index = 0;
-//        for (EmissionFriend f : topFriendsList) {
-//            trimArr[index++] = f;
-//        }
-//
-//        topFriendsList = Arrays.asList(trimArr);
-
-        if (topFriendsList.size() == 0 || topFriendsList == null){
+        if (topFriendsList.size() == 0 || topFriendsList == null) {
             firstFriend.setVisible(false);
             firstFriend.setText("NO FRIENDS YET");
             firstFriend.setVisible(true);
@@ -754,10 +764,10 @@ public class MainController implements Initializable {
             amountThirdFriend.setVisible(false);
             amountFourthFriend.setVisible(false);
             amountFifthFriend.setVisible(false);
-        } else if (topFriendsList.size() == 1){
+        } else if (topFriendsList.size() == 1) {
             firstFriend.setText(topFriendsList.get(0).getUsername());
             String number01 = String.format("%.5f", topFriendsList.get(0).getCarbonEmission());
-            if(number01.equals("0,00000")){
+            if (number01.equals("0,00000")) {
                 number01 = "0";
             }
             amountFirstFriend.setText(number01);
@@ -780,17 +790,17 @@ public class MainController implements Initializable {
             amountFourthFriend.setVisible(false);
             amountFifthFriend.setVisible(false);
 
-        } else if (topFriendsList.size() == 2){
+        } else if (topFriendsList.size() == 2) {
             firstFriend.setText(topFriendsList.get(0).getUsername());
             String number01 = String.format("%.5f", topFriendsList.get(0).getCarbonEmission());
-            if(number01.equals("0,00000")){
+            if (number01.equals("0,00000")) {
                 number01 = "0";
             }
             amountFirstFriend.setText(number01);
 
             secondFriend.setText(topFriendsList.get(1).getUsername());
             String number02 = String.format("%.5f", topFriendsList.get(1).getCarbonEmission());
-            if(number02.equals("0,00000")){
+            if (number02.equals("0,00000")) {
                 number02 = "0";
             }
             amountSecondFriend.setText(number02);
@@ -812,24 +822,24 @@ public class MainController implements Initializable {
             amountThirdFriend.setVisible(false);
             amountFourthFriend.setVisible(false);
             amountFifthFriend.setVisible(false);
-        } else if (topFriendsList.size() == 3){
+        } else if (topFriendsList.size() == 3) {
             firstFriend.setText(topFriendsList.get(0).getUsername());
             String number01 = String.format("%.5f", topFriendsList.get(0).getCarbonEmission());
-            if(number01.equals("0,00000")){
+            if (number01.equals("0,00000")) {
                 number01 = "0";
             }
             amountFirstFriend.setText(number01);
 
             secondFriend.setText(topFriendsList.get(1).getUsername());
             String number02 = String.format("%.5f", topFriendsList.get(1).getCarbonEmission());
-            if(number02.equals("0,00000")){
+            if (number02.equals("0,00000")) {
                 number02 = "0";
             }
             amountSecondFriend.setText(number02);
 
             thirdFriend.setText(topFriendsList.get(2).getUsername());
             String number03 = String.format("%.5f", topFriendsList.get(2).getCarbonEmission());
-            if(number03.equals("0,00000")){
+            if (number03.equals("0,00000")) {
                 number03 = "0";
             }
             amountThirdFriend.setText(number03);
@@ -852,31 +862,31 @@ public class MainController implements Initializable {
             amountFourthFriend.setVisible(false);
             amountFifthFriend.setVisible(false);
 
-        } else if (topFriendsList.size() == 4){
+        } else if (topFriendsList.size() == 4) {
             firstFriend.setText(topFriendsList.get(0).getUsername());
             String number01 = String.format("%.5f", topFriendsList.get(0).getCarbonEmission());
-            if(number01.equals("0,00000")){
+            if (number01.equals("0,00000")) {
                 number01 = "0";
             }
             amountFirstFriend.setText(number01);
 
             secondFriend.setText(topFriendsList.get(1).getUsername());
             String number02 = String.format("%.5f", topFriendsList.get(1).getCarbonEmission());
-            if(number02.equals("0,00000")){
+            if (number02.equals("0,00000")) {
                 number02 = "0";
             }
             amountSecondFriend.setText(number02);
 
             thirdFriend.setText(topFriendsList.get(2).getUsername());
             String number03 = String.format("%.5f", topFriendsList.get(2).getCarbonEmission());
-            if(number03.equals("0,00000")){
+            if (number03.equals("0,00000")) {
                 number03 = "0";
             }
             amountThirdFriend.setText(number03);
 
             fourthFriend.setText(topFriendsList.get(3).getUsername());
             String number04 = String.format("%.5f", topFriendsList.get(3).getCarbonEmission());
-            if(number04.equals("0,00000")){
+            if (number04.equals("0,00000")) {
                 number04 = "0";
             }
             amountFourthFriend.setText(number04);
@@ -899,38 +909,38 @@ public class MainController implements Initializable {
             amountFourthFriend.setVisible(true);
             amountFifthFriend.setVisible(false);
 
-        } else if (topFriendsList.size() >= 5){
+        } else if (topFriendsList.size() >= 5) {
             firstFriend.setText(topFriendsList.get(0).getUsername());
             String number01 = String.format("%.5f", topFriendsList.get(0).getCarbonEmission());
-            if(number01.equals("0,00000")){
+            if (number01.equals("0,00000")) {
                 number01 = "0";
             }
             amountFirstFriend.setText(number01);
 
             secondFriend.setText(topFriendsList.get(1).getUsername());
             String number02 = String.format("%.5f", topFriendsList.get(1).getCarbonEmission());
-            if(number02.equals("0,00000")){
+            if (number02.equals("0,00000")) {
                 number02 = "0";
             }
             amountSecondFriend.setText(number02);
 
             thirdFriend.setText(topFriendsList.get(2).getUsername());
             String number03 = String.format("%.5f", topFriendsList.get(2).getCarbonEmission());
-            if(number03.equals("0,00000")){
+            if (number03.equals("0,00000")) {
                 number03 = "0";
             }
             amountThirdFriend.setText(number03);
 
             fourthFriend.setText(topFriendsList.get(3).getUsername());
             String number04 = String.format("%.5f", topFriendsList.get(3).getCarbonEmission());
-            if(number04.equals("0,00000")){
+            if (number04.equals("0,00000")) {
                 number04 = "0";
             }
             amountFourthFriend.setText(number04);
 
             fifthFriend.setText(topFriendsList.get(4).getUsername());
             String number05 = String.format("%.5f", topFriendsList.get(4).getCarbonEmission());
-            if(number05.equals("0,00000")){
+            if (number05.equals("0,00000")) {
                 number05 = "0";
             }
             amountFifthFriend.setText(number05);
@@ -957,7 +967,7 @@ public class MainController implements Initializable {
     }
 
     /**
-     * Accepts a friend request and deletes the name from the list
+     * Accepts a friend request and deletes the name from the list.
      * @param event the username of the user
      */
     public void acceptFriendOnClick(ActionEvent event) {
@@ -965,16 +975,20 @@ public class MainController implements Initializable {
         JwtUser jwtUser01 = jwtValidator.validate(token);
         String friend = receivedFriendsListview.getSelectionModel().getSelectedItem();
 
-//        List<Friends> receivedFriends = userService.getFriendRequest(restTemplate, Url.GET_FRIEND_REQ_REC.getUrl(), jwtUser01.getId(), token);
+        //List<Friends> receivedFriends = userService.getFriendRequest(
+        // restTemplate, Url.GET_FRIEND_REQ_REC.getUrl(), jwtUser01.getId(), token);
 
-        if (!(receivedFriendsListview.getSelectionModel().getSelectedItem() == null)){
-            Long userid = userService.getUsername(restTemplate, Url.GET_USERNAME.getUrl(), friend, token);
-            String response = userService.accepting(restTemplate, Url.ACCEPT_FRIENDS.getUrl(), userid, jwtUser01.getId(), token);
+        if (!(receivedFriendsListview.getSelectionModel().getSelectedItem() == null)) {
+            Long userid = userService.getUsername(
+                    restTemplate, Url.GET_USERNAME.getUrl(), friend, token);
+            String response = userService.accepting(
+                    restTemplate, Url.ACCEPT_FRIENDS.getUrl(), userid, jwtUser01.getId(), token);
 
-            if(userid != -1) {
-                if (response.equals("Accepted")){
+            if (userid != -1) {
+                if (response.equals("Accepted")) {
                     System.out.println("succesful");
-                    final int selectedIdx = receivedFriendsListview.getSelectionModel().getSelectedIndex();
+                    final int selectedIdx =
+                            receivedFriendsListview.getSelectionModel().getSelectedIndex();
                     receivedFriendsListview.getItems().remove(selectedIdx);
                     fillTopFriends();
                 } else {
@@ -987,7 +1001,7 @@ public class MainController implements Initializable {
     }
 
     /**
-     * Declines a friend request and deletes the name from the list
+     * Declines a friend request and deletes the name from the list.
      * @param event the username of the user
      */
     public void declineFriendOnClick(ActionEvent event) {
@@ -995,16 +1009,20 @@ public class MainController implements Initializable {
         JwtUser jwtUser01 = jwtValidator.validate(token);
         String friend = receivedFriendsListview.getSelectionModel().getSelectedItem();
 
-//        List<Friends> receivedFriends = userService.getFriendRequest(restTemplate, Url.GET_FRIEND_REQ_REC.getUrl(), jwtUser01.getId(), token);
+        //List<Friends> receivedFriends = userService.getFriendRequest(
+        // restTemplate, Url.GET_FRIEND_REQ_REC.getUrl(), jwtUser01.getId(), token);
 
-        if (!(receivedFriendsListview.getSelectionModel().getSelectedItem() == null)){
-            Long userid = userService.getUsername(restTemplate, Url.GET_USERNAME.getUrl(), friend, token);
-            String response = userService.rejecting(restTemplate, Url.REJECT_FRIENDS.getUrl(), userid, jwtUser01.getId(), token);
+        if (!(receivedFriendsListview.getSelectionModel().getSelectedItem() == null)) {
+            Long userid = userService.getUsername(
+                    restTemplate, Url.GET_USERNAME.getUrl(), friend, token);
+            String response = userService.rejecting(
+                    restTemplate, Url.REJECT_FRIENDS.getUrl(), userid, jwtUser01.getId(), token);
 
-            if(userid != -1) {
-                if (response.equals("Rejected")){
+            if (userid != -1) {
+                if (response.equals("Rejected")) {
                     System.out.println("succesful");
-                    final int selectedIdx = receivedFriendsListview.getSelectionModel().getSelectedIndex();
+                    final int selectedIdx =
+                            receivedFriendsListview.getSelectionModel().getSelectedIndex();
                     receivedFriendsListview.getItems().remove(selectedIdx);
                 } else {
                     System.out.println("error");
@@ -1023,7 +1041,7 @@ public class MainController implements Initializable {
         usernameMainPage.setText(username);
     }
 
-    /**---------------------------- EMISSION PAGE -----------------------------------------**/
+    //---------------------------- EMISSION PAGE -----------------------------------------
 
     /**
      * Renders the emissions page.
@@ -1132,10 +1150,10 @@ public class MainController implements Initializable {
 
         /** LPG **/
         lpgText.setVisible(false);
-        emissionFactorLPG.setVisible(false);
-        LPGStatus.setVisible(false);
-        addLPGButton.setVisible(false);
-        LPGIcon.setVisible(false);
+        emissionFactorLpg.setVisible(false);
+        lpgStatus.setVisible(false);
+        addLpgButton.setVisible(false);
+        lpgIcon.setVisible(false);
 
         /** Waste **/
         wasteText.setVisible(false);
@@ -1342,21 +1360,25 @@ public class MainController implements Initializable {
     public void householdButtonOnClick(ActionEvent event) {
         emissionsPageHide();
 
-       electricityButton.setVisible(true);
-       naturalGasButton.setVisible(true);
-       fuelOilButton.setVisible(true);
-       lpgButton.setVisible(true);
-       wasteButton.setVisible(true);
-       waterButton.setVisible(true);
-       backToEmissionPageButtonHousehold.setVisible(true);
-       electricityIcon.setVisible(true);
-       naturalGasIcon.setVisible(true);
-        LPGIcon.setVisible(true);
+        electricityButton.setVisible(true);
+        naturalGasButton.setVisible(true);
+        fuelOilButton.setVisible(true);
+        lpgButton.setVisible(true);
+        wasteButton.setVisible(true);
+        waterButton.setVisible(true);
+        backToEmissionPageButtonHousehold.setVisible(true);
+        electricityIcon.setVisible(true);
+        naturalGasIcon.setVisible(true);
+        lpgIcon.setVisible(true);
         fuelOilIcon.setVisible(true);
         waterIcon.setVisible(true);
         wasteIcon.setVisible(true);
     }
 
+    /**
+     * Goes back to the house hold page.
+     * @param event Mouse on click
+     */
     public void backToHouseHoldPage(ActionEvent event) {
         electricityButton.setVisible(true);
         naturalGasButton.setVisible(true);
@@ -1377,7 +1399,7 @@ public class MainController implements Initializable {
         emissionFactorNaturalGas.setVisible(false);
         electricityIcon.setVisible(true);
         naturalGasIcon.setVisible(true);
-        LPGIcon.setVisible(true);
+        lpgIcon.setVisible(true);
         fuelOilIcon.setVisible(true);
         wasteIcon.setVisible(true);
         waterIcon.setVisible(true);
@@ -1388,9 +1410,9 @@ public class MainController implements Initializable {
         addFuelOilButton.setVisible(false);
         /** LPG **/
         lpgText.setVisible(false);
-        emissionFactorLPG.setVisible(false);
-        LPGStatus.setVisible(false);
-        addLPGButton.setVisible(false);
+        emissionFactorLpg.setVisible(false);
+        lpgStatus.setVisible(false);
+        addLpgButton.setVisible(false);
         /** Waste **/
         wasteText.setVisible(false);
         emissionFactorWaste.setVisible(false);
@@ -1403,6 +1425,10 @@ public class MainController implements Initializable {
         addWaterButton.setVisible(false);
     }
 
+    /**
+     * Electricity button on click.
+     * @param event Mouse on click
+     */
     public void electricityButtonOnClick(ActionEvent event) {
         electricityButton.setVisible(false);
         naturalGasButton.setVisible(false);
@@ -1418,12 +1444,16 @@ public class MainController implements Initializable {
         emissionFactorElectricity.setVisible(true);
         electricityIcon.setVisible(false);
         naturalGasIcon.setVisible(false);
-        LPGIcon.setVisible(false);
+        lpgIcon.setVisible(false);
         fuelOilIcon.setVisible(false);
         waterIcon.setVisible(false);
         wasteIcon.setVisible(false);
     }
 
+    /**
+     * Natural gas button on click.
+     * @param event Mouse on click
+     */
     public void naturalGasOnClick(ActionEvent event) {
         electricityButton.setVisible(false);
         naturalGasButton.setVisible(false);
@@ -1439,12 +1469,16 @@ public class MainController implements Initializable {
         backToHouseHoldPageButton.setVisible(true);
         electricityIcon.setVisible(false);
         naturalGasIcon.setVisible(false);
-        LPGIcon.setVisible(false);
+        lpgIcon.setVisible(false);
         fuelOilIcon.setVisible(false);
         waterIcon.setVisible(false);
         wasteIcon.setVisible(false);
     }
 
+    /**
+     * Fuel oil button on click.
+     * @param event Mouse on click
+     */
     public void fuelOilOnClick(ActionEvent event) {
         electricityButton.setVisible(false);
         naturalGasButton.setVisible(false);
@@ -1461,13 +1495,17 @@ public class MainController implements Initializable {
         backToHouseHoldPageButton.setVisible(true);
         electricityIcon.setVisible(false);
         naturalGasIcon.setVisible(false);
-        LPGIcon.setVisible(false);
+        lpgIcon.setVisible(false);
         fuelOilIcon.setVisible(false);
         waterIcon.setVisible(false);
         wasteIcon.setVisible(false);
     }
 
-    public void LPGOnClick(ActionEvent event) {
+    /**
+     * Lpg button on click.
+     * @param event Mouse on click
+     */
+    public void lpgOnClick(ActionEvent event) {
         electricityButton.setVisible(false);
         naturalGasButton.setVisible(false);
         fuelOilButton.setVisible(false);
@@ -1477,18 +1515,22 @@ public class MainController implements Initializable {
         backToEmissionPageButtonHousehold.setVisible(false);
 
         lpgText.setVisible(true);
-        emissionFactorLPG.setVisible(true);
-        LPGStatus.setVisible(true);
-        addLPGButton.setVisible(true);
+        emissionFactorLpg.setVisible(true);
+        lpgStatus.setVisible(true);
+        addLpgButton.setVisible(true);
         backToHouseHoldPageButton.setVisible(true);
         electricityIcon.setVisible(false);
         naturalGasIcon.setVisible(false);
-        LPGIcon.setVisible(false);
+        lpgIcon.setVisible(false);
         fuelOilIcon.setVisible(false);
         waterIcon.setVisible(false);
         wasteIcon.setVisible(false);
     }
 
+    /**
+     * Waste button on click.
+     * @param event Mouse on click
+     */
     public void wasteOnClick(ActionEvent event) {
         electricityButton.setVisible(false);
         naturalGasButton.setVisible(false);
@@ -1505,12 +1547,16 @@ public class MainController implements Initializable {
         backToHouseHoldPageButton.setVisible(true);
         electricityIcon.setVisible(false);
         naturalGasIcon.setVisible(false);
-        LPGIcon.setVisible(false);
+        lpgIcon.setVisible(false);
         fuelOilIcon.setVisible(false);
         waterIcon.setVisible(false);
         wasteIcon.setVisible(false);
     }
 
+    /**
+     * Water button on click.
+     * @param event Mouse on click
+     */
     public void waterOnClick(ActionEvent event) {
         electricityButton.setVisible(false);
         naturalGasButton.setVisible(false);
@@ -1527,7 +1573,7 @@ public class MainController implements Initializable {
         backToHouseHoldPageButton.setVisible(true);
         electricityIcon.setVisible(false);
         naturalGasIcon.setVisible(false);
-        LPGIcon.setVisible(false);
+        lpgIcon.setVisible(false);
         fuelOilIcon.setVisible(false);
         waterIcon.setVisible(false);
         wasteIcon.setVisible(false);
@@ -1801,6 +1847,7 @@ public class MainController implements Initializable {
      * Functionality of the back button to the transportation page.
      * @param event mouse click
      */
+
     public void backToTransportationTypeButtonOnClick(ActionEvent event) {
         numberOfMilesText.setVisible(false);
         carMileageText.setVisible(false);
@@ -1890,7 +1937,8 @@ public class MainController implements Initializable {
         LocalProduce localProduce = localProduceEmission(sliderFoodProduction, sliderPackage);
 
         JwtUser jwtUser = jwtValidator.validate(token);
-        Double carbonEmissionDouble = localProduce.getFoodProducedLocally() + localProduce.getPackagedFood();
+        Double carbonEmissionDouble = localProduce.getFoodProducedLocally()
+                + localProduce.getPackagedFood();
         float carbonEmission = carbonEmissionDouble.floatValue();
         String number = String.format("%.5f", carbonEmission);
         localProduceStatus.setText("You have saved: " + number + " tons of CO2");
@@ -1901,6 +1949,12 @@ public class MainController implements Initializable {
                 jwtUser.getId(), emissionsClient, token);
         System.out.println(response);
     }
+
+    /**
+     * Local produce feature.
+     * @param sliderFoodProduction a slider
+     * @param sliderPackage a slider
+     */
 
     public LocalProduce localProduceEmission(Double sliderFoodProduction, Double sliderPackage) {
         double foodProductionEmission;
@@ -1951,7 +2005,8 @@ public class MainController implements Initializable {
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
             EmissionsClient emissionsClient = new EmissionsClient("5", carbonEmission, today);
-            String response = userService.addEmissionOfUser(restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
+            String response = userService.addEmissionOfUser(
+                    restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
         }
@@ -1967,8 +2022,9 @@ public class MainController implements Initializable {
             Float numberOfKilometers = Float.parseFloat(numberOfMilesTextPublic.getText());
             Float numberOfMiles = numberOfKilometers * 1.6f;
             int fuelType = Integer.parseInt(fuelTypeTextPublic.getText());
-            PublicTransportation bus = new PublicTransportation(numberOfMiles, Float.parseFloat(carMileageTextPublic.getText()),
-                    fuelType);
+            PublicTransportation bus = new PublicTransportation(
+                    Float.parseFloat(carMileageTextPublic.getText()),
+                    numberOfMiles, fuelType);
             JwtUser jwtUser = jwtValidator.validate(token);
             float carbonEmission = apiService.getPublicTransportationEmissions(bus);
             String number = String.format("%.5f", carbonEmission);
@@ -1976,7 +2032,8 @@ public class MainController implements Initializable {
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
             EmissionsClient emissionsClient = new EmissionsClient("4", carbonEmission, today);
-            String response = userService.addEmissionOfUser(restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
+            String response = userService.addEmissionOfUser(
+                    restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
         }
@@ -1999,7 +2056,8 @@ public class MainController implements Initializable {
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
             EmissionsClient emissionsClient = new EmissionsClient("7", carbonEmission, today);
-            String response = userService.addEmissionOfUser(restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
+            String response = userService.addEmissionOfUser(
+                    restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
         }
@@ -2012,7 +2070,7 @@ public class MainController implements Initializable {
         final String token = UserToken.getUserToken();
 
         if (!emptyTaxiRideBoxes()) {
-           Float numberOfKilometers = Float.parseFloat(taxiText.getText());
+            Float numberOfKilometers = Float.parseFloat(taxiText.getText());
             Float emissionFactor = Float.parseFloat(emissionFactorTaxi.getText());
             TaxiRide taxiRide = new TaxiRide(numberOfKilometers, emissionFactor);
             JwtUser jwtUser = jwtValidator.validate(token);
@@ -2022,7 +2080,8 @@ public class MainController implements Initializable {
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
             EmissionsClient emissionsClient = new EmissionsClient("8", carbonEmission, today);
-            String response = userService.addEmissionOfUser(restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
+            String response = userService.addEmissionOfUser(
+                    restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
         }
@@ -2045,7 +2104,8 @@ public class MainController implements Initializable {
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
             EmissionsClient emissionsClient = new EmissionsClient("9", carbonEmission, today);
-            String response = userService.addEmissionOfUser(restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
+            String response = userService.addEmissionOfUser(
+                    restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
         }
@@ -2062,13 +2122,14 @@ public class MainController implements Initializable {
             Float emissionFactor = Float.parseFloat(emissionFactorPlane.getText());
             PlaneRide planeRide = new PlaneRide(numberOfKilometers, emissionFactor);
             JwtUser jwtUser = jwtValidator.validate(token);
-            float carbonEmission = numberOfKilometers * emissionFactor;
+            float carbonEmission = (numberOfKilometers * emissionFactor) / 365f;
             String number = String.format("%.5f", carbonEmission);
             planeStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
             EmissionsClient emissionsClient = new EmissionsClient("10", carbonEmission, today);
-            String response = userService.addEmissionOfUser(restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
+            String response = userService.addEmissionOfUser(
+                    restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
         }
@@ -2085,10 +2146,12 @@ public class MainController implements Initializable {
             float annualSolarEnergyProduction = Float.parseFloat(annualSolarEnergyText.getText());
             int numberOfSolarPanels = Integer.parseInt(numberSolarPanels.getText());
 
-            SolarPanels solarPanel = new SolarPanels(factorOfCO2Avoidance, annualSolarEnergyProduction, numberOfSolarPanels);
+            SolarPanels solarPanel = new SolarPanels(
+                    factorOfCO2Avoidance, annualSolarEnergyProduction, numberOfSolarPanels);
             JwtUser jwtUser = jwtValidator.validate(token);
             //Turning kg into tonnes by dividing it by a 1000
-            float carbonEmission = (annualSolarEnergyProduction * factorOfCO2Avoidance * numberOfSolarPanels) / 1000f ;
+            float carbonEmission = (annualSolarEnergyProduction
+                    * factorOfCO2Avoidance * numberOfSolarPanels) / 1000f ;
             String number = String.format("%.5f", carbonEmission);
             solarPanelStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
@@ -2114,16 +2177,17 @@ public class MainController implements Initializable {
                     userHouseTemperatureBefore, userHouseTemperatureAfter);
 
             JwtUser jwtUser = jwtValidator.validate(token);
-            float carbonEmissionPPM = userHouseTemperatureBefore.floatValue()
+            float carbonEmissionPpm = userHouseTemperatureBefore.floatValue()
                     - userHouseTemperatureAfter.floatValue();
             //1 degree C = 225ppm = 1.784 tons of C02
-            float carbonEmission = carbonEmissionPPM * 1.784f;
+            float carbonEmission = carbonEmissionPpm * 1.784f;
             String number = String.format("%.5f", carbonEmission);
             temperatureStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
             EmissionsClient emissionsClient = new EmissionsClient("6", carbonEmission, today);
-            String response = userService.addEmissionOfUser(restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
+            String response = userService.addEmissionOfUser(
+                    restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
         }
@@ -2143,13 +2207,15 @@ public class MainController implements Initializable {
             JwtUser jwtUser = jwtValidator.validate(token);
             // use(kWh/yr) * EF(kgC02/kWh) = emissions(kg CO2)
             //divided by 1000 to convert it into tonnes
-            float carbonEmission = (electricityUsage.floatValue() * emissionFactor.floatValue()) / 1000;
+            float carbonEmission = (electricityUsage.floatValue()
+                    * emissionFactor.floatValue()) / 1000;
             String number = String.format("%.5f", carbonEmission);
             electricityStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
             EmissionsClient emissionsClient = new EmissionsClient("11", carbonEmission, today);
-            String response = userService.addEmissionOfUser(restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
+            String response = userService.addEmissionOfUser(
+                    restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
         }
@@ -2164,18 +2230,20 @@ public class MainController implements Initializable {
         if (!emptyNaturalGasBoxes()) {
             Double naturalGasUsage = Double.valueOf(naturalGasText.getText());
             Double emissionFactor = Double.valueOf(emissionFactorNaturalGas.getText());
-           NaturalGasEmission naturalGasEmission = new NaturalGasEmission(
+            NaturalGasEmission naturalGasEmission = new NaturalGasEmission(
                    naturalGasUsage);
             JwtUser jwtUser = jwtValidator.validate(token);
             // use(therms/yr) * EF(kgC02/therms) = emissions(kg CO2)
             //divided by 1000 to convert it into tonnes
-            float carbonEmission = (naturalGasUsage.floatValue() * emissionFactor.floatValue()) / 1000;
+            float carbonEmission = (naturalGasUsage.floatValue()
+                    * emissionFactor.floatValue()) / 1000;
             String number = String.format("%.5f", carbonEmission);
             naturalGasStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
             EmissionsClient emissionsClient = new EmissionsClient("12", carbonEmission, today);
-            String response = userService.addEmissionOfUser(restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
+            String response = userService.addEmissionOfUser(
+                    restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
         }
@@ -2200,7 +2268,8 @@ public class MainController implements Initializable {
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
             EmissionsClient emissionsClient = new EmissionsClient("13", carbonEmission, today);
-            String response = userService.addEmissionOfUser(restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
+            String response = userService.addEmissionOfUser(
+                    restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
         }
@@ -2209,23 +2278,24 @@ public class MainController implements Initializable {
     /**
      * This methods adds LPG used in household in to the user's database.
      */
-    public void addLPGInHouseHold() {
+    public void addLpgInHouseHold() {
         final String token = UserToken.getUserToken();
 
-        if (!emptyLPGBoxes()) {
-            Double LPGUsage = Double.valueOf(lpgText.getText());
-            Double emissionFactor = Double.valueOf(emissionFactorLPG.getText());
-            LPGEmission lpgEmission = new LPGEmission(LPGUsage);
+        if (!emptyLpgBoxes()) {
+            Double lpgUsage = Double.valueOf(lpgText.getText());
+            Double emissionFactor = Double.valueOf(emissionFactorLpg.getText());
+            LpgEmission lpgEmission = new LpgEmission(lpgUsage);
             JwtUser jwtUser = jwtValidator.validate(token);
             // use(litres/yr) * EF(kgC02/litres) = emissions(kg CO2)
             //divided by 1000 to convert it into tonnes
-            float carbonEmission = (LPGUsage.floatValue() * emissionFactor.floatValue()) / 1000;
+            float carbonEmission = (lpgUsage.floatValue() * emissionFactor.floatValue()) / 1000;
             String number = String.format("%.5f", carbonEmission);
-            LPGStatus.setText("You have saved: " + number + " tons of CO2");
+            lpgStatus.setText("You have saved: " + number + " tons of CO2");
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
             EmissionsClient emissionsClient = new EmissionsClient("14", carbonEmission, today);
-            String response = userService.addEmissionOfUser(restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
+            String response = userService.addEmissionOfUser(
+                    restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
         }
@@ -2250,7 +2320,8 @@ public class MainController implements Initializable {
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
             EmissionsClient emissionsClient = new EmissionsClient("15", carbonEmission, today);
-            String response = userService.addEmissionOfUser(restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
+            String response = userService.addEmissionOfUser(
+                    restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
         }
@@ -2275,7 +2346,8 @@ public class MainController implements Initializable {
             DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
             Date today = Calendar.getInstance().getTime();
             EmissionsClient emissionsClient = new EmissionsClient("16", carbonEmission, today);
-            String response = userService.addEmissionOfUser(restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
+            String response = userService.addEmissionOfUser(
+                    restTemplate, Url.TRANSPORTATION_EMISSION.getUrl(),
                     jwtUser.getId(), emissionsClient, token);
             System.out.println(response);
         }
@@ -2287,8 +2359,8 @@ public class MainController implements Initializable {
      * @return boolean - returns true if the field is null or empty and false if not.
      * */
     private boolean emptyVegetarianMealBoxes() {
-        if (checkEmptyOrNullBox
-                (dairyText, cerealText, fruitsAndVegetablesText, otherVegetarianMealText)) {
+        if (checkEmptyOrNullBox(
+                dairyText, cerealText, fruitsAndVegetablesText, otherVegetarianMealText)) {
             emptyTextBoxPopup();
             return true;
         } else {
@@ -2297,8 +2369,8 @@ public class MainController implements Initializable {
     }
 
     private boolean emptyRideABikeBoxes() {
-        if (checkEmptyOrNullBox
-                (carMileageText, fuelTypeText, numberOfMilesText)) {
+        if (checkEmptyOrNullBox(
+                carMileageText, fuelTypeText, numberOfMilesText)) {
             emptyTextBoxPopup();
             return true;
         } else {
@@ -2307,8 +2379,8 @@ public class MainController implements Initializable {
     }
 
     private boolean emptyRideABusBoxes() {
-        if (checkEmptyOrNullBox
-                (carMileageTextPublic, fuelTypeTextPublic, numberOfMilesTextPublic)) {
+        if (checkEmptyOrNullBox(
+                carMileageTextPublic, fuelTypeTextPublic, numberOfMilesTextPublic)) {
             emptyTextBoxPopup();
             return true;
         } else {
@@ -2317,8 +2389,8 @@ public class MainController implements Initializable {
     }
 
     private boolean emptySolarPanelBoxes() {
-        if (checkEmptyOrNullBox
-                (systemSizeText, annualSolarEnergyText, numberSolarPanels)) {
+        if (checkEmptyOrNullBox(
+                systemSizeText, annualSolarEnergyText, numberSolarPanels)) {
             emptyTextBoxPopup();
             return true;
         } else {
@@ -2357,8 +2429,8 @@ public class MainController implements Initializable {
     }
 
     private boolean emptyFuelOilBoxes() {
-        if (checkEmptyOrNullBox
-                (fuelOilText, emissionFactorFuelOil)) {
+        if (checkEmptyOrNullBox(
+                fuelOilText, emissionFactorFuelOil)) {
             emptyTextBoxPopup();
             return true;
         } else {
@@ -2366,9 +2438,9 @@ public class MainController implements Initializable {
         }
     }
 
-    private boolean emptyLPGBoxes() {
-        if (checkEmptyOrNullBox
-                (lpgText, emissionFactorLPG)) {
+    private boolean emptyLpgBoxes() {
+        if (checkEmptyOrNullBox(
+                lpgText, emissionFactorLpg)) {
             emptyTextBoxPopup();
             return true;
         } else {
@@ -2377,8 +2449,8 @@ public class MainController implements Initializable {
     }
 
     private boolean emptyWasteBoxes() {
-        if (checkEmptyOrNullBox
-                (wasteText, emissionFactorWaste)) {
+        if (checkEmptyOrNullBox(
+                wasteText, emissionFactorWaste)) {
             emptyTextBoxPopup();
             return true;
         } else {
@@ -2387,8 +2459,8 @@ public class MainController implements Initializable {
     }
 
     private boolean emptyWaterBoxes() {
-        if (checkEmptyOrNullBox
-                (waterText, emissionFactorWater)) {
+        if (checkEmptyOrNullBox(
+                waterText, emissionFactorWater)) {
             emptyTextBoxPopup();
             return true;
         } else {
@@ -2397,8 +2469,8 @@ public class MainController implements Initializable {
     }
 
     private boolean emptyMetroRideBoxes() {
-        if (checkEmptyOrNullBox
-                (metroText, emissionFactorMetro)) {
+        if (checkEmptyOrNullBox(
+                metroText, emissionFactorMetro)) {
             emptyTextBoxPopup();
             return true;
         } else {
@@ -2407,8 +2479,8 @@ public class MainController implements Initializable {
     }
 
     private boolean emptyTaxiRideBoxes() {
-        if (checkEmptyOrNullBox
-                (taxiText, emissionFactorTaxi)) {
+        if (checkEmptyOrNullBox(
+                taxiText, emissionFactorTaxi)) {
             emptyTextBoxPopup();
             return true;
         } else {
@@ -2417,8 +2489,8 @@ public class MainController implements Initializable {
     }
 
     private boolean emptyTrainRideBoxes() {
-        if (checkEmptyOrNullBox
-                (trainText, emissionFactorTrain)) {
+        if (checkEmptyOrNullBox(
+                trainText, emissionFactorTrain)) {
             emptyTextBoxPopup();
             return true;
         } else {
@@ -2427,8 +2499,8 @@ public class MainController implements Initializable {
     }
 
     private boolean emptyPlaneRideBoxes() {
-        if (checkEmptyOrNullBox
-                (planeText, emissionFactorPlane)) {
+        if (checkEmptyOrNullBox(
+                planeText, emissionFactorPlane)) {
             emptyTextBoxPopup();
             return true;
         } else {
@@ -2466,7 +2538,7 @@ public class MainController implements Initializable {
         alert.showAndWait();
     }
 
-    /**---------------------------- PROGRESS PAGE -----------------------------------------**/
+    //---------------------------- PROGRESS PAGE -----------------------------------------
 
     /**
      * Renders the progress page.
@@ -2483,7 +2555,8 @@ public class MainController implements Initializable {
         final String token = UserToken.getUserToken();
         JwtUser jwtUser01 = jwtValidator.validate(token);
 
-        List<EmissionFriend> leaderboardList = userService.getEmissionsOfFriends(restTemplate, Url.GET_EMISSION_FRIENDS.getUrl(), token, jwtUser01.getId());
+        List<EmissionFriend> leaderboardList = userService.getEmissionsOfFriends(
+                restTemplate, Url.GET_EMISSION_FRIENDS.getUrl(), token, jwtUser01.getId());
 
 
         Collections.sort(leaderboardList, new Comparator<EmissionFriend>() {
@@ -2493,30 +2566,29 @@ public class MainController implements Initializable {
             }
         });
 
-        if (leaderboardList != null){
-            if (leaderboardList.size() == 0){
+        if (leaderboardList != null) {
+            if (leaderboardList.size() == 0) {
                 leaderboardListview.getItems().add("NO FRIENDS YET");
-            } else{
-                for(EmissionFriend a : leaderboardList) {
+            } else {
+                for (EmissionFriend a : leaderboardList) {
                     String usernameLeader = a.getUsername();
                     String totalcarbonText = String.format("%.5f", a.getCarbonEmission());
-                    if(totalcarbonText.equals("0,00000")){
+                    if (totalcarbonText.equals("0,00000")) {
                         totalcarbonText = "0";
                     }
-                    leaderboardListview.getItems().add(usernameLeader + ":  " + totalcarbonText + " tons");
+                    leaderboardListview.getItems().add(usernameLeader
+                            + ":  " + totalcarbonText + " tons");
                 }
             }
         }
-
-
-//        if (leaderboardList.size()>5){
-//            leaderboardList.subList(5, leaderboardList.size()).clear();
-//        }
+        /*if (leaderboardList.size()>5){
+            leaderboardList.subList(5, leaderboardList.size()).clear();
+         }*/
 
 
     }
 
-    /**---------------------------- PROFILE PAGE -----------------------------------------**/
+    //---------------------------- PROFILE PAGE -----------------------------------------
 
     /**
      * Renders the profile page.
@@ -2544,10 +2616,12 @@ public class MainController implements Initializable {
         friendsListProfile = userService.getUserFriends(restTemplate, Url.GET_USER_FRIENDS.getUrl(),
                 jwtUser.getId(), token);
 
-        List<AchievementsType> achievementsOfUser = userService.getAchievementsOfUser(restTemplate, Url.GET_ACHIEVEMENTS_USER.getUrl(),
+        List<AchievementsType> achievementsOfUser = userService.getAchievementsOfUser(
+                restTemplate, Url.GET_ACHIEVEMENTS_USER.getUrl(),
                 jwtUser.getId(), token);
 
-        List<EmissionFriend> leaderboardList = userService.getEmissionsOfFriends(restTemplate, Url.GET_EMISSION_FRIENDS.getUrl(), token, jwtUser.getId());
+        List<EmissionFriend> leaderboardList = userService.getEmissionsOfFriends(
+                restTemplate, Url.GET_EMISSION_FRIENDS.getUrl(), token, jwtUser.getId());
 
 
         Collections.sort(leaderboardList, new Comparator<EmissionFriend>() {
@@ -2557,122 +2631,122 @@ public class MainController implements Initializable {
             }
         });
 
-        for(AchievementsType a : achievementsOfUser) {
+        for (AchievementsType a : achievementsOfUser) {
             System.out.println(a.getAchievementName());
-            if (a.getAchievementName().equals("Vegmeal_3_times")){
+            if (a.getAchievementName().equals("Vegmeal_3_times")) {
                 vegmeal03 = true;
             }
             if (a.getAchievementName().equals("Vegmeal_7_times")) {
                 vegmeal07 = true;
             }
-            if (a.getAchievementName().equals("Vegmeal_30_times")){
+            if (a.getAchievementName().equals("Vegmeal_30_times")) {
                 vegmeal30 = true;
             }
-            if (a.getAchievementName().equals("TransportationInsteadOfCar_10_times")){
+            if (a.getAchievementName().equals("TransportationInsteadOfCar_10_times")) {
                 publicbadge10 = true;
             }
-            if (a.getAchievementName().equals("TransportationInsteadOfCar_30_times")){
+            if (a.getAchievementName().equals("TransportationInsteadOfCar_30_times")) {
                 publicbadge30 = true;
             }
-//            if (a.getAchievementName().equals("BestOfYourFriends")){
-//                bestoffriends = true;
-//            }
-            if (a.getAchievementName().equals("SolarPanelsInstalled")){
+            if (a.getAchievementName().equals("SolarPanelsInstalled")) {
                 solarpanelsinstalled = true;
             }
-            if (a.getAchievementName().equals("LocalProduct_10_times")){
+            if (a.getAchievementName().equals("LocalProduct_10_times")) {
                 localproducts10 = true;
             }
-            if (a.getAchievementName().equals("AddFriend_3_times")){
+            if (a.getAchievementName().equals("AddFriend_3_times")) {
                 addthreefriends = true;
             }
         }
 
-        if (leaderboardList != null){
-            if (leaderboardList.size() != 1){
-                if (leaderboardList.get(0).getUsername().equals(jwtUser.getUserName())){
+        if (leaderboardList != null) {
+            if (leaderboardList.size() != 1) {
+                if (leaderboardList.get(0).getUsername().equals(jwtUser.getUserName())) {
                     bestoffriends = true;
                 }
             }
         }
 
-        if (vegmeal30 == true){
+        if (vegmeal30 == true) {
             vegBadge03.setVisible(true);
-        } else if (vegmeal07 == true){
+        } else if (vegmeal07 == true) {
             vegBadge02.setVisible(true);
-        } else if (vegmeal03 == true){
+        } else if (vegmeal03 == true) {
             vegBadge01.setVisible(true);
-        } else{
+        } else {
             vegBadge01.setVisible(false);
             vegBadge02.setVisible(false);
             vegBadge03.setVisible(false);
         }
 
-        if (publicbadge30 == true){
+        if (publicbadge30 == true) {
             busBadge03.setVisible(true);
         } else if (publicbadge10 == true) {
             busBadge02.setVisible(true);
-        } else{
+        } else {
             busBadge03.setVisible(false);
             busBadge02.setVisible(false);
         }
 
-        if (bestoffriends == true){
+        if (bestoffriends == true) {
             bestOfFriends.setVisible(true);
-        } else{
+        } else {
             bestOfFriends.setVisible(false);
         }
 
-        if (solarpanelsinstalled == true){
+        if (solarpanelsinstalled == true) {
             solarPanelsBadge.setVisible(true);
-        } else{
+        } else {
             solarPanelsBadge.setVisible(false);
         }
 
-        if (localproducts10 == true){
+        if (localproducts10 == true) {
             localProductBadge.setVisible(true);
-        } else{
+        } else {
             localProductBadge.setVisible(false);
         }
 
-        if (addthreefriends == true){
+        if (addthreefriends == true) {
             addFriendsBadge.setVisible(true);
-        } else{
+        } else {
             addFriendsBadge.setVisible(false);
         }
 
 
 
         try {
-            //FXMLLoader loader = new FXMLLoader(getClass().getResource("src/main/java/client/profile_page/side_panel.fxml"));
+            //FXMLLoader loader = new FXMLLoader(
+            // getClass().getResource("src/main/java/client/profilepage/SidePanel1.fxml"));
             URL url = new File(
                     "src/main/java/client/mainpage/fxml/sidepanel.fxml").toURI().toURL();
             VBox box = FXMLLoader.load(url);
-            //VBox box = FXMLLoader.load(getClass().getResource("client.profile_page.sidepanel.fxml"));
+            //VBox box = FXMLLoader.load(getClass().getResource(
+            // "client.profilepage.SidePanel2.fxml"));
             drawer.setSidePane(box);
         } catch (IOException ex) {
             Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-//        if (drawer.isOpened()) {
-//            drawer.close();
-//        }
+        /*if (drawer.isOpened()) {
+            drawer.close();
+        }
 
-//        HamburgerNextArrowBasicTransition htransition = new HamburgerNextArrowBasicTransition(hamburger);
-//        htransition.setRate(-1);
-//        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
-//            htransition.setRate(htransition.getRate() * -1);
-//            htransition.play();
-//
-//            if (drawer.isOpened()) {
-//                drawer.close();
-//            } else {
-//                drawer.open();
-//            }
-//        });
+        HamburgerNextArrowBasicTransition htransition
+        = new HamburgerNextArrowBasicTransition(hamburger);
+        htransition.setRate(-1);
+        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+            htransition.setRate(htransition.getRate() * -1);
+            htransition.play();
+
+            if (drawer.isOpened()) {
+                drawer.close();
+            } else {
+            drawer.open();
+            }
+        });*/
     }
 
-    /**---------------------------- ABOUT US PAGE -----------------------------------------**/
+    //---------------------------- ABOUT US PAGE -----------------------------------------
 
     /**
      * Renders the about us page.
@@ -2686,7 +2760,7 @@ public class MainController implements Initializable {
         aboutUsWindow.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
     }
 
-    /**---------------------------- SETTINGS PAGE -----------------------------------------**/
+    //---------------------------- SETTINGS PAGE -----------------------------------------
 
     /**
      * Renders the settings page.
@@ -2700,7 +2774,7 @@ public class MainController implements Initializable {
         settingsWindow.setStyle("-fx-background-color: orange");
     }
 
-    /**---------------------------- LOGOUT -----------------------------------------**/
+    //---------------------------- LOGOUT -----------------------------------------
 
     /**
      * Renders the login page once user logs out.
@@ -2712,7 +2786,7 @@ public class MainController implements Initializable {
         logoutController.logout();
     }
 
-    /**---------------------------- ANIMATIONS -----------------------------------------**/
+    //---------------------------- ANIMATIONS -----------------------------------------
 
     /**
      * Animates a pane.

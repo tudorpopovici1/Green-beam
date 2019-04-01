@@ -1,9 +1,5 @@
 package client.listenertest;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
 import javafx.beans.binding.NumberBinding;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -11,6 +7,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
+
+
 
 
 public class MainSceneController implements Initializable {
@@ -25,11 +28,11 @@ public class MainSceneController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        SimpleIntegerProperty a = new SimpleIntegerProperty(5);
-        SimpleIntegerProperty b = new SimpleIntegerProperty(10);
-        NumberBinding sum = a.add(b);
+        SimpleIntegerProperty firstProperty = new SimpleIntegerProperty(5);
+        SimpleIntegerProperty secondProperty = new SimpleIntegerProperty(10);
+        NumberBinding sum = firstProperty.add(secondProperty);
         System.out.println(sum.getValue());
-        a.set(20);
+        firstProperty.set(20);
         System.out.println(sum.getValue());
 
         textField.textProperty().bind(stringProperty);
@@ -53,20 +56,20 @@ public class MainSceneController implements Initializable {
     }
 
     private void sumNonObservable() {
-        int a = 10;
-        int b = 10;
-        int sum = a + b;
+        int firstInteger = 10;
+        int secondInteger = 10;
+        int sum = firstInteger + secondInteger;
         System.out.println(sum); //20
-        a = 20;
+        firstInteger = 20;
         System.out.println(sum); //20
     }
 
     private void sumObservable() {
-        SimpleIntegerProperty a = new SimpleIntegerProperty(10);
-        SimpleIntegerProperty b = new SimpleIntegerProperty(10);
-        NumberBinding sum = a.add(b);
+        SimpleIntegerProperty firstProperty = new SimpleIntegerProperty(10);
+        SimpleIntegerProperty secondProperty = new SimpleIntegerProperty(10);
+        NumberBinding sum = firstProperty.add(secondProperty);
         System.out.println(sum.getValue());
-        a.set(20);
+        firstProperty.set(20);
         System.out.println(sum.getValue());
     }
 }

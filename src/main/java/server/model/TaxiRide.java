@@ -1,10 +1,13 @@
 package server.model;
 
-import java.util.Objects;
-
 public class TaxiRide {
     private double distanceTraveled;
     private double emissionFactor;
+
+    public TaxiRide(double distanceTraveled, double emissionFactor) {
+        this.distanceTraveled = distanceTraveled;
+        this.emissionFactor = emissionFactor;
+    }
 
     public double getDistanceTraveled() {
         return distanceTraveled;
@@ -22,11 +25,6 @@ public class TaxiRide {
         this.emissionFactor = emissionFactor;
     }
 
-    public TaxiRide(double distanceTraveled, double emissionFactor) {
-        this.distanceTraveled = distanceTraveled;
-        this.emissionFactor = emissionFactor;
-    }
-
     @Override
     public String toString() {
         return "TaxiRide{"
@@ -37,10 +35,14 @@ public class TaxiRide {
 
     @Override
     public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
         TaxiRide taxiRide = (TaxiRide) object;
-        return Double.compare(taxiRide.distanceTraveled, distanceTraveled) == 0 &&
-                Double.compare(taxiRide.emissionFactor, emissionFactor) == 0;
+        return Double.compare(taxiRide.distanceTraveled, distanceTraveled) == 0
+                && Double.compare(taxiRide.emissionFactor, emissionFactor) == 0;
     }
 }
