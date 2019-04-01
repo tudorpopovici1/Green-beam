@@ -247,6 +247,10 @@
     -fx-font-size: 25px;
 }
 
+#emissionFactorLink {
+    -fx-text-fill: white;
+}
+
 
 
 

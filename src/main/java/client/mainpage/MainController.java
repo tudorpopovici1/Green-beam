@@ -17,11 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -233,6 +229,9 @@ public class MainController implements Initializable {
     private Pane paneFifthFriend;
 
     /** ID activation for the rest. **/
+
+    @FXML
+    private Hyperlink emissionFactorLink;
 
     @FXML
     private Pane emissionsWindow;
@@ -1120,6 +1119,8 @@ public class MainController implements Initializable {
         vegetarianMealStatus.setVisible(false);
         transportationStatus.setVisible(false);
         addTemperatureButton.setVisible(false);
+        emissionFactorLink.setVisible(true);
+        emissionFactorLink.setText("What is Emission Factor? https://www.eumayors.eu/IMG/pdf/technical_annex_en.pdf");
 
         /** Emissionspage initial visi˚bility - ride bus button view **/
         rideABusButton.setVisible(false);
@@ -1249,6 +1250,7 @@ public class MainController implements Initializable {
         energyIcon.setVisible(false);
         householdButton.setVisible(false);
         householdIcon.setVisible(false);
+        emissionFactorLink.setVisible(false);
     }
 
 
