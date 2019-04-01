@@ -604,6 +604,7 @@ public class UnitUserControllerTest {
     @Test (expected = BadCredentialsException.class)
     public void BadCredentialsChangePassword() throws BadCredentialsException {
         MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        Mockito.when(httpServletRequest.getHeader("d")).thenReturn("you gucci");
         httpServletRequest.addHeader("Authorisation", "Token ");
         userController.changePassword("123", 1L, httpServletRequest);
     }
