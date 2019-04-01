@@ -17,6 +17,7 @@
         <version>2.0.5.RELEASE</version>
     </parent>
 
+
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -44,13 +45,6 @@
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>RELEASE</version>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -177,12 +171,14 @@
             <artifactId>spring-security-web</artifactId>
             <version>5.1.4.RELEASE</version>
         </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13-beta-2</version>
             <scope>test</scope>
         </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
         <dependency>
@@ -291,8 +287,6 @@
                     <mainClass>client.loginpage.GreenBeamApplication</mainClass>
                 </configuration>
             </plugin>
-
-
 
 
 

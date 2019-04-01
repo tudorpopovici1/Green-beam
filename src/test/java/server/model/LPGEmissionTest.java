@@ -8,8 +8,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LPGEmissionTest {
 
-    LPGEmission lpgEmission = new LPGEmission(0.0);
-    LPGEmission lpgEmission2 = new LPGEmission(0.0);
+    LpgEmission lpgEmission = new LpgEmission(0.0);
+    LpgEmission lpgEmission2 = new LpgEmission(0.0);
 
     @Test
     public void getLpgEmissionTest() {
@@ -30,7 +30,7 @@ public class LPGEmissionTest {
 
     @Test
     public void toStringTest() {
-        LPGEmission lpgEmission = new LPGEmission(1.2);
+        LpgEmission lpgEmission = new LpgEmission(1.2);
         String expected = "LPGEmission{lpgEmission=1.2}";
         Assert.assertEquals(expected, lpgEmission.toString());
     }

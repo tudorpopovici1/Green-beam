@@ -28,6 +28,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Hyperlink?>
 <AnchorPane fx:id="main" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.mainpage.MainController">
     <ImageView fx:id="mainBackground" fitHeight="700.0" fitWidth="931.0">
@@ -370,6 +371,7 @@
             </image>
         </ImageView>
         <Label fx:id="addEmissionsText" layoutX="70.0" layoutY="10.0" text="Choose Your Emission Type"/>
+        <Hyperlink fx:id="emissionFactorLink" layoutX="85.0" layoutY="100.0" />
         <Button fx:id="mealButton" layoutX="260.0" layoutY="193.0" mnemonicParsing="false" prefHeight="75.0"
                 prefWidth="184.0" text="Food" onAction="#mealButtonOnClick"/>
         <Button fx:id="transportationButton" layoutX="260.0" layoutY="280.0" mnemonicParsing="false" prefHeight="75.0"
