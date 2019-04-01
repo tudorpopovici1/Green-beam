@@ -200,7 +200,7 @@
             <image>
                 <Image url="@../images/backgrounBush.jpeg"/>
             </image>
-        </ImageView>
+        </ImageView
         <ImageView fx:id="foodIcon" fitHeight="60" fitWidth="60" layoutX="170.0" layoutY="200.0">
             <image>
                 <Image url="@../images/foodIcon.png"/>
@@ -227,6 +227,7 @@
             </image>
         </ImageView>
         <Label fx:id="addEmissionsText" layoutX="70.0" layoutY="10.0" text="Choose Your Emission Type"/>
+        <Label fx:id="ppmLink" layoutX="70.0" layoutY="10.0" text="Choose Your Emission Type"/>
         <Button fx:id="mealButton" layoutX="260.0" layoutY="193.0" mnemonicParsing="false" prefHeight="75.0"
                 prefWidth="184.0" text="Food" onAction="#mealButtonOnClick"/>
         <Button fx:id="transportationButton" layoutX="260.0" layoutY="280.0" mnemonicParsing="false" prefHeight="75.0"
