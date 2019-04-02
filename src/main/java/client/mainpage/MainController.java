@@ -19,6 +19,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -49,8 +53,11 @@ import server.model.WasteEmission;
 import server.model.WaterEmission;
 import server.security.JwtValidator;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -1205,6 +1212,14 @@ public class MainController implements Initializable {
         emissionFactorPlane.setVisible(false);
         planeStatus.setVisible(false);
         addPlaneButton.setVisible(false);
+    }
+
+
+    public void goWebsite() throws URISyntaxException, IOException {
+        if (Desktop.isDesktopSupported() && Desktop.
+                getDesktop().isSupported(Desktop.Action.BROWSE)) {
+            Desktop.getDesktop().browse(new URI("https://www.eumayors.eu/IMG/pdf/technical_annex_en.pdf"));
+        }
     }
 
     /**
