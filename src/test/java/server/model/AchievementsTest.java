@@ -127,4 +127,35 @@ public class AchievementsTest {
         achievement2.setAchievementId(7899L);
         Assert.assertNotEquals(achievement, achievement2);
     }
+
+    @Test
+    public void equalsFalseTest() {
+        achievement.setId(1234L);
+        achievement.setUserId(456L);
+        achievement.setAchievementId(789L);
+        achievement2.setId(123L);
+        achievement2.setUserId(456L);
+        achievement2.setAchievementId(789L);
+        Assert.assertEquals(false, achievement.equals(achievement2));
+    }
+
+    @Test
+    public void equalsTrueTest() {
+        achievement.setId(123L);
+        achievement.setUserId(456L);
+        achievement.setAchievementId(789L);
+        achievement2.setId(123L);
+        achievement2.setUserId(456L);
+        achievement2.setAchievementId(789L);
+        Assert.assertEquals(true, achievement.equals(achievement2));
+    }
+
+    @Test
+    public void equalsNullTest() {
+        achievement.setId(123L);
+        achievement.setUserId(456L);
+        achievement.setAchievementId(789L);
+        achievement2 = null;
+        Assert.assertEquals(false, achievement.equals(achievement2));
+    }
 }

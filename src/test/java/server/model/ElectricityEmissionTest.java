@@ -54,4 +54,25 @@ public class ElectricityEmissionTest {
         electricityEmission2.setElectricityUsage(3.4);
         Assert.assertNotEquals(electricityEmission, electricityEmission2);
     }
+
+    @Test
+    public void equalsFalseTest() {
+        electricityEmission.setElectricityUsage(1.2);
+        electricityEmission2.setElectricityUsage(3.4);
+        Assert.assertEquals(false, electricityEmission.equals(electricityEmission2));
+    }
+
+    @Test
+    public void equalsTrueTest() {
+        electricityEmission.setElectricityUsage(1.2);
+        electricityEmission2.setElectricityUsage(1.2);
+        Assert.assertEquals(true, electricityEmission.equals(electricityEmission2));
+    }
+
+    @Test
+    public void equalsNullTest() {
+        electricityEmission.setElectricityUsage(1.2);
+        electricityEmission2 = null;
+        Assert.assertEquals(false, electricityEmission.equals(electricityEmission2));
+    }
 }

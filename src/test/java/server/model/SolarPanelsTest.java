@@ -113,9 +113,40 @@ public class SolarPanelsTest {
         solarPanels.setAnnualSolarEnergyProduction(1234f);
         solarPanels.setFactorOfCO2Avoidance(5678f);
         solarPanels.setNumberOfSolarPanels(1);
-        solarPanels2.setAnnualSolarEnergyProduction(1234f);
+        solarPanels2.setAnnualSolarEnergyProduction(5678f);
         solarPanels2.setFactorOfCO2Avoidance(90f);
         solarPanels2.setNumberOfSolarPanels(2);
         Assert.assertNotEquals(solarPanels, solarPanels2);
+    }
+
+    @Test
+    public void equalsFalseTest() {
+        solarPanels.setAnnualSolarEnergyProduction(1234f);
+        solarPanels.setFactorOfCO2Avoidance(5678f);
+        solarPanels.setNumberOfSolarPanels(1);
+        solarPanels2.setAnnualSolarEnergyProduction(1234f);
+        solarPanels2.setFactorOfCO2Avoidance(90f);
+        solarPanels2.setNumberOfSolarPanels(2);
+        Assert.assertEquals(false, solarPanels.equals(solarPanels2));
+    }
+
+    @Test
+    public void equalsTrueTest() {
+        solarPanels.setAnnualSolarEnergyProduction(1234f);
+        solarPanels.setFactorOfCO2Avoidance(90f);
+        solarPanels.setNumberOfSolarPanels(1);
+        solarPanels2.setAnnualSolarEnergyProduction(1234f);
+        solarPanels2.setFactorOfCO2Avoidance(90f);
+        solarPanels2.setNumberOfSolarPanels(1);
+        Assert.assertEquals(true, solarPanels.equals(solarPanels2));
+    }
+
+    @Test
+    public void equalsNullTest() {
+        solarPanels.setAnnualSolarEnergyProduction(1234f);
+        solarPanels.setFactorOfCO2Avoidance(5678f);
+        solarPanels.setNumberOfSolarPanels(1);
+        solarPanels2 = null;
+        Assert.assertEquals(false, solarPanels.equals(solarPanels2));
     }
 }

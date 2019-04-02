@@ -54,5 +54,25 @@ public class WaterEmissionTest {
         waterEmission2.setWaterEmission(3.4);
         Assert.assertNotEquals(waterEmission, waterEmission2);
     }
-    
+
+    @Test
+    public void equalsFalseTest() {
+        waterEmission.setWaterEmission(1.2);
+        waterEmission2.setWaterEmission(3.4);
+        Assert.assertEquals(false, waterEmission.equals(waterEmission2));
+    }
+
+    @Test
+    public void equalsTrueTest() {
+        waterEmission.setWaterEmission(1.2);
+        waterEmission2.setWaterEmission(1.2);
+        Assert.assertEquals(true, waterEmission.equals(waterEmission2));
+    }
+
+    @Test
+    public void equalsNullTest() {
+        waterEmission.setWaterEmission(1.2);
+        waterEmission2 = null;
+        Assert.assertEquals(false, waterEmission.equals(waterEmission2));
+    }
 }

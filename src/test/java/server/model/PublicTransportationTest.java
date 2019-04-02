@@ -1,6 +1,5 @@
 package server.model;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -97,5 +96,31 @@ public class PublicTransportationTest {
         PublicTransportation publicTransportation = new PublicTransportation(123f, 456f, 789);
         String expected = "PublicTransportation{carMileage=123.0, milesTraveled=456.0, fuelType=789}";
         Assert.assertEquals(expected, publicTransportation.toString());
+    }
+
+    @Test
+    public void equalsFalseTest() {
+        publicTransportation.setMilesTraveled(123);
+        publicTransportation.setFuelType('1');
+        publicTransportation2.setMilesTraveled(123);
+        publicTransportation2.setFuelType('0');
+        Assert.assertEquals(false, publicTransportation.equals(publicTransportation2));
+    }
+
+    @Test
+    public void equalsTrueTest() {
+        publicTransportation.setMilesTraveled(123);
+        publicTransportation.setFuelType('1');
+        publicTransportation2.setMilesTraveled(123);
+        publicTransportation2.setFuelType('1');
+        Assert.assertEquals(true, publicTransportation.equals(publicTransportation2));
+    }
+
+    @Test
+    public void equalsNullTest() {
+        publicTransportation.setMilesTraveled(123);
+        publicTransportation.setFuelType('1');
+        publicTransportation2 = null;
+        Assert.assertEquals(false, publicTransportation.equals(publicTransportation2));
     }
 }

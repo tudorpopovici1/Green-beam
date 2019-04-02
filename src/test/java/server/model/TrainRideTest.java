@@ -85,4 +85,30 @@ public class TrainRideTest {
         trainRide2.setEmissionFactor(5.6);
         Assert.assertNotEquals(trainRide, trainRide2);
     }
+
+    @Test
+    public void equalsFalseTest() {
+        trainRide.setDistanceTraveled(1.2);
+        trainRide.setEmissionFactor(3.4);
+        trainRide2.setDistanceTraveled(1.2);
+        trainRide2.setEmissionFactor(5.6);
+        Assert.assertEquals(false, trainRide.equals(trainRide2));
+    }
+
+    @Test
+    public void equalsTrueTest() {
+        trainRide.setDistanceTraveled(1.2);
+        trainRide.setEmissionFactor(3.4);
+        trainRide2.setDistanceTraveled(1.2);
+        trainRide2.setEmissionFactor(3.4);
+        Assert.assertEquals(true, trainRide.equals(trainRide2));
+    }
+
+    @Test
+    public void equalsNullTest() {
+        trainRide.setDistanceTraveled(1.2);
+        trainRide.setEmissionFactor(3.4);
+        trainRide2 = null;
+        Assert.assertEquals(false, trainRide.equals(trainRide2));
+    }
 }

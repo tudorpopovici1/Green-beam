@@ -86,4 +86,30 @@ public class HouseTemperatureTest {
         Assert.assertNotEquals(houseTemperature, houseTemperature2);
     }
 
+    @Test
+    public void equalsFalseTest() {
+        houseTemperature.setHouseTemperatureBefore(1.2);
+        houseTemperature.setGetHouseTemperatureAfter(3.4);
+        houseTemperature2.setHouseTemperatureBefore(1.2);
+        houseTemperature2.setGetHouseTemperatureAfter(5.6);
+        Assert.assertEquals(false, houseTemperature.equals(houseTemperature2));
+    }
+
+    @Test
+    public void equalsTrueTest() {
+        houseTemperature.setHouseTemperatureBefore(1.2);
+        houseTemperature.setGetHouseTemperatureAfter(3.4);
+        houseTemperature2.setHouseTemperatureBefore(1.2);
+        houseTemperature2.setGetHouseTemperatureAfter(3.4);
+        Assert.assertEquals(true, houseTemperature.equals(houseTemperature2));
+    }
+
+    @Test
+    public void equalsNullTest() {
+        houseTemperature.setHouseTemperatureBefore(1.2);
+        houseTemperature.setGetHouseTemperatureAfter(3.4);
+        houseTemperature2 = null;
+        Assert.assertEquals(false, houseTemperature.equals(houseTemperature2));
+    }
+
 }

@@ -86,4 +86,30 @@ public class PlaneRideTest {
         planeRide2.setEmissionFactor(5.6);
         Assert.assertNotEquals(planeRide, planeRide2);
     }
+
+    @Test
+    public void equalsFalseTest() {
+        planeRide.setDistanceTraveled(1.2);
+        planeRide.setEmissionFactor(3.4);
+        planeRide2.setDistanceTraveled(1.2);
+        planeRide2.setEmissionFactor(5.6);
+        Assert.assertEquals(false, planeRide.equals(planeRide2));
+    }
+
+    @Test
+    public void equalsTrueTest() {
+        planeRide.setDistanceTraveled(1.2);
+        planeRide.setEmissionFactor(3.4);
+        planeRide2.setDistanceTraveled(1.2);
+        planeRide2.setEmissionFactor(3.4);
+        Assert.assertEquals(true, planeRide.equals(planeRide2));
+    }
+
+    @Test
+    public void equalsNullTest() {
+        planeRide.setDistanceTraveled(1.2);
+        planeRide.setEmissionFactor(3.4);
+        planeRide2 = null;
+        Assert.assertEquals(false, planeRide.equals(planeRide2));
+    }
 }

@@ -86,4 +86,30 @@ public class MetroRideTest {
         Assert.assertNotEquals(metroRide, metroRide2);
     }
 
+    @Test
+    public void equalsFalseTest() {
+        metroRide.setDistanceTraveled(1.2);
+        metroRide.setEmissionFactor(3.4);
+        metroRide2.setDistanceTraveled(1.2);
+        metroRide2.setEmissionFactor(5.6);
+        Assert.assertEquals(false, metroRide.equals(metroRide2));
+    }
+
+    @Test
+    public void equalsTrueTest() {
+        metroRide.setDistanceTraveled(1.2);
+        metroRide.setEmissionFactor(3.4);
+        metroRide2.setDistanceTraveled(1.2);
+        metroRide2.setEmissionFactor(3.4);
+        Assert.assertEquals(true, metroRide.equals(metroRide2));
+    }
+
+    @Test
+    public void equalsNullTest() {
+        metroRide.setDistanceTraveled(1.2);
+        metroRide.setEmissionFactor(3.4);
+        metroRide2 = null;
+        Assert.assertEquals(false, metroRide.equals(metroRide2));
+    }
+
 }

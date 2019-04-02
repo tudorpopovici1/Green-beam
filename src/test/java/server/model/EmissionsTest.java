@@ -252,5 +252,61 @@ public class EmissionsTest {
         String result = emissions.getEmissionType();
         Assert.assertEquals(result, emissions.getEmissionType());
     }
+
+    @Test
+    public void equalsFalseTest() throws ParseException {
+        emission.setId(123L);
+        emission.setUserId(456L);
+        emission.setCarbonFootprint(12);
+        emission.setEmissionType("bike");
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        emission.setDate(dateObject);
+        emission2.setId(123L);
+        emission2.setUserId(456L);
+        emission2.setCarbonFootprint(12);
+        emission2.setEmissionType("bike");
+        DateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString2 = "2019-02-11";
+        Date dateObject2 = sdf2.parse(dateString2);
+        emission2.setDate(dateObject2);
+        Assert.assertEquals(false, emission.equals(emission2));
+    }
+
+    @Test
+    public void equalsTrueTest() throws ParseException {
+        emission.setId(123L);
+        emission.setUserId(456L);
+        emission.setCarbonFootprint(12);
+        emission.setEmissionType("bike");
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        emission.setDate(dateObject);
+        emission2.setId(123L);
+        emission2.setUserId(456L);
+        emission2.setCarbonFootprint(12);
+        emission2.setEmissionType("bike");
+        DateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString2 = "2014-02-11";
+        Date dateObject2 = sdf2.parse(dateString2);
+        emission2.setDate(dateObject2);
+        Assert.assertEquals(true, emission.equals(emission2));
+    }
+
+    @Test
+    public void equalsNullTest() throws ParseException {
+        emission.setId(123L);
+        emission.setUserId(456L);
+        emission.setCarbonFootprint(12);
+        emission.setEmissionType("bike");
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        emission.setDate(dateObject);
+        emission2 = null;
+        Assert.assertEquals(false, emission.equals(emission2));
+    }
 }
 

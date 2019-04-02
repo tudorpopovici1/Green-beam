@@ -3,6 +3,8 @@ package server.model;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.text.ParseException;
+
 
 public class ErrorDetailsTest {
     ErrorDetails errorDetail = new ErrorDetails();
@@ -211,6 +213,46 @@ public class ErrorDetailsTest {
     }
 
 
+    @Test
+    public void equalsFalseTest() {
+        errorDetail.setError("some error");
+        errorDetail.setMessage("go away");
+        errorDetail.setPath("i am sleepy");
+        errorDetail.setStatus(404);
+        errorDetail.setTimestamp("13/01/199");
+        errorDetail2.setError("some error");
+        errorDetail2.setMessage("go away");
+        errorDetail2.setPath("i am sleepy");
+        errorDetail2.setStatus(403);
+        errorDetail2.setTimestamp("13/01/199");
+        Assert.assertEquals(false, errorDetail.equals(errorDetail2));
+    }
+
+    @Test
+    public void equalsTrueTest() {
+        errorDetail.setError("some error");
+        errorDetail.setMessage("go away");
+        errorDetail.setPath("i am sleepy");
+        errorDetail.setStatus(404);
+        errorDetail.setTimestamp("13/01/199");
+        errorDetail2.setError("some error");
+        errorDetail2.setMessage("go away");
+        errorDetail2.setPath("i am sleepy");
+        errorDetail2.setStatus(404);
+        errorDetail2.setTimestamp("13/01/199");
+        Assert.assertEquals(true, errorDetail.equals(errorDetail2));
+    }
+
+    @Test
+    public void equalsNullTest() {
+        errorDetail.setError("some error");
+        errorDetail.setMessage("go away");
+        errorDetail.setPath("i am sleepy");
+        errorDetail.setStatus(404);
+        errorDetail.setTimestamp("13/01/199");
+        errorDetail2 = null;
+        Assert.assertEquals(false, errorDetail.equals(errorDetail2));
+    }
 
 
 

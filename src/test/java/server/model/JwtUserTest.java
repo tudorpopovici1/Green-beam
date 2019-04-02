@@ -121,10 +121,34 @@ public class JwtUserTest {
     }
 
     @Test
-    public void hashCodeTest() {
-        JwtUser jwtUser1 = new JwtUser("abc", 1234L, "def");
-        JwtUser jwtUser2 = new JwtUser("abc", 1234L, "def");
-        Assert.assertEquals(jwtUser1.hashCode(), jwtUser2.hashCode());
+    public void equalsFalseTest() {
+        jwtUser.setId(123L);
+        jwtUser.setRole("user");
+        jwtUser.setUserName("tudors");
+        jwtUser2.setId(123L);
+        jwtUser2.setRole("user");
+        jwtUser2.setUserName("irtaza");
+        Assert.assertEquals(false, jwtUser.equals(jwtUser2));
+    }
+
+    @Test
+    public void equalsTrueTest() {
+        jwtUser.setId(123L);
+        jwtUser.setRole("user");
+        jwtUser.setUserName("irtaza");
+        jwtUser2.setId(123L);
+        jwtUser2.setRole("user");
+        jwtUser2.setUserName("irtaza");
+        Assert.assertEquals(true, jwtUser.equals(jwtUser2));
+    }
+
+    @Test
+    public void equalsNullTest() {
+        jwtUser.setId(123L);
+        jwtUser.setRole("user");
+        jwtUser.setUserName("tudors");
+        jwtUser2 = null;
+        Assert.assertEquals(false, jwtUser.equals(jwtUser2));
     }
 
 }

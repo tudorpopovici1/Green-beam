@@ -119,4 +119,34 @@ public class EmissionTypeTest {
     }
 
 
+    @Test
+    public void equalsFalseTest() {
+        emission.setEmissionId(123L);
+        emission.setEmissionType("bike");
+        emission.setEmissionName("hey");
+        emission2.setEmissionId(123L);
+        emission2.setEmissionType("bike");
+        emission2.setEmissionName("bye");
+        Assert.assertEquals(false, emission.equals(emission2));
+    }
+
+    @Test
+    public void equalsTrueTest() {
+        emission.setEmissionId(123L);
+        emission.setEmissionType("bike");
+        emission.setEmissionName("hey");
+        emission2.setEmissionId(123L);
+        emission2.setEmissionType("bike");
+        emission2.setEmissionName("hey");
+        Assert.assertEquals(true, emission.equals(emission2));
+    }
+
+    @Test
+    public void equalsNullTest() {
+        emission.setEmissionId(123L);
+        emission.setEmissionType("bike");
+        emission.setEmissionName("hey");
+        emission2 = null;
+        Assert.assertEquals(false, emission.equals(emission2));
+    }
 }

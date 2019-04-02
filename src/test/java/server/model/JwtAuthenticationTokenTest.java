@@ -60,6 +60,27 @@ public class JwtAuthenticationTokenTest {
         Assert.assertNotEquals(jwtAuthenticationToken, jwtAuthenticationToken2);
     }
 
+    @Test
+    public void equalsFalseTest() {
+        jwtAuthenticationToken.setToken("123");
+        jwtAuthenticationToken2.setToken("123213");
+        Assert.assertEquals(false, jwtAuthenticationToken.equals(jwtAuthenticationToken2));
+    }
+
+    @Test
+    public void equalsTrueTest() {
+        jwtAuthenticationToken.setToken("123");
+        jwtAuthenticationToken2.setToken("123");
+        Assert.assertEquals(true, jwtAuthenticationToken.equals(jwtAuthenticationToken2));
+    }
+
+    @Test
+    public void equalsNullTest() {
+        jwtAuthenticationToken.setToken("123");
+        jwtAuthenticationToken2 = null;
+        Assert.assertEquals(false, jwtAuthenticationToken.equals(jwtAuthenticationToken2));
+    }
+
 
 
 }

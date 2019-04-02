@@ -55,4 +55,25 @@ public class WasteEmissionTest {
         Assert.assertNotEquals(wasteEmission, wasteEmission2);
     }
 
+    @Test
+    public void equalsFalseTest() {
+        wasteEmission.setWasteEmission(1.2);
+        wasteEmission2.setWasteEmission(3.4);
+        Assert.assertEquals(false, wasteEmission.equals(wasteEmission2));
+    }
+
+    @Test
+    public void equalsTrueTest() {
+        wasteEmission.setWasteEmission(1.2);
+        wasteEmission2.setWasteEmission(1.2);
+        Assert.assertEquals(true, wasteEmission.equals(wasteEmission2));
+    }
+
+    @Test
+    public void equalsNullTest() {
+        wasteEmission.setWasteEmission(1.2);
+        wasteEmission2 = null;
+        Assert.assertEquals(false, wasteEmission.equals(wasteEmission2));
+    }
+
 }

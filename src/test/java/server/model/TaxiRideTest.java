@@ -86,4 +86,30 @@ public class TaxiRideTest {
         Assert.assertNotEquals(taxiRide, taxiRide2);
     }
 
+    @Test
+    public void equalsFalseTest() {
+        taxiRide.setDistanceTraveled(1.2);
+        taxiRide.setEmissionFactor(3.4);
+        taxiRide2.setDistanceTraveled(1.2);
+        taxiRide2.setEmissionFactor(5.6);
+        Assert.assertEquals(false, taxiRide.equals(taxiRide2));
+    }
+
+    @Test
+    public void equalsTrueTest() {
+        taxiRide.setDistanceTraveled(1.2);
+        taxiRide.setEmissionFactor(3.4);
+        taxiRide2.setDistanceTraveled(1.2);
+        taxiRide2.setEmissionFactor(3.4);
+        Assert.assertEquals(true, taxiRide.equals(taxiRide2));
+    }
+
+    @Test
+    public void equalsNullTest() {
+        taxiRide.setDistanceTraveled(1.2);
+        taxiRide.setEmissionFactor(3.4);
+        taxiRide2 = null;
+        Assert.assertEquals(false, taxiRide.equals(taxiRide2));
+    }
+
 }

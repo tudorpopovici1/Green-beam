@@ -167,6 +167,51 @@ public class EmissionsClientTest {
         EmissionsClient emissionsClient = new EmissionsClient("abc", 1234f, dateObject);
         String result = emissionsClient.getEmissionType();
         Assert.assertEquals(result, emissionsClient.getEmissionType());
+    }
 
+    @Test
+    public void equalsFalseTest() throws ParseException {
+        emissionsClient.setEmissionType("bike");
+        emissionsClient.setCarbonEmission(12);
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        emissionsClient.setDate(dateObject);
+        emissionsClient2.setEmissionType("bike");
+        emissionsClient2.setCarbonEmission(12);
+        DateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString2 = "2019-02-11";
+        Date dateObject2 = sdf2.parse(dateString2);
+        emissionsClient2.setDate(dateObject2);
+        Assert.assertEquals(false, emissionsClient.equals(emissionsClient2));
+    }
+
+    @Test
+    public void equalsTrueTest() throws ParseException {
+        emissionsClient.setEmissionType("bike");
+        emissionsClient.setCarbonEmission(12);
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        emissionsClient.setDate(dateObject);
+        emissionsClient2.setEmissionType("bike");
+        emissionsClient2.setCarbonEmission(12);
+        DateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString2 = "2014-02-11";
+        Date dateObject2 = sdf2.parse(dateString2);
+        emissionsClient2.setDate(dateObject2);
+        Assert.assertEquals(true, emissionsClient.equals(emissionsClient2));
+    }
+
+    @Test
+    public void equalsNullTest() throws ParseException {
+        emissionsClient.setEmissionType("bike");
+        emissionsClient.setCarbonEmission(12);
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "2014-02-11";
+        Date dateObject = sdf.parse(dateString);
+        emissionsClient.setDate(dateObject);
+        emissionsClient2 = null;
+        Assert.assertEquals(false, emissionsClient.equals(emissionsClient2));
     }
 }

@@ -56,4 +56,25 @@ public class FuelOilEmissionTest {
         Assert.assertNotEquals(fuelOilEmission, fuelOilEmission2);
     }
 
+    @Test
+    public void equalsFalseTest() {
+        fuelOilEmission.setFuelOilUsage(1.2);
+        fuelOilEmission2.setFuelOilUsage(3.4);
+        Assert.assertEquals(false, fuelOilEmission.equals(fuelOilEmission2));
+    }
+
+    @Test
+    public void equalsTrueTest() {
+        fuelOilEmission.setFuelOilUsage(1.2);
+        fuelOilEmission2.setFuelOilUsage(1.2);
+        Assert.assertEquals(true, fuelOilEmission.equals(fuelOilEmission2));
+    }
+
+    @Test
+    public void equalsNullTest() {
+        fuelOilEmission.setFuelOilUsage(1.2);
+        fuelOilEmission2 = null;
+        Assert.assertEquals(false, fuelOilEmission.equals(fuelOilEmission2));
+    }
+
 }

@@ -3,6 +3,11 @@ package server.model;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class MealTest {
 
     Meal meal = new Meal (0L, 0L, 0L, 0L);
@@ -155,5 +160,41 @@ public class MealTest {
         meal2.setFruitVegetablesCalories(14);
         meal2.setCerealCalories(15);
         Assert.assertNotEquals(meal, meal2);
+    }
+
+    @Test
+    public void equalsFalseTest() {
+        meal.setOtherFoodCalories(12);
+        meal.setDairyCalories(13);
+        meal.setFruitVegetablesCalories(14);
+        meal.setCerealCalories(154);
+        meal2.setOtherFoodCalories(12);
+        meal2.setDairyCalories(13);
+        meal2.setFruitVegetablesCalories(14);
+        meal2.setCerealCalories(15);
+        Assert.assertEquals(false, meal.equals(meal2));
+    }
+
+    @Test
+    public void equalsTrueTest() {
+        meal.setOtherFoodCalories(12);
+        meal.setDairyCalories(13);
+        meal.setFruitVegetablesCalories(14);
+        meal.setCerealCalories(15);
+        meal2.setOtherFoodCalories(12);
+        meal2.setDairyCalories(13);
+        meal2.setFruitVegetablesCalories(14);
+        meal2.setCerealCalories(15);
+        Assert.assertEquals(true, meal.equals(meal2));
+    }
+
+    @Test
+    public void equalsNullTest() {
+        meal.setOtherFoodCalories(12);
+        meal.setDairyCalories(13);
+        meal.setFruitVegetablesCalories(14);
+        meal.setCerealCalories(154);
+        meal2 = null;
+        Assert.assertEquals(false, meal.equals(meal2));
     }
 }

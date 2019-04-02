@@ -73,9 +73,4 @@ public class JwtUser {
                 && Objects.equals(getUserName(), jwtUser.getUserName())
                 && Objects.equals(getRole(), jwtUser.getRole());
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getUserName(), getId(), getRole());
-    }
 }

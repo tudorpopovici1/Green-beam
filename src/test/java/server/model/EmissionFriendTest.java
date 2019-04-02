@@ -87,4 +87,30 @@ public class EmissionFriendTest {
         String result = emissionFriend.getUsername();
         Assert.assertEquals(result, emissionFriend.getUsername());
     }
+
+    @Test
+    public void equalsFalseTest() {
+        emissionFriend.setUsername("irtaza");
+        emissionFriend.setCarbonEmission(12.2);
+        emissionFriend2.setUsername("irtaza");
+        emissionFriend2.setCarbonEmission(12.3);
+        Assert.assertEquals(false, emissionFriend.equals(emissionFriend2));
+    }
+
+    @Test
+    public void equalsTrueTest() {
+        emissionFriend.setUsername("irtaza");
+        emissionFriend.setCarbonEmission(12.2);
+        emissionFriend2.setUsername("irtaza");
+        emissionFriend2.setCarbonEmission(12.2);
+        Assert.assertEquals(true, emissionFriend.equals(emissionFriend2));
+    }
+
+    @Test
+    public void equalsNullTest() {
+        emissionFriend.setUsername("irtaza");
+        emissionFriend.setCarbonEmission(12.2);
+        emissionFriend2 = null;
+        Assert.assertEquals(false, emissionFriend.equals(emissionFriend2));
+    }
 }

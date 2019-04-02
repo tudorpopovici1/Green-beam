@@ -1,12 +1,9 @@
-/*
 package server.model;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-public class LPGEmissionTest {
+public class LpgEmissionTest {
 
     LpgEmission lpgEmission = new LpgEmission(0.0);
     LpgEmission lpgEmission2 = new LpgEmission(0.0);
@@ -55,5 +52,26 @@ public class LPGEmissionTest {
         lpgEmission2.setLpgEmission(3.4);
         Assert.assertNotEquals(lpgEmission, lpgEmission2);
     }
+    @Test
+    public void equalsFalseTest() {
+        lpgEmission.setLpgEmission(1.2);
+        lpgEmission2.setLpgEmission(3.4);
+        Assert.assertEquals(false, lpgEmission.equals(lpgEmission2));
+    }
 
-}*/
+    @Test
+    public void equalsTrueTest() {
+        lpgEmission.setLpgEmission(1.2);
+        lpgEmission2.setLpgEmission(1.2);
+        Assert.assertEquals(true, lpgEmission.equals(lpgEmission2));
+    }
+
+    @Test
+    public void equalsNullTest() {
+        lpgEmission.setLpgEmission(1.2);
+        lpgEmission2 = null;
+        Assert.assertEquals(false, lpgEmission.equals(lpgEmission2));
+    }
+
+
+}

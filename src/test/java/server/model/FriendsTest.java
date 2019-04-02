@@ -165,5 +165,40 @@ public class FriendsTest {
         Assert.assertNotEquals(friends, friends2);
     }
 
+    @Test
+    public void equalsFalseTest() {
+        friends.setId(123L);
+        friends.setRelatedUserId(456L);
+        friends.setRelatingUserId(789L);
+        friends.setRelationshipType("bro");
+        friends2.setId(123L);
+        friends2.setRelatedUserId(456L);
+        friends2.setRelatingUserId(789L);
+        friends2.setRelationshipType("sis");
+        Assert.assertEquals(false, friends.equals(friends2));
+    }
+
+    @Test
+    public void equalsTrueTest() {
+        friends.setId(123L);
+        friends.setRelatedUserId(456L);
+        friends.setRelatingUserId(789L);
+        friends.setRelationshipType("sis");
+        friends2.setId(123L);
+        friends2.setRelatedUserId(456L);
+        friends2.setRelatingUserId(789L);
+        friends2.setRelationshipType("sis");
+        Assert.assertEquals(true, friends.equals(friends2));
+    }
+
+    @Test
+    public void equalsNullTest() {
+        friends.setId(123L);
+        friends.setRelatedUserId(456L);
+        friends.setRelatingUserId(789L);
+        friends.setRelationshipType("bro");
+        friends2 = null;
+        Assert.assertEquals(false, friends.equals(friends2));
+    }
 
 }

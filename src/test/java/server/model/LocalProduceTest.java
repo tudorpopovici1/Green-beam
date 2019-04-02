@@ -87,4 +87,30 @@ public class LocalProduceTest {
         localProduce2.setFoodProducedLocally(3.4);
         Assert.assertNotEquals(localProduce, localProduce2);
     }
+
+    @Test
+    public void equalsFalseTest() {
+        localProduce.setPackagedFood(1.2);
+        localProduce.setFoodProducedLocally(3.4);
+        localProduce2.setPackagedFood(5.6);
+        localProduce2.setFoodProducedLocally(3.4);
+        Assert.assertEquals(false, localProduce.equals(localProduce2));
+    }
+
+    @Test
+    public void equalsTrueTest() {
+        localProduce.setPackagedFood(1.2);
+        localProduce.setFoodProducedLocally(3.4);
+        localProduce2.setPackagedFood(1.2);
+        localProduce2.setFoodProducedLocally(3.4);
+        Assert.assertEquals(true, localProduce.equals(localProduce2));
+    }
+
+    @Test
+    public void equalsNullTest() {
+        localProduce.setPackagedFood(1.2);
+        localProduce.setFoodProducedLocally(3.4);
+        localProduce2 = null;
+        Assert.assertEquals(false, localProduce.equals(localProduce2));
+    }
 }

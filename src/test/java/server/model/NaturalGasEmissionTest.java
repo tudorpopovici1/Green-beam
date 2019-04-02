@@ -54,4 +54,25 @@ public class NaturalGasEmissionTest {
         naturalGasEmission2.setNaturalGasUsage(3.4);
         Assert.assertNotEquals(naturalGasEmission, naturalGasEmission2);
     }
+
+    @Test
+    public void equalsFalseTest() {
+        naturalGasEmission.setNaturalGasUsage(1.2);
+        naturalGasEmission2.setNaturalGasUsage(3.4);
+        Assert.assertEquals(false, naturalGasEmission.equals(naturalGasEmission2));
+    }
+
+    @Test
+    public void equalsTrueTest() {
+        naturalGasEmission.setNaturalGasUsage(1.2);
+        naturalGasEmission2.setNaturalGasUsage(1.2);
+        Assert.assertEquals(true, naturalGasEmission.equals(naturalGasEmission2));
+    }
+
+    @Test
+    public void equalsNullTest() {
+        naturalGasEmission.setNaturalGasUsage(1.2);
+        naturalGasEmission2 = null;
+        Assert.assertEquals(false, naturalGasEmission.equals(naturalGasEmission2));
+    }
 }
