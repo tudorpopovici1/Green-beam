@@ -17,11 +17,11 @@
         <version>2.0.5.RELEASE</version>
     </parent>
 
-    <properties>
 
-       <!-- <maven.compiler.source>1.8</maven.compiler.source>
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
--->
+
         <checkstyle.version>7.2</checkstyle.version>
         <checkstyle.plugin.version>2.17</checkstyle.plugin.version>
 
@@ -45,13 +45,6 @@
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>RELEASE</version>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -88,6 +81,15 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy-dep -->
+
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy-dep</artifactId>
+            <version>1.9.12</version>
+        </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-fxml -->
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -107,23 +109,6 @@
             <artifactId>spring-core</artifactId>
             <version>5.1.5.RELEASE</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>1.10.19</version>
-            <scope>test</scope>
-        </dependency>
-
-
-        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>5.4.1.Final</version>
-        </dependency>
-
 
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -195,6 +180,7 @@
             <artifactId>spring-security-web</artifactId>
             <version>5.1.4.RELEASE</version>
         </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -202,20 +188,19 @@
             <scope>test</scope>
         </dependency>
 
+
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.1.Final</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
         <plugins>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.0</version>
-                <!--<configuration>-->
-                <!--<reuseForks>false</reuseForks>-->
-                <!--<forkCount>1</forkCount>-->
-                <!--</configuration>-->
-            </plugin>
 
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -247,15 +232,7 @@
                         <artifactId>checkstyle</artifactId>
                         <version>${checkstyle.version}</version>
                     </dependency>
-
-                    <dependency>
-                        <groupId>javassist</groupId>
-                        <artifactId>javassist</artifactId>
-                        <version>3.12.1.GA</version>
-                    </dependency>
-
                 </dependencies>
-
             </plugin>
 
 
@@ -265,6 +242,9 @@
                 <version>${jacoco-maven-plugin.version}</version>
                 <configuration>
                     <excludes>
+                        <exclude>client.profile_page</exclude>
+                        <exclude>client.UserToken</exclude>
+                        <exclude>client.listenertest</exclude>
                         <exclude>client/loginpage/**</exclude>
                         <exclude>client/mainpage/**</exclude>
                         <exclude>client/Application.class</exclude>
@@ -318,14 +298,15 @@
             </plugin>
 
 
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
                 <configuration>
-                    <release>11</release>
-                    <source>11</source>
-                    <target>11</target>
+                    <release>10</release>
+                    <source>10</source>
+                    <target>10</target>
                 </configuration>
             </plugin>
         </plugins>

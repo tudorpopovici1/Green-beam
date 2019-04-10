@@ -257,7 +257,7 @@ public class userServiceTest {
         Assert.assertEquals("", result);
     }
 
-    @Test
+    /*@Test
     public void SuccessfullyGetUserFriends() {
         FriendsUserResp[] arrayOfFriends = new FriendsUserResp[1];
         arrayOfFriends[0] = friendsUserResp2;
@@ -291,7 +291,7 @@ public class userServiceTest {
         List<FriendsUserResp> result = userService.getUserFriends(restTemplate, Url.GET_USER_FRIENDS.getUrl(),
                 1L);
         Assert.assertEquals(expected, result);
-    }
+    }*/
 
     private String writeSpecificErrorAsJson(String errorMessage) {
         JsonFactory jFactory = new JsonFactory();

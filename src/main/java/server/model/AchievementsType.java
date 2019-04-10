@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Objects;
 
 @Entity
 @Table(
@@ -21,6 +20,14 @@ public class AchievementsType {
 
     @Column(name = "achievement_name")
     private String achievementName;
+
+    public AchievementsType(Long achievementId, String achievementName) {
+        this.achievementId = achievementId;
+        this.achievementName = achievementName;
+    }
+
+    public AchievementsType() {
+    }
 
     /**
      * Sets new achievementId.
@@ -68,12 +75,16 @@ public class AchievementsType {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof AchievementsType)) return false;
-        AchievementsType that = (AchievementsType) o;
-        return getAchievementId().equals(that.getAchievementId()) &&
-                getAchievementName().equals(that.getAchievementName());
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof AchievementsType)) {
+            return false;
+        }
+        AchievementsType that = (AchievementsType) object;
+        return getAchievementId().equals(that.getAchievementId())
+                && getAchievementName().equals(that.getAchievementName());
     }
 
 }

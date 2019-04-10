@@ -160,6 +160,19 @@ public class JwtUserDetailsTest {
     }
 
     @Test
+    public void equalsMethodDifferentAuthoritiesTest()  {
+        jwtUserDetails.setId(123L);
+        jwtUserDetails.setToken("he");
+        jwtUserDetails.setUserName("tudor");
+        jwtUserDetails.setAuthorities(null);
+        jwtUserDetails2.setId(123L);
+        jwtUserDetails2.setToken("he");
+        jwtUserDetails2.setUserName("irtaza");
+        jwtUserDetails2.setAuthorities(null);
+        Assert.assertNotEquals(jwtUserDetails, jwtUserDetails2);
+    }
+
+    @Test
     public void getAuthoritiesTest() {
         Assert.assertEquals(jwtUserDetails.getAuthorities(), null);
     }

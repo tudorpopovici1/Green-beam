@@ -1,7 +1,7 @@
 package client.loginpage;
 
+import client.UserToken;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,6 +15,7 @@ import java.net.URL;
  * This class launches the application.
  */
 
+@SuppressWarnings("Duplicates")
 public class GreenBeamApplication extends Application {
 
     /**
@@ -47,7 +48,15 @@ public class GreenBeamApplication extends Application {
     /**
      * Closes the application completely.
      */
-    public void closeApplication() {
-        Platform.exit();
+    public void closeApplication() throws IOException {
+        UserToken.setUserToken(null);
+        Stage mainPageStage = new Stage();
+        URL url = new File(
+                "src/main/java/client/loginpage/fxml/Login.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        Scene scene = new Scene(root, 900, 700);
+        mainPageStage.setScene(scene);
+        mainPageStage.setResizable(false);
+        mainPageStage.show();
     }
 }

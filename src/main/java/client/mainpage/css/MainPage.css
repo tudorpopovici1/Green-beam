@@ -41,14 +41,14 @@
     -fx-font-weight: bolder;
 }
 
-#mealButton, #transportationButton, #renewableEnergyButton, #temperatureButton, #customButton {
+#mealButton, #transportationButton, #renewableEnergyButton, #temperatureButton, #customButton, #householdButton {
     -fx-text-fill: #654b00;
     -fx-font-weight: bold;
     -fx-font-size: 16px;
     -fx-padding: 10 20 10 20;
 }
 
-#currentStreakText, #longestStreakText, #travelText, #totalPointsText, #totalCO2SavedText,
+#currentStreakText, #longestStreakText, #totalPointsText,
 #dailyFixedPointsText {
     -fx-font-size: 22px;
     -fx-font-family: "Apple Chancery";
@@ -140,7 +140,116 @@
     -fx-text-fill: white;
 }
 
+.jfx-hamburger StackPane {
+    -fx-background-color: white;
+}
 
+.jfx-hamburger-black StackPane {
+    -fx-background-color: white;
+}
+
+.buttonsfriends{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-text-fill: #45515F;
+}
+
+.buttonsfriends:hover{
+    -fx-background-color: #F3A978;
+    -fx-background-radius: 0px;
+    -fx-text-fill: white;
+}
+
+.jfx-list-cell{
+    -fx-background-insets: 0.0;
+}
+
+.jfx-list-cell:selected{
+    -fx-background-color: #3d8c91;
+}
+
+.jfx-list-cell .jfx-rippler{
+    -fx-rippler-fill: ORANGE;
+}
+
+.jfx-list-cell:hover{
+    -fx-background-color: #1bd79c;
+}
+
+.jfx-list-view{
+    -fx-background-insets: 0;
+    -fx-cell-vertical-margin: 10.0;
+    -fx-vertical-gap: 10;
+}
+
+.main-btnsprofile{
+    -fx-background-color: #45515F;
+    -fx-background-radius: 0px;
+    -fx-text-fill: white;
+}
+
+
+.main-btnsprofile:hover{
+    -fx-background-color: #45515F;
+    -fx-background-radius: 0px;
+    -fx-border-radius: 0px;
+    -fx-text-fill: #F3A978;
+}
+
+.buttonsbackside{
+    -fx-background-color: #DCDCDC;
+    -fx-text-fill: #45515F;
+}
+
+.buttonsbackside:hover {
+    -fx-background-color: #F3A978;
+    -fx-text-fill: white;
+}
+
+.buttonspending{
+    -fx-border-color: #018E91;
+    -fx-border-radius:2;
+}
+
+.buttonspending:hover{
+    -fx-background-color: #018E91;
+}
+
+.panetopfriendsone{
+    -fx-background-color: #2F2933;
+}
+
+.panetopfriendsone:hover{
+    -fx-background-color: #3F3745;
+}
+
+.panetopfriendstwo{
+    -fx-background-color: #3B3340;
+}
+
+.panetopfriendstwo:hover{
+    -fx-background-color: #3F3745;
+}
+
+#acceptFriend, #declineFriend {
+    -fx-font-family: "Apple Chancery";
+    -fx-font-size: 19px;
+    -fx-text-fill: white;
+}
+
+#pendingRequests, #friendRequests {
+    -fx-font-family: "Apple Chancery";
+    -fx-font-size: 22px;
+}
+
+#leaderboard {
+    -fx-font-family: "Apple Chancery";
+    -fx-font-size: 25px;
+}
+
+#emissionFactorLink {
+    -fx-text-fill: white;
+}
 
 
 

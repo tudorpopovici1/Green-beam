@@ -180,7 +180,7 @@ public class UsersTest {
         String date = "12/34/5678";
         Date dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(date);
         Users user = new Users(1234L, "abc", "def", "ghi", "jkl", "mno", "pqr", dateOfBirth, "vwx");
-        String expected = "Users{id=1234, username='abc', password='def', firstName='ghi', lastName='jkl', country='mno', email='pqr', dateOfBirth='Sat Oct 12 00:00:00 CEST 5680', role='vwx'}";
+        String expected = "Users{id=1234, username='abc', password='def', firstName='ghi', lastName='jkl', country='mno', email='pqr', dateOfBirth='" + dateOfBirth + "', role='vwx'}";
         Assert.assertEquals(user.toString(), expected);
     }
 
@@ -188,20 +188,18 @@ public class UsersTest {
     public void equalsFalseTest() throws ParseException {
         String date = "12/34/5678";
         Date dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(date);
-        Users user1 = new Users(1234L, "abc", "ghi", "jkl", "mno", "pqr", "stu", dateOfBirth, "vxy");
-        Users user2 = new Users(1234L, "def", "ghi", "jkl", "mno", "pqr", "stu", dateOfBirth, "vxy");
-        Users user3 = new Users(1234L, "def", "ghi", "jkl", "mno", "pqr", "stu", dateOfBirth, "vxy");
-        Assert.assertEquals(false, user1.equals(user3));
+        user = new Users(1234L, "abc", "ghi", "jkl", "mno", "pqr", "stu", dateOfBirth, "vxy");
+        user2 = new Users(1234L, "def", "ghi", "jkl", "mno", "pqr", "stu", dateOfBirth, "vxy");
+        Assert.assertEquals(false, user.equals(user2));
     }
 
     @Test
     public void equalsTrueTest() throws ParseException {
         String date = "12/34/5678";
         Date dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(date);
-        Users user1 = new Users(1234L, "abc", "ghi", "jkl", "mno", "pqr", "stu", dateOfBirth, "vxy");
-        Users user2 = new Users(1234L, "def", "ghi", "jkl", "mno", "pqr", "stu", dateOfBirth, "vxy");
-        Users user3 = new Users(1234L, "def", "ghi", "jkl", "mno", "pqr", "stu", dateOfBirth, "vxy");
-        Assert.assertEquals(true, user2.equals(user3));
+        user = new Users(1234L, "def", "ghi", "jkl", "mno", "pqr", "stu", dateOfBirth, "vxy");
+        user2 = new Users(1234L, "def", "ghi", "jkl", "mno", "pqr", "stu", dateOfBirth, "vxy");
+        Assert.assertEquals(true, user.equals(user2));
     }
 
     @Test
@@ -210,7 +208,6 @@ public class UsersTest {
         Date dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(date);
         Users user1 = new Users(1234L, "abc", "ghi", "jkl", "mno", "pqr", "stu", dateOfBirth, "vxy");
         Users user2 = null;
-        Users user3 = new Users(1234L, "def", "ghi", "jkl", "mno", "pqr", "stu", dateOfBirth, "vxy");
         Assert.assertEquals(false, user1.equals(user2));
     }
 

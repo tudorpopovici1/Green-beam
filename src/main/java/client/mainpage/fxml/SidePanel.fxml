@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="700" prefWidth="200" stylesheets="@../css/MainPage.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.mainpage.SidePanelController">
+    <children>
+        <Pane prefHeight="127.0" prefWidth="200">
+            <children>
+                <ImageView fx:id="imageSidePanel" fitHeight="127.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/back.jpg" />
+                    </image>
+                </ImageView>
+                <JFXTextField fx:id="searchFriends" focusColor="#f3a978" layoutX="4.0" layoutY="87.0" maxWidth="127.0" minWidth="127.0" prefHeight="31.0" prefWidth="127.0" promptText="Search for friends" />
+                <JFXButton fx:id="searchButton" layoutX="132.0" layoutY="93.0" onAction="#searchClicked" prefHeight="20.0" prefWidth="64.0" styleClass="buttonsfriends" stylesheets="@../css/MainPage.css" text="SEARCH">
+                    <font>
+                        <Font name="Gotham-Bold" size="11.0" />
+                    </font>
+                </JFXButton>
+                <Pane fx:id="searchBarBox" layoutX="-110.0" layoutY="95.0" prefHeight="200.0" prefWidth="110.0" style="-fx-background-color: white;">
+                    <children>
+                        <JFXListView fx:id="foundFriends" layoutY="24.0" prefHeight="148.0" prefWidth="110.0" />
+                        <JFXButton fx:id="addFriendsButton" layoutY="173.0" onAction="#addFriendsClicked" prefHeight="20.0" prefWidth="110.0" styleClass="main-btnsprofile" stylesheets="@../css/MainPage.css" text="ADD">
+                            <font>
+                                <Font name="Gotham-Bold" size="14.0" />
+                            </font>
+                        </JFXButton>
+                        <JFXButton alignment="TOP_LEFT" onAction="#backSidePanelClicked" prefWidth="110.0" styleClass="buttonsbackside" text="BACK" />
+                        <Separator layoutX="17.0" layoutY="23.0" prefWidth="75.0" style="-fx-background-color: black;" />
+                    </children>
+                </Pane>
+            </children>
+        </Pane>
+        <JFXListView fx:id="friendslistView" prefHeight="573.0" prefWidth="200.0" style="-fx-cell-vertical-margin: 50;" styleClass="jfx-list-view" />
+    </children>
+</VBox>
+

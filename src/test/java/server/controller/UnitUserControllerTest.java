@@ -11,12 +11,13 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import server.controller.UserController;
 import server.exception.BadCredentialsException;
 import server.exception.ResourceNotFoundException;
 import server.exception.UserAlreadyRegistered;
 import server.model.*;
+import server.repository.AchievementRepository;
 import server.repository.EmissionRepository;
+import server.repository.FriendsRepository;
 import server.repository.UserRepository;
 import server.security.JwtGenerator;
 
@@ -41,6 +42,12 @@ public class UnitUserControllerTest {
     private UserRepository userRepository;
 
     @Mock
+    private FriendsRepository friendsRepository;
+
+    @Mock
+    private AchievementRepository achievementRepository;
+
+    @Mock
     private EmissionRepository emissionRepository;
 
     private static Users user1;
@@ -50,6 +57,9 @@ public class UnitUserControllerTest {
 
     private static FriendsUserResp userResp1;
     private static FriendsUserResp userResp2;
+
+    private static Friends friends1;
+    private static Friends friends2;
 
     @Before
     public void setUp() {
@@ -73,6 +83,9 @@ public class UnitUserControllerTest {
                     "country", "userno1@email.com");
             userResp2 = new FriendsUserResp("userno5", dob, "firstName", "lastName",
                     "country", "userno5@email.com");
+
+            friends1 = new Friends(1L, 2L, null);
+            friends2 = new Friends(1L, 3L, null);
 
         } catch(ParseException e) {
             e.printStackTrace();
@@ -213,7 +226,7 @@ public class UnitUserControllerTest {
         List<FriendsUserResp> response = userController.getFriendsUser(httpServletRequest, 1L);
     }
 
-    @Test
+    /*@Test
     public void successfulAddEmission() throws BadCredentialsException {
         Date date = Mockito.mock(Date.class);
         Emissions emission = new Emissions(0L, "1",
@@ -228,7 +241,7 @@ public class UnitUserControllerTest {
         when(emissionRepository.save(emission)).thenReturn(emission);
         String response = userController.addEmissions(httpServletRequest, 1L, emissionsClient);
         Assert.assertEquals("Saved", response);
-    }
+    }*/
 
     @Test (expected = BadCredentialsException.class)
     public void BadCredentialsAddEmission() throws BadCredentialsException {
@@ -275,8 +288,7 @@ public class UnitUserControllerTest {
                 1L);
         EmissionFriend emissionFriendExpected = new EmissionFriend(user1.getUsername(),
                 expected);
-        Assert.assertEquals(emissionFriendExpected.getUsername(), result.getUsername());
-        Assert.assertTrue(emissionFriendExpected.getCarbonEmission() == result.getCarbonEmission());
+        Assert.assertEquals(emissionFriendExpected, result);
     }
 
     @Test (expected = BadCredentialsException.class)
@@ -320,9 +332,7 @@ public class UnitUserControllerTest {
                 httpServletRequest, 1L);
         List<EmissionFriend> expected = new ArrayList<>();
         expected.add(new EmissionFriend("userno1", 1D));
-        Assert.assertEquals(expected.get(0).getUsername(), result.get(0).getUsername());
-        Assert.assertTrue(expected.get(0).getCarbonEmission() ==
-                result.get(0).getCarbonEmission());
+        Assert.assertEquals(expected.get(0), result.get(0));
     }
 
     @Test
@@ -346,12 +356,8 @@ public class UnitUserControllerTest {
         List<EmissionFriend> expected = new ArrayList<>();
         expected.add(new EmissionFriend("userno1", 1D));
         expected.add(new EmissionFriend("userno5", 1D));
-        Assert.assertEquals(expected.get(0).getUsername(), result.get(0).getUsername());
-        Assert.assertTrue(expected.get(0).getCarbonEmission() ==
-                result.get(0).getCarbonEmission());
-        Assert.assertEquals(expected.get(1).getUsername(), result.get(1).getUsername());
-        Assert.assertTrue(expected.get(1).getCarbonEmission() ==
-                result.get(1).getCarbonEmission());
+        Assert.assertEquals(expected.get(0), result.get(0));
+        Assert.assertEquals(expected.get(1), result.get(1));
     }
 
     @Test (expected = BadCredentialsException.class)
@@ -406,12 +412,332 @@ public class UnitUserControllerTest {
                 result.get(4).getCarbonEmission());*//*
     }*/
 
+    @Test (expected = BadCredentialsException.class)
+    public void BadCredentialsEmissionBike() throws BadCredentialsException {
+        Date date = Mockito.mock(Date.class);
+        EmissionsClient emissionsClient = new EmissionsClient("1", 1F,
+                date);
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token ");
+        userController.addEmissionsBike(httpServletRequest, user1.getId(),
+                emissionsClient);
+    }
+
+    @Test
+    public void successfulAddEmission10times() throws BadCredentialsException {
+        Date date = Mockito.mock(Date.class);
+        EmissionsClient emissionsClient = new EmissionsClient("1", 1F,
+                date);
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        when(emissionRepository.getNumberTransportationInsteadCar(user1.getId()))
+                .thenReturn(10);
+        when(achievementRepository.getNumberOfSpecificAchievement(4L,
+                user1.getId())).thenReturn(0);
+        String response = userController.addEmissionsBike(httpServletRequest,
+                user1.getId(), emissionsClient);
+    }
+
+    @Test
+    public void sucessfulAddEmission10times2() throws BadCredentialsException {
+        Date date = Mockito.mock(Date.class);
+        EmissionsClient emissionsClient = new EmissionsClient("1", 1F,
+                date);
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        when(emissionRepository.getNumberTransportationInsteadCar(user1.getId()))
+                .thenReturn(30);
+        when(achievementRepository.getNumberOfSpecificAchievement(5L,
+                user1.getId())).thenReturn(0);
+        String response = userController.addEmissionsBike(httpServletRequest,
+                user1.getId(), emissionsClient);
+    }
+
+    @Test
+    public void successfulAddEmission10timesFail1() throws BadCredentialsException {
+        Date date = Mockito.mock(Date.class);
+        EmissionsClient emissionsClient = new EmissionsClient("1", 1F,
+                date);
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        when(emissionRepository.getNumberTransportationInsteadCar(user1.getId()))
+                .thenReturn(10);
+        when(achievementRepository.getNumberOfSpecificAchievement(4L,
+                user1.getId())).thenReturn(1);
+        String response = userController.addEmissionsBike(httpServletRequest,
+                user1.getId(), emissionsClient);
+    }
+
+    @Test
+    public void successfulAddEmission10timesFail2() throws BadCredentialsException {
+        Date date = Mockito.mock(Date.class);
+        EmissionsClient emissionsClient = new EmissionsClient("1", 1F,
+                date);
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        when(emissionRepository.getNumberTransportationInsteadCar(user1.getId()))
+                .thenReturn(8);
+        when(achievementRepository.getNumberOfSpecificAchievement(4L,
+                user1.getId())).thenReturn(0);
+        String response = userController.addEmissionsBike(httpServletRequest,
+                user1.getId(), emissionsClient);
+    }
+
+    @Test
+    public void sucessfulAddEmission10Fail3() throws BadCredentialsException {
+        Date date = Mockito.mock(Date.class);
+        EmissionsClient emissionsClient = new EmissionsClient("1", 1F,
+                date);
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        when(emissionRepository.getNumberTransportationInsteadCar(user1.getId()))
+                .thenReturn(30);
+        when(achievementRepository.getNumberOfSpecificAchievement(5L,
+                user1.getId())).thenReturn(1);
+        String response = userController.addEmissionsBike(httpServletRequest,
+                user1.getId(), emissionsClient);
+    }
+
     //Helper method of this testing class.
     private String getTokenOfUser(String username, String role, Long id) {
         JwtGenerator jwtGenerator = new JwtGenerator();
         JwtUser jwtUser = new JwtUser(username,
                 id, role);
         return jwtGenerator.generate(jwtUser);
+    }
+
+    @Test
+    public void changeSuccessfulCountry() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+
+        String response = userController.changeCountry("123", 1L, httpServletRequest);
+        Assert.assertEquals("Changed", response);
+    }
+
+    @Test (expected = BadCredentialsException.class)
+    public void BadCredentialsChangeCountry() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token ");
+        userController.changeCountry("123", 1L, httpServletRequest);
+    }
+
+    @Test
+    public void changeSuccessfulName() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+
+        String response = userController.changeName("123", 1L, httpServletRequest);
+        Assert.assertEquals("Changed", response);
+    }
+
+    @Test (expected = BadCredentialsException.class)
+    public void BadCredentialsChangeName() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token ");
+        userController.changeName("123", 1L, httpServletRequest);
+    }
+
+    @Test
+    public void changeSuccessfulDob() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        Date date = Mockito.mock(Date.class);
+        String response = userController.changeDateOfBirth(date, 1L, httpServletRequest);
+        Assert.assertEquals("Changed", response);
+    }
+
+    @Test (expected = BadCredentialsException.class)
+    public void BadCredentialsChangeDob() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token ");
+        Date date = Mockito.mock(Date.class);
+        userController.changeDateOfBirth(date, 1L, httpServletRequest);
+    }
+
+    @Test
+    public void changeSuccessfulEmail() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+
+        String response = userController.changeEmail("123", 1L, httpServletRequest);
+        Assert.assertEquals("Changed", response);
+    }
+
+    @Test (expected = BadCredentialsException.class)
+    public void BadCredentialsChangeEmail() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token ");
+        userController.changeEmail("123", 1L, httpServletRequest);
+    }
+
+    @Test
+    public void changeSuccessfulPassword() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+
+        String response = userController.changePassword("123", 1L, httpServletRequest);
+        Assert.assertEquals("Changed", response);
+    }
+
+    @Test (expected = BadCredentialsException.class)
+    public void BadCredentialsChangePassword() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token ");
+        userController.changePassword("123", 1L, httpServletRequest);
+    }
+
+    @Test
+    public void friendReqReceivedSuccessful() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        List<Friends> expected = new ArrayList<>();
+        expected.add(friends1);
+        when(friendsRepository.getFriendRequestRecieved(
+                user1.getId()))
+                .thenReturn(expected);
+        List<Friends> response = userController.friendRequestRecieved(
+                httpServletRequest, user1.getId());
+        Assert.assertEquals(expected.get(0), response.get(0));
+    }
+
+    @Test (expected = BadCredentialsException.class)
+    public void BadCredentialsFriendRequestReceived() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token ");
+        userController.friendRequestRecieved(httpServletRequest, 1L);
+    }
+
+    @Test
+    public void friendReqSentSuccessful() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        List<Friends> expected = new ArrayList<>();
+        expected.add(friends1);
+        when(friendsRepository.getFriendRequestSend(
+                user1.getId()))
+                .thenReturn(expected);
+        List<Friends> response = userController.friendRequestSend(
+                httpServletRequest, user1.getId());
+        Assert.assertEquals(expected.get(0), response.get(0));
+    }
+
+    @Test (expected = BadCredentialsException.class)
+    public void BadCredentialsFriendRequestSent() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token ");
+        userController.friendRequestSend(httpServletRequest, 1L);
+    }
+
+    @Test
+    public void rejectFriendSuccessful() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        String response = userController.rejectFriend(1L, 2L, httpServletRequest);
+        Assert.assertEquals("Deleted", response);
+    }
+
+    @Test(expected = BadCredentialsException.class)
+    public void rejectFriendBadCredentials() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token ");
+        userController.rejectFriend(1L, 2L, httpServletRequest);
+    }
+
+    @Test
+    public void acceptFriendSuccessful() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        String response = userController.acceptFriend(1L, 2L, httpServletRequest);
+        Assert.assertEquals("Saved", response);
+    }
+
+    @Test(expected = BadCredentialsException.class)
+    public void acceptFriendBadCredentials() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token ");
+        userController.acceptFriend(1L, 2L, httpServletRequest);
+    }
+
+    @Test
+    public void successfulAddFriends() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        String response = userController.addFriend(1L, 2L, httpServletRequest);
+        Assert.assertEquals("Saved", response);
+    }
+
+    @Test (expected = BadCredentialsException.class)
+    public void BadCredentialsAddFriend() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token ");
+        userController.addFriend(1L, 2L, httpServletRequest);
+    }
+
+    @Test
+    public void searchFriendsSuccessful() {
+        List<FriendsUserResp> expected = new ArrayList<>();
+        expected.add(userResp1);
+        when(userRepository.queryFriends(user1.getUsername()))
+                .thenReturn(expected);
+        List<FriendsUserResp> response = userController
+                .searchFriends(user1.getUsername());
+        Assert.assertEquals(expected.get(0), response.get(0));
+    }
+
+    @Test
+    public void getAchievementsSuccessful() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token " + getTokenOfUser(
+                user1.getUsername(), user1.getRole(),
+                user1.getId()));
+        List<AchievementsType> expected = new ArrayList<>();
+        AchievementsType achievementsType = new AchievementsType(1L, "123");
+        expected.add(achievementsType);
+        when(achievementRepository.getAllAchievementsTypeOfUser(
+                user1.getId()))
+                .thenReturn(expected);
+        List<AchievementsType> response = userController.getAchievementsUser(httpServletRequest,
+                user1.getId());
+        Assert.assertEquals(expected.get(0), response.get(0));
+    }
+
+    @Test (expected = BadCredentialsException.class)
+    public void getAchievementsBadCredentials() throws BadCredentialsException {
+        MockHttpServletRequest httpServletRequest = new MockHttpServletRequest();
+        httpServletRequest.addHeader("Authorisation", "Token ");
+        userController.getAchievementsUser(httpServletRequest,
+                user1.getId());
     }
 
 }

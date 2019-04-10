@@ -117,5 +117,36 @@ public class BikeRideTest {
         String expected = "bikeRide{numberOfMiles=123.0, carMileage=456.0, fuelType='0'}";
         Assert.assertEquals(expected, bikeRide.toString());
     }
+
+    @Test
+    public void equalsFalseTest() {
+        bike.setCarMileage(100);
+        bike.setNumberOfMiles(100);
+        bike.setFuelType('1');
+        bike2.setCarMileage(100);
+        bike2.setNumberOfMiles(100);
+        bike2.setFuelType('0');
+        Assert.assertEquals(false, bike.equals(bike2));
+    }
+
+    @Test
+    public void equalsTrueTest() {
+        bike.setCarMileage(100);
+        bike.setNumberOfMiles(100);
+        bike.setFuelType('1');
+        bike2.setCarMileage(100);
+        bike2.setNumberOfMiles(100);
+        bike2.setFuelType('1');
+        Assert.assertEquals(true, bike.equals(bike2));
+    }
+
+    @Test
+    public void equalsNullTest() {
+        bike.setCarMileage(100);
+        bike.setNumberOfMiles(100);
+        bike.setFuelType('1');
+        bike2 = null;
+        Assert.assertEquals(false, bike.equals(bike2));
+    }
 }
 

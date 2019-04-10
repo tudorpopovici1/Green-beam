@@ -13,7 +13,6 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.TextField?>
 
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.control.Separator?>
 <?import com.jfoenix.controls.JFXToggleButton?>
 <?import com.jfoenix.controls.JFXSlider?>
@@ -24,6 +23,11 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import com.jfoenix.controls.JFXHamburger?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import javafx.scene.layout.VBox?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Hyperlink?>
 <AnchorPane fx:id="main" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.mainpage.MainController">
     <ImageView fx:id="mainBackground" fitHeight="700.0" fitWidth="931.0">
@@ -128,79 +132,223 @@
         </children>
     </AnchorPane>
     <Pane fx:id="mainWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false">
-        <ImageView fitHeight="700.0" fitWidth="931.0">
-            <image>
-                <Image url="@../images/backgrounBush.jpeg"/>
-            </image>
-        </ImageView>
-        <ImageView fx:id="logo1" fitHeight="162.0" fitWidth="149.0" layoutX="180.0" layoutY="-24.0">
-            <image>
-                <Image url="@../images/logo1.png"/>
-            </image>
-        </ImageView>
-        <ImageView fx:id="logo2" fitHeight="69.0" fitWidth="363.0" layoutX="170.0" layoutY="21.0">
-            <image>
-                <Image url="@../images/logo2.png"/>
-            </image>
-        </ImageView>
-        <ImageView fitHeight="52" fitWidth="34" layoutX="132.0" layoutY="201.0">
-            <image>
-                <Image url="@../images/fireIcon.png"/>
-            </image>
-        </ImageView>
-        <ImageView fitHeight="52" fitWidth="34" layoutX="297.0" layoutY="201.0">
-            <image>
-                <Image url="@../images/fireIcon.png"/>
-            </image>
-        </ImageView>
-        <ImageView fitHeight="33.0" fitWidth="28.0" layoutX="7.0" layoutY="28.0">
-            <image>
-                <Image url="@../images/usernameIcon.png"/>
-            </image>
-        </ImageView>
-        <BorderPane fx:id="statBox" layoutX="9.0" layoutY="145.0" prefHeight="221.0" prefWidth="418.0"
-                    AnchorPane.topAnchor="145.0"/>
-        <Label fx:id="currentStreakText" layoutX="38.0" layoutY="153.0" prefHeight="33.0" prefWidth="150.0"
-               text="Current Streak:"/>
-        <Label fx:id="longestStreakText" layoutX="201.0" layoutY="153.0" text="Longest Streak:"/>
-        <Label fx:id="travelText" layoutX="18.0" layoutY="260.0" text="Total Green Travel:"/>
-        <Label fx:id="totalCO2SavedText" layoutX="218.0" layoutY="260.0" text="Total CO2 Saved:"/>
-        <Label fx:id="usernameDisplayMainText" layoutX="37.0" layoutY="28.0" prefHeight="33.0" prefWidth="162.0" text="User:" textFill="WHITE">
-            <font>
-                <Font size="16.0"/>
-            </font>
-        </Label>
-        <Label fx:id="currentStreakLabel" layoutX="58.0" layoutY="201.0" prefHeight="52.0" prefWidth="79.0" text="134"
-               textFill="WHITE">
-            <font>
-                <Font size="28.0"/>
-            </font>
-        </Label>
-        <Label fx:id="longestStreakLabel" layoutX="231.0" layoutY="201.0" prefHeight="52.0" prefWidth="79.0" text="134"
-               textFill="WHITE">
-            <font>
-                <Font size="28.0"/>
-            </font>
-        </Label>
-        <Label fx:id="travelLabel" layoutX="231.0" layoutY="308.0" prefHeight="52.0" prefWidth="162.0" text="134 tons"
-               textFill="WHITE">
-            <font>
-                <Font size="25.0"/>
-            </font>
-        </Label>
-        <Label fx:id="totalCO2SavedLabel" layoutX="34.0" layoutY="308.0" prefHeight="52.0" prefWidth="162.0"
-               text="134 tons" textFill="WHITE">
-            <font>
-                <Font size="25.0"/>
-            </font>
-        </Label>
+        <children>
+            <ImageView fx:id="userText" fitHeight="700.0" fitWidth="709.0">
+                <image>
+                    <Image url="@../images/backgrounBush.jpeg" />
+                </image>
+            </ImageView>
+            <Pane layoutY="650.0" opacity="0.5" prefHeight="50.0" prefWidth="709.0" style="-fx-background-color: black;" />
+            <ImageView fx:id="logo1" fitHeight="162.0" fitWidth="149.0" layoutX="180.0" layoutY="-24.0">
+                <image>
+                    <Image url="@../images/logo1.png" />
+                </image>
+            </ImageView>
+            <ImageView fx:id="logo2" fitHeight="69.0" fitWidth="363.0" layoutX="170.0" layoutY="21.0">
+                <image>
+                    <Image url="@../images/logo2.png" />
+                </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="28.0" layoutX="14.0" layoutY="28.0">
+                <image>
+                    <Image url="@../images/usernameIcon.png" />
+                </image>
+            </ImageView>
+            <VBox layoutX="479.0" layoutY="150.0" prefHeight="500.0" prefWidth="200.0" style="-fx-background-color: #01A2A6;">
+                <children>
+                    <Pane prefHeight="50.0" prefWidth="200.0">
+                        <children>
+                            <Label fx:id="friendRequests" layoutX="28.0" layoutY="6.0" text="Friend Requests" textFill="#ffffa6">
+                                <font>
+                                    <Font name="BebasNeue" size="27.0" />
+                                </font>
+                            </Label>
+                        </children>
+                    </Pane>
+                    <JFXListView fx:id="receivedFriendsListview" prefHeight="200.0" styleClass="jfx-list-view" />
+                    <HBox prefHeight="40.0" prefWidth="200.0">
+                        <children>
+                            <JFXButton fx:id="acceptFriend" prefHeight="40.0" prefWidth="100.0" styleClass="buttonspending" text="Accept" textFill="#ffffa6" onAction="#acceptFriendOnClick">
+                                <font>
+                                    <Font name="BebasNeue" size="25.0" />
+                                </font></JFXButton>
+                            <JFXButton fx:id="declineFriend" prefHeight="40.0" prefWidth="100.0" styleClass="buttonspending" text="Decline" textFill="#ffffa6" onAction="#declineFriendOnClick">
+                                <font>
+                                    <Font name="BebasNeue" size="25.0" />
+                                </font></JFXButton>
+                        </children>
+                    </HBox>
+                    <Pane prefHeight="50.0" prefWidth="200.0">
+                        <children>
+                            <Label fx:id="pendingRequests" layoutX="28.0" layoutY="6.0" text="Requests Pending" textFill="#ffffa6">
+                                <font>
+                                    <Font name="BebasNeue" size="27.0" />
+                                </font>
+                            </Label>
+                        </children>
+                    </Pane>
+                    <JFXListView fx:id="pendingList" prefHeight="160.0" styleClass="jfx-list-view" />
+                </children></VBox>
+            <Pane layoutY="150.0" prefHeight="200.0" prefWidth="479.0" style="-fx-background-color: #FFFFA6;">
+                <children>
+                    <Label fx:id="greenTravelText" layoutX="14.0" layoutY="49.0" text="Total Green Travel:" textFill="#2f2933">
+                        <font>
+                            <Font name="BebasNeue" size="27.0" />
+                        </font>
+                    </Label>
+                    <Label fx:id="totalCO2SavedText" layoutX="14.0" layoutY="115.0" text="Total CO2 Saved:" textFill="#2f2933">
+                        <font>
+                            <Font name="BebasNeue" size="27.0" />
+                        </font>
+                    </Label>
+                    <Label fx:id="totalGreenTravelLabel" alignment="CENTER_RIGHT" layoutX="150.0" layoutY="49.0" prefHeight="36.0" prefWidth="211.0" text="134" textFill="#2f2933">
+                        <font>
+                            <Font size="25.0" />
+                        </font>
+                    </Label>
+                    <Label fx:id="totalCO2SavedLabel" alignment="CENTER_RIGHT" layoutX="170.0" layoutY="115.0" prefHeight="36.0" prefWidth="211.0" text="134" textFill="#2f2933">
+                        <font>
+                            <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <Label fx:id="travelText1" layoutX="400.0" layoutY="49.0" text="TONS" textFill="#2f2933">
+                        <font>
+                            <Font name="BebasNeue" size="27.0" />
+                        </font>
+                    </Label>
+                    <Label fx:id="travelText2" layoutX="400.0" layoutY="115.0" text="TONS" textFill="#2f2933">
+                        <font>
+                            <Font name="BebasNeue" size="27.0" />
+                        </font>
+                    </Label>
+                </children></Pane>
+            <Label fx:id="usernameDisplayMainText" layoutX="44.0" layoutY="28.0" prefHeight="33.0" text="User:" textFill="WHITE">
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </Label>
+            <Pane layoutY="350.0" prefHeight="300.0" prefWidth="479.0" style="-fx-background-color: #3B3340;">
+                <children>
+                    <Label layoutX="14.0" layoutY="6.0" text="TOP 5 FRIENDS" textFill="WHITE">
+                        <font>
+                            <Font name="BebasNeue" size="27.0" />
+                        </font>
+                    </Label>
+                    <Pane fx:id="paneFirstFriend" layoutY="40.0" prefHeight="52.0" prefWidth="479.0" styleClass="panetopfriendsone">
+                        <children>
+                            <Label fx:id="firstFriend" layoutX="14.0" layoutY="9.0" prefHeight="35.0" prefWidth="218.0" text="FIRST FRIEND" textFill="WHITE">
+                                <font>
+                                    <Font name="Gotham-Book" size="20.0" />
+                                </font>
+                            </Label>
+                            <Label fx:id="amountFirstFriend" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="236.0" layoutY="9.0" prefHeight="35.0" prefWidth="169.0" text="AMOUNT" textAlignment="RIGHT" textFill="WHITE">
+                                <font>
+                                    <Font name="Gotham-Book" size="20.0" />
+                                </font>
+                            </Label>
+                            <Label fx:id="tonsFirstFriend" layoutX="410.0" layoutY="9.0" prefHeight="35.0" prefWidth="69.0" text="TONS" textFill="WHITE">
+                                <font>
+                                    <Font name="Gotham-Book" size="20.0" />
+                                </font>
+                            </Label>
+                        </children>
+                    </Pane>
+                    <Pane fx:id="paneSecondFriend" layoutY="92.0" prefHeight="52.0" prefWidth="479.0" styleClass="panetopfriendstwo">
+                        <children>
+                            <Label fx:id="secondFriend" layoutX="14.0" layoutY="9.0" prefHeight="35.0" prefWidth="218.0" text="SECOND FRIEND" textFill="WHITE">
+                                <font>
+                                    <Font name="Gotham-Book" size="20.0" />
+                                </font>
+                            </Label>
+                            <Label fx:id="amountSecondFriend" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="236.0" layoutY="9.0" prefHeight="35.0" prefWidth="169.0" text="AMOUNT" textAlignment="RIGHT" textFill="WHITE">
+                                <font>
+                                    <Font name="Gotham-Book" size="20.0" />
+                                </font>
+                            </Label>
+                            <Label fx:id="tonsSecondFriend" layoutX="410.0" layoutY="9.0" prefHeight="35.0" prefWidth="69.0" text="TONS" textFill="WHITE">
+                                <font>
+                                    <Font name="Gotham-Book" size="20.0" />
+                                </font>
+                            </Label>
+                        </children>
+                    </Pane>
+                    <Pane fx:id="paneThirdFriend" layoutY="144.0" prefHeight="52.0" prefWidth="479.0" styleClass="panetopfriendsone">
+                        <children>
+                            <Label fx:id="thirdFriend" layoutX="14.0" layoutY="9.0" prefHeight="35.0" prefWidth="218.0" text="THIRD FRIEND" textFill="WHITE">
+                                <font>
+                                    <Font name="Gotham-Book" size="20.0" />
+                                </font>
+                            </Label>
+                            <Label fx:id="amountThirdFriend" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="236.0" layoutY="9.0" prefHeight="35.0" prefWidth="169.0" text="AMOUNT" textAlignment="RIGHT" textFill="WHITE">
+                                <font>
+                                    <Font name="Gotham-Book" size="20.0" />
+                                </font>
+                            </Label>
+                            <Label fx:id="tonsThirdFriend" layoutX="410.0" layoutY="9.0" prefHeight="35.0" prefWidth="69.0" text="TONS" textFill="WHITE">
+                                <font>
+                                    <Font name="Gotham-Book" size="20.0" />
+                                </font>
+                            </Label>
+                        </children>
+                    </Pane>
+                    <Pane fx:id="paneFourthFriend" layoutY="196.0" prefHeight="52.0" prefWidth="479.0" styleClass="panetopfriendstwo">
+                        <children>
+                            <Label fx:id="fourthFriend" layoutX="14.0" layoutY="9.0" prefHeight="35.0" prefWidth="218.0" text="FOURTH FRIEND" textFill="WHITE">
+                                <font>
+                                    <Font name="Gotham-Book" size="20.0" />
+                                </font>
+                            </Label>
+                            <Label fx:id="amountFourthFriend" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="236.0" layoutY="9.0" prefHeight="35.0" prefWidth="169.0" text="AMOUNT" textAlignment="RIGHT" textFill="WHITE">
+                                <font>
+                                    <Font name="Gotham-Book" size="20.0" />
+                                </font>
+                            </Label>
+                            <Label fx:id="tonsFourthFriend" layoutX="410.0" layoutY="9.0" prefHeight="35.0" prefWidth="69.0" text="TONS" textFill="WHITE">
+                                <font>
+                                    <Font name="Gotham-Book" size="20.0" />
+                                </font>
+                            </Label>
+                        </children>
+                    </Pane>
+                    <Pane fx:id="paneFifthFriend" layoutY="248.0" prefHeight="52.0" prefWidth="479.0" styleClass="panetopfriendsone">
+                        <children>
+                            <Label fx:id="fifthFriend" layoutX="14.0" layoutY="9.0" prefHeight="35.0" prefWidth="218.0" text="FIFTH FRIEND" textFill="WHITE">
+                                <font>
+                                    <Font name="Gotham-Book" size="20.0" />
+                                </font>
+                            </Label>
+                            <Label fx:id="amountFifthFriend" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="236.0" layoutY="9.0" prefHeight="35.0" prefWidth="169.0" text="AMOUNT" textAlignment="RIGHT" textFill="WHITE">
+                                <font>
+                                    <Font name="Gotham-Book" size="20.0" />
+                                </font>
+                            </Label>
+                            <Label fx:id="tonsFifthFriend" layoutX="410.0" layoutY="9.0" prefHeight="35.0" prefWidth="69.0" text="TONS" textFill="WHITE">
+                                <font>
+                                    <Font name="Gotham-Book" size="20.0" />
+                                </font>
+                            </Label>
+                        </children>
+                    </Pane>
+                    <Label layoutX="400.0" layoutY="6.0" text="CO2" textFill="WHITE">
+                        <font>
+                            <Font name="BebasNeue" size="27.0" />
+                        </font>
+                    </Label>
+                    <Separator layoutY="40.0" prefWidth="479.0" />
+                </children></Pane>
+            <Label fx:id="usernameMainPage" layoutX="84.0" layoutY="34.0" prefHeight="22.0" prefWidth="108.0" text="Username" textFill="WHITE">
+                <font>
+                    <Font name="BebasNeue" size="17.0" />
+                </font>
+            </Label>
+        </children>
     </Pane>
     <Pane fx:id="emissionsWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false">
         <ImageView fx:id="backgroundImage" fitHeight="700.0" fitWidth="931.0">
             <image>
                 <Image url="@../images/backgrounBush.jpeg"/>
             </image>
-        </ImageView
+        </ImageView>
         <ImageView fx:id="foodIcon" fitHeight="60" fitWidth="60" layoutX="170.0" layoutY="200.0">
             <image>
                 <Image url="@../images/foodIcon.png"/>
@@ -209,11 +357,6 @@
         <ImageView fx:id="transportationIcon" fitHeight="60" fitWidth="60" layoutX="170.0" layoutY="287.0">
             <image>
                 <Image url="@../images/transportationIcon.png"/>
-            </image>
-        </ImageView>
-        <ImageView fx:id="tempIcon" fitHeight="60" fitWidth="60" layoutX="170.0" layoutY="370.0">
-            <image>
-                <Image url="@../images/tempIcon.png"/>
             </image>
         </ImageView>
         <ImageView fx:id="vegetarianIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="193.0" visible="false">
@@ -227,15 +370,13 @@
             </image>
         </ImageView>
         <Label fx:id="addEmissionsText" layoutX="70.0" layoutY="10.0" text="Choose Your Emission Type"/>
-        <Label fx:id="ppmLink" layoutX="70.0" layoutY="10.0" text="Choose Your Emission Type"/>
+        <Hyperlink fx:id="emissionFactorLink" layoutX="85.0" layoutY="100.0" onAction="#goWebsite" />
         <Button fx:id="mealButton" layoutX="260.0" layoutY="193.0" mnemonicParsing="false" prefHeight="75.0"
                 prefWidth="184.0" text="Food" onAction="#mealButtonOnClick"/>
         <Button fx:id="transportationButton" layoutX="260.0" layoutY="280.0" mnemonicParsing="false" prefHeight="75.0"
                 prefWidth="184.0" text="Transportation" onAction="#transportationButtonOnClick"/>
-        <Button fx:id="temperatureButton" layoutX="260.0" layoutY="369.0" mnemonicParsing="false" prefHeight="75.0"
-                prefWidth="184.0" text="Temperature"/>
         <Button fx:id="rideABikeButton" layoutX="260.0" layoutY="193" mnemonicParsing="false" prefHeight="75.0"
-                prefWidth="184.0" text="Ride A Bike" visible="false" onAction="#rideABikeButtonOnClick"/>
+                prefWidth="184.0" text="Ride Bike" visible="false" onAction="#rideABikeButtonOnClick"/>
         <TextField fx:id="numberOfMilesText" layoutX="260.0" layoutY="193.0" prefHeight="75.0"
                    prefWidth="184.0" promptText="Number of kilometers" visible="false"/>
         <TextField fx:id="carMileageText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
@@ -273,7 +414,7 @@
                    prefWidth="184.0" promptText="Other Calories (kcal)" visible="false"/>
         <TextField fx:id="caloriesTextBox" layoutX="381.0" layoutY="184.0" prefHeight="40.0" prefWidth="181.0"
                    promptText="Calories (kcal)" visible="false"/>
-        <Button fx:id="addMealButton" layoutX="260.0" layoutY="600.0" mnemonicParsing="false" prefHeight="75.0"
+        <Button fx:id="addMealButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false" prefHeight="75.0"
                 prefWidth="184.0" text="Add" visible="false" onAction="#addEmissionsForAVegetarianMeal"/>
         <Button fx:id="backToMealTypePageButton" layoutX="20.0" layoutY="600.0" mnemonicParsing="false"
                 prefHeight="50.0"
@@ -281,7 +422,7 @@
 
         <!--GUI for the public transport ride-->
         <Button fx:id="rideABusButton" layoutX="260.0" layoutY="280" mnemonicParsing="false" prefHeight="75.0"
-                prefWidth="184.0" text="Ride Public Transport" visible="false" onAction="#rideABusButtonOnClick"/>
+                prefWidth="184.0" text="Ride Bus" visible="false" onAction="#rideABusButtonOnClick"/>
         <ImageView fx:id="busIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="280.0"
                    visible="false">
             <image>
@@ -326,7 +467,7 @@
                    minHeight="-Infinity" minWidth="-Infinity" prefWidth="350.0" indicatorPosition="RIGHT" visible="false"/>
         <JFXSlider fx:id="percentPackagedSlider" layoutX="165" layoutY="337" maxHeight="-Infinity" maxWidth="-Infinity"
                    minHeight="-Infinity" minWidth="-Infinity" prefWidth="350.0" indicatorPosition="RIGHT" visible="false"/>
-        <Button fx:id="addProduceButton" layoutX="260.0" layoutY="600.0" mnemonicParsing="false" prefHeight="75.0"
+        <Button fx:id="addProduceButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false" prefHeight="75.0"
                 prefWidth="184.0" text="Add" visible="false" onAction="#addEmissionsForLocalProduce"/>
         <Button fx:id="backToMealTypePageButtonProduce" layoutX="20.0" layoutY="600.0" mnemonicParsing="false"
                 prefHeight="50.0"
@@ -339,14 +480,14 @@
             </image>
         </ImageView>
         <Button fx:id="renewableEnergyButton" layoutX="260.0" layoutY="459.0" mnemonicParsing="false" prefHeight="75.0"
-                prefWidth="184.0" text="Renewable Energy" onAction="#solarPanelButtonOnClick"/>
+                prefWidth="184.0" text="Solar Panels" onAction="#solarPanelButtonOnClick"/>
         <TextField fx:id="systemSizeText" layoutX="260.0" layoutY="193.0" prefHeight="75.0"
-                   prefWidth="184.0" promptText="System size (kW)" visible="false"/>
+                   prefWidth="184.0" promptText="Factor for CO2 Avoidance" visible="false"/>
         <TextField fx:id="annualSolarEnergyText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
-                   prefWidth="184.0" promptText="Total Mileage of the Car" visible="false"/>
+                   prefWidth="184.0" promptText="Annual Solar Energy (kW/year)" visible="false"/>
         <Button fx:id="addSolarPanelButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
                 prefHeight="75.0"
-                prefWidth="184.0" text="Add" visible="false" onAction="#addEmissionsForSolarPanelBike"/>
+                prefWidth="184.0" text="Add" visible="false" onAction="#addEmissionsForSolarPanel"/>
         <Label fx:id="solarPanelStatus" layoutX="230" layoutY="140" text="Input the parameters required" styleClass="whitelabels" visible="false">
             <font>
                 <Font size="20.0"/>
@@ -355,9 +496,288 @@
         <Button fx:id="backToEmissionPageButtonSolar" layoutX="20.0" layoutY="600.0" mnemonicParsing="false"
                 prefHeight="50.0"
                 prefWidth="50" text="Back" visible="false" onAction="#backToEmissionPageButtonOnClickSolar"/>
+        <TextField fx:id="numberSolarPanels" layoutX="260.0" layoutY="369.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Number of solar panels" visible="false"/>
+
+        <!--GUI for temperature addition-->
+        <Button fx:id="temperatureButton" layoutX="260.0" layoutY="369.0" mnemonicParsing="false" prefHeight="75.0"
+                prefWidth="184.0" text="Temperature" onAction="#temperatureButtonOnClick"/>
+        <ImageView fx:id="tempIcon" fitHeight="60" fitWidth="60" layoutX="170.0" layoutY="370.0">
+            <image>
+                <Image url="@../images/tempIcon.png"/>
+            </image>
+        </ImageView>
+        <TextField fx:id="whatTempText" layoutX="260.0" layoutY="193.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Average room temperature - before cooling down" visible="false"/>
+        <TextField fx:id="whatTempAfterText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Average room temperature - after cooling down" visible="false"/>
+        <Label fx:id="temperatureStatus" layoutX="230" layoutY="140" text="Input the parameters required" styleClass="whitelabels" visible="false">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
+        <Button fx:id="backToEmissionPageButtonTemperature" layoutX="20.0" layoutY="600.0" mnemonicParsing="false"
+                prefHeight="50.0"
+                prefWidth="50" text="Back" visible="false" onAction="#backToEmissionPageButtonOnClick"/>
+        <Button fx:id="addTemperatureButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
+                prefHeight="75.0"
+                prefWidth="184.0" text="Add" visible="false" onAction="#addEmissionsForHouseTemperature"/>
+
+        <!--GUI for household addition-->
+        <Button fx:id="householdButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false" prefHeight="75.0"
+                prefWidth="184.0" text="Household" onAction="#householdButtonOnClick" />
+        <ImageView fx:id="householdIcon" fitHeight="60" fitWidth="60" layoutX="170.0" layoutY="560.0">
+            <image>
+                <Image url="@../images/householdIcon.png"/>
+            </image>
+        </ImageView>
+        <Button fx:id="electricityButton" layoutX="260.0" layoutY="130.0" prefHeight="75.0"
+                prefWidth="184.0" text="Add Electricity" visible="false" onAction="#electricityButtonOnClick"/>
+        <Button fx:id="naturalGasButton" layoutX="260.0" layoutY="210.0" prefHeight="75.0"
+                prefWidth="184.0" text="Add Natural Gas" visible="false" onAction="#naturalGasOnClick" />
+        <TextField fx:id="electricityText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Electricty  Usage (kWh/yr)" visible="false"/>
+        <TextField fx:id="emissionFactorElectricity" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Emission Factor" visible="false"/>
+        <Label fx:id="electricityStatus" layoutX="230" layoutY="140" text="Input the parameters required" styleClass="whitelabels" visible="false">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
+        <ImageView fx:id="electricityIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="130.0">
+            <image>
+                <Image url="@../images/electricityIcon.png"/>
+            </image>
+        </ImageView>
+        <ImageView fx:id="naturalGasIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="210.0">
+            <image>
+                <Image url="@../images/naturalGasIcon.png"/>
+            </image>
+        </ImageView>
+        <ImageView fx:id="fuelOilIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="290.0">
+            <image>
+                <Image url="@../images/fuelIcon.png"/>
+            </image>
+        </ImageView>
+        <ImageView fx:id="lpgIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="370.0">
+            <image>
+                <Image url="@../images/lpgIcon.png"/>
+            </image>
+        </ImageView>
+        <ImageView fx:id="wasteIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="450.0">
+            <image>
+                <Image url="@../images/wasteIcon.png"/>
+            </image>
+        </ImageView>
+        <ImageView fx:id="waterIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="530.0">
+            <image>
+                <Image url="@../images/waterIcon.png"/>
+            </image>
+        </ImageView>
+        <Button fx:id="addElectricityButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
+                prefHeight="75.0"
+                prefWidth="184.0" text="Add" visible="false" onAction="#addElectricityInHouseHold" />
+        <Button fx:id="backToHouseHoldPageButton" layoutX="20.0" layoutY="600.0" mnemonicParsing="false"
+                prefHeight="50.0"
+                prefWidth="50" text="Back" visible="false" onAction="#backToHouseHoldPage"/>
+        <Button fx:id="backToEmissionPageButtonHousehold" layoutX="20.0" layoutY="600.0" mnemonicParsing="false"
+                prefHeight="50.0"
+                prefWidth="50" text="Back" visible="false" onAction="#backToEmissionPageButtonOnClick"/>
+
+        <TextField fx:id="naturalGasText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Natural Gas (therms/yr)" visible="false"/>
+        <TextField fx:id="emissionFactorNaturalGas" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Emission Factor" visible="false"/>
+        <Button fx:id="addNaturalGasButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
+                prefHeight="75.0"
+                prefWidth="184.0" text="Add" visible="false" onAction="#addNaturalGasInHouseHold" />
+        <Label fx:id="naturalGasStatus" layoutX="230" layoutY="140" text="Input the parameters required" styleClass="whitelabels" visible="false">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
+
+        <!--Fuel oil-->
+        <Button fx:id="fuelOilButton" layoutX="260.0" layoutY="290.0" prefHeight="75.0"
+                prefWidth="184.0" text="Add Fuel Oil" visible="false" onAction="#fuelOilOnClick"/>
+        <TextField fx:id="fuelOilText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Fuel Oil (litres/yr)" visible="false"/>
+        <TextField fx:id="emissionFactorFuelOil" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Emission Factor" visible="false"/>
+        <Label fx:id="fuelOilStatus" layoutX="230" layoutY="140" text="Input the parameters required" styleClass="whitelabels" visible="false">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
+        <Button fx:id="addFuelOilButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
+                prefHeight="75.0"
+                prefWidth="184.0" text="Add" visible="false" onAction="#addFuelInHouseHold"/>
+
+        <!--LPG-->
+        <Button fx:id="lpgButton" layoutX="260.0" layoutY="370.0" prefHeight="75.0"
+                prefWidth="184.0" text="Add LPG" visible="false" onAction="#lpgOnClick"/>
+        <TextField fx:id="lpgText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="LPG (litres/yr)" visible="false"/>
+        <TextField fx:id="emissionFactorLpg" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Emission Factor" visible="false"/>
+        <Label fx:id="lpgStatus" layoutX="230" layoutY="140" text="Input the parameters required" styleClass="whitelabels" visible="false">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
+        <Button fx:id="addLpgButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
+                prefHeight="75.0"
+                prefWidth="184.0" text="Add" visible="false" onAction="#addLpgInHouseHold"/>
+
+        <!--Water-->
+        <Button fx:id="waterButton" layoutX="260.0" layoutY="530.0" prefHeight="75.0"
+                prefWidth="184.0" text="Add Water" visible="false" onAction="#waterOnClick"/>
+        <TextField fx:id="waterText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Water (litres/day)" visible="false"/>
+        <TextField fx:id="emissionFactorWater" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Emission Factor" visible="false"/>
+        <Label fx:id="waterStatus" layoutX="230" layoutY="140" text="Input the parameters required" styleClass="whitelabels" visible="false">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
+        <Button fx:id="addWaterButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
+                prefHeight="75.0"
+                prefWidth="184.0" text="Add" visible="false" onAction="#addWaterInHouseHold"/>
+
+        <!--Waste-->
+        <Button fx:id="wasteButton" layoutX="260.0" layoutY="450.0" prefHeight="75.0"
+                prefWidth="184.0" text="Add Waste" visible="false" onAction="#wasteOnClick"/>
+        <TextField fx:id="wasteText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Waste (kg/week)" visible="false"/>
+        <TextField fx:id="emissionFactorWaste" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Emission Factor" visible="false"/>
+        <Label fx:id="wasteStatus" layoutX="230" layoutY="140" text="Input the parameters required" styleClass="whitelabels" visible="false">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
+        <Button fx:id="addWasteButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
+                prefHeight="75.0"
+                prefWidth="184.0" text="Add" visible="false" onAction="#addWasteInHouseHold"/>
+
+        <!--GUI for a metro ride-->
+        <Button fx:id="rideAMetroButton" layoutX="260.0" layoutY="369.0" mnemonicParsing="false" prefHeight="75.0"
+                prefWidth="184.0" text="Ride Metro" visible="false" onAction="#rideMetroButtonOnClick"/>
+        <ImageView fx:id="metroIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="375"
+                   visible="false">
+            <image>
+                <Image url="@../images/metroIcon.png"/>
+            </image>
+        </ImageView>
+        <TextField fx:id="metroText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Distance (km/yr)" visible="false"/>
+        <TextField fx:id="emissionFactorMetro" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Emission Factor" visible="false"/>
+        <Label fx:id="metroStatus" layoutX="230" layoutY="140" text="Input the parameters required" styleClass="whitelabels" visible="false">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
+        <Button fx:id="addMetroButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
+                prefHeight="75.0"
+                prefWidth="184.0" text="Add" visible="false" onAction="#addMetroRide"/>
+
+        <!--GUI for a Taxi ride-->
+        <Button fx:id="rideATaxiButton" layoutX="260.0" layoutY="459.0" mnemonicParsing="false" prefHeight="75.0"
+                prefWidth="184.0" text="Taxi Ride" visible="false" onAction="#rideTaxiButtonOnClick"/>
+        <ImageView fx:id="taxiIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="470"
+                   visible="false">
+            <image>
+                <Image url="@../images/taxiIcon.png"/>
+            </image>
+        </ImageView>
+        <TextField fx:id="taxiText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Distance (km/yr)" visible="false"/>
+        <TextField fx:id="emissionFactorTaxi" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Emission Factor" visible="false"/>
+        <Label fx:id="taxiStatus" layoutX="230" layoutY="140" text="Input the parameters required" styleClass="whitelabels" visible="false">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
+        <Button fx:id="addTaxiButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
+                prefHeight="75.0"
+                prefWidth="184.0" text="Add" visible="false" onAction="#addTaxiRide"/>
+
+        <!--GUI for a Train ride-->
+        <Button fx:id="rideATrainButton" layoutX="260.0" layoutY="550" mnemonicParsing="false" prefHeight="75.0"
+                prefWidth="184.0" text="Train Ride" visible="false" onAction="#rideTrainButtonOnClick"/>
+        <ImageView fx:id="trainIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="560"
+                   visible="false">
+            <image>
+                <Image url="@../images/trainIcon.png"/>
+            </image>
+        </ImageView>
+        <TextField fx:id="trainText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Distance (km/yr)" visible="false"/>
+        <TextField fx:id="emissionFactorTrain" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Emission Factor" visible="false"/>
+        <Label fx:id="trainStatus" layoutX="230" layoutY="140" text="Input the parameters required" styleClass="whitelabels" visible="false">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
+        <Button fx:id="addTrainButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
+                prefHeight="75.0"
+                prefWidth="184.0" text="Add" visible="false" onAction="#addTrainRide"/>
+
+        <!--GUI for a Airplane flight-->
+        <Button fx:id="rideAPlaneButton" layoutX="260.0" layoutY="102" mnemonicParsing="false" prefHeight="75.0"
+                prefWidth="184.0" text="Airplane Flight" visible="false" onAction="#ridePlaneButtonOnClick"/>
+        <ImageView fx:id="planeIcon" fitHeight="60" fitWidth="60" layoutX="190.0" layoutY="107"
+                   visible="false">
+            <image>
+                <Image url="@../images/planeIcon.png"/>
+            </image>
+        </ImageView>
+        <TextField fx:id="planeText" layoutX="260.0" layoutY="280.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Distance (km/yr)" visible="false"/>
+        <TextField fx:id="emissionFactorPlane" layoutX="260.0" layoutY="360.0" prefHeight="75.0"
+                   prefWidth="184.0" promptText="Emission Factor" visible="false"/>
+        <Label fx:id="planeStatus" layoutX="230" layoutY="140" text="Input the parameters required" styleClass="whitelabels" visible="false">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
+        <Button fx:id="addPlaneButton" layoutX="260.0" layoutY="550.0" mnemonicParsing="false"
+                prefHeight="75.0"
+                prefWidth="184.0" text="Add" visible="false" onAction="#addPlaneRide"/>
 
     </Pane>
-    <Pane fx:id="progressWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false"/>
+    <Pane fx:id="progressWindow" layoutX="222.0" prefHeight="700.0" prefWidth="709.0" visible="false">
+        <children>
+            <ImageView fitHeight="1200.0" fitWidth="679.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../images/progressBackgroud.jpg" />
+                </image>
+            </ImageView>
+            <Label layoutX="211.0" layoutY="14.0" text="PROGRESS" textFill="WHITE">
+                <font>
+                    <Font name="Gotham-Bold" size="45.0" />
+                </font>
+            </Label>
+            <VBox layoutX="214.0" layoutY="125.0" prefHeight="450.0" prefWidth="250.0" style="-fx-background-color: #01A2A6;">
+                <children>
+                    <Pane prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #01A2A6;">
+                        <children>
+                            <Label fx:id="leaderboard" layoutX="30" layoutY="14.0" text="LEADERBOARD" textFill="#ffffa6">
+                                <font>
+                                    <Font name="BebasNeue" size="35.0" />
+                                </font>
+                            </Label>
+                        </children>
+                    </Pane>
+                    <JFXListView fx:id="leaderboardListview" prefHeight="375.0" prefWidth="200.0" styleClass="jfx-list-view" />
+                </children>
+            </VBox>
+        </children>
+    </Pane>
     <Pane fx:id="profileWindow" layoutX="222.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
           prefHeight="700.0" prefWidth="709.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" visible="false">
         <children>
@@ -407,15 +827,13 @@
                     </ImageView>
                 </children>
             </Pane>
-            <ProgressBar layoutX="133.0" layoutY="278.0" prefHeight="18.0" prefWidth="443.0" progress="0.39" />
-            <Label layoutX="232.0" layoutY="220.0" text="YOUR TOTAL CO2 TODAY:" textFill="#243665">
+            <ProgressBar layoutX="103.0" layoutY="278.0" prefHeight="18.0" prefWidth="443.0" progress="0.39" />
+            <Label layoutX="202.0" layoutY="220.0" text="YOUR TOTAL CO2 TODAY:" textFill="#243665">
                 <font>
                     <Font name="BebasNeue" size="36.0" />
                 </font></Label>
-            <GridPane layoutY="368.0" prefHeight="344.0" prefWidth="719.0" style="-fx-background-color: #243665;">
+            <GridPane layoutY="368.0" prefHeight="344.0" prefWidth="679.0" style="-fx-background-color: #243665;">
                 <columnConstraints>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -425,84 +843,80 @@
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 </rowConstraints>
                 <children>
-                    <ImageView fitHeight="150.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
+                    <ImageView fx:id="localProductBadge" fitHeight="220.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" visible="false">
                         <image>
-                            <Image url="@../images/added_3friends.png" />
+                            <Image url="@../images/localProductBadge.png" />
                         </image>
                     </ImageView>
-                    <ImageView fitHeight="150.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                    <ImageView fx:id="vegBadge01" fitHeight="200.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" visible="false">
                         <image>
-                            <Image url="@../images/best_ofweek.png" />
+                            <Image url="@../images/vegBadge01.png" />
                         </image>
                     </ImageView>
-                    <ImageView fitHeight="150.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                    <ImageView fx:id="vegBadge02" fitHeight="200.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" visible="false">
                         <image>
-                            <Image url="@../images/bike_car.png" />
+                            <Image url="@../images/vegBadge02.png" />
                         </image>
                     </ImageView>
-                    <ImageView fitHeight="150.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                    <ImageView fx:id="vegBadge03" fitHeight="200.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" visible="false">
                         <image>
-                            <Image url="@../images/firstveg_meal.png" />
+                            <Image url="@../images/vegBadge03.png" />
                         </image>
                     </ImageView>
-                    <ImageView fitHeight="150.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
+                    <ImageView fx:id="addFriendsBadge" fitHeight="200.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" visible="false">
                         <image>
-                            <Image url="@../images/localproducts.png" />
+                            <Image url="@../images/addFriendsBadge.png" />
                         </image>
                     </ImageView>
-                    <ImageView fitHeight="150.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                    <ImageView fx:id="busBadge02" fitHeight="200.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" visible="false">
                         <image>
-                            <Image url="@../images/publictransport_car.png" />
+                            <Image url="@../images/busBadge02.png" />
                         </image>
                     </ImageView>
-                    <ImageView fitHeight="150.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <ImageView fx:id="solarPanelsBadge" fitHeight="200.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" visible="false">
                         <image>
-                            <Image url="@../images/solar_panels.png" />
+                            <Image url="@../images/solarPanelsBadge.png" />
                         </image>
                     </ImageView>
-                    <ImageView fitHeight="150.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                    <ImageView fx:id="bestOfFriends" fitHeight="200.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" visible="false">
                         <image>
-                            <Image url="@../images/streak_gold.png" />
+                            <Image url="@../images/bestOfFriends.png" />
                         </image>
                     </ImageView>
-                    <ImageView fitHeight="150.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                    <ImageView fx:id="busBadge03" fitHeight="200.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" visible="false">
                         <image>
-                            <Image url="@../images/streakveg_gold.png" />
-                        </image>
-                    </ImageView>
-                    <ImageView fitHeight="150.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                        <image>
-                            <Image url="@../images/using_GreenBeam.png" />
+                            <Image url="@../images/busBadge03.png" />
                         </image>
                     </ImageView>
                 </children>
             </GridPane>
-            <Label layoutX="493.0" layoutY="312.0" text="MAX:" textFill="#243665">
+            <Label layoutX="463.0" layoutY="312.0" text="MAX:" textFill="#243665">
                 <font>
                     <Font name="BebasNeue" size="18.0" />
                 </font>
             </Label>
-            <Label layoutX="133.0" layoutY="312.0" text="TOTAL:" textFill="#243665">
+            <Label layoutX="103.0" layoutY="312.0" text="TOTAL:" textFill="#243665">
                 <font>
                     <Font name="BebasNeue" size="18.0" />
                 </font>
             </Label>
-            <Label layoutX="176.0" layoutY="312.0" text="3456" textFill="#243665">
+            <Label layoutX="146.0" layoutY="312.0" text="3456" textFill="#243665">
                 <font>
                     <Font name="BebasNeue" size="18.0" />
                 </font>
             </Label>
-            <Label layoutX="528.0" layoutY="312.0" text="4556" textFill="#243665">
+            <Label layoutX="498.0" layoutY="312.0" text="4556" textFill="#243665">
                 <font>
                     <Font name="BebasNeue" size="18.0" />
                 </font>
             </Label>
-            <JFXButton layoutX="576.0" layoutY="22.0" styleClass="buttons" text="FRIENDS" textFill="WHITE">
+            <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" direction="RIGHT" layoutX="479.0" prefHeight="700.0" prefWidth="200.0" />
+            <JFXButton layoutX="546.0" layoutY="22.0" styleClass="buttons" stylesheets="@../css/MainPage.css" text="FRIENDS" textFill="WHITE">
                 <font>
                     <Font name="Gotham-Bold" size="14.0" />
                 </font>
             </JFXButton>
-            <JFXHamburger fx:id="hamburger" layoutX="665.0" layoutY="25.0" styleClass="jfx-hamburger" />
+            <JFXHamburger fx:id="hamburger" layoutX="635.0" layoutY="25.0" styleClass="jfx-hamburger" stylesheets="@../css/MainPage.css" />
         </children>
     </Pane>
     <ScrollPane fx:id="aboutUsWindow" layoutX="222" layoutY="0" prefHeight="700" prefWidth="677" visible="false">

@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Objects;
 
 /**
  Model class for Achievements table.
@@ -37,6 +36,8 @@ public class Achievements {
         this.achievementId = achievementId;
     }
 
+    public Achievements(){}
+
 
     public Long getId() {
         return id;
@@ -62,7 +63,6 @@ public class Achievements {
         this.achievementId = achievementId1;
     }
 
-    public  Achievements() {}
     @Override
     public String toString() {
         return "Achievements{"
@@ -73,12 +73,16 @@ public class Achievements {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Achievements)) return false;
-        Achievements that = (Achievements) o;
-        return id.equals(that.id) &&
-                getUserId().equals(that.getUserId()) &&
-                getAchievementId().equals(that.getAchievementId());
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof Achievements)) {
+            return false;
+        }
+        Achievements that = (Achievements) object;
+        return id.equals(that.id)
+                && getUserId().equals(that.getUserId())
+                && getAchievementId().equals(that.getAchievementId());
     }
 }

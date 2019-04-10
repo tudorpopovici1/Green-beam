@@ -61,17 +61,16 @@ public class JwtUser {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof JwtUser)) return false;
-        JwtUser jwtUser = (JwtUser) o;
-        return getId() == jwtUser.getId() &&
-                Objects.equals(getUserName(), jwtUser.getUserName()) &&
-                Objects.equals(getRole(), jwtUser.getRole());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getUserName(), getId(), getRole());
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof JwtUser)) {
+            return false;
+        }
+        JwtUser jwtUser = (JwtUser) object;
+        return getId() == jwtUser.getId()
+                && Objects.equals(getUserName(), jwtUser.getUserName())
+                && Objects.equals(getRole(), jwtUser.getRole());
     }
 }

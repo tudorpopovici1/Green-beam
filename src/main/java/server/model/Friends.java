@@ -1,7 +1,13 @@
 package server.model;
 
-import javax.persistence.*;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity(name = "friends_relationship")
 @Table(
@@ -26,6 +32,20 @@ public class Friends {
     @Column(name = "relationship_type")
     private String relationshipType;
 
+    /**
+     * Creates a new friend object.
+     * @param relatingUserId relating id.
+     * @param relatedUserId related id.
+     * @param relationshipType relationship type
+     */
+
+    public Friends(Long relatingUserId, Long relatedUserId, String relationshipType) {
+        this.relatingUserId = relatingUserId;
+        this.relatedUserId = relatedUserId;
+        this.relationshipType = relationshipType;
+    }
+
+    public Friends(){}
 
     /**
      * Gets relatingUserId.
@@ -99,25 +119,30 @@ public class Friends {
         return id;
     }
 
+
     @Override
     public String toString() {
-        return "Friends{" +
-                "id=" + id +
-                ", relatingUserId=" + relatingUserId +
-                ", relatedUserId=" + relatedUserId +
-                ", relationshipType='" + relationshipType + '\'' +
-                '}';
+        return "Friends{"
+                + "id=" + id
+                + ", relatingUserId=" + relatingUserId
+                + ", relatedUserId=" + relatedUserId
+                + ", relationshipType='" + relationshipType + '\''
+                + '}';
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Friends)) return false;
-        Friends friends = (Friends) o;
-        return Objects.equals(getId(), friends.getId()) &&
-                Objects.equals(getRelatingUserId(), friends.getRelatingUserId()) &&
-                Objects.equals(getRelatedUserId(), friends.getRelatedUserId()) &&
-                Objects.equals(getRelationshipType(), friends.getRelationshipType());
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof Friends)) {
+            return false;
+        }
+        Friends friends = (Friends) object;
+        return Objects.equals(getId(), friends.getId())
+                && Objects.equals(getRelatingUserId(), friends.getRelatingUserId())
+                && Objects.equals(getRelatedUserId(), friends.getRelatedUserId())
+                && Objects.equals(getRelationshipType(), friends.getRelationshipType());
     }
 
 }

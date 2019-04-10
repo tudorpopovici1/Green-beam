@@ -93,8 +93,8 @@ public class AuthenticateUserTest {
     public void equalsMethodDifferentUsernameTest() {
         authenticateUser.setUsername("irtaza");
         authenticateUser.setPassword("123");
-        authenticateUser2.setToken("231");
-        authenticateUser.setUsername("irtazahashmi");
+        authenticateUser.setToken("231");
+        authenticateUser2.setUsername("irtazahashmi");
         authenticateUser2.setPassword("123");
         authenticateUser2.setToken("231");
         Assert.assertNotEquals(authenticateUser, authenticateUser2);
@@ -104,8 +104,8 @@ public class AuthenticateUserTest {
     public void equalsMethodDifferentPasswordTest() {
         authenticateUser.setUsername("irtaza");
         authenticateUser.setPassword("123");
-        authenticateUser2.setToken("231");
-        authenticateUser.setUsername("irtaza");
+        authenticateUser.setToken("231");
+        authenticateUser2.setUsername("irtaza");
         authenticateUser2.setPassword("123456");
         authenticateUser2.setToken("231");
         Assert.assertNotEquals(authenticateUser, authenticateUser2);
@@ -115,16 +115,11 @@ public class AuthenticateUserTest {
     public void equalsMethodDifferentTokenTest() {
         authenticateUser.setUsername("irtaza");
         authenticateUser.setPassword("123");
-        authenticateUser2.setToken("231");
-        authenticateUser.setUsername("irtaza");
+        authenticateUser.setToken("231");
+        authenticateUser2.setUsername("irtaza");
         authenticateUser2.setPassword("123");
         authenticateUser2.setToken("2312312");
         Assert.assertNotEquals(authenticateUser, authenticateUser2);
-    }
-
-    @Test
-    public void equalsMethodNullTest() {
-        Assert.assertEquals(false, authenticateUser.equals(null));
     }
 
     @Test
@@ -132,5 +127,36 @@ public class AuthenticateUserTest {
         AuthenticateUser authenticateUser = new AuthenticateUser("abc", "def");
         String result = authenticateUser.getPassword();
         Assert.assertEquals(result, authenticateUser.getPassword());
+    }
+
+    @Test
+    public void equalsFalseTest() {
+        authenticateUser.setUsername("irtaza");
+        authenticateUser.setPassword("123");
+        authenticateUser.setToken("231");
+        authenticateUser2.setUsername("irtaza");
+        authenticateUser2.setPassword("123");
+        authenticateUser2.setToken("2312312");
+        Assert.assertEquals(false, authenticateUser.equals(authenticateUser2));
+    }
+
+    @Test
+    public void equalsTrueTest() {
+        authenticateUser.setUsername("irtaza");
+        authenticateUser.setPassword("123");
+        authenticateUser.setToken("231");
+        authenticateUser2.setUsername("irtaza");
+        authenticateUser2.setPassword("123");
+        authenticateUser2.setToken("231");
+        Assert.assertEquals(true, authenticateUser.equals(authenticateUser2));
+    }
+
+    @Test
+    public void equalsNullTest() {
+        authenticateUser.setUsername("irtaza");
+        authenticateUser.setPassword("123");
+        authenticateUser.setToken("231");
+        authenticateUser2 = null;
+        Assert.assertEquals(false, authenticateUser.equals(authenticateUser2));
     }
 }

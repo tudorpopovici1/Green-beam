@@ -33,17 +33,23 @@ public class JwtAuthenticationToken extends UsernamePasswordAuthenticationToken 
 
     @Override
     public String toString() {
-        return "JwtAuthenticationToken{" +
-                "token='" + token + '\'' +
-                '}';
+        return "JwtAuthenticationToken{"
+                + "token='" + token + '\''
+                + '}';
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof JwtAuthenticationToken)) return false;
-        if (!super.equals(o)) return false;
-        JwtAuthenticationToken that = (JwtAuthenticationToken) o;
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof JwtAuthenticationToken)) {
+            return false;
+        }
+        if (!super.equals(object)) {
+            return false;
+        }
+        JwtAuthenticationToken that = (JwtAuthenticationToken) object;
         return Objects.equals(getToken(), that.getToken());
     }
 }
