@@ -330,7 +330,7 @@ public class UserController {
 
         int numberFriends = userRepository.findAllFriendsUser(id).size();
         if (achievementRepository.getNumberOfSpecificAchievement(6L, id) == 0
-                && numberFriends >=3) {
+                && numberFriends >= 3) {
             Achievements achievements = new Achievements(id, 6L);
             achievementRepository.save(achievements);
         }
