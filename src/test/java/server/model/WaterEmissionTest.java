@@ -75,4 +75,9 @@ public class WaterEmissionTest {
         waterEmission2 = null;
         Assert.assertEquals(false, waterEmission.equals(waterEmission2));
     }
+
+    @Test
+    public void equalsMethodDifferentClassTest() {
+        Assert.assertFalse(waterEmission.equals(2L));
+    }
 }

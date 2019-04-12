@@ -76,4 +76,9 @@ public class WasteEmissionTest {
         Assert.assertEquals(false, wasteEmission.equals(wasteEmission2));
     }
 
+    @Test
+    public void equalsMethodDifferentClassTest() {
+        Assert.assertFalse(wasteEmission.equals(2L));
+    }
+
 }

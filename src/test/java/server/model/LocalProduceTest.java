@@ -98,6 +98,11 @@ public class LocalProduceTest {
     }
 
     @Test
+    public void equalsMethodDifferentClassTest() {
+        Assert.assertFalse(localProduce.equals(2L));
+    }
+
+    @Test
     public void equalsTrueTest() {
         localProduce.setPackagedFood(1.2);
         localProduce.setFoodProducedLocally(3.4);

@@ -5,6 +5,8 @@ import org.junit.Assert;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.text.ParseException;
+
 public class BikeRideTest {
 
     BikeRide bike = new BikeRide(0f, 0f, 0);
@@ -109,6 +111,11 @@ public class BikeRideTest {
         bike2.setNumberOfMiles(100);
         bike2.setFuelType('0');
         Assert.assertNotEquals(bike, bike2);
+    }
+
+    @Test
+    public void equalsMethodDifferentClassTest() {
+        Assert.assertFalse(bike.equals(2L));
     }
 
     @Test

@@ -75,4 +75,9 @@ public class NaturalGasEmissionTest {
         naturalGasEmission2 = null;
         Assert.assertEquals(false, naturalGasEmission.equals(naturalGasEmission2));
     }
+
+    @Test
+    public void equalsMethodDifferentClassTest() {
+        Assert.assertFalse(naturalGasEmission.equals(2L));
+    }
 }

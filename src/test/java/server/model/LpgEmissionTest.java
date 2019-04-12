@@ -73,5 +73,10 @@ public class LpgEmissionTest {
         Assert.assertEquals(false, lpgEmission.equals(lpgEmission2));
     }
 
+    @Test
+    public void equalsMethodDifferentClassTest() {
+        Assert.assertFalse(lpgEmission.equals(2L));
+    }
+
 
 }

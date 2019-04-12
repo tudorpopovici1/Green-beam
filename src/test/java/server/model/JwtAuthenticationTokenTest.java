@@ -81,6 +81,11 @@ public class JwtAuthenticationTokenTest {
         Assert.assertEquals(false, jwtAuthenticationToken.equals(jwtAuthenticationToken2));
     }
 
+    @Test
+    public void equalsMethodDifferentClassTest() {
+        Assert.assertFalse(jwtAuthenticationToken.equals(2L));
+    }
+
 
 
 }

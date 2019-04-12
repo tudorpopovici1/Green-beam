@@ -112,4 +112,9 @@ public class PlaneRideTest {
         planeRide2 = null;
         Assert.assertEquals(false, planeRide.equals(planeRide2));
     }
+
+    @Test
+    public void equalsMethodDifferentClassTest() {
+        Assert.assertFalse(planeRide.equals(2L));
+    }
 }

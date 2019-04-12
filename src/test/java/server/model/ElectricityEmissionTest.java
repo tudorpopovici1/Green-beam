@@ -75,4 +75,9 @@ public class ElectricityEmissionTest {
         electricityEmission2 = null;
         Assert.assertEquals(false, electricityEmission.equals(electricityEmission2));
     }
+
+    @Test
+    public void equalsMethodDifferentClassTest() {
+        Assert.assertFalse(electricityEmission.equals(2L));
+    }
 }

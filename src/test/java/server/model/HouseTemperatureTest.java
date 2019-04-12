@@ -87,6 +87,11 @@ public class HouseTemperatureTest {
     }
 
     @Test
+    public void equalsMethodDifferentClassTest() {
+        Assert.assertFalse(houseTemperature.equals(2L));
+    }
+
+    @Test
     public void equalsFalseTest() {
         houseTemperature.setHouseTemperatureBefore(1.2);
         houseTemperature.setGetHouseTemperatureAfter(3.4);

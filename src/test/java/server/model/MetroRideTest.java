@@ -87,6 +87,11 @@ public class MetroRideTest {
     }
 
     @Test
+    public void equalsMethodDifferentClassTest() {
+        Assert.assertFalse(metroRide.equals(2L));
+    }
+
+    @Test
     public void equalsFalseTest() {
         metroRide.setDistanceTraveled(1.2);
         metroRide.setEmissionFactor(3.4);

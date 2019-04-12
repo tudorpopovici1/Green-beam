@@ -141,6 +141,11 @@ public class AuthenticateUserTest {
     }
 
     @Test
+    public void equalsMethodDifferentClassTest() {
+        Assert.assertFalse(authenticateUser.equals(2L));
+    }
+
+    @Test
     public void equalsTrueTest() {
         authenticateUser.setUsername("irtaza");
         authenticateUser.setPassword("123");

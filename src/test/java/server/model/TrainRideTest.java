@@ -111,4 +111,9 @@ public class TrainRideTest {
         trainRide2 = null;
         Assert.assertEquals(false, trainRide.equals(trainRide2));
     }
+
+    @Test
+    public void equalsMethodDifferentClassTest() {
+        Assert.assertFalse(trainRide.equals(2L));
+    }
 }

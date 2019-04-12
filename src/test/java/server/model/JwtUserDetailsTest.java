@@ -206,4 +206,9 @@ public class JwtUserDetailsTest {
     public void isEnabledTest() {
         Assert.assertEquals(jwtUserDetails.isEnabled(), true);
     }
+
+    @Test
+    public void equalsMethodDifferentClassTest() {
+        Assert.assertFalse(jwtUserDetails.equals(2L));
+    }
 }

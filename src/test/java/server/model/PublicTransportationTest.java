@@ -123,4 +123,9 @@ public class PublicTransportationTest {
         publicTransportation2 = null;
         Assert.assertEquals(false, publicTransportation.equals(publicTransportation2));
     }
+
+    @Test
+    public void equalsMethodDifferentClassTest() {
+        Assert.assertFalse(publicTransportation.equals(2L));
+    }
 }

@@ -77,4 +77,9 @@ public class FuelOilEmissionTest {
         Assert.assertEquals(false, fuelOilEmission.equals(fuelOilEmission2));
     }
 
+    @Test
+    public void equalsMethodDifferentClassTest() {
+        Assert.assertFalse(fuelOilEmission.equals(2L));
+    }
+
 }

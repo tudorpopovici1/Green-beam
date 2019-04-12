@@ -112,4 +112,8 @@ public class TaxiRideTest {
         Assert.assertEquals(false, taxiRide.equals(taxiRide2));
     }
 
+    @Test
+    public void equalsMethodDifferentClassTest() {
+        Assert.assertFalse(taxiRide.equals(2L));
+    }
 }

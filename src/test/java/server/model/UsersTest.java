@@ -289,6 +289,11 @@ public class UsersTest {
     }
 
     @Test
+    public void equalsMethodDifferentClassTest() {
+        Assert.assertFalse(user.equals(2L));
+    }
+
+    @Test
     public void equalsMethodDifferentLastNameTest() throws ParseException {
         user.setFirstName("irtaza");
         user.setLastName("hashmiiii");
