@@ -14,3 +14,4 @@ buildNumber.properties
 
 #exclude IntelliJ config file
 .idea
+jfoenix-0.0.0-SNAPSHOT-retrolambda.jar
